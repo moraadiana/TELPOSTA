@@ -1,0 +1,2 @@
+D:\TELPOSTA\MembersPortal\MembersPortal\MembersPortal\obj\Debug\MembersPortal.csproj.AssemblyReference.cache
+D:\TELPOSTA\MembersPortal\MembersPortal\MembersPortal\obj\Debug\MembersPortal.csproj.CoreCompileInputs.cache

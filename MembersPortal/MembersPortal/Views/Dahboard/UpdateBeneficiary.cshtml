@@ -1,0 +1,218 @@
+﻿@model MembersPortal.Models.Beneficiary
+
+@{
+    ViewBag.Title = "UpdateBeneficiary";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container mt-3 shadow-lg" style="background-color: #f0ffff">
+
+    <div class="row">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row p-3">
+                <h4 class="text-dark text-center"><strong><i class="bi-clipboard-plus"></i> Fill The following form</strong></h4>
+                <hr />
+                <div class="row mb-3">
+
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.FirstName, new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control ", required = "required" })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MiddleName, new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control ", required = "required" })
+                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.LastName, new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control ", required = "required" })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Select Relationship</label>
+                        @if (Model.Relationships != null)
+                        {
+                            @Html.DropDownListFor(m => m.Rlshp, new SelectList(Model.Relationships, "Value", "Text"), new { @class = "form-select", required = "required" })
+                        }
+
+                    </div>
+
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="startDatePicker" class="form-label">Date Of Birth:</label>
+                        <div class="input-group date col-sm-3" id="startDatePickerContainer">
+                            @Html.EditorFor(model => Model.DOB, new { htmlAttributes = new { @class = "form-control", id = "startDatePicker" } })
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="bi-calendar3"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Select Bank</label>
+                        @if (Model.BanksList != null)
+                        {
+                            @Html.DropDownListFor(m => m.BankCode, new SelectList(Model.BanksList, "Value", "Text"), new { @class = "form-select", required = "required", id = "bankcode", onchange = "handleBankCodeChange()" })
+                        }
+
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Select Branch</label>
+
+                        @Html.DropDownListFor(m => m.BranchCode,
+                       Enumerable.Empty<SelectListItem>(),//initial empty list
+                       "-- select branch--",
+                       new { @class = "form-select", required = "required", id = "branchcode" })
+
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Account Number:</label>
+                        @Html.TextBoxFor(model => model.AccNo, new { @class = "form-control", type = "number", required = "required" })
+                        @Html.ValidationMessageFor(model => model.AccNo, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">ID/Passport No:</label>
+                        @Html.TextBoxFor(model => model.IDPassport, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.IDPassport, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Beneficiary Account Name:</label>
+                        @Html.TextBoxFor(model => model.BankAccName, new { @class = "form-control ", required = "required" })
+                        @Html.ValidationMessageFor(model => model.BankAccName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Percentage Benefit:</label>
+                        @Html.TextBoxFor(model => model.PercentageBenefit, new { @class = "form-control ", type = "Number", required = "required" })
+                        @Html.ValidationMessageFor(model => model.PercentageBenefit, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Percentage of Pension:</label>
+                        @Html.TextBoxFor(model => model.PercentagePension, new { @class = "form-control ", type = "Number", required = "required" })
+                        @Html.ValidationMessageFor(model => model.PercentagePension, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Birth Certificate Number:</label>
+                        @Html.TextBoxFor(model => model.BirthCertNo, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.BirthCertNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Beneficiary Email:</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control ", type = "email", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-12 text-center mb-3 ">
+                    <button class="btn btn-dark text-white"><i class="fa fa-check-square-o"></i> Submit</button>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            var message = '@ViewBag.ErrorMessage';
+            var url = '@TempData["RedirectUrl"]';
+            alert(message);
+            window.location.href = url;
+        };
+    </script>
+}
+@if (ViewBag.SuccessMessage != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            var message = '@ViewBag.SuccessMessage';
+            var url = '@TempData["RedirectUrl"]';
+            alert(message);
+            window.location.href = url;
+        };
+    </script>
+}
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#startDatePicker", {
+            dateFormat: "Y-m-d",
+            defaultDate: new Date(),
+            maxDate: "01-01-2030",
+            position: "auto center"
+        });
+
+        document.querySelector("#startDatePickerContainer .input-group-text").addEventListener('click', function () {
+            document.querySelector("#startDatePicker")._flatpickr.open();
+        });
+
+    });
+
+   function handleBankCodeChange() {
+    loadBankBranches();
+}
+
+function loadBankBranches() {
+    var bankcode = $('#bankcode').val();
+    if (bankcode) {
+        $.ajax({
+            url: '@Url.Action("GetBankBranches", "dashboard")',
+            data: { bankcode: bankcode },
+            type: 'GET',
+            success: function (data) {
+            var branch = $('#branchcode');
+            branch.empty().append('<option value="">Select Branch Code</option>');
+            $.each(data, function (index, item) {
+            branch.append('<option value="' + item.Value + '">' + item.Text + '</option>');
+            });
+            },
+            error: function () {
+            alert('Error loading Branch Codes');
+            }
+            });
+            } else {
+            $('#branchcode').empty().append('<option value="">Select Branch Code</option>');
+            }
+            }
+
+
+</script>
+<style>
+    .container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .form-label {
+        font-family: 'Roboto';
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+

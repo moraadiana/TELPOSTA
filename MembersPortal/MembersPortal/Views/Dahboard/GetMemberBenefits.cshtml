@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Contribution Statement";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div class="container-sm shadow-lg mt-4" style="background-color: #f0ffff">
+
+
+    <div class="col-md-12 mt-2 mt-md-0">
+
+        <div class="row">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="row col-12">
+                    <h6 class="text-dark text-center"><strong>Select the dates you want to display the statement</strong></h6>
+                    <hr />
+
+
+
+                    <div class="col-md-6">
+                        <label for="startDatePicker" class="form-label"><strong>From:</strong></label>
+                        <div class="input-group date col-sm-3" id="startDatePickerContainer">
+                            @Html.EditorFor(model => Model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "startDatePicker" } })
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="bi-calendar3"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="returnDatePicker" class="form-label"><strong>To:</strong></label>
+                        <div class="input-group date col-sm-3" id="returnDatePickerContainer">
+                            @Html.EditorFor(model => Model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "returnDatePicker" } })
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="bi-calendar3"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row col-12 mt-2">
+                    <div class="col-12 text-center mt-3 ">
+                        <button class="btn btn-dark text-white"> Submit <i class="bi-check2-square"></i></button>
+
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+    @if (ViewBag.PdfUrl != null)
+    {
+        <div class="col-md-12 mt-2 mt-md-0">
+
+            <div class="container text-center">
+                <div class="pdf-container">
+                    <iframe id="pdfViewer" width="80%" height="800px" class="pdf-responsive" src="@ViewBag.PdfUrl"></iframe>
+                </div>
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+
+<style>
+    .container-sm {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#startDatePicker", {
+            dateFormat: "Y-m-d",
+            defaultDate: new Date(),
+            maxDate: "01-01-2030",
+            position: "auto center"
+        });
+
+        document.querySelector("#startDatePickerContainer .input-group-text").addEventListener('click', function () {
+            document.querySelector("#startDatePicker")._flatpickr.open();
+        });
+
+        flatpickr("#returnDatePicker", {
+            dateFormat: "Y-m-d",
+            defaultDate: new Date(),
+            maxDate: "01-01-2030",
+            position: "auto center"
+        });
+
+        document.querySelector("#returnDatePickerContainer .input-group-text").addEventListener('click', function () {
+            document.querySelector("#returnDatePicker")._flatpickr.open();
+        });
+    });
+</script>
+
+

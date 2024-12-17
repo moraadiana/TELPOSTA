@@ -1,0 +1,28 @@
+﻿@model MembersPortal.Models.Beneficiary
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<table class="table table-striped table-borderless" table-hover>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Remove</th>
+            <th>Edit</th>
+            @*<th class="hide">Number</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.DOB</td>
+            <td><a href="@Url.Action("removebeneficiary", "dashboard", new {ID = Model.LineNo,Name = Model.Name})"><button class="btn btn-sm-danger p-2">Remove <i class="bi-box-arrow-up"></i></button></a></td>
+            <td><a href="@Url.Action("editbeneficiary", "dashboard", new {ID = Model.LineNo,Name = Model.Name})"><button class="btn btn-sm-warning p-2">Edit <i class="bi-pencil-square"></i></button></a></td>
+
+        </tr>
+    </tbody>
+
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MembersPortal.Models.MemberStmt>
+
+@{
+    ViewBag.Title = "Member Statement";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container mt-4 shadow-lg" " style="background-color: #f0ffff">
+    <h5 class="text-center mb-4"><strong>Member Statement</strong></h5>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-sm-center">Employee Contribution</th>
+                    <th>Employee Unregistered Contribution</th>
+                    <th>Employee Contribution 2</th>
+                    <th>Employer Unregistered Contribution</th>
+                    <th>Employee Voluntary</th>
+                    <th>Employee Unregistered Contribution</th>
+                    <th>Arrears</th>
+                    <th>Transfer In</th>
+                    <th>Withdrawal</th>
+                    <th>Interest Earned</th>
+                    <th>Total Contribution</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-right">@item.EmploContrib.ToString()</td>
+                        <td class="text-right">@item.EmployerUnregContrib.ToString()</td>
+                        <td class="text-right">@item.EmployeeContrib2.ToString()</td>
+                        <td class="text-right">@item.EmployerUnregContrib.ToString()</td>
+                        <td class="text-right">@item.EEVoluntary.ToString()</td>
+                        <td class="text-right">@item.EEUnregistered.ToString()</td>
+                        <td class="text-right">@item.Arrears.ToString()</td>
+                        <td class="text-right">@item.TransferIn.ToString()</td>
+                        <td class="text-right">@item.TotalWithdrawal.ToString()</td>
+                        <td class="text-right">@item.IntrestEarned.ToString()</td>
+                        <td class="text-right">@item.TotalContribution.ToString()</td>
+                        <td class="text-right">@item.Balance.ToString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    th {
+        font-size: 12px;
+    }
+</style>
