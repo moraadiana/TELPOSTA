@@ -11,7 +11,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class ImprestListing : System.Web.UI.Page
     {
-        SqlConnection connection;
+      /*  SqlConnection connection;
         SqlDataReader reader;
         SqlCommand command;
         Staffportall webportals = Components.ObjNav;
@@ -104,6 +104,6 @@ namespace TELPOSTAStaff.pages
         {
             string strScript = "<script>alert('" + message + "')</script>";
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
-        }
+        }*/
     }
 }

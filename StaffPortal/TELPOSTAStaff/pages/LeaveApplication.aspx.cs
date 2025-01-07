@@ -11,7 +11,7 @@ namespace TELPOSTAStaff.pages
     public partial class LeaveApplication : System.Web.UI.Page
     {
        // Staffportall webportals = Components.ObjNav;
-        string[] strLimiters = new string[] { "::" };
+     /*   string[] strLimiters = new string[] { "::" };
         string[] strLimiters2 = new string[] { "[]" };
         SqlConnection connection;
         SqlCommand command;
@@ -512,6 +512,6 @@ namespace TELPOSTAStaff.pages
             string page = "LeaveListing.aspx";
             string strScript = "<script>alert('" + message + "');window.location='" + page + "';</script>";
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
-        }
+        } */
     }
 }

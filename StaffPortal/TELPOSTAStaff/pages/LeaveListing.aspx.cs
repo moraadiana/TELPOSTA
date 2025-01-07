@@ -10,7 +10,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class LeaveListing : System.Web.UI.Page
     {
-        Staffportall webportals = Components.ObjNav;
+        /*Staffportall webportals = Components.ObjNav;
         string[] strLimiters = new string[] { "::" };
         string[] strLimiters2 = new string[] { "[]" };
 
@@ -119,6 +119,6 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
             return htmlStr;
-        }
+        } */
     }
 }

@@ -13,7 +13,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class Payslip : System.Web.UI.Page
     {
-        SqlConnection connection;
+        /*SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -187,6 +187,6 @@ namespace TELPOSTAStaff.pages
         {
             string strScript = "<script>alert('" + message + "');</script>";
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
-        }
+        }*/
     }
 }

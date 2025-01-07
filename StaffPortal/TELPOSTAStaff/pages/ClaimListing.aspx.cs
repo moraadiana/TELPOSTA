@@ -10,7 +10,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class ClaimListing : System.Web.UI.Page
     {
-        Staffportall webportals = Components.ObjNav;
+       /* Staffportall webportals = Components.ObjNav;
         string[] strLimiters = new string[] { "::" };
         string[] strLimiters2 = new string[] { "[]" };
         SqlConnection connection;
@@ -112,6 +112,6 @@ namespace TELPOSTAStaff.pages
             }
             return htmlStr;
         }
-
+       */
     }
 }

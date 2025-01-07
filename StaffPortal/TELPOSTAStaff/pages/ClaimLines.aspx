@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
+                                           <%-- <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="box-body">
                                             <div id="newLines" runat="server" visible="false">
-                                                <asp:LinkButton ID="lbtnClose" ToolTip="Close Lines" class="pull-right" runat="server" OnClick="lbtnClose_Click"><i class="fa fa-minus-circle"></i> Close lines</asp:LinkButton>
+                                               <%-- <asp:LinkButton ID="lbtnClose" ToolTip="Close Lines" class="pull-right" runat="server" OnClick="lbtnClose_Click"><i class="fa fa-minus-circle"></i> Close lines</asp:LinkButton>--%>
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
@@ -114,14 +114,14 @@
                                                             <th></th>
                                                             <td></td>
                                                             <td>
-                                                                <asp:Button ID="btnLine" class="btn btn-primary pull-right" runat="server" Text="Add" OnClick="btnLine_Click" /></td>
+                                                             <%--   <asp:Button ID="btnLine" class="btn btn-primary pull-right" runat="server" Text="Add" OnClick="btnLine_Click" /></td>--%>
                                                             <td></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
 
-                                            <asp:LinkButton ID="lbtnAddLine" ToolTip="Add New Lines" class="pull-right text-info" runat="server" OnClick="lbtnAddLine_Click"><i class="fa fa-plus-circle"></i> Add Line</asp:LinkButton>
+                                           <%-- <asp:LinkButton ID="lbtnAddLine" ToolTip="Add New Lines" class="pull-right text-info" runat="server" OnClick="lbtnAddLine_Click"><i class="fa fa-plus-circle"></i> Add Line</asp:LinkButton>--%>
 
                                             <div id="attachments" runat="server" visible="false">
                                                 <div class="row">
@@ -129,7 +129,7 @@
                                                         <label>Attach supporting documents</label>
                                                         <asp:FileUpload ID="fuClaimDocs" CssClass="form-control" ToolTip="Attach documents with .pdf, .png, .jpg and .jpeg extensions only" runat="server" />
                                                         <br />
-                                                        <asp:LinkButton ID="lbtnAttach" runat="server" CssClass="btn btn-primary" OnClick="lbtnAttach_Click"><i class="fa fa-upload"></i>&nbsp;Upload</asp:LinkButton>
+                                                       <%-- <asp:LinkButton ID="lbtnAttach" runat="server" CssClass="btn btn-primary" OnClick="lbtnAttach_Click"><i class="fa fa-upload"></i>&nbsp;Upload</asp:LinkButton>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,9 +151,9 @@
                                                     <asp:BoundField DataField="Due Date" HeaderText="Due Date" />
                                                     <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
                                                         <ItemStyle Width="110px" HorizontalAlign="Left" />
-                                                        <ItemTemplate>
+                                                       <%-- <ItemTemplate>
                                                             <asp:LinkButton ID="lbtnRemove" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemove_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("Line No_") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
-                                                        </ItemTemplate>
+                                                        </ItemTemplate>--%>
                                                     </asp:TemplateField>
                                                 </Columns>
                                                 <FooterStyle HorizontalAlign="Center" />
@@ -181,9 +181,9 @@
                                                             <asp:BoundField DataField="$systemCreatedAt" HeaderText="Date Uploaded" />
                                                             <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
                                                                 <ItemStyle Width="110px" HorizontalAlign="Left" />
-                                                                <ItemTemplate>
+                                                                <%--<ItemTemplate>
                                                                     <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("$systemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
-                                                                </ItemTemplate>
+                                                                </ItemTemplate>--%>
                                                             </asp:TemplateField>
                                                         </Columns>
                                                         <FooterStyle HorizontalAlign="Center" />
@@ -203,8 +203,8 @@
                                                         <th></th>
                                                         <th>&nbsp;</th>
                                                         <th>
-                                                            <asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Send Approval" OnClick="btnApproval_Click" />&nbsp;
-                                        <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />
+                                                            <%--<asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Send Approval" OnClick="btnApproval_Click" />&nbsp;
+                                        <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />--%>
                                                         </th>
                                                     </tr>
                                                 </thead>

@@ -51,7 +51,8 @@
                                         </td>
                                         
                                         <td colspan="3" class="auto-style1">
-                                            <asp:DropDownList ID="ddlYear" runat="server" Width="233px" CssClass="form-control select2" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
+                                            <%--<asp:DropDownList ID="ddlYear" runat="server" Width="233px" CssClass="form-control select2" AutoPostBack="True" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">--%>
+                                            <asp:DropDownList ID="ddlYear" runat="server" Width="233px" CssClass="form-control select2" AutoPostBack="True" >
                                             </asp:DropDownList>&nbsp;
                                         </td>
                                     </tr>

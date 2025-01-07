@@ -35,11 +35,13 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Year:</label>
                                     <div class="col-sm-3">
-                                        <asp:DropDownList ID="ddlYear" class="form-control select2" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                       <%-- <asp:DropDownList ID="ddlYear" class="form-control select2" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
+                                         <asp:DropDownList ID="DropDownList1" class="form-control select2" runat="server"  AutoPostBack="true"></asp:DropDownList>
                                     </div>
                                     <label for="inputEmail3" class="col-sm-2 control-label">Month</label>
                                     <div class="col-sm-3">
-                                        <asp:DropDownList ID="ddlMonth" class="form-control select2" runat="server" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                       <%-- <asp:DropDownList ID="ddlMonth" class="form-control select2" runat="server" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
+                                         <asp:DropDownList ID="ddlMonth" class="form-control select2" runat="server" AutoPostBack="true"></asp:DropDownList>
                                     </div>
                                     <%--<div class="col-sm-2">
                                         <button type="button" class="btn btn-block btn-primary"><i class="fa fa-file-pdf-o"></i>View payslip</button>

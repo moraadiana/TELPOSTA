@@ -11,7 +11,7 @@ namespace MembersPortal.Controllers
 {
     public class AuthenticationController : Controller
     {
-
+/*
         public ActionResult Login()
         {
             var model = new LoginModel();
@@ -265,6 +265,6 @@ namespace MembersPortal.Controllers
             Session.RemoveAll();
             Session.Abandon();
             return RedirectToAction("Login");
-        }
+        }*/
     }
 }

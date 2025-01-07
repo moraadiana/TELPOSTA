@@ -12,7 +12,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class BackToOfficeListing : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+     /*   protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -107,6 +107,6 @@ namespace TELPOSTAStaff.pages
                 exception.Data.Clear();
             }
             return htmlStr;
-        }
+        }*/
     }
 }

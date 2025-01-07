@@ -10,7 +10,7 @@ namespace MembersPortal
 {
     public class Components
     {
-        public static Portal Portal
+      /*  public static Portal Portal
         {
             get
             {
@@ -27,6 +27,6 @@ namespace MembersPortal
                 }
                 return webservice;
             }
-        }
+        }*/
     }
 }

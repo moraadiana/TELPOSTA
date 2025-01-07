@@ -10,7 +10,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class PettyCashAccounting : System.Web.UI.Page
     {
-        SqlConnection connection;
+       /* SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         Staffportall webportals = Components.ObjNav;
@@ -91,6 +91,6 @@ namespace TELPOSTAStaff.pages
             return htmlStr;
         }
 
-       
+       */
     }
 }

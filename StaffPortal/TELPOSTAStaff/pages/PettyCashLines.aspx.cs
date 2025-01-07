@@ -12,7 +12,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class PettyCashLines : System.Web.UI.Page
     {
-        SqlConnection connection;
+        /*SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -597,7 +597,7 @@ namespace TELPOSTAStaff.pages
             {
                 ex.Data.Clear();
             }
-        }
+        }*/
 
     }
 }

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace TELPOSTAStaff.pages
 {
     public partial class ClaimLines : System.Web.UI.Page
-    {
+    {/*
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
@@ -171,16 +171,16 @@ namespace TELPOSTAStaff.pages
                 string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
 
-                /* if (string.IsNullOrEmpty(department))
-                 {
-                     Message("Department cannot be null!");
-                     return;
-                 }
-                 if (string.IsNullOrEmpty(directorate))
-                 {
-                     Message("Division cannot be null!");
-                     return;
-                 }*/
+                 //if (string.IsNullOrEmpty(department))
+                 //{
+                 //    Message("Department cannot be null!");
+                 //    return;
+                 //}
+                 //if (string.IsNullOrEmpty(directorate))
+                 //{
+                 //    Message("Division cannot be null!");
+                 //    return;
+                 //}
                 if (string.IsNullOrEmpty(responsibilityCenter))
                 {
                     Message("Responsibility center cannot be null!");
@@ -595,6 +595,6 @@ namespace TELPOSTAStaff.pages
                 Message("You can only edit an open document!");
                 return;
             }
-        }
+        }*/
     }
 }

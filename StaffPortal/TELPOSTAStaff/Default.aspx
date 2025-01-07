@@ -36,12 +36,15 @@
 
                     <!-- Login Button -->
                     <div class="container-login100-form-btn">
-                        <asp:LinkButton ID="lbtnLogin" runat="server" OnClick="lbtnLogin_Click" CssClass="login-btn"><strong>LOGIN</strong></asp:LinkButton>
+                       <%-- <asp:LinkButton ID="lbtnLogin" runat="server" OnClick="lbtnLogin_Click" CssClass="login-btn"><strong>LOGIN</strong></asp:LinkButton>--%>
+                         <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="login-btn"><strong>LOGIN</strong></asp:LinkButton>
                     </div>
 
                     <!-- Forgot Password -->
                     <div class="text-center p-t-15">
-                        <asp:LinkButton ID="lbtnForgot" runat="server" OnClick="lbtnForgot_Click" CssClass="forgot-link">Forgot Password? <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
+                       <%-- <asp:LinkButton ID="lbtnForgot" runat="server" OnClick="lbtnForgot_Click" CssClass="forgot-link">Forgot Password? <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>--%>
+                        
+                        <asp:LinkButton ID="LinkButton1" runat="server"  CssClass="forgot-link">Forgot Password? <i class="fa fa-arrow-circle-right"></i></asp:LinkButton>
                     </div>
                 </asp:Panel>
 

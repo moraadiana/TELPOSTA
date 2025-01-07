@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 namespace TELPOSTAStaff
 {
     public partial class Default : System.Web.UI.Page
-    {
+    {/*
           readonly Staffportall webportals = Components.ObjNav;
           string[] strLimiters = new string[] { "::" };
 
@@ -220,6 +220,6 @@ namespace TELPOSTAStaff
               {
                   ex.Data.Clear();
               }
-          }
+          }*/
     }
 }

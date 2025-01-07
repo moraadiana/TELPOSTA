@@ -56,12 +56,12 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="LeaveListing.aspx"><i class="fa fa-hand-o-right"></i>Leave Requisition</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="TrainingListing.aspx"><i class="fa fa-hand-o-right"></i>Training Requisition</a></li>
-                                        <li class="divider"></li>
+                                      <%--  <li><a href="TrainingListing.aspx"><i class="fa fa-hand-o-right"></i>Training Requisition</a></li>
+                                        <li class="divider"></li>--%>
                                         <li><a href="BackToOfficeListsing.aspx"><i class="fa fa-hand-o-right"></i>Back To Office</a></li>
                                         <li class="divider"></li>
-                                           <li><a href="AppraisalListing.aspx"><i class="fa fa-hand-o-right"></i>Appraisals</a></li>
-                                        <li class="divider"></li> 
+                                         <%--  <li><a href="AppraisalListing.aspx"><i class="fa fa-hand-o-right"></i>Appraisals</a></li>
+                                        <li class="divider"></li> --%>
                                         <li><a href="pnineform.aspx"><i class="fa fa-hand-o-right"></i>P9 Form</a></li>
                                         <li class="divider"></li>
                                         <li><a href="Payslip.aspx"><i class="fa fa-hand-o-right"></i>Payslip</a></li>
@@ -71,7 +71,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Finance Management <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="MemoImprestListing.aspx"><i class="fa fa-hand-o-right"></i>Memo Imprest Requisition</a></li>
+                                        <li><a href="ImprestListing.aspx"><i class="fa fa-hand-o-right"></i>Memo Imprest Requisition</a></li>
                                         <li class="divider"></li>
                                         <li><a href="ImprestAccountingListing.aspx"><i class="fa fa-hand-o-right"></i>Imprest Accounting</a></li>
                                         <li class="divider"></li>
@@ -87,14 +87,14 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown">
+                              <%-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procurement Management <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="StoreListing.aspx"><i class="fa fa-hand-o-right"></i>Store Requisition</a></li>
                                         <!--<li class="divider"></li>
                                         <li><a href="PurchaseListing.aspx"><i class="fa fa-hand-o-right"></i>Purchase Requisition</a></li> -->
                                     </ul>
-                                </li>
+                                </li>--%>
 
                                  <!--<li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help Desk <span class="caret"></span></a>
