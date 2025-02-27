@@ -38,24 +38,24 @@
                                                 <asp:Label ID="lblRequester" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                       <%-- <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Directorate: </label>
                                                 <asp:Label ID="lblDirectorate" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Department: </label>
                                                 <asp:Label ID="lblDepartment" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                       <%-- <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Responsibility Center</label>
                                                 <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -140,10 +140,10 @@
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="No" HeaderText="Number" />
                                                     <asp:BoundField DataField="Advance Type" HeaderText="Advance Type" />
-                                                    <asp:BoundField DataField="Account No:" HeaderText="Account No" />
+                                                    <asp:BoundField DataField="Account No" HeaderText="Account No" />
                                                     <asp:BoundField DataField="Account Name" HeaderText="Account Name" />
-                                                    <asp:BoundField DataField="varAmount" HeaderText="Amount" />
-                                                    <asp:BoundField DataField="Due Date" HeaderText="Due Date" />
+                                                    <asp:BoundField DataField="Amount" HeaderText="Amount" />
+                                                  <%--  <asp:BoundField DataField="Due Date" HeaderText="Due Date" />--%>
                                                     <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
                                                         <ItemStyle Width="110px" HorizontalAlign="Left" />
                                                         <ItemTemplate>
@@ -173,7 +173,7 @@
                                                     <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
                                                         <ItemStyle Width="110px" HorizontalAlign="Left" />
                                                         <ItemTemplate>
-                                                            <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("$systemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("SystemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>

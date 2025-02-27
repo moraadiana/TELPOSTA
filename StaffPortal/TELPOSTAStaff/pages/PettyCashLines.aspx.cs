@@ -7,12 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class PettyCashLines : System.Web.UI.Page
     {
-        /*SqlConnection connection;
+        SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -32,6 +33,7 @@ namespace TELPOSTAStaff.pages
                 LoadStaffDetails();
                 LoadResponsibilityCenter();
                 LoadAccountNos();
+                LoadAdvanceTypes();
 
                 string query = Request.QueryString["query"];
                 string approvalStatus = Request.QueryString["status"].Replace("%", " ");
@@ -92,7 +94,7 @@ namespace TELPOSTAStaff.pages
                     {
 
                         lblDepartment.Text = responseArr[1];
-                        lblDirectorate.Text = responseArr[2];
+                       // lblDirectorate.Text = responseArr[2];
                     }
                 }
 
@@ -110,28 +112,28 @@ namespace TELPOSTAStaff.pages
         {
             try
             {
-                ddlResponsibilityCenter.Items.Clear();
+                //ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "P-CASH";
-                string resCenters = webportals.GetResponsibilityCentres(grouping);
-                if (!string.IsNullOrEmpty(resCenters))
-                {
-                    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                //string grouping = "P-CASH";
+                //string resCenters = webportals.GetResponsibilityCentres(grouping);
+                //if (!string.IsNullOrEmpty(resCenters))
+                //{
+                //    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (string rescenter in resCenterArr)
-                    {
-                        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
-                    }
-                }
-                else
-                {
-                    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
-                }
+                //    foreach (string rescenter in resCenterArr)
+                //    {
+                //        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
+                //    }
+                //}
+                //else
+                //{
+                //    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
+                //}
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
+               // ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
             }
         }
         private void LoadAccountNos()
@@ -171,6 +173,38 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlAdvancType.Items.Clear();
+                string advancetypes = webportals.GetAdvancetype(6);
+                if (!string.IsNullOrEmpty(advancetypes))
+                {
+                    string[] advancetypesArr = advancetypes.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string account in advancetypesArr)
+                    {
+                        string[] responseArr = account.Split(strLimiters, StringSplitOptions.None);
+                        if (responseArr.Length >= 2)
+                        {
+                            
+                            string displayText = $"{responseArr[0]} - {responseArr[1]}"; 
+                            string value = responseArr[0];
+                            ListItem li = new ListItem(displayText, value);
+                            ddlAdvancType.Items.Add(li);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+
+        }
+
+
+        private void LoadAdvanceTypes1()
+        {
+            try
+            {
+                ddlAdvancType.Items.Clear();
                 connection = Components.GetconnToNAV();
                 command = new SqlCommand()
                 {
@@ -201,8 +235,19 @@ namespace TELPOSTAStaff.pages
             {
                 string username = Session["username"].ToString();
                 string department = lblDepartment.Text;
-                string directorate = lblDirectorate.Text;
-                string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
+                string pettyCashType = ddlPettyCashType.SelectedValue;
+                //string ApplicantType = DdApplicantType.SelectedItem.Text;
+                int MyPettyType = 0;
+                if (pettyCashType == "Claim")
+                {
+                    MyPettyType = 1;
+                }
+                else if (pettyCashType == "Advance")
+                {
+                    MyPettyType = 2;
+                }
+                //string directorate = lblDirectorate.Text;
+                //string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
 
 
@@ -211,16 +256,16 @@ namespace TELPOSTAStaff.pages
                     Message("Department cannot be null!");
                     return;
                 }
-                if (string.IsNullOrEmpty(directorate))
-                {
-                    Message("Unit cannot be null!");
-                    return;
-                }
-                if (string.IsNullOrEmpty(responsibilityCenter))
-                {
-                    Message("Responsibility center cannot be null!");
-                    return;
-                }
+                //if (string.IsNullOrEmpty(directorate))
+                //{
+                //    Message("Unit cannot be null!");
+                //    return;
+                //}
+                //if (string.IsNullOrEmpty(responsibilityCenter))
+                //{
+                //    Message("Responsibility center cannot be null!");
+                //    return;
+                //}
                 if (purpose == "")
                 {
                     Message("Purpose cannot be null!");
@@ -233,7 +278,7 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                string response = webportals.CreatePettyCashRequisitionHeader(username, directorate, department, responsibilityCenter, purpose);
+                string response = webportals.CreatePettyCashRequisitionHeader(username, department, purpose, MyPettyType);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
@@ -275,6 +320,63 @@ namespace TELPOSTAStaff.pages
             }
         }
         private void BindAttachedDocuments(string documentNo)
+        {
+            try
+            {
+                // Call the AL web service method
+                string docLines = webportals.GetDocumentlines(documentNo);
+
+                // Check if the response is not empty or null
+                if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
+                {
+                    // Split the response by '[]' to separate each line
+                    string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Create a DataTable to hold the parsed data for binding
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Document No");
+                    dt.Columns.Add("Description");
+                    dt.Columns.Add("$systemCreatedAt");
+                    dt.Columns.Add("SystemId");
+
+
+
+                    // Loop through each line item
+                    foreach (string item in lineItems)
+                    {
+                        // Split each line by '::' to get individual fields
+                        string[] fields = item.Split(strLimiters, StringSplitOptions.None);
+
+                        // Check if we have the correct number of fields to avoid errors
+                        if (fields.Length == 4)
+                        {
+                            DataRow row = dt.NewRow();
+                            row["Document No"] = fields[0];
+                            row["Description"] = fields[1];
+                            row["$systemCreatedAt"] = fields[2];
+                            row["SystemId"] = fields[3];
+                            dt.Rows.Add(row);
+                        }
+                    }
+
+                    // Bind the DataTable to the GridView
+                    gvAttachments.DataSource = dt;
+                    gvAttachments.DataBind();
+                }
+                else
+                {
+                    // Handle the case where there are no imprest lines
+                    gvLines.DataSource = null;
+                    gvLines.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (log or show an error message as needed)
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+        private void BindAttachedDocuments1(string documentNo)
         {
             try
             {
@@ -544,7 +646,7 @@ namespace TELPOSTAStaff.pages
                             File.Delete(pathToUpload);
                         }
                         fuClaimDocs.SaveAs(pathToUpload);
-                       webportals.SaveMemoAttchmnts(DocumentNo, pathToUpload, fileName.ToUpper(), username);
+                        webportals.SaveMemoAttchmnts(DocumentNo, pathToUpload, fileName.ToUpper(), username);
                         Stream fs = fuClaimDocs.PostedFile.InputStream;
                         BinaryReader br = new BinaryReader(fs);
                         byte[] bytes = br.ReadBytes((int)fs.Length);
@@ -597,7 +699,7 @@ namespace TELPOSTAStaff.pages
             {
                 ex.Data.Clear();
             }
-        }*/
+        }
 
     }
 }

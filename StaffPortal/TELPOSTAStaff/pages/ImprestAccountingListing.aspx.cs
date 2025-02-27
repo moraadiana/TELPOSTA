@@ -11,7 +11,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class ImprestAccountingListing : System.Web.UI.Page
     {
-        /*SqlConnection connection;
+        SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         protected void Page_Load(object sender, EventArgs e)
@@ -102,6 +102,6 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
             return htmlStr;
-        }*/
+        }
     }
 }

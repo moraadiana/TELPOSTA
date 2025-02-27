@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff
 {
     public partial class Default : System.Web.UI.Page
-    {/*
+    {
           readonly Staffportall webportals = Components.ObjNav;
           string[] strLimiters = new string[] { "::" };
 
@@ -220,6 +221,6 @@ namespace TELPOSTAStaff
               {
                   ex.Data.Clear();
               }
-          }*/
+          }
     }
 }

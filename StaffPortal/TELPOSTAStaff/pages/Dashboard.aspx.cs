@@ -4,26 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class Dashboard : System.Web.UI.Page
     {
-      // Staffportall webportals = Components.ObjNav;
+        Staffportall webportals = Components.ObjNav;
         string[] strLimiters = new string[] { "::" };
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    if (Session["username"] == null)
-            //    {
-            //        Response.Redirect("~/Default.aspx");
-            //    }
-            //    LoadEmployeeDetails();
-            //    LoadEmployeeProfile();
-            //}
+            if (!IsPostBack)
+            {
+                if (Session["username"] == null)
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+                LoadEmployeeDetails();
+                LoadEmployeeProfile();
+            }
         }
-        /*
+        
 
        private void LoadEmployeeProfile()
        {
@@ -84,6 +85,6 @@ namespace TELPOSTAStaff.pages
            {
                ex.Data.Clear();
            }
-       }*/
+       }
     }
 }

@@ -13,7 +13,7 @@ namespace TELPOSTAStaff.pages
 {
     public partial class pnineform : System.Web.UI.Page
     {
-        /*  protected void Page_Load(object sender, EventArgs e)
+          protected void Page_Load(object sender, EventArgs e)
           {
               if (!IsPostBack)
               {
@@ -101,6 +101,6 @@ namespace TELPOSTAStaff.pages
           protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
           {
               LoadP9();
-          }*/
+          }
     }
 }

@@ -1,0 +1,91 @@
+﻿@model PensionPortal.Models.PensionerStatement
+@{
+    ViewBag.Title = "Statement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid page-content">
+    <!-- PAGE HEADER -->
+    <div class="page-bar mb-4">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("index", "dashboard")">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ul>
+    </div>
+
+    <!-- Alerts -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error:</strong> @ViewBag.Error
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success:</strong> @ViewBag.Success
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error:</strong> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success:</strong> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-file-earmark-text me-2"></i> Pensioner Statement
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form action="@Url.Action("MemberStatement", "Statements")" method="get">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="startDate" class="form-label">Start Date:</label>
+                                <input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="endDate" class="form-label">End Date:</label>
+                                <input type="date" class="form-control" name="endDate" required value="@Model?.EndDate.ToString(" yyyy-MM-dd")" />
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-file-earmark-arrow-down me-2"></i> Generate Statement
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    @if (ViewBag.PdfUrl != null)
+                    {
+                        <div class="mt-4">
+                            <h5 class="text-center">Generated Statement</h5>
+                            <div class="d-flex justify-content-center">
+                                <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

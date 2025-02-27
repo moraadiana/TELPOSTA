@@ -22,26 +22,26 @@ namespace TELPOSTAStaff
             }
         }
 
-        //private string GetStaffEmail(string username)
-        //{
-        //    string email = string.Empty;
-        //    try
-        //    {
-        //        string response = Components.ObjNav.GetStaffEmail(username);
-        //        if (!string.IsNullOrEmpty(response))
-        //        {
-        //            string[] strLimiters = new string[] { "::" };
-        //            string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
-        //            if (responseArr[0] == null) email = responseArr[1];
-        //            else email = responseArr[0];
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ex.Data.Clear();
-        //    }
-        //    return email;
-        //}
+        private string GetStaffEmail(string username)
+        {
+            string email = string.Empty;
+            try
+            {
+                string response = Components.ObjNav.GetStaffEmail(username);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    string[] strLimiters = new string[] { "::" };
+                    string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
+                    if (responseArr[0] == null) email = responseArr[1];
+                    else email = responseArr[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+            return email;
+        }
 
         private bool ValidPassword(string password)
         {
@@ -81,7 +81,7 @@ namespace TELPOSTAStaff
                 string username = Request.QueryString["staffNo"].ToString();
                 string newPassword = txtNewPass.Text;
                 string confirmPassword = txtConfirmpassword.Text;
-                //string email = GetStaffEmail(username);
+                string email = GetStaffEmail(username);
 
                 if (string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
                 {
@@ -101,23 +101,23 @@ namespace TELPOSTAStaff
                     return;
                 }
 
-                //string response = Components.ObjNav.UpdateStaffPassword(username, newPassword);
-                //if (!string.IsNullOrEmpty(response))
-                //{
-                //    if (response == "SUCCESS")
-                //    {
-                //        string subject = "Telposta Pension Scheme Portal Password";
-                //        string body = $"Your portals password has been reset successfully. Use below password to login." +
-                //            $"<br/><br/>" +
-                //            $"Portal password: <b>{newPassword}</b>";
-                //        Components.SentEmailAlerts(email, subject, body);
-                //        SuccessMessage($"Password has been reset successfully. A copy of the password has been sent to your email address {email.ToUpper()}");
-                //    }
-                //    else
-                //    {
-                //        Message("An error occured while updating password. Please try again later!");
-                //    }
-                //}
+                string response = Components.ObjNav.UpdateStaffPassword(username, newPassword);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    if (response == "SUCCESS")
+                    {
+                        string subject = "Telposta Pension Scheme Portal Password";
+                        string body = $"Your portals password has been reset successfully. Use below password to login." +
+                            $"<br/><br/>" +
+                            $"Portal password: <b>{newPassword}</b>";
+                        Components.SentEmailAlerts(email, subject, body);
+                        SuccessMessage($"Password has been reset successfully. A copy of the password has been sent to your email address {email.ToUpper()}");
+                    }
+                    else
+                    {
+                        Message("An error occured while updating password. Please try again later!");
+                    }
+                }
             }
             catch (Exception ex)
             {

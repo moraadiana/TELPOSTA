@@ -8,10 +8,10 @@
                 <li class="active">Dashboard</li>
             </ol>
         </section>
-        <!-- Main content -->
+        
         <section class="content">
-            <!-- Info boxes -->
-            <div class="row">
+            
+            <%--<div class="row">
 
                 <div class="col-md-12" style="display: none">
                     <iframe src="10.10.1.140:8080/BC200/?company=ARA&page=22&showribbon=0&shownavigation=0&showuiparts=0" width="100%" height="500px" webserver=""></iframe>
@@ -22,28 +22,27 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Leave Approvals</span>
-                            <%--<span class="info-box-number"><%=TotalLeave() %></span>--%>
+                            
                             <span class="info-box-number">0</span>
 
                             <div class="progress">
                                 <div class="progress-bar" style="width: 50%"></div>
                             </div>
                             <a href="#" class="small-box-footer white" style="color: white">View Requests <i class="fa fa-arrow-circle-right"></i></a>
-                            <%--  <span class="progress-description">50% Increase in 30 Days
-                  </span>--%>
+                           
                         </div>
-                        <!-- /.info-box-content -->
+                        
                     </div>
-                    <!-- /.info-box -->
+                    
                 </div>
-                <!-- /.col -->
+                
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="ion ion-android-list"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Imprest Approvals</span>
-                            <%--<span class="info-box-number"><%=TotalImprest() %></span>--%>
+                            
                             <span class="info-box-number">0</span>
 
                             <div class="progress">
@@ -51,13 +50,12 @@
                             </div>
                             <a href="#" class="small-box-footer" style="color: white">View Requests <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
-                        <!-- /.info-box-content -->
+                       
                     </div>
-                    <!-- /.info-box -->
+                    
                 </div>
-                <!-- /.col -->
+              
 
-                <!-- fix for small devices only -->
                 <div class="clearfix visible-sm-block"></div>
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -66,7 +64,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Claim Approvals</span>
-                            <%--<span class="info-box-number"><%=TotalClaim() %></span>--%>
+                            
                             <span class="info-box-number">0</span>
 
                             <div class="progress">
@@ -74,18 +72,18 @@
                             </div>
                             <a href="#" class="small-box-footer white" style="color: white">View Requests <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
-                        <!-- /.info-box-content -->
+                       
                     </div>
-                    <!-- /.info-box -->
+                   
                 </div>
-                <!-- /.col -->
+               
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-aqua">
                         <span class="info-box-icon"><i class="ion ion-ios-email-outline"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Stores Approvals</span>
-                            <%--<span class="info-box-number"><%=TotalStores() %></span>--%>
+                           
                             <span class="info-box-number">0</span>
 
                             <div class="progress">
@@ -93,13 +91,13 @@
                             </div>
                             <a href="#" class="small-box-footer white" style="color: white">View Requests <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
-                        <!-- /.info-box-content -->
+                        
                     </div>
-                    <!-- /.info-box -->
+                   
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
+           
+            </div> --%>
+            
 
             <div class="row">
                 <div class="col-md-12">

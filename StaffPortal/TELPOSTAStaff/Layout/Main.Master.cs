@@ -13,12 +13,12 @@ namespace TELPOSTAStaff.Layout
         {
             if (!IsPostBack)
             {
-                //if (Session["username"] == null)
-                //{
-                //    Response.Redirect("~/Default.aspx");
-                //    return;
-                //}
-               // lblUser.Text = Session["staffName"].ToString();
+                if (Session["username"] == null)
+                {
+                    Response.Redirect("~/Default.aspx");
+                    return;
+                }
+                lblUser.Text = Session["staffName"].ToString();
             }
         }
 

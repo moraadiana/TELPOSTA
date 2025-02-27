@@ -7,12 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class ImprestLines : System.Web.UI.Page
     {
-        /*SqlConnection connection;
+        SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -119,12 +120,13 @@ namespace TELPOSTAStaff.pages
                     string returnMsg = responseArr[0];
                     if (returnMsg == "SUCCESS")
                     {
-                        lblDirectorate.Text = responseArr[1];
-                        lblDepartment.Text = responseArr[2];
+                       // lblDirectorate.Text = responseArr[1];
+                        lblDepartment.Text = responseArr[1];
                     }
                 }
 
                 lblStaffNo.Text = staffNo;
+                lblRequester.Text = staffNo;
                 lblPayee.Text = staffName;
             }
             catch (Exception ex)
@@ -137,7 +139,7 @@ namespace TELPOSTAStaff.pages
         {
             try
             {
-                ddlResponsibilityCenter.Items.Clear();
+                //ddlResponsibilityCenter.Items.Clear();
                 connection = Components.GetconnToNAV();
                 command = new SqlCommand()
                 {
@@ -152,7 +154,7 @@ namespace TELPOSTAStaff.pages
                     while (reader.Read())
                     {
                         ListItem li = new ListItem(reader["Name"].ToString().ToUpper(), reader["Code"].ToString());
-                        ddlResponsibilityCenter.Items.Add(li);
+                        //ddlResponsibilityCenter.Items.Add(li);
 
                     }
                 }
@@ -163,8 +165,33 @@ namespace TELPOSTAStaff.pages
             }
 
         }
-
         private void LoadAdvanceTypes()
+        {
+            try
+            {
+                string advancetype = webportals.GetAdvancetype(3);
+                if (!string.IsNullOrEmpty(advancetype))
+                {
+                    string[] resCenterArr = advancetype.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+
+                   
+                    foreach (string rescenter in resCenterArr)
+                    {
+                        string[] responseArr = rescenter.Split(strLimiters, StringSplitOptions.None);
+                        ListItem li = new ListItem(responseArr[0]);
+                        ddlAdvancType.Items.Add(li);
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
+
+        private void LoadAdvanceTypes1()
         {
             try
             {
@@ -199,8 +226,8 @@ namespace TELPOSTAStaff.pages
             {
                 string username = Session["username"].ToString();
                 string department = lblDepartment.Text;
-                string directorate = lblDirectorate.Text;
-                string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
+                //string directorate = lblDirectorate.Text;
+                //string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
 
                 //if (string.IsNullOrEmpty(department))
@@ -213,11 +240,11 @@ namespace TELPOSTAStaff.pages
                 //    Message("Division cannot be null!");
                 //    return;
                 //}
-                if (string.IsNullOrEmpty(responsibilityCenter))
-                {
-                    Message("Responsibility center cannot be null!");
-                    return;
-                }
+                //if (string.IsNullOrEmpty(responsibilityCenter))
+                //{
+                //    Message("Responsibility center cannot be null!");
+                //    return;
+                //}
                 if (purpose == "")
                 {
                     Message("Purpose cannot be null!");
@@ -230,7 +257,7 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                string response = webportals.CreateImprestRequisitionHeader(username, responsibilityCenter, purpose);
+                string response = webportals.CreateImprestRequisitionHeader(username,  purpose);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
@@ -272,7 +299,7 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        private void BindAttachedDocuments(string claimNo)
+        private void BindAttachedDocuments1(string claimNo)
         {
             try
             {
@@ -301,6 +328,63 @@ namespace TELPOSTAStaff.pages
             catch (Exception ex)
             {
                 ex.Data.Clear();
+            }
+        }
+        private void BindAttachedDocuments(string imprestNo)
+        {
+            try
+            {
+                // Call the AL web service method
+                string docLines = webportals.GetDocumentlines(imprestNo);
+
+                // Check if the response is not empty or null
+                if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
+                {
+                    // Split the response by '[]' to separate each line
+                    string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Create a DataTable to hold the parsed data for binding
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Document No");
+                    dt.Columns.Add("Description");
+                    dt.Columns.Add("$systemCreatedAt");
+                    dt.Columns.Add("SystemId");
+                    
+
+
+                    // Loop through each line item
+                    foreach (string item in lineItems)
+                    {
+                        // Split each line by '::' to get individual fields
+                        string[] fields = item.Split(strLimiters, StringSplitOptions.None);
+
+                        // Check if we have the correct number of fields to avoid errors
+                        if (fields.Length == 4)
+                        {
+                            DataRow row = dt.NewRow();
+                            row["Document No"] = fields[0];
+                            row["Description"] = fields[1];
+                            row["$systemCreatedAt"] = fields[2];
+                            row["SystemId"] = fields[3];
+                            dt.Rows.Add(row);
+                        }
+                    }
+
+                    // Bind the DataTable to the GridView
+                    gvAttachments.DataSource = dt;
+                    gvAttachments.DataBind();
+                }
+                else
+                {
+                    // Handle the case where there are no imprest lines
+                    gvLines.DataSource = null;
+                    gvLines.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (log or show an error message as needed)
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
 
@@ -406,8 +490,9 @@ namespace TELPOSTAStaff.pages
                     {
                         Message("Line added successfully!");
                         txtAmnt.Text = string.Empty;
-                        BindGridViewData(imprestNo);
+                        
                     }
+                    BindGridViewData(imprestNo);
                 }
             }
             catch (Exception ex)
@@ -595,7 +680,8 @@ namespace TELPOSTAStaff.pages
                 if (documentDetails != null)
                 {
                     string[] documentsDetailsArr = documentDetails.Split(strLimiters, StringSplitOptions.None);
-                    fileName = documentsDetailsArr[1].Split('.')[0];
+                    fileName = documentsDetailsArr[1];
+                    documentNo = documentsDetailsArr[0];
                 }
 
                 string response = webportals.DeleteDocumentAttachment(systemId, fileName, documentNo);
@@ -603,8 +689,8 @@ namespace TELPOSTAStaff.pages
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
                     string returnMsg1 = responseArr[0];
-                    //string returnMsg2 = responseArr[1];
-                    if (returnMsg1 == "SUCCESS")//&& returnMsg2 == "SUCCESS"
+                    string returnMsg2 = responseArr[1];
+                    if (returnMsg2 == "SUCCESS")//&& returnMsg2 == "SUCCESS"
                     {
                         Message("Document deleted successfully.");
                         BindAttachedDocuments(documentNo);
@@ -621,6 +707,6 @@ namespace TELPOSTAStaff.pages
                 Message("You can only edit an open document!");
                 return;
             }
-        }*/
+        }
     }
 }

@@ -70,3 +70,15 @@ D:\TELPOSTA\StaffPortal\TELPOSTAStaff\obj\Debug\TELPOSTAStaff.csproj.CoreCompile
 D:\TELPOSTA\StaffPortal\TELPOSTAStaff\obj\Debug\TELPOSTA.23373889.Up2Date
 D:\TELPOSTA\StaffPortal\TELPOSTAStaff\obj\Debug\TELPOSTAStaff.dll
 D:\TELPOSTA\StaffPortal\TELPOSTAStaff\obj\Debug\TELPOSTAStaff.pdb
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Helpers.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Mvc.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Razor.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.Deployment.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.Razor.dll
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Helpers.xml
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Mvc.xml
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.Razor.xml
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.xml
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.Deployment.xml
+D:\TELPOSTA\StaffPortal\TELPOSTAStaff\bin\System.Web.WebPages.Razor.xml

@@ -1,0 +1,3063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RemoveImprestReqLine">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="advanceType" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RemoveImprestReqLine_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="StaffPortalOTP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="StaffPortalOTP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TrusteeLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TrusteeLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateBeneficiaryPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="genpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateBeneficiaryPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberNSSFDate">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="UpdateMemberNSSFDate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="genpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateStaffPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="genpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateStaffPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidTrustee">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidTrustee_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateStartDate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="starting_Date" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateStartDate_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="VerifyCurrentPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="oldpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyCurrentPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyCurrentStaffPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="oldpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyCurrentStaffPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getEmployeeName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getEmployeeName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApproveClaimReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApproveClaimReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ApproveImprest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApproveImprest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ApproveLeave">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApproveLeave_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ApprovePV">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApprovePV_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ApproveStoreReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApproveStoreReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="AvailableLeaveDays">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AvailableLeaveDays_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcEndDate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="sDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="lDays" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="leave_Type" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcEndDate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcReturnDate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="leave_Type" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcReturnDate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelClaimRequisition">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelClaimRequisition_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CancelImprestRequisition">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelImprestRequisition_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CancelLeaveApplication">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="appno" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelLeaveApplication_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBeneficiaryPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="custNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBeneficiaryPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeMemberPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="custNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeMemberPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeStaffPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeStaffPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeTrusteePassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeTrusteePassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryLoginForUnchangedPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryLoginForUnchangedPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryPasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckBeneficiaryPasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLoginForUnchangedPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLoginForUnchangedPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberPasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberPasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffLoginForUnchangedPass">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffLoginForUnchangedPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPortalLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPortalLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidBeneficiaryNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidBeneficiaryNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidMemberNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidMemberNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidStaffNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidStaffNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ClaimRequisitionApprovalRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ClaimRequisitionApprovalRequest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ClaimRequisitionCreate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="campusz" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="campusName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reason" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ClaimRequisitionCreate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmPortalOTP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmPortalOTP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmStaffPortalOTP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmStaffPortalOTP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineIfIncludesNonWorking">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fLeaveCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineIfIncludesNonWorking_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="fLeaveCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineIfIsNonWorking">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bcDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="leave_Type" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineIfIsNonWorking_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="bcDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="leave_Type" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineLeaveReturnDate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fBeginDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="fDays" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="leave_Type" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DetermineLeaveReturnDate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FnAttachments">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="retNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="attachment" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tableId" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FnAttachments_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GenerateLeaveStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="staffNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateLeaveStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GenerateMemberDetailedStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateMemberDetailedStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GenerateMemberStatementNSSF">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateMemberStatementNSSF_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GenerateMemberStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateMemberStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetBeneficiaryPFNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bfno" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBeneficiaryPFNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBeneficiaryProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBeneficiaryProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetClaimsCount">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetClaimsCount_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCurrentPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCurrentPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetDefaultLeaveDays">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="lvcode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetDefaultLeaveDays_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetExtensionStartDate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="lvNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetExtensionStartDate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetImprestCount">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetImprestCount_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLeaveAppCount">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLeaveAppCount_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberBeneficiaries">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberBeneficiaries_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberGender">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberGender_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberMail">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberMail_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPostedLeaves">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPostedLeaves_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetProfilePicture">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetProfilePicture_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSponsorName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="sponsorNum" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSponsorName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStafBfProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStafBfProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffMail">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffMail_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeEmail">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeEmail_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetUpdates">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetUpdates_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRLeaveApplication">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="senderComments" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reliever" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="relieverName" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRLeaveApplication_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRLeaveExtension">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="leaveNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="senderComments" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRLeaveExtension_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionApprovalRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionApprovalRequest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionCreate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="campusz" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="campusName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accType" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reason" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionCreate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertApproverComments">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="approverID" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="comments" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertApproverComments_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="InsertImprestRequisitionLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="atypes" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="userId" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertImprestRequisitionLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LifeCertificate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LifeCertificate_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PensionerLiabilityStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerLiabilityStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PensionerStatement1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement1_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PensionerStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fileNamefromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PortalOTP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PortalOTP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectClaimReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectClaimReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="RejectImprest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectImprest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="RejectLeave">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectLeave_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="RejectPV">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectPV_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="RejectStoreReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectStoreReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="RemoveImprestReqLine">
+    <part name="parameters" element="tns:RemoveImprestReqLine" />
+  </message>
+  <message name="RemoveImprestReqLine_Result">
+    <part name="parameters" element="tns:RemoveImprestReqLine_Result" />
+  </message>
+  <message name="StaffPortalOTP">
+    <part name="parameters" element="tns:StaffPortalOTP" />
+  </message>
+  <message name="StaffPortalOTP_Result">
+    <part name="parameters" element="tns:StaffPortalOTP_Result" />
+  </message>
+  <message name="TrusteeLogin">
+    <part name="parameters" element="tns:TrusteeLogin" />
+  </message>
+  <message name="TrusteeLogin_Result">
+    <part name="parameters" element="tns:TrusteeLogin_Result" />
+  </message>
+  <message name="UpdateBeneficiaryPass">
+    <part name="parameters" element="tns:UpdateBeneficiaryPass" />
+  </message>
+  <message name="UpdateBeneficiaryPass_Result">
+    <part name="parameters" element="tns:UpdateBeneficiaryPass_Result" />
+  </message>
+  <message name="UpdateMemberNSSFDate">
+    <part name="parameters" element="tns:UpdateMemberNSSFDate" />
+  </message>
+  <message name="UpdateMemberNSSFDate_Result">
+    <part name="parameters" element="tns:UpdateMemberNSSFDate_Result" />
+  </message>
+  <message name="UpdateMemberPass">
+    <part name="parameters" element="tns:UpdateMemberPass" />
+  </message>
+  <message name="UpdateMemberPass_Result">
+    <part name="parameters" element="tns:UpdateMemberPass_Result" />
+  </message>
+  <message name="UpdateStaffPass">
+    <part name="parameters" element="tns:UpdateStaffPass" />
+  </message>
+  <message name="UpdateStaffPass_Result">
+    <part name="parameters" element="tns:UpdateStaffPass_Result" />
+  </message>
+  <message name="ValidTrustee">
+    <part name="parameters" element="tns:ValidTrustee" />
+  </message>
+  <message name="ValidTrustee_Result">
+    <part name="parameters" element="tns:ValidTrustee_Result" />
+  </message>
+  <message name="ValidateStartDate">
+    <part name="parameters" element="tns:ValidateStartDate" />
+  </message>
+  <message name="ValidateStartDate_Result">
+    <part name="parameters" element="tns:ValidateStartDate_Result" />
+  </message>
+  <message name="VerifyCurrentPassword">
+    <part name="parameters" element="tns:VerifyCurrentPassword" />
+  </message>
+  <message name="VerifyCurrentPassword_Result">
+    <part name="parameters" element="tns:VerifyCurrentPassword_Result" />
+  </message>
+  <message name="VerifyCurrentStaffPassword">
+    <part name="parameters" element="tns:VerifyCurrentStaffPassword" />
+  </message>
+  <message name="VerifyCurrentStaffPassword_Result">
+    <part name="parameters" element="tns:VerifyCurrentStaffPassword_Result" />
+  </message>
+  <message name="getEmployeeName">
+    <part name="parameters" element="tns:getEmployeeName" />
+  </message>
+  <message name="getEmployeeName_Result">
+    <part name="parameters" element="tns:getEmployeeName_Result" />
+  </message>
+  <message name="ApproveClaimReq">
+    <part name="parameters" element="tns:ApproveClaimReq" />
+  </message>
+  <message name="ApproveClaimReq_Result">
+    <part name="parameters" element="tns:ApproveClaimReq_Result" />
+  </message>
+  <message name="ApproveImprest">
+    <part name="parameters" element="tns:ApproveImprest" />
+  </message>
+  <message name="ApproveImprest_Result">
+    <part name="parameters" element="tns:ApproveImprest_Result" />
+  </message>
+  <message name="ApproveLeave">
+    <part name="parameters" element="tns:ApproveLeave" />
+  </message>
+  <message name="ApproveLeave_Result">
+    <part name="parameters" element="tns:ApproveLeave_Result" />
+  </message>
+  <message name="ApprovePV">
+    <part name="parameters" element="tns:ApprovePV" />
+  </message>
+  <message name="ApprovePV_Result">
+    <part name="parameters" element="tns:ApprovePV_Result" />
+  </message>
+  <message name="ApproveStoreReq">
+    <part name="parameters" element="tns:ApproveStoreReq" />
+  </message>
+  <message name="ApproveStoreReq_Result">
+    <part name="parameters" element="tns:ApproveStoreReq_Result" />
+  </message>
+  <message name="AvailableLeaveDays">
+    <part name="parameters" element="tns:AvailableLeaveDays" />
+  </message>
+  <message name="AvailableLeaveDays_Result">
+    <part name="parameters" element="tns:AvailableLeaveDays_Result" />
+  </message>
+  <message name="CalcEndDate">
+    <part name="parameters" element="tns:CalcEndDate" />
+  </message>
+  <message name="CalcEndDate_Result">
+    <part name="parameters" element="tns:CalcEndDate_Result" />
+  </message>
+  <message name="CalcReturnDate">
+    <part name="parameters" element="tns:CalcReturnDate" />
+  </message>
+  <message name="CalcReturnDate_Result">
+    <part name="parameters" element="tns:CalcReturnDate_Result" />
+  </message>
+  <message name="CancelClaimRequisition">
+    <part name="parameters" element="tns:CancelClaimRequisition" />
+  </message>
+  <message name="CancelClaimRequisition_Result">
+    <part name="parameters" element="tns:CancelClaimRequisition_Result" />
+  </message>
+  <message name="CancelImprestRequisition">
+    <part name="parameters" element="tns:CancelImprestRequisition" />
+  </message>
+  <message name="CancelImprestRequisition_Result">
+    <part name="parameters" element="tns:CancelImprestRequisition_Result" />
+  </message>
+  <message name="CancelLeaveApplication">
+    <part name="parameters" element="tns:CancelLeaveApplication" />
+  </message>
+  <message name="CancelLeaveApplication_Result">
+    <part name="parameters" element="tns:CancelLeaveApplication_Result" />
+  </message>
+  <message name="ChangeBeneficiaryPassword">
+    <part name="parameters" element="tns:ChangeBeneficiaryPassword" />
+  </message>
+  <message name="ChangeBeneficiaryPassword_Result">
+    <part name="parameters" element="tns:ChangeBeneficiaryPassword_Result" />
+  </message>
+  <message name="ChangeMemberPassword">
+    <part name="parameters" element="tns:ChangeMemberPassword" />
+  </message>
+  <message name="ChangeMemberPassword_Result">
+    <part name="parameters" element="tns:ChangeMemberPassword_Result" />
+  </message>
+  <message name="ChangeStaffPassword">
+    <part name="parameters" element="tns:ChangeStaffPassword" />
+  </message>
+  <message name="ChangeStaffPassword_Result">
+    <part name="parameters" element="tns:ChangeStaffPassword_Result" />
+  </message>
+  <message name="ChangeTrusteePassword">
+    <part name="parameters" element="tns:ChangeTrusteePassword" />
+  </message>
+  <message name="ChangeTrusteePassword_Result">
+    <part name="parameters" element="tns:ChangeTrusteePassword_Result" />
+  </message>
+  <message name="CheckBeneficiaryLoginForUnchangedPass">
+    <part name="parameters" element="tns:CheckBeneficiaryLoginForUnchangedPass" />
+  </message>
+  <message name="CheckBeneficiaryLoginForUnchangedPass_Result">
+    <part name="parameters" element="tns:CheckBeneficiaryLoginForUnchangedPass_Result" />
+  </message>
+  <message name="CheckBeneficiaryLogin">
+    <part name="parameters" element="tns:CheckBeneficiaryLogin" />
+  </message>
+  <message name="CheckBeneficiaryLogin_Result">
+    <part name="parameters" element="tns:CheckBeneficiaryLogin_Result" />
+  </message>
+  <message name="CheckBeneficiaryPasswordChanged">
+    <part name="parameters" element="tns:CheckBeneficiaryPasswordChanged" />
+  </message>
+  <message name="CheckBeneficiaryPasswordChanged_Result">
+    <part name="parameters" element="tns:CheckBeneficiaryPasswordChanged_Result" />
+  </message>
+  <message name="CheckMemberLogin1">
+    <part name="parameters" element="tns:CheckMemberLogin1" />
+  </message>
+  <message name="CheckMemberLogin1_Result">
+    <part name="parameters" element="tns:CheckMemberLogin1_Result" />
+  </message>
+  <message name="CheckMemberLoginForUnchangedPass">
+    <part name="parameters" element="tns:CheckMemberLoginForUnchangedPass" />
+  </message>
+  <message name="CheckMemberLoginForUnchangedPass_Result">
+    <part name="parameters" element="tns:CheckMemberLoginForUnchangedPass_Result" />
+  </message>
+  <message name="CheckMemberLogin">
+    <part name="parameters" element="tns:CheckMemberLogin" />
+  </message>
+  <message name="CheckMemberLogin_Result">
+    <part name="parameters" element="tns:CheckMemberLogin_Result" />
+  </message>
+  <message name="CheckMemberPasswordChanged">
+    <part name="parameters" element="tns:CheckMemberPasswordChanged" />
+  </message>
+  <message name="CheckMemberPasswordChanged_Result">
+    <part name="parameters" element="tns:CheckMemberPasswordChanged_Result" />
+  </message>
+  <message name="CheckStaffLoginForUnchangedPass">
+    <part name="parameters" element="tns:CheckStaffLoginForUnchangedPass" />
+  </message>
+  <message name="CheckStaffLoginForUnchangedPass_Result">
+    <part name="parameters" element="tns:CheckStaffLoginForUnchangedPass_Result" />
+  </message>
+  <message name="CheckStaffLogin">
+    <part name="parameters" element="tns:CheckStaffLogin" />
+  </message>
+  <message name="CheckStaffLogin_Result">
+    <part name="parameters" element="tns:CheckStaffLogin_Result" />
+  </message>
+  <message name="CheckStaffPasswordChanged">
+    <part name="parameters" element="tns:CheckStaffPasswordChanged" />
+  </message>
+  <message name="CheckStaffPasswordChanged_Result">
+    <part name="parameters" element="tns:CheckStaffPasswordChanged_Result" />
+  </message>
+  <message name="CheckStaffPortalLogin">
+    <part name="parameters" element="tns:CheckStaffPortalLogin" />
+  </message>
+  <message name="CheckStaffPortalLogin_Result">
+    <part name="parameters" element="tns:CheckStaffPortalLogin_Result" />
+  </message>
+  <message name="CheckValidBeneficiaryNo">
+    <part name="parameters" element="tns:CheckValidBeneficiaryNo" />
+  </message>
+  <message name="CheckValidBeneficiaryNo_Result">
+    <part name="parameters" element="tns:CheckValidBeneficiaryNo_Result" />
+  </message>
+  <message name="CheckValidMemberNo">
+    <part name="parameters" element="tns:CheckValidMemberNo" />
+  </message>
+  <message name="CheckValidMemberNo_Result">
+    <part name="parameters" element="tns:CheckValidMemberNo_Result" />
+  </message>
+  <message name="CheckValidStaffNo">
+    <part name="parameters" element="tns:CheckValidStaffNo" />
+  </message>
+  <message name="CheckValidStaffNo_Result">
+    <part name="parameters" element="tns:CheckValidStaffNo_Result" />
+  </message>
+  <message name="ClaimRequisitionApprovalRequest">
+    <part name="parameters" element="tns:ClaimRequisitionApprovalRequest" />
+  </message>
+  <message name="ClaimRequisitionApprovalRequest_Result">
+    <part name="parameters" element="tns:ClaimRequisitionApprovalRequest_Result" />
+  </message>
+  <message name="ClaimRequisitionCreate">
+    <part name="parameters" element="tns:ClaimRequisitionCreate" />
+  </message>
+  <message name="ClaimRequisitionCreate_Result">
+    <part name="parameters" element="tns:ClaimRequisitionCreate_Result" />
+  </message>
+  <message name="ConfirmPortalOTP">
+    <part name="parameters" element="tns:ConfirmPortalOTP" />
+  </message>
+  <message name="ConfirmPortalOTP_Result">
+    <part name="parameters" element="tns:ConfirmPortalOTP_Result" />
+  </message>
+  <message name="ConfirmStaffPortalOTP">
+    <part name="parameters" element="tns:ConfirmStaffPortalOTP" />
+  </message>
+  <message name="ConfirmStaffPortalOTP_Result">
+    <part name="parameters" element="tns:ConfirmStaffPortalOTP_Result" />
+  </message>
+  <message name="DetermineIfIncludesNonWorking">
+    <part name="parameters" element="tns:DetermineIfIncludesNonWorking" />
+  </message>
+  <message name="DetermineIfIncludesNonWorking_Result">
+    <part name="parameters" element="tns:DetermineIfIncludesNonWorking_Result" />
+  </message>
+  <message name="DetermineIfIsNonWorking">
+    <part name="parameters" element="tns:DetermineIfIsNonWorking" />
+  </message>
+  <message name="DetermineIfIsNonWorking_Result">
+    <part name="parameters" element="tns:DetermineIfIsNonWorking_Result" />
+  </message>
+  <message name="DetermineLeaveReturnDate">
+    <part name="parameters" element="tns:DetermineLeaveReturnDate" />
+  </message>
+  <message name="DetermineLeaveReturnDate_Result">
+    <part name="parameters" element="tns:DetermineLeaveReturnDate_Result" />
+  </message>
+  <message name="FnAttachments">
+    <part name="parameters" element="tns:FnAttachments" />
+  </message>
+  <message name="FnAttachments_Result">
+    <part name="parameters" element="tns:FnAttachments_Result" />
+  </message>
+  <message name="GenerateBeneficiaryStatement">
+    <part name="parameters" element="tns:GenerateBeneficiaryStatement" />
+  </message>
+  <message name="GenerateBeneficiaryStatement_Result">
+    <part name="parameters" element="tns:GenerateBeneficiaryStatement_Result" />
+  </message>
+  <message name="GenerateLeaveStatement">
+    <part name="parameters" element="tns:GenerateLeaveStatement" />
+  </message>
+  <message name="GenerateLeaveStatement_Result">
+    <part name="parameters" element="tns:GenerateLeaveStatement_Result" />
+  </message>
+  <message name="GenerateMemberDetailedStatement">
+    <part name="parameters" element="tns:GenerateMemberDetailedStatement" />
+  </message>
+  <message name="GenerateMemberDetailedStatement_Result">
+    <part name="parameters" element="tns:GenerateMemberDetailedStatement_Result" />
+  </message>
+  <message name="GenerateMemberStatementNSSF">
+    <part name="parameters" element="tns:GenerateMemberStatementNSSF" />
+  </message>
+  <message name="GenerateMemberStatementNSSF_Result">
+    <part name="parameters" element="tns:GenerateMemberStatementNSSF_Result" />
+  </message>
+  <message name="GenerateMemberStatement">
+    <part name="parameters" element="tns:GenerateMemberStatement" />
+  </message>
+  <message name="GenerateMemberStatement_Result">
+    <part name="parameters" element="tns:GenerateMemberStatement_Result" />
+  </message>
+  <message name="GetBeneficiaryPFNo">
+    <part name="parameters" element="tns:GetBeneficiaryPFNo" />
+  </message>
+  <message name="GetBeneficiaryPFNo_Result">
+    <part name="parameters" element="tns:GetBeneficiaryPFNo_Result" />
+  </message>
+  <message name="GetBeneficiaryProfileDetails">
+    <part name="parameters" element="tns:GetBeneficiaryProfileDetails" />
+  </message>
+  <message name="GetBeneficiaryProfileDetails_Result">
+    <part name="parameters" element="tns:GetBeneficiaryProfileDetails_Result" />
+  </message>
+  <message name="GetClaimsCount">
+    <part name="parameters" element="tns:GetClaimsCount" />
+  </message>
+  <message name="GetClaimsCount_Result">
+    <part name="parameters" element="tns:GetClaimsCount_Result" />
+  </message>
+  <message name="GetCurrentPassword">
+    <part name="parameters" element="tns:GetCurrentPassword" />
+  </message>
+  <message name="GetCurrentPassword_Result">
+    <part name="parameters" element="tns:GetCurrentPassword_Result" />
+  </message>
+  <message name="GetDefaultLeaveDays">
+    <part name="parameters" element="tns:GetDefaultLeaveDays" />
+  </message>
+  <message name="GetDefaultLeaveDays_Result">
+    <part name="parameters" element="tns:GetDefaultLeaveDays_Result" />
+  </message>
+  <message name="GetExtensionStartDate">
+    <part name="parameters" element="tns:GetExtensionStartDate" />
+  </message>
+  <message name="GetExtensionStartDate_Result">
+    <part name="parameters" element="tns:GetExtensionStartDate_Result" />
+  </message>
+  <message name="GetImprestCount">
+    <part name="parameters" element="tns:GetImprestCount" />
+  </message>
+  <message name="GetImprestCount_Result">
+    <part name="parameters" element="tns:GetImprestCount_Result" />
+  </message>
+  <message name="GetLeaveAppCount">
+    <part name="parameters" element="tns:GetLeaveAppCount" />
+  </message>
+  <message name="GetLeaveAppCount_Result">
+    <part name="parameters" element="tns:GetLeaveAppCount_Result" />
+  </message>
+  <message name="GetMemberBeneficiaries">
+    <part name="parameters" element="tns:GetMemberBeneficiaries" />
+  </message>
+  <message name="GetMemberBeneficiaries_Result">
+    <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
+  </message>
+  <message name="GetMemberGender">
+    <part name="parameters" element="tns:GetMemberGender" />
+  </message>
+  <message name="GetMemberGender_Result">
+    <part name="parameters" element="tns:GetMemberGender_Result" />
+  </message>
+  <message name="GetMemberMail">
+    <part name="parameters" element="tns:GetMemberMail" />
+  </message>
+  <message name="GetMemberMail_Result">
+    <part name="parameters" element="tns:GetMemberMail_Result" />
+  </message>
+  <message name="GetMemberProfileDetails">
+    <part name="parameters" element="tns:GetMemberProfileDetails" />
+  </message>
+  <message name="GetMemberProfileDetails_Result">
+    <part name="parameters" element="tns:GetMemberProfileDetails_Result" />
+  </message>
+  <message name="GetPostedLeaves">
+    <part name="parameters" element="tns:GetPostedLeaves" />
+  </message>
+  <message name="GetPostedLeaves_Result">
+    <part name="parameters" element="tns:GetPostedLeaves_Result" />
+  </message>
+  <message name="GetProfilePicture">
+    <part name="parameters" element="tns:GetProfilePicture" />
+  </message>
+  <message name="GetProfilePicture_Result">
+    <part name="parameters" element="tns:GetProfilePicture_Result" />
+  </message>
+  <message name="GetSponsorName">
+    <part name="parameters" element="tns:GetSponsorName" />
+  </message>
+  <message name="GetSponsorName_Result">
+    <part name="parameters" element="tns:GetSponsorName_Result" />
+  </message>
+  <message name="GetStafBfProfileDetails">
+    <part name="parameters" element="tns:GetStafBfProfileDetails" />
+  </message>
+  <message name="GetStafBfProfileDetails_Result">
+    <part name="parameters" element="tns:GetStafBfProfileDetails_Result" />
+  </message>
+  <message name="GetStaffMail">
+    <part name="parameters" element="tns:GetStaffMail" />
+  </message>
+  <message name="GetStaffMail_Result">
+    <part name="parameters" element="tns:GetStaffMail_Result" />
+  </message>
+  <message name="GetTrusteeEmail">
+    <part name="parameters" element="tns:GetTrusteeEmail" />
+  </message>
+  <message name="GetTrusteeEmail_Result">
+    <part name="parameters" element="tns:GetTrusteeEmail_Result" />
+  </message>
+  <message name="GetTrusteeName">
+    <part name="parameters" element="tns:GetTrusteeName" />
+  </message>
+  <message name="GetTrusteeName_Result">
+    <part name="parameters" element="tns:GetTrusteeName_Result" />
+  </message>
+  <message name="GetTrusteeProfileDetails">
+    <part name="parameters" element="tns:GetTrusteeProfileDetails" />
+  </message>
+  <message name="GetTrusteeProfileDetails_Result">
+    <part name="parameters" element="tns:GetTrusteeProfileDetails_Result" />
+  </message>
+  <message name="GetUpdates">
+    <part name="parameters" element="tns:GetUpdates" />
+  </message>
+  <message name="GetUpdates_Result">
+    <part name="parameters" element="tns:GetUpdates_Result" />
+  </message>
+  <message name="HRLeaveApplication">
+    <part name="parameters" element="tns:HRLeaveApplication" />
+  </message>
+  <message name="HRLeaveApplication_Result">
+    <part name="parameters" element="tns:HRLeaveApplication_Result" />
+  </message>
+  <message name="HRLeaveExtension">
+    <part name="parameters" element="tns:HRLeaveExtension" />
+  </message>
+  <message name="HRLeaveExtension_Result">
+    <part name="parameters" element="tns:HRLeaveExtension_Result" />
+  </message>
+  <message name="ImprestRequisitionApprovalRequest">
+    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest" />
+  </message>
+  <message name="ImprestRequisitionApprovalRequest_Result">
+    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest_Result" />
+  </message>
+  <message name="ImprestRequisitionCreate">
+    <part name="parameters" element="tns:ImprestRequisitionCreate" />
+  </message>
+  <message name="ImprestRequisitionCreate_Result">
+    <part name="parameters" element="tns:ImprestRequisitionCreate_Result" />
+  </message>
+  <message name="InsertApproverComments">
+    <part name="parameters" element="tns:InsertApproverComments" />
+  </message>
+  <message name="InsertApproverComments_Result">
+    <part name="parameters" element="tns:InsertApproverComments_Result" />
+  </message>
+  <message name="InsertImprestRequisitionLines">
+    <part name="parameters" element="tns:InsertImprestRequisitionLines" />
+  </message>
+  <message name="InsertImprestRequisitionLines_Result">
+    <part name="parameters" element="tns:InsertImprestRequisitionLines_Result" />
+  </message>
+  <message name="LifeCertificate">
+    <part name="parameters" element="tns:LifeCertificate" />
+  </message>
+  <message name="LifeCertificate_Result">
+    <part name="parameters" element="tns:LifeCertificate_Result" />
+  </message>
+  <message name="PensionerLiabilityStatement">
+    <part name="parameters" element="tns:PensionerLiabilityStatement" />
+  </message>
+  <message name="PensionerLiabilityStatement_Result">
+    <part name="parameters" element="tns:PensionerLiabilityStatement_Result" />
+  </message>
+  <message name="PensionerStatement1">
+    <part name="parameters" element="tns:PensionerStatement1" />
+  </message>
+  <message name="PensionerStatement1_Result">
+    <part name="parameters" element="tns:PensionerStatement1_Result" />
+  </message>
+  <message name="PensionerStatement">
+    <part name="parameters" element="tns:PensionerStatement" />
+  </message>
+  <message name="PensionerStatement_Result">
+    <part name="parameters" element="tns:PensionerStatement_Result" />
+  </message>
+  <message name="PortalOTP">
+    <part name="parameters" element="tns:PortalOTP" />
+  </message>
+  <message name="PortalOTP_Result">
+    <part name="parameters" element="tns:PortalOTP_Result" />
+  </message>
+  <message name="RejectClaimReq">
+    <part name="parameters" element="tns:RejectClaimReq" />
+  </message>
+  <message name="RejectClaimReq_Result">
+    <part name="parameters" element="tns:RejectClaimReq_Result" />
+  </message>
+  <message name="RejectImprest">
+    <part name="parameters" element="tns:RejectImprest" />
+  </message>
+  <message name="RejectImprest_Result">
+    <part name="parameters" element="tns:RejectImprest_Result" />
+  </message>
+  <message name="RejectLeave">
+    <part name="parameters" element="tns:RejectLeave" />
+  </message>
+  <message name="RejectLeave_Result">
+    <part name="parameters" element="tns:RejectLeave_Result" />
+  </message>
+  <message name="RejectPV">
+    <part name="parameters" element="tns:RejectPV" />
+  </message>
+  <message name="RejectPV_Result">
+    <part name="parameters" element="tns:RejectPV_Result" />
+  </message>
+  <message name="RejectStoreReq">
+    <part name="parameters" element="tns:RejectStoreReq" />
+  </message>
+  <message name="RejectStoreReq_Result">
+    <part name="parameters" element="tns:RejectStoreReq_Result" />
+  </message>
+  <portType name="Portal_Port">
+    <operation name="RemoveImprestReqLine">
+      <input name="RemoveImprestReqLine" message="tns:RemoveImprestReqLine" />
+      <output name="RemoveImprestReqLine_Result" message="tns:RemoveImprestReqLine_Result" />
+    </operation>
+    <operation name="StaffPortalOTP">
+      <input name="StaffPortalOTP" message="tns:StaffPortalOTP" />
+      <output name="StaffPortalOTP_Result" message="tns:StaffPortalOTP_Result" />
+    </operation>
+    <operation name="TrusteeLogin">
+      <input name="TrusteeLogin" message="tns:TrusteeLogin" />
+      <output name="TrusteeLogin_Result" message="tns:TrusteeLogin_Result" />
+    </operation>
+    <operation name="UpdateBeneficiaryPass">
+      <input name="UpdateBeneficiaryPass" message="tns:UpdateBeneficiaryPass" />
+      <output name="UpdateBeneficiaryPass_Result" message="tns:UpdateBeneficiaryPass_Result" />
+    </operation>
+    <operation name="UpdateMemberNSSFDate">
+      <input name="UpdateMemberNSSFDate" message="tns:UpdateMemberNSSFDate" />
+      <output name="UpdateMemberNSSFDate_Result" message="tns:UpdateMemberNSSFDate_Result" />
+    </operation>
+    <operation name="UpdateMemberPass">
+      <input name="UpdateMemberPass" message="tns:UpdateMemberPass" />
+      <output name="UpdateMemberPass_Result" message="tns:UpdateMemberPass_Result" />
+    </operation>
+    <operation name="UpdateStaffPass">
+      <input name="UpdateStaffPass" message="tns:UpdateStaffPass" />
+      <output name="UpdateStaffPass_Result" message="tns:UpdateStaffPass_Result" />
+    </operation>
+    <operation name="ValidTrustee">
+      <input name="ValidTrustee" message="tns:ValidTrustee" />
+      <output name="ValidTrustee_Result" message="tns:ValidTrustee_Result" />
+    </operation>
+    <operation name="ValidateStartDate">
+      <input name="ValidateStartDate" message="tns:ValidateStartDate" />
+      <output name="ValidateStartDate_Result" message="tns:ValidateStartDate_Result" />
+    </operation>
+    <operation name="VerifyCurrentPassword">
+      <input name="VerifyCurrentPassword" message="tns:VerifyCurrentPassword" />
+      <output name="VerifyCurrentPassword_Result" message="tns:VerifyCurrentPassword_Result" />
+    </operation>
+    <operation name="VerifyCurrentStaffPassword">
+      <input name="VerifyCurrentStaffPassword" message="tns:VerifyCurrentStaffPassword" />
+      <output name="VerifyCurrentStaffPassword_Result" message="tns:VerifyCurrentStaffPassword_Result" />
+    </operation>
+    <operation name="getEmployeeName">
+      <input name="getEmployeeName" message="tns:getEmployeeName" />
+      <output name="getEmployeeName_Result" message="tns:getEmployeeName_Result" />
+    </operation>
+    <operation name="ApproveClaimReq">
+      <input name="ApproveClaimReq" message="tns:ApproveClaimReq" />
+      <output name="ApproveClaimReq_Result" message="tns:ApproveClaimReq_Result" />
+    </operation>
+    <operation name="ApproveImprest">
+      <input name="ApproveImprest" message="tns:ApproveImprest" />
+      <output name="ApproveImprest_Result" message="tns:ApproveImprest_Result" />
+    </operation>
+    <operation name="ApproveLeave">
+      <input name="ApproveLeave" message="tns:ApproveLeave" />
+      <output name="ApproveLeave_Result" message="tns:ApproveLeave_Result" />
+    </operation>
+    <operation name="ApprovePV">
+      <input name="ApprovePV" message="tns:ApprovePV" />
+      <output name="ApprovePV_Result" message="tns:ApprovePV_Result" />
+    </operation>
+    <operation name="ApproveStoreReq">
+      <input name="ApproveStoreReq" message="tns:ApproveStoreReq" />
+      <output name="ApproveStoreReq_Result" message="tns:ApproveStoreReq_Result" />
+    </operation>
+    <operation name="AvailableLeaveDays">
+      <input name="AvailableLeaveDays" message="tns:AvailableLeaveDays" />
+      <output name="AvailableLeaveDays_Result" message="tns:AvailableLeaveDays_Result" />
+    </operation>
+    <operation name="CalcEndDate">
+      <input name="CalcEndDate" message="tns:CalcEndDate" />
+      <output name="CalcEndDate_Result" message="tns:CalcEndDate_Result" />
+    </operation>
+    <operation name="CalcReturnDate">
+      <input name="CalcReturnDate" message="tns:CalcReturnDate" />
+      <output name="CalcReturnDate_Result" message="tns:CalcReturnDate_Result" />
+    </operation>
+    <operation name="CancelClaimRequisition">
+      <input name="CancelClaimRequisition" message="tns:CancelClaimRequisition" />
+      <output name="CancelClaimRequisition_Result" message="tns:CancelClaimRequisition_Result" />
+    </operation>
+    <operation name="CancelImprestRequisition">
+      <input name="CancelImprestRequisition" message="tns:CancelImprestRequisition" />
+      <output name="CancelImprestRequisition_Result" message="tns:CancelImprestRequisition_Result" />
+    </operation>
+    <operation name="CancelLeaveApplication">
+      <input name="CancelLeaveApplication" message="tns:CancelLeaveApplication" />
+      <output name="CancelLeaveApplication_Result" message="tns:CancelLeaveApplication_Result" />
+    </operation>
+    <operation name="ChangeBeneficiaryPassword">
+      <input name="ChangeBeneficiaryPassword" message="tns:ChangeBeneficiaryPassword" />
+      <output name="ChangeBeneficiaryPassword_Result" message="tns:ChangeBeneficiaryPassword_Result" />
+    </operation>
+    <operation name="ChangeMemberPassword">
+      <input name="ChangeMemberPassword" message="tns:ChangeMemberPassword" />
+      <output name="ChangeMemberPassword_Result" message="tns:ChangeMemberPassword_Result" />
+    </operation>
+    <operation name="ChangeStaffPassword">
+      <input name="ChangeStaffPassword" message="tns:ChangeStaffPassword" />
+      <output name="ChangeStaffPassword_Result" message="tns:ChangeStaffPassword_Result" />
+    </operation>
+    <operation name="ChangeTrusteePassword">
+      <input name="ChangeTrusteePassword" message="tns:ChangeTrusteePassword" />
+      <output name="ChangeTrusteePassword_Result" message="tns:ChangeTrusteePassword_Result" />
+    </operation>
+    <operation name="CheckBeneficiaryLoginForUnchangedPass">
+      <input name="CheckBeneficiaryLoginForUnchangedPass" message="tns:CheckBeneficiaryLoginForUnchangedPass" />
+      <output name="CheckBeneficiaryLoginForUnchangedPass_Result" message="tns:CheckBeneficiaryLoginForUnchangedPass_Result" />
+    </operation>
+    <operation name="CheckBeneficiaryLogin">
+      <input name="CheckBeneficiaryLogin" message="tns:CheckBeneficiaryLogin" />
+      <output name="CheckBeneficiaryLogin_Result" message="tns:CheckBeneficiaryLogin_Result" />
+    </operation>
+    <operation name="CheckBeneficiaryPasswordChanged">
+      <input name="CheckBeneficiaryPasswordChanged" message="tns:CheckBeneficiaryPasswordChanged" />
+      <output name="CheckBeneficiaryPasswordChanged_Result" message="tns:CheckBeneficiaryPasswordChanged_Result" />
+    </operation>
+    <operation name="CheckMemberLogin1">
+      <input name="CheckMemberLogin1" message="tns:CheckMemberLogin1" />
+      <output name="CheckMemberLogin1_Result" message="tns:CheckMemberLogin1_Result" />
+    </operation>
+    <operation name="CheckMemberLoginForUnchangedPass">
+      <input name="CheckMemberLoginForUnchangedPass" message="tns:CheckMemberLoginForUnchangedPass" />
+      <output name="CheckMemberLoginForUnchangedPass_Result" message="tns:CheckMemberLoginForUnchangedPass_Result" />
+    </operation>
+    <operation name="CheckMemberLogin">
+      <input name="CheckMemberLogin" message="tns:CheckMemberLogin" />
+      <output name="CheckMemberLogin_Result" message="tns:CheckMemberLogin_Result" />
+    </operation>
+    <operation name="CheckMemberPasswordChanged">
+      <input name="CheckMemberPasswordChanged" message="tns:CheckMemberPasswordChanged" />
+      <output name="CheckMemberPasswordChanged_Result" message="tns:CheckMemberPasswordChanged_Result" />
+    </operation>
+    <operation name="CheckStaffLoginForUnchangedPass">
+      <input name="CheckStaffLoginForUnchangedPass" message="tns:CheckStaffLoginForUnchangedPass" />
+      <output name="CheckStaffLoginForUnchangedPass_Result" message="tns:CheckStaffLoginForUnchangedPass_Result" />
+    </operation>
+    <operation name="CheckStaffLogin">
+      <input name="CheckStaffLogin" message="tns:CheckStaffLogin" />
+      <output name="CheckStaffLogin_Result" message="tns:CheckStaffLogin_Result" />
+    </operation>
+    <operation name="CheckStaffPasswordChanged">
+      <input name="CheckStaffPasswordChanged" message="tns:CheckStaffPasswordChanged" />
+      <output name="CheckStaffPasswordChanged_Result" message="tns:CheckStaffPasswordChanged_Result" />
+    </operation>
+    <operation name="CheckStaffPortalLogin">
+      <input name="CheckStaffPortalLogin" message="tns:CheckStaffPortalLogin" />
+      <output name="CheckStaffPortalLogin_Result" message="tns:CheckStaffPortalLogin_Result" />
+    </operation>
+    <operation name="CheckValidBeneficiaryNo">
+      <input name="CheckValidBeneficiaryNo" message="tns:CheckValidBeneficiaryNo" />
+      <output name="CheckValidBeneficiaryNo_Result" message="tns:CheckValidBeneficiaryNo_Result" />
+    </operation>
+    <operation name="CheckValidMemberNo">
+      <input name="CheckValidMemberNo" message="tns:CheckValidMemberNo" />
+      <output name="CheckValidMemberNo_Result" message="tns:CheckValidMemberNo_Result" />
+    </operation>
+    <operation name="CheckValidStaffNo">
+      <input name="CheckValidStaffNo" message="tns:CheckValidStaffNo" />
+      <output name="CheckValidStaffNo_Result" message="tns:CheckValidStaffNo_Result" />
+    </operation>
+    <operation name="ClaimRequisitionApprovalRequest">
+      <input name="ClaimRequisitionApprovalRequest" message="tns:ClaimRequisitionApprovalRequest" />
+      <output name="ClaimRequisitionApprovalRequest_Result" message="tns:ClaimRequisitionApprovalRequest_Result" />
+    </operation>
+    <operation name="ClaimRequisitionCreate">
+      <input name="ClaimRequisitionCreate" message="tns:ClaimRequisitionCreate" />
+      <output name="ClaimRequisitionCreate_Result" message="tns:ClaimRequisitionCreate_Result" />
+    </operation>
+    <operation name="ConfirmPortalOTP">
+      <input name="ConfirmPortalOTP" message="tns:ConfirmPortalOTP" />
+      <output name="ConfirmPortalOTP_Result" message="tns:ConfirmPortalOTP_Result" />
+    </operation>
+    <operation name="ConfirmStaffPortalOTP">
+      <input name="ConfirmStaffPortalOTP" message="tns:ConfirmStaffPortalOTP" />
+      <output name="ConfirmStaffPortalOTP_Result" message="tns:ConfirmStaffPortalOTP_Result" />
+    </operation>
+    <operation name="DetermineIfIncludesNonWorking">
+      <input name="DetermineIfIncludesNonWorking" message="tns:DetermineIfIncludesNonWorking" />
+      <output name="DetermineIfIncludesNonWorking_Result" message="tns:DetermineIfIncludesNonWorking_Result" />
+    </operation>
+    <operation name="DetermineIfIsNonWorking">
+      <input name="DetermineIfIsNonWorking" message="tns:DetermineIfIsNonWorking" />
+      <output name="DetermineIfIsNonWorking_Result" message="tns:DetermineIfIsNonWorking_Result" />
+    </operation>
+    <operation name="DetermineLeaveReturnDate">
+      <input name="DetermineLeaveReturnDate" message="tns:DetermineLeaveReturnDate" />
+      <output name="DetermineLeaveReturnDate_Result" message="tns:DetermineLeaveReturnDate_Result" />
+    </operation>
+    <operation name="FnAttachments">
+      <input name="FnAttachments" message="tns:FnAttachments" />
+      <output name="FnAttachments_Result" message="tns:FnAttachments_Result" />
+    </operation>
+    <operation name="GenerateBeneficiaryStatement">
+      <input name="GenerateBeneficiaryStatement" message="tns:GenerateBeneficiaryStatement" />
+      <output name="GenerateBeneficiaryStatement_Result" message="tns:GenerateBeneficiaryStatement_Result" />
+    </operation>
+    <operation name="GenerateLeaveStatement">
+      <input name="GenerateLeaveStatement" message="tns:GenerateLeaveStatement" />
+      <output name="GenerateLeaveStatement_Result" message="tns:GenerateLeaveStatement_Result" />
+    </operation>
+    <operation name="GenerateMemberDetailedStatement">
+      <input name="GenerateMemberDetailedStatement" message="tns:GenerateMemberDetailedStatement" />
+      <output name="GenerateMemberDetailedStatement_Result" message="tns:GenerateMemberDetailedStatement_Result" />
+    </operation>
+    <operation name="GenerateMemberStatementNSSF">
+      <input name="GenerateMemberStatementNSSF" message="tns:GenerateMemberStatementNSSF" />
+      <output name="GenerateMemberStatementNSSF_Result" message="tns:GenerateMemberStatementNSSF_Result" />
+    </operation>
+    <operation name="GenerateMemberStatement">
+      <input name="GenerateMemberStatement" message="tns:GenerateMemberStatement" />
+      <output name="GenerateMemberStatement_Result" message="tns:GenerateMemberStatement_Result" />
+    </operation>
+    <operation name="GetBeneficiaryPFNo">
+      <input name="GetBeneficiaryPFNo" message="tns:GetBeneficiaryPFNo" />
+      <output name="GetBeneficiaryPFNo_Result" message="tns:GetBeneficiaryPFNo_Result" />
+    </operation>
+    <operation name="GetBeneficiaryProfileDetails">
+      <input name="GetBeneficiaryProfileDetails" message="tns:GetBeneficiaryProfileDetails" />
+      <output name="GetBeneficiaryProfileDetails_Result" message="tns:GetBeneficiaryProfileDetails_Result" />
+    </operation>
+    <operation name="GetClaimsCount">
+      <input name="GetClaimsCount" message="tns:GetClaimsCount" />
+      <output name="GetClaimsCount_Result" message="tns:GetClaimsCount_Result" />
+    </operation>
+    <operation name="GetCurrentPassword">
+      <input name="GetCurrentPassword" message="tns:GetCurrentPassword" />
+      <output name="GetCurrentPassword_Result" message="tns:GetCurrentPassword_Result" />
+    </operation>
+    <operation name="GetDefaultLeaveDays">
+      <input name="GetDefaultLeaveDays" message="tns:GetDefaultLeaveDays" />
+      <output name="GetDefaultLeaveDays_Result" message="tns:GetDefaultLeaveDays_Result" />
+    </operation>
+    <operation name="GetExtensionStartDate">
+      <input name="GetExtensionStartDate" message="tns:GetExtensionStartDate" />
+      <output name="GetExtensionStartDate_Result" message="tns:GetExtensionStartDate_Result" />
+    </operation>
+    <operation name="GetImprestCount">
+      <input name="GetImprestCount" message="tns:GetImprestCount" />
+      <output name="GetImprestCount_Result" message="tns:GetImprestCount_Result" />
+    </operation>
+    <operation name="GetLeaveAppCount">
+      <input name="GetLeaveAppCount" message="tns:GetLeaveAppCount" />
+      <output name="GetLeaveAppCount_Result" message="tns:GetLeaveAppCount_Result" />
+    </operation>
+    <operation name="GetMemberBeneficiaries">
+      <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
+      <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
+    </operation>
+    <operation name="GetMemberGender">
+      <input name="GetMemberGender" message="tns:GetMemberGender" />
+      <output name="GetMemberGender_Result" message="tns:GetMemberGender_Result" />
+    </operation>
+    <operation name="GetMemberMail">
+      <input name="GetMemberMail" message="tns:GetMemberMail" />
+      <output name="GetMemberMail_Result" message="tns:GetMemberMail_Result" />
+    </operation>
+    <operation name="GetMemberProfileDetails">
+      <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
+      <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
+    </operation>
+    <operation name="GetPostedLeaves">
+      <input name="GetPostedLeaves" message="tns:GetPostedLeaves" />
+      <output name="GetPostedLeaves_Result" message="tns:GetPostedLeaves_Result" />
+    </operation>
+    <operation name="GetProfilePicture">
+      <input name="GetProfilePicture" message="tns:GetProfilePicture" />
+      <output name="GetProfilePicture_Result" message="tns:GetProfilePicture_Result" />
+    </operation>
+    <operation name="GetSponsorName">
+      <input name="GetSponsorName" message="tns:GetSponsorName" />
+      <output name="GetSponsorName_Result" message="tns:GetSponsorName_Result" />
+    </operation>
+    <operation name="GetStafBfProfileDetails">
+      <input name="GetStafBfProfileDetails" message="tns:GetStafBfProfileDetails" />
+      <output name="GetStafBfProfileDetails_Result" message="tns:GetStafBfProfileDetails_Result" />
+    </operation>
+    <operation name="GetStaffMail">
+      <input name="GetStaffMail" message="tns:GetStaffMail" />
+      <output name="GetStaffMail_Result" message="tns:GetStaffMail_Result" />
+    </operation>
+    <operation name="GetTrusteeEmail">
+      <input name="GetTrusteeEmail" message="tns:GetTrusteeEmail" />
+      <output name="GetTrusteeEmail_Result" message="tns:GetTrusteeEmail_Result" />
+    </operation>
+    <operation name="GetTrusteeName">
+      <input name="GetTrusteeName" message="tns:GetTrusteeName" />
+      <output name="GetTrusteeName_Result" message="tns:GetTrusteeName_Result" />
+    </operation>
+    <operation name="GetTrusteeProfileDetails">
+      <input name="GetTrusteeProfileDetails" message="tns:GetTrusteeProfileDetails" />
+      <output name="GetTrusteeProfileDetails_Result" message="tns:GetTrusteeProfileDetails_Result" />
+    </operation>
+    <operation name="GetUpdates">
+      <input name="GetUpdates" message="tns:GetUpdates" />
+      <output name="GetUpdates_Result" message="tns:GetUpdates_Result" />
+    </operation>
+    <operation name="HRLeaveApplication">
+      <input name="HRLeaveApplication" message="tns:HRLeaveApplication" />
+      <output name="HRLeaveApplication_Result" message="tns:HRLeaveApplication_Result" />
+    </operation>
+    <operation name="HRLeaveExtension">
+      <input name="HRLeaveExtension" message="tns:HRLeaveExtension" />
+      <output name="HRLeaveExtension_Result" message="tns:HRLeaveExtension_Result" />
+    </operation>
+    <operation name="ImprestRequisitionApprovalRequest">
+      <input name="ImprestRequisitionApprovalRequest" message="tns:ImprestRequisitionApprovalRequest" />
+      <output name="ImprestRequisitionApprovalRequest_Result" message="tns:ImprestRequisitionApprovalRequest_Result" />
+    </operation>
+    <operation name="ImprestRequisitionCreate">
+      <input name="ImprestRequisitionCreate" message="tns:ImprestRequisitionCreate" />
+      <output name="ImprestRequisitionCreate_Result" message="tns:ImprestRequisitionCreate_Result" />
+    </operation>
+    <operation name="InsertApproverComments">
+      <input name="InsertApproverComments" message="tns:InsertApproverComments" />
+      <output name="InsertApproverComments_Result" message="tns:InsertApproverComments_Result" />
+    </operation>
+    <operation name="InsertImprestRequisitionLines">
+      <input name="InsertImprestRequisitionLines" message="tns:InsertImprestRequisitionLines" />
+      <output name="InsertImprestRequisitionLines_Result" message="tns:InsertImprestRequisitionLines_Result" />
+    </operation>
+    <operation name="LifeCertificate">
+      <input name="LifeCertificate" message="tns:LifeCertificate" />
+      <output name="LifeCertificate_Result" message="tns:LifeCertificate_Result" />
+    </operation>
+    <operation name="PensionerLiabilityStatement">
+      <input name="PensionerLiabilityStatement" message="tns:PensionerLiabilityStatement" />
+      <output name="PensionerLiabilityStatement_Result" message="tns:PensionerLiabilityStatement_Result" />
+    </operation>
+    <operation name="PensionerStatement1">
+      <input name="PensionerStatement1" message="tns:PensionerStatement1" />
+      <output name="PensionerStatement1_Result" message="tns:PensionerStatement1_Result" />
+    </operation>
+    <operation name="PensionerStatement">
+      <input name="PensionerStatement" message="tns:PensionerStatement" />
+      <output name="PensionerStatement_Result" message="tns:PensionerStatement_Result" />
+    </operation>
+    <operation name="PortalOTP">
+      <input name="PortalOTP" message="tns:PortalOTP" />
+      <output name="PortalOTP_Result" message="tns:PortalOTP_Result" />
+    </operation>
+    <operation name="RejectClaimReq">
+      <input name="RejectClaimReq" message="tns:RejectClaimReq" />
+      <output name="RejectClaimReq_Result" message="tns:RejectClaimReq_Result" />
+    </operation>
+    <operation name="RejectImprest">
+      <input name="RejectImprest" message="tns:RejectImprest" />
+      <output name="RejectImprest_Result" message="tns:RejectImprest_Result" />
+    </operation>
+    <operation name="RejectLeave">
+      <input name="RejectLeave" message="tns:RejectLeave" />
+      <output name="RejectLeave_Result" message="tns:RejectLeave_Result" />
+    </operation>
+    <operation name="RejectPV">
+      <input name="RejectPV" message="tns:RejectPV" />
+      <output name="RejectPV_Result" message="tns:RejectPV_Result" />
+    </operation>
+    <operation name="RejectStoreReq">
+      <input name="RejectStoreReq" message="tns:RejectStoreReq" />
+      <output name="RejectStoreReq_Result" message="tns:RejectStoreReq_Result" />
+    </operation>
+  </portType>
+  <binding name="Portal_Binding" type="tns:Portal_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RemoveImprestReqLine">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RemoveImprestReqLine" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RemoveImprestReqLine">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RemoveImprestReqLine_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="StaffPortalOTP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:StaffPortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="StaffPortalOTP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="StaffPortalOTP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="TrusteeLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:TrusteeLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="TrusteeLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="TrusteeLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateBeneficiaryPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateBeneficiaryPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateBeneficiaryPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateBeneficiaryPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateMemberNSSFDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateMemberNSSFDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMemberNSSFDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMemberNSSFDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateMemberPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateMemberPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMemberPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMemberPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateStaffPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateStaffPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateStaffPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateStaffPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidTrustee">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ValidTrustee" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidTrustee">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidTrustee_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateStartDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ValidateStartDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateStartDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateStartDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="VerifyCurrentPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:VerifyCurrentPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="VerifyCurrentPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="VerifyCurrentPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="VerifyCurrentStaffPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:VerifyCurrentStaffPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="VerifyCurrentStaffPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="VerifyCurrentStaffPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="getEmployeeName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:getEmployeeName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="getEmployeeName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="getEmployeeName_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ApproveClaimReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ApproveClaimReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ApproveClaimReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ApproveClaimReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ApproveImprest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ApproveImprest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ApproveImprest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ApproveImprest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ApproveLeave">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ApproveLeave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ApproveLeave">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ApproveLeave_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ApprovePV">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ApprovePV" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ApprovePV">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ApprovePV_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ApproveStoreReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ApproveStoreReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ApproveStoreReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ApproveStoreReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AvailableLeaveDays">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:AvailableLeaveDays" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AvailableLeaveDays">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AvailableLeaveDays_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CalcEndDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CalcEndDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CalcEndDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CalcEndDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CalcReturnDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CalcReturnDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CalcReturnDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CalcReturnDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CancelClaimRequisition">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CancelClaimRequisition" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CancelClaimRequisition">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CancelClaimRequisition_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CancelImprestRequisition">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CancelImprestRequisition" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CancelImprestRequisition">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CancelImprestRequisition_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CancelLeaveApplication">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CancelLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CancelLeaveApplication">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CancelLeaveApplication_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeBeneficiaryPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ChangeBeneficiaryPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeBeneficiaryPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeBeneficiaryPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeMemberPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ChangeMemberPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeMemberPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeMemberPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeStaffPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ChangeStaffPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeStaffPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeStaffPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeTrusteePassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ChangeTrusteePassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeTrusteePassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeTrusteePassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckBeneficiaryLoginForUnchangedPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckBeneficiaryLoginForUnchangedPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckBeneficiaryLoginForUnchangedPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckBeneficiaryLoginForUnchangedPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckBeneficiaryLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckBeneficiaryLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckBeneficiaryLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckBeneficiaryLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckBeneficiaryPasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckBeneficiaryPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckBeneficiaryPasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckBeneficiaryPasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckMemberLogin1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberLogin1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberLogin1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckMemberLoginForUnchangedPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLoginForUnchangedPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberLoginForUnchangedPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberLoginForUnchangedPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckMemberLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckMemberPasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberPasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberPasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckStaffLoginForUnchangedPass">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffLoginForUnchangedPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckStaffLoginForUnchangedPass">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckStaffLoginForUnchangedPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckStaffLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckStaffLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckStaffLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckStaffPasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckStaffPasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckStaffPasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckStaffPortalLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffPortalLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckStaffPortalLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckStaffPortalLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidBeneficiaryNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckValidBeneficiaryNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidBeneficiaryNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidBeneficiaryNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidMemberNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckValidMemberNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidMemberNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidMemberNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidStaffNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckValidStaffNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidStaffNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidStaffNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ClaimRequisitionApprovalRequest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ClaimRequisitionApprovalRequest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ClaimRequisitionApprovalRequest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ClaimRequisitionApprovalRequest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ClaimRequisitionCreate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ClaimRequisitionCreate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ClaimRequisitionCreate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ClaimRequisitionCreate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ConfirmPortalOTP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ConfirmPortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ConfirmPortalOTP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ConfirmPortalOTP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ConfirmStaffPortalOTP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ConfirmStaffPortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ConfirmStaffPortalOTP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ConfirmStaffPortalOTP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DetermineIfIncludesNonWorking">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:DetermineIfIncludesNonWorking" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DetermineIfIncludesNonWorking">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DetermineIfIncludesNonWorking_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DetermineIfIsNonWorking">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:DetermineIfIsNonWorking" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DetermineIfIsNonWorking">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DetermineIfIsNonWorking_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DetermineLeaveReturnDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:DetermineLeaveReturnDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DetermineLeaveReturnDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DetermineLeaveReturnDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="FnAttachments">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:FnAttachments" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FnAttachments">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FnAttachments_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateBeneficiaryStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateBeneficiaryStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateBeneficiaryStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateLeaveStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateLeaveStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateLeaveStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateLeaveStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateMemberDetailedStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberDetailedStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateMemberDetailedStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateMemberDetailedStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateMemberStatementNSSF">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatementNSSF" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateMemberStatementNSSF">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateMemberStatementNSSF_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateMemberStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateMemberStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateMemberStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBeneficiaryPFNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetBeneficiaryPFNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBeneficiaryPFNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBeneficiaryPFNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBeneficiaryProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetBeneficiaryProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBeneficiaryProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBeneficiaryProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetClaimsCount">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetClaimsCount" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetClaimsCount">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetClaimsCount_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetCurrentPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetCurrentPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetCurrentPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetCurrentPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetDefaultLeaveDays">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetDefaultLeaveDays" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetDefaultLeaveDays">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetDefaultLeaveDays_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetExtensionStartDate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetExtensionStartDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetExtensionStartDate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetExtensionStartDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetImprestCount">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetImprestCount" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetImprestCount">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetImprestCount_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetLeaveAppCount">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetLeaveAppCount" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetLeaveAppCount">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetLeaveAppCount_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberBeneficiaries">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberBeneficiaries" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberBeneficiaries">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberBeneficiaries_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberGender">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberGender" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberGender">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberGender_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberMail">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberMail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberMail">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberMail_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPostedLeaves">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPostedLeaves" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPostedLeaves">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPostedLeaves_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetProfilePicture">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetProfilePicture" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetProfilePicture">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetProfilePicture_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetSponsorName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetSponsorName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetSponsorName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetSponsorName_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetStafBfProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetStafBfProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetStafBfProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetStafBfProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetStaffMail">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetStaffMail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetStaffMail">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetStaffMail_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrusteeEmail">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetTrusteeEmail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrusteeEmail">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrusteeEmail_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrusteeName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetTrusteeName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrusteeName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrusteeName_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrusteeProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetTrusteeProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrusteeProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrusteeProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetUpdates">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetUpdates" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetUpdates">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetUpdates_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="HRLeaveApplication">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:HRLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HRLeaveApplication">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HRLeaveApplication_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="HRLeaveExtension">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:HRLeaveExtension" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HRLeaveExtension">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HRLeaveExtension_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprestRequisitionApprovalRequest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ImprestRequisitionApprovalRequest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprestRequisitionApprovalRequest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprestRequisitionApprovalRequest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprestRequisitionCreate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:ImprestRequisitionCreate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprestRequisitionCreate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprestRequisitionCreate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertApproverComments">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:InsertApproverComments" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertApproverComments">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertApproverComments_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertImprestRequisitionLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:InsertImprestRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertImprestRequisitionLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertImprestRequisitionLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="LifeCertificate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:LifeCertificate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LifeCertificate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LifeCertificate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerLiabilityStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerLiabilityStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerLiabilityStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerLiabilityStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerStatement1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerStatement1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerStatement1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PortalOTP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PortalOTP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PortalOTP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RejectClaimReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectClaimReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectClaimReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RejectImprest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectImprest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectImprest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RejectLeave">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectLeave">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectLeave_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RejectPV">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectPV" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectPV">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectPV_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="RejectStoreReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectStoreReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectStoreReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectStoreReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Portal">
+    <port name="Portal_Port" binding="tns:Portal_Binding">
+      <address location="https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

@@ -78,13 +78,13 @@ namespace TELPOSTAStaff.pages
         protected global::System.Web.UI.WebControls.Label lblDepartment;
 
         /// <summary>
-        /// ddlResponsibilityCenter control.
+        /// ddlTravelType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlResponsibilityCenter;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTravelType;
 
         /// <summary>
         /// txtPurpose control.
@@ -94,6 +94,15 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPurpose;
+
+        /// <summary>
+        /// lbtnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSubmit;
 
         /// <summary>
         /// vwLines control.
@@ -123,6 +132,15 @@ namespace TELPOSTAStaff.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl newLines;
 
         /// <summary>
+        /// lbtnClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnClose;
+
+        /// <summary>
         /// lblLNo control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,15 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAmnt;
+
+        /// <summary>
+        /// lbtnAddLine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAddLine;
 
         /// <summary>
         /// attachments control.
@@ -184,5 +211,23 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAttachments;
+
+        /// <summary>
+        /// btnApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApproval;
+
+        /// <summary>
+        /// btnCancellApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancellApproval;
     }
 }

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class PettyCashAccountingLines : System.Web.UI.Page
     {
-       /* SqlConnection connection;
+        SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -359,7 +360,7 @@ namespace TELPOSTAStaff.pages
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
         }
 
-        protected void lbtnUpload_Click(object sender, EventArgs e)
+       /* protected void lbtnUpload_Click(object sender, EventArgs e)
         {
             try
             {
@@ -407,7 +408,7 @@ namespace TELPOSTAStaff.pages
             {
                 ex.Data.Clear();
             }
-        }
+        }*/
         protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
         {
             try
@@ -435,7 +436,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-        protected void lbtnRemoveAttach_Click1(object sender, EventArgs e)
+       /* protected void lbtnRemoveAttach_Click1(object sender, EventArgs e)
         {
             try
             {
@@ -474,7 +475,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
+       */
         protected void ddlReceipts_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetPostedReceipts();
@@ -490,6 +491,6 @@ namespace TELPOSTAStaff.pages
             {
                 ex.Data.Clear();
             }
-        }*/
+        }
     }
 }

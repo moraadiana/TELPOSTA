@@ -57,8 +57,8 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Start Date</label>
-                                        <%--<asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" Widt="350px" TextMode="Date" OnTextChanged="txtStartDate_TextChanged" AutoPostBack="true"></asp:TextBox>--%>
-                                        <asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" Widt="350px" TextMode="Date" AutoPostBack="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" Widt="350px" TextMode="Date" OnTextChanged="txtStartDate_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtStartDate" CssClass="form-control" runat="server" Widt="350px" TextMode="Date" AutoPostBack="true"></asp:TextBox>--%>
                                         <script>
                                             $j('#Main1_txtStartDate').Zebra_DatePicker({
                                                 direction: [1, false],
@@ -74,12 +74,12 @@
                                         <asp:Label ID="lblBalance" runat="server" Text="" Font-Bold="True" ForeColor="Blue"></asp:Label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                               <%-- <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Unit: </label>
                                         <asp:Label ID="lblDirectorate" runat="server" Text="" Font-Bold="True" ForeColor="Blue"></asp:Label>
                                     </div>
-                                </div> 
+                                </div> --%>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Department: </label>
@@ -108,8 +108,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <a href="LeaveListing.aspx" class="btn btn-warning pull-left"><i class="fa fa-backward"></i>&nbsp;Back</a>
-                                    <%--<asp:LinkButton ID="lbtnSubmit" CssClass="btn btn-success pull-right" runat="server" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>--%>
-                                    <asp:LinkButton ID="lbtnSubmit" CssClass="btn btn-success pull-right" runat="server" ><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnSubmit" CssClass="btn btn-success pull-right" runat="server" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
+                                    <%--<asp:LinkButton ID="lbtnSubmit" CssClass="btn btn-success pull-right" runat="server" ><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>--%>
                                 </div>
                             </div>
                         </div>

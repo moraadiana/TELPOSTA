@@ -7,6 +7,7 @@
                 <li><a href="Dashboard.aspx"><i class="fa fa-dashboard"></i>Home</a></li>
                 <li class="active">Claim Requisition</li>
             </ol>
+
         </section>
 
         <section class="content">
@@ -50,18 +51,20 @@
                                                 <asp:Label ID="lblDepartment" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
                                         </div>                                      
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Responsibility Center</label>
-                                                <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                                       
+                                         <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Travel Type</label>
+                                                     <asp:DropDownList ID="ddlTravelType" runat="server" CssClass="form-control">
+                                                         <asp:ListItem> </asp:ListItem>
+                                                           <asp:ListItem>Local</asp:ListItem>
+                                                           <asp:ListItem>International</asp:ListItem>
+
+                                                       </asp:DropDownList>
+                                                   <%-- <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>--%>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <%-- <div class="col-md-4">
-                                             <div class="form-group">
-                                                 <label>Responsibility Center: </label>
-                                                 <asp:Label ID="lblResCenter" runat="server" Text="" ForeColor="Blue" Font-Bold="true"></asp:Label>
-                                             </div>
-                                        </div>--%>
+                                       
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -73,7 +76,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                           <%-- <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>--%>
+                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +93,7 @@
                                         </div>
                                         <div class="box-body">
                                             <div id="newLines" runat="server" visible="false">
-                                               <%-- <asp:LinkButton ID="lbtnClose" ToolTip="Close Lines" class="pull-right" runat="server" OnClick="lbtnClose_Click"><i class="fa fa-minus-circle"></i> Close lines</asp:LinkButton>--%>
+                                                <asp:LinkButton ID="lbtnClose" ToolTip="Close Lines" class="pull-right" runat="server" OnClick="lbtnClose_Click"><i class="fa fa-minus-circle"></i> Close lines</asp:LinkButton>
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
@@ -121,7 +124,7 @@
                                                 </table>
                                             </div>
 
-                                           <%-- <asp:LinkButton ID="lbtnAddLine" ToolTip="Add New Lines" class="pull-right text-info" runat="server" OnClick="lbtnAddLine_Click"><i class="fa fa-plus-circle"></i> Add Line</asp:LinkButton>--%>
+                                            <asp:LinkButton ID="lbtnAddLine" ToolTip="Add New Lines" class="pull-right text-info" runat="server" OnClick="lbtnAddLine_Click"><i class="fa fa-plus-circle"></i> Add Line</asp:LinkButton>
 
                                             <div id="attachments" runat="server" visible="false">
                                                 <div class="row">
@@ -181,9 +184,9 @@
                                                             <asp:BoundField DataField="$systemCreatedAt" HeaderText="Date Uploaded" />
                                                             <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
                                                                 <ItemStyle Width="110px" HorizontalAlign="Left" />
-                                                                <%--<ItemTemplate>
-                                                                    <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("$systemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
-                                                                </ItemTemplate>--%>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("SystemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
+                                                                </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
                                                         <FooterStyle HorizontalAlign="Center" />
@@ -203,8 +206,8 @@
                                                         <th></th>
                                                         <th>&nbsp;</th>
                                                         <th>
-                                                            <%--<asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Send Approval" OnClick="btnApproval_Click" />&nbsp;
-                                        <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />--%>
+                                                            <asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Send Approval" OnClick="btnApproval_Click" />&nbsp;
+                                        <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />
                                                         </th>
                                                     </tr>
                                                 </thead>

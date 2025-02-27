@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class LeaveApplication : System.Web.UI.Page
     {
-       // Staffportall webportals = Components.ObjNav;
-     /*   string[] strLimiters = new string[] { "::" };
+        Staffportall webportals = Components.ObjNav;
+      string[] strLimiters = new string[] { "::" };
         string[] strLimiters2 = new string[] { "[]" };
         SqlConnection connection;
         SqlCommand command;
@@ -25,7 +26,7 @@ namespace TELPOSTAStaff.pages
                     Response.Redirect("~/Default.aspx");
                     return;
                 }
-                 string query = Request.QueryString["query"];
+                string query = Request.QueryString["query"];
                  string leaveNo = null;
                  string approvalStatus = Request.QueryString["status"].Replace("%", " ");
                  LoadLeaveTypes();
@@ -102,8 +103,8 @@ namespace TELPOSTAStaff.pages
                     string returnMsg = responseArr[0];
                     if (returnMsg == "SUCCESS")
                     {
-                        lblDirectorate.Text = responseArr[1];
-                        lblDepartment.Text = responseArr[2];
+                       
+                        lblDepartment.Text = responseArr[1];
                     }
                     else
                     {
@@ -126,7 +127,7 @@ namespace TELPOSTAStaff.pages
                 ddlResponsibilityCenter.Items.Clear();
 
                 string grouping = "LEAVE";
-                string resCenters = webportals.GetResponsibilityCentres(grouping);
+                string resCenters = webportals.GetAllResponsibilityCentres();
                 if (!string.IsNullOrEmpty(resCenters))
                 {
                     string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
@@ -369,7 +370,7 @@ namespace TELPOSTAStaff.pages
                 string resCenter = ddlResponsibilityCenter.SelectedValue;
                 string appliedDays = txtAppliedDays.Text;
                 string startDate = txtStartDate.Text;
-                string directorate = lblDirectorate.Text;
+               // string directorate = lblDirectorate.Text;
                 string department = lblDepartment.Text;
                 string availableDays = lblBalance.Text;
                 string purpose = txtPurpose.Text;
@@ -410,11 +411,11 @@ namespace TELPOSTAStaff.pages
                     Message("Start date cannot be null");
                     return;
                 }
-                if (string.IsNullOrEmpty(directorate))
-                {
-                    Message("Directorate cannot be null");
-                    return;
-                }
+                //if (string.IsNullOrEmpty(directorate))
+                //{
+                //    Message("Directorate cannot be null");
+                //    return;
+                //}
                 if (string.IsNullOrEmpty(department))
                 {
                     Message("Department cannot be null");
@@ -457,7 +458,7 @@ namespace TELPOSTAStaff.pages
                     LeaveNo = Request.QueryString["leaveNo"]; // Get the leaveNo from the query string
                 }
                 // Applications
-                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate, purpose, resCenter);
+                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate,  resCenter, purpose);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
@@ -512,6 +513,6 @@ namespace TELPOSTAStaff.pages
             string page = "LeaveListing.aspx";
             string strScript = "<script>alert('" + message + "');window.location='" + page + "';</script>";
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
-        } */
+        } 
     }
 }

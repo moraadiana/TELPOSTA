@@ -14,7 +14,7 @@ namespace TELPOSTAStaff.pages
     {
         private readonly object dvMdlContentFail;
 
-        /*  protected void Page_Load(object sender, EventArgs e)
+          protected void Page_Load(object sender, EventArgs e)
           {
               try
               {
@@ -340,6 +340,6 @@ namespace TELPOSTAStaff.pages
                       }
                   }
               }
-          }*/
+          }
     }
 }

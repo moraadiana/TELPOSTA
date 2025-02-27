@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Pension" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="CheckPensionerLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckPensionerLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidPensionerNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidPensionerNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberBeneficiaries">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberBeneficiaries_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetUpdates">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetUpdates_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LifeCertificate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LifeCertificate_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PensionerLiabilityStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerLiabilityStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PensionerStatement1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="CheckPensionerLogin">
+    <part name="parameters" element="tns:CheckPensionerLogin" />
+  </message>
+  <message name="CheckPensionerLogin_Result">
+    <part name="parameters" element="tns:CheckPensionerLogin_Result" />
+  </message>
+  <message name="CheckValidPensionerNo">
+    <part name="parameters" element="tns:CheckValidPensionerNo" />
+  </message>
+  <message name="CheckValidPensionerNo_Result">
+    <part name="parameters" element="tns:CheckValidPensionerNo_Result" />
+  </message>
+  <message name="GetMemberBeneficiaries">
+    <part name="parameters" element="tns:GetMemberBeneficiaries" />
+  </message>
+  <message name="GetMemberBeneficiaries_Result">
+    <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
+  </message>
+  <message name="GetPensionerName">
+    <part name="parameters" element="tns:GetPensionerName" />
+  </message>
+  <message name="GetPensionerName_Result">
+    <part name="parameters" element="tns:GetPensionerName_Result" />
+  </message>
+  <message name="GetPensionerProfileDetails">
+    <part name="parameters" element="tns:GetPensionerProfileDetails" />
+  </message>
+  <message name="GetPensionerProfileDetails_Result">
+    <part name="parameters" element="tns:GetPensionerProfileDetails_Result" />
+  </message>
+  <message name="GetUpdates">
+    <part name="parameters" element="tns:GetUpdates" />
+  </message>
+  <message name="GetUpdates_Result">
+    <part name="parameters" element="tns:GetUpdates_Result" />
+  </message>
+  <message name="LifeCertificate">
+    <part name="parameters" element="tns:LifeCertificate" />
+  </message>
+  <message name="LifeCertificate_Result">
+    <part name="parameters" element="tns:LifeCertificate_Result" />
+  </message>
+  <message name="PensionerLiabilityStatement">
+    <part name="parameters" element="tns:PensionerLiabilityStatement" />
+  </message>
+  <message name="PensionerLiabilityStatement_Result">
+    <part name="parameters" element="tns:PensionerLiabilityStatement_Result" />
+  </message>
+  <message name="PensionerStatement1">
+    <part name="parameters" element="tns:PensionerStatement1" />
+  </message>
+  <message name="PensionerStatement1_Result">
+    <part name="parameters" element="tns:PensionerStatement1_Result" />
+  </message>
+  <message name="PensionerStatement">
+    <part name="parameters" element="tns:PensionerStatement" />
+  </message>
+  <message name="PensionerStatement_Result">
+    <part name="parameters" element="tns:PensionerStatement_Result" />
+  </message>
+  <portType name="Pension_Port">
+    <operation name="CheckPensionerLogin">
+      <input name="CheckPensionerLogin" message="tns:CheckPensionerLogin" />
+      <output name="CheckPensionerLogin_Result" message="tns:CheckPensionerLogin_Result" />
+    </operation>
+    <operation name="CheckValidPensionerNo">
+      <input name="CheckValidPensionerNo" message="tns:CheckValidPensionerNo" />
+      <output name="CheckValidPensionerNo_Result" message="tns:CheckValidPensionerNo_Result" />
+    </operation>
+    <operation name="GetMemberBeneficiaries">
+      <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
+      <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
+    </operation>
+    <operation name="GetPensionerName">
+      <input name="GetPensionerName" message="tns:GetPensionerName" />
+      <output name="GetPensionerName_Result" message="tns:GetPensionerName_Result" />
+    </operation>
+    <operation name="GetPensionerProfileDetails">
+      <input name="GetPensionerProfileDetails" message="tns:GetPensionerProfileDetails" />
+      <output name="GetPensionerProfileDetails_Result" message="tns:GetPensionerProfileDetails_Result" />
+    </operation>
+    <operation name="GetUpdates">
+      <input name="GetUpdates" message="tns:GetUpdates" />
+      <output name="GetUpdates_Result" message="tns:GetUpdates_Result" />
+    </operation>
+    <operation name="LifeCertificate">
+      <input name="LifeCertificate" message="tns:LifeCertificate" />
+      <output name="LifeCertificate_Result" message="tns:LifeCertificate_Result" />
+    </operation>
+    <operation name="PensionerLiabilityStatement">
+      <input name="PensionerLiabilityStatement" message="tns:PensionerLiabilityStatement" />
+      <output name="PensionerLiabilityStatement_Result" message="tns:PensionerLiabilityStatement_Result" />
+    </operation>
+    <operation name="PensionerStatement1">
+      <input name="PensionerStatement1" message="tns:PensionerStatement1" />
+      <output name="PensionerStatement1_Result" message="tns:PensionerStatement1_Result" />
+    </operation>
+    <operation name="PensionerStatement">
+      <input name="PensionerStatement" message="tns:PensionerStatement" />
+      <output name="PensionerStatement_Result" message="tns:PensionerStatement_Result" />
+    </operation>
+  </portType>
+  <binding name="Pension_Binding" type="tns:Pension_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="CheckPensionerLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckPensionerLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckPensionerLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidPensionerNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:CheckValidPensionerNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidPensionerNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidPensionerNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberBeneficiaries">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetMemberBeneficiaries" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberBeneficiaries">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberBeneficiaries_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPensionerName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPensionerName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPensionerName_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPensionerProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPensionerProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPensionerProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetUpdates">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetUpdates" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetUpdates">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetUpdates_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="LifeCertificate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:LifeCertificate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LifeCertificate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LifeCertificate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerLiabilityStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:PensionerLiabilityStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerLiabilityStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerLiabilityStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerStatement1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:PensionerStatement1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerStatement1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerStatement1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:PensionerStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Pension">
+    <port name="Pension_Port" binding="tns:Pension_Binding">
+      <address location="https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Pension" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

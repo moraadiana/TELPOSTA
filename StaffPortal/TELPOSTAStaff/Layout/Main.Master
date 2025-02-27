@@ -58,8 +58,8 @@
                                         <li class="divider"></li>
                                       <%--  <li><a href="TrainingListing.aspx"><i class="fa fa-hand-o-right"></i>Training Requisition</a></li>
                                         <li class="divider"></li>--%>
-                                        <li><a href="BackToOfficeListsing.aspx"><i class="fa fa-hand-o-right"></i>Back To Office</a></li>
-                                        <li class="divider"></li>
+                                       <%-- <li><a href="BackToOfficeListsing.aspx"><i class="fa fa-hand-o-right"></i>Back To Office</a></li>
+                                        <li class="divider"></li>--%>
                                          <%--  <li><a href="AppraisalListing.aspx"><i class="fa fa-hand-o-right"></i>Appraisals</a></li>
                                         <li class="divider"></li> --%>
                                         <li><a href="pnineform.aspx"><i class="fa fa-hand-o-right"></i>P9 Form</a></li>
@@ -71,11 +71,11 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Finance Management <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="ImprestListing.aspx"><i class="fa fa-hand-o-right"></i>Memo Imprest Requisition</a></li>
+                                        <li><a href="ImprestListing.aspx"><i class="fa fa-hand-o-right"></i> Imprest Requisition</a></li>
                                         <li class="divider"></li>
                                         <li><a href="ImprestAccountingListing.aspx"><i class="fa fa-hand-o-right"></i>Imprest Accounting</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="ClaimListing.aspx"><i class="fa fa-hand-o-right"></i>Claim Requisitions</a></li>
+                                        <li><a href="TransportRequisitionListing.aspx"><i class="fa fa-hand-o-right"></i>Travel Requisitions</a></li>
                                         <li class="divider"></li>
                                         <li><a href="PettyCashListing.aspx"><i class="fa fa-hand-o-right"></i>Petty Cash Requisition</a></li>
                                         <li class="divider"></li>

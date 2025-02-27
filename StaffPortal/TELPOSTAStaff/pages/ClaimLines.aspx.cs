@@ -7,16 +7,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class ClaimLines : System.Web.UI.Page
-    {/*
+    {
         SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
-       Staffportall webportals = Components.ObjNav;
+        Staffportall webportals = Components.ObjNav;
         string[] strLimiters = new string[] { "::" };
         string[] strLimiters2 = new string[] { "[]" };
         protected void Page_Load(object sender, EventArgs e)
@@ -94,6 +95,7 @@ namespace TELPOSTAStaff.pages
 
                 lblStaffNo.Text = staffNo;
                 lblPayee.Text = staffName;
+                lblRequester.Text = staffNo;
             }
             catch (Exception ex)
             {
@@ -107,28 +109,28 @@ namespace TELPOSTAStaff.pages
         {
             try
             {
-                ddlResponsibilityCenter.Items.Clear();
+                //ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "S-CLAIMS";
-                string resCenters = webportals.GetResponsibilityCentres(grouping);
-                if (!string.IsNullOrEmpty(resCenters))
-                {
-                    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                //string grouping = "S-CLAIMS";
+                //string resCenters = webportals.GetResponsibilityCentres(grouping);
+                //if (!string.IsNullOrEmpty(resCenters))
+                //{
+                //    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (string rescenter in resCenterArr)
-                    {
-                        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
-                    }
-                }
-                else
-                {
-                    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
-                }
+                //    foreach (string rescenter in resCenterArr)
+                //    {
+                //        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
+                //    }
+                //}
+                //else
+                //{
+                //    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
+                //}
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
+                //ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
             }
         }
 
@@ -167,25 +169,37 @@ namespace TELPOSTAStaff.pages
             {
                 string username = Session["username"].ToString();
                 string department = lblDepartment.Text;
-                string directorate = lblDirectorate.Text;
-                string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
+                //string directorate = lblDirectorate.Text;
+                //string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
-
-                 //if (string.IsNullOrEmpty(department))
-                 //{
-                 //    Message("Department cannot be null!");
-                 //    return;
-                 //}
-                 //if (string.IsNullOrEmpty(directorate))
-                 //{
-                 //    Message("Division cannot be null!");
-                 //    return;
-                 //}
-                if (string.IsNullOrEmpty(responsibilityCenter))
+                String AccNo = "BNK-0001";
+                string travelType = ddlTravelType.SelectedValue;
+                //string ApplicantType = DdApplicantType.SelectedItem.Text;
+                int MyPettyType = 0;
+                if (travelType == "Local")
                 {
-                    Message("Responsibility center cannot be null!");
-                    return;
+                    MyPettyType = 0;
                 }
+                else if (travelType == "International")
+                {
+                    MyPettyType = 1;
+                }
+
+                //if (string.IsNullOrEmpty(department))
+                //{
+                //    Message("Department cannot be null!");
+                //    return;
+                //}
+                //if (string.IsNullOrEmpty(directorate))
+                //{
+                //    Message("Division cannot be null!");
+                //    return;
+                //}
+                //if (string.IsNullOrEmpty(responsibilityCenter))
+                //{
+                //    Message("Responsibility center cannot be null!");
+                //    return;
+                //}
                 if (purpose == "")
                 {
                     Message("Purpose cannot be null!");
@@ -199,20 +213,20 @@ namespace TELPOSTAStaff.pages
                 }
                 //TODO:
 
-                string response = webportals.CreateClaimRequisitionHeader(username, responsibilityCenter, purpose);//ClaimRequisitionCreate(department, directorate, responsibilityCenter, "", username, purpose, DateTime.Today,"");//
-                if (!string.IsNullOrEmpty(response))
-                {
-                    string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
-                    string returnMsg = responseArr[0];
-                    if (returnMsg == "SUCCESS")
-                    {
-                        string claimNo = responseArr[1];
-                        Message($"Claim number {claimNo} has been created successfully!");
-                        Session["ClaimNo"] = claimNo;
-                        BindGridViewData(claimNo);
-                        NewView();
-                    }
-                }
+                //string response = webportals.CreateClaimRequisitionHeader(username, travelType, purpose);//ClaimRequisitionCreate(department, directorate, responsibilityCenter, "", username, purpose, DateTime.Today,"");//
+                //if (!string.IsNullOrEmpty(response))
+                //{
+                //    string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
+                //    string returnMsg = responseArr[0];
+                //    if (returnMsg == "SUCCESS")
+                //    {
+                //        string claimNo = responseArr[1];
+                //        Message($"Claim number {claimNo} has been created successfully!");
+                //        Session["ClaimNo"] = claimNo;
+                //        BindGridViewData(claimNo);
+                //        NewView();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -240,8 +254,65 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
         private void BindAttachedDocuments(string claimNo)
+        {
+            try
+            {
+                // Call the AL web service method
+                string docLines = webportals.GetDocumentlines(claimNo);
+
+                // Check if the response is not empty or null
+                if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
+                {
+                    // Split the response by '[]' to separate each line
+                    string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Create a DataTable to hold the parsed data for binding
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Document No");
+                    dt.Columns.Add("Description");
+                    dt.Columns.Add("$systemCreatedAt");
+                    dt.Columns.Add("SystemId");
+
+
+
+                    // Loop through each line item
+                    foreach (string item in lineItems)
+                    {
+                        // Split each line by '::' to get individual fields
+                        string[] fields = item.Split(strLimiters, StringSplitOptions.None);
+
+                        // Check if we have the correct number of fields to avoid errors
+                        if (fields.Length == 4)
+                        {
+                            DataRow row = dt.NewRow();
+                            row["No_"] = fields[0];
+                            row["File Name"] = fields[1];
+                            row["$systemCreatedAt"] = fields[2];
+                            row["SystemId"] = fields[3];
+                            dt.Rows.Add(row);
+                        }
+                    }
+
+                    // Bind the DataTable to the GridView
+                    gvAttachments.DataSource = dt;
+                    gvAttachments.DataBind();
+                }
+                else
+                {
+                    // Handle the case where there are no imprest lines
+                    gvLines.DataSource = null;
+                    gvLines.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (log or show an error message as needed)
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        private void BindAttachedDocuments1(string claimNo)
         {
             try
             {
@@ -340,7 +411,7 @@ namespace TELPOSTAStaff.pages
                 }
                 //TODO:
 
-                string claimLine = webportals.InsertClaimRequisitionLines(claimNo, advanceType, Convert.ToDecimal(amount));//InsertClaimRequisitionLines(claimNo, advanceType, claimNo, advanceType, Convert.ToDecimal(amount), employeeNo);//
+                string claimLine = webportals.InsertClaimRequisitionLines(claimNo, Convert.ToDecimal(amount));//InsertClaimRequisitionLines(claimNo, advanceType, claimNo, advanceType, Convert.ToDecimal(amount), employeeNo);//
                 if (!string.IsNullOrEmpty(claimLine))
                 {
                     string[] strLimiters = new string[] { "::" };
@@ -389,20 +460,20 @@ namespace TELPOSTAStaff.pages
                     args = (sender as LinkButton).CommandArgument.ToString().Split(';');
                     string lineNo = args[0];
                     //string response = "";
-                    string response = webportals.RemoveClaimRequisitionLines(Convert.ToInt32(lineNo));
-                    if (!string.IsNullOrEmpty(response))
-                    {
-                        if (response == "SUCCESS")
-                        {
-                            Message("Line deleted successfully!");
-                            BindGridViewData(claimNo);
-                        }
-                        else
-                        {
-                            Message("An error occured while removing line. Please try again later");
-                            return;
-                        }
-                    }
+                  //  string response = webportals.RemoveClaimRequisitionLines(Convert.ToInt32(lineNo));
+                    //if (!string.IsNullOrEmpty(response))
+                    //{
+                    //    if (response == "SUCCESS")
+                    //    {
+                    //        Message("Line deleted successfully!");
+                           BindGridViewData(claimNo);
+                    //    }
+                    //    else
+                    //    {
+                    //        Message("An error occured while removing line. Please try again later");
+                    //        return;
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -470,8 +541,8 @@ namespace TELPOSTAStaff.pages
             lbtnAddLine.Visible = true;
         }
 
-        protected void lbtnAttach_Click(object sender, EventArgs e)
-        {
+       protected void lbtnAttach_Click(object sender, EventArgs e)
+        {/* 
             try
             {
                 if (fuClaimDocs.PostedFile != null)
@@ -525,9 +596,9 @@ namespace TELPOSTAStaff.pages
             catch (Exception ex)
             {
                 ex.Data.Clear();
-            }
+            }*/
         }
-        protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
+            protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
         {
             try
             {
@@ -555,8 +626,8 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        protected void lbtnRemoveAttach_Click1(object sender, EventArgs e)
-        {
+       protected void lbtnRemoveAttach_Click1(object sender, EventArgs e)
+        {/* 
             string status = Request.QueryString["status"].ToString().Replace("%", " ");
             if (status == "Open" || status == "Pending")
             {
@@ -594,7 +665,7 @@ namespace TELPOSTAStaff.pages
             {
                 Message("You can only edit an open document!");
                 return;
-            }
-        }*/
-    }
+            }*/
+        }
+        }
 }

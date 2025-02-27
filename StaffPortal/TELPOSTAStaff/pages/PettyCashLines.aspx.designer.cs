@@ -69,22 +69,13 @@ namespace TELPOSTAStaff.pages
         protected global::System.Web.UI.WebControls.Label lblDepartment;
 
         /// <summary>
-        /// lblDirectorate control.
+        /// ddlPettyCashType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDirectorate;
-
-        /// <summary>
-        /// ddlResponsibilityCenter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlResponsibilityCenter;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPettyCashType;
 
         /// <summary>
         /// txtPurpose control.

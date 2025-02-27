@@ -9,9 +9,10 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using Newtonsoft.Json.Linq;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff
-{/*
+{
     public class Components
     {
          public static SqlConnection connection;
@@ -29,7 +30,13 @@ namespace TELPOSTAStaff
          {
              get
              {
-                 var ws = new Staffportall();
+                // Enforce TLS 1.2
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                // Ignore SSL certificate validation (use only for testing)
+                ServicePointManager.ServerCertificateValidationCallback +=
+                    (sender, certificate, chain, sslPolicyErrors) => true;
+                var ws = new Staffportall();
                  try
                  {
                      var credentials = new NetworkCredential(ConfigurationManager.AppSettings["W_USER"], ConfigurationManager.AppSettings["W_PWD"]);
@@ -94,7 +101,7 @@ namespace TELPOSTAStaff
              return connection;
          }
 
-         public static string EmployeeGender
+         public static string EmployeeGender1
           {
               get
               {
@@ -250,5 +257,5 @@ namespace TELPOSTAStaff
              }
              return r;
          }
-    }*/
+    }
 }

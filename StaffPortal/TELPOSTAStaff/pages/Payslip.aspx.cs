@@ -8,12 +8,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff.pages
 {
     public partial class Payslip : System.Web.UI.Page
     {
-        /*SqlConnection connection;
+        SqlConnection connection;
         SqlCommand command;
         SqlDataReader reader;
         SqlDataAdapter adapter;
@@ -36,7 +37,7 @@ namespace TELPOSTAStaff.pages
         }
 
 
-        private void LoadYears()
+        private void LoadYears1()
         {
             try
             {
@@ -62,8 +63,38 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
+        //GetPayslipYears
+        private void LoadYears()
+        {
+            try
+            {
+                ddlMonth.Items.Clear();
+
+                string payslipMonths = webportals.GetPayslipYears();
+                if (!string.IsNullOrEmpty(payslipMonths))
+                {
+                    string[] monthsArr = payslipMonths.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string months in monthsArr)
+                    {
+
+                        string[] responseArr = months.Split(strLimiters, StringSplitOptions.None);
+                        if (responseArr.Length == 1)
+                        {
+                            string monthNumber = responseArr[0];
+                           
 
 
+                            ListItem li = new ListItem( monthNumber);
+                            ddlYear.Items.Add(li);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+        }
         private void LoadMonths()
         {
             try
@@ -138,7 +169,7 @@ namespace TELPOSTAStaff.pages
                 {
                     Directory.CreateDirectory(Server.MapPath("~/Downloads/"));
                 }
-                webportals.GeneratePaySlipReport3(username, period, String.Format(@"PAYSLIP-{0}.pdf", filename));
+               webportals.GeneratePaySlipReport1(username, period, String.Format(@"PAYSLIP-{0}.pdf", filename));
 
                 
                 if (File.Exists(filePath))
@@ -187,6 +218,6 @@ namespace TELPOSTAStaff.pages
         {
             string strScript = "<script>alert('" + message + "');</script>";
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
-        }*/
+        }
     }
 }
