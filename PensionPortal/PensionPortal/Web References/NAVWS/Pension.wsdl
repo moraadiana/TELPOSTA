@@ -45,6 +45,18 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetPayrollPeriods">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetPensionerName">
         <complexType>
           <sequence>
@@ -171,6 +183,12 @@
   <message name="GetMemberBeneficiaries_Result">
     <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
   </message>
+  <message name="GetPayrollPeriods">
+    <part name="parameters" element="tns:GetPayrollPeriods" />
+  </message>
+  <message name="GetPayrollPeriods_Result">
+    <part name="parameters" element="tns:GetPayrollPeriods_Result" />
+  </message>
   <message name="GetPensionerName">
     <part name="parameters" element="tns:GetPensionerName" />
   </message>
@@ -225,6 +243,10 @@
     <operation name="GetMemberBeneficiaries">
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
+    </operation>
+    <operation name="GetPayrollPeriods">
+      <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
+      <output name="GetPayrollPeriods_Result" message="tns:GetPayrollPeriods_Result" />
     </operation>
     <operation name="GetPensionerName">
       <input name="GetPensionerName" message="tns:GetPensionerName" />
@@ -281,6 +303,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetMemberBeneficiaries_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPayrollPeriods">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetPayrollPeriods" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayrollPeriods">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayrollPeriods_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

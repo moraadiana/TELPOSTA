@@ -24,30 +24,53 @@ namespace PensionPortal.Controllers
             return View();
         }
 
-        public ActionResult MemberStatement1(string pensionerNo, DateTime? startDate, DateTime? endDate)
+        public ActionResult MemberStatement(string pensionerNo, DateTime? startDate, DateTime? endDate)
         {
             
             
 
-            if (startDate == null || endDate == null)
-            {
-                ViewBag.Error = "Both Start Date and End Date must be provided.";
-                return View();
-            }
+           
 
             pensionerNo = Session["pensionerNo"]?.ToString();
             try
             {
-                string fileName = pensionerNo.Replace("/", "");
-                string pdfFileName = $"PensionerStatement-{fileName}.pdf";
-                string path = "D:\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads";
-                Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
+                var list = new List<PensionerStatement>();
+                PensionerStatement PensionerStatement = new PensionerStatement();
+                var periods = webportals.GetPayrollPeriods();
+                
+               
+                if (!string.IsNullOrEmpty(periods))
+                {
 
-                // Call the method with the validated dates
-                //webportals.PensionerStatement(path, fileName, pensionerNo, startDate.Value, endDate.Value);
-                webportals.PensionerStatement(path, fileName, pensionerNo, DateTime.Parse("2024-01-01"), DateTime.Parse("2024-07-01"));
+                    string[] periodsArr = periods.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    Array.Reverse(periodsArr);
+                    foreach (string line in periodsArr)
+                    {
 
-                ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
+                        string[] responseArr = line.Split(strLimiters, StringSplitOptions.None);
+                        list.Add(new PensionerStatement()
+                        {
+
+                            StartDate = Convert.ToDateTime(responseArr[0]),
+                            EndDate = Convert.ToDateTime(responseArr[0]),
+                          
+                        });
+                    }
+                    PensionerStatement.PayrollPeriods = list;
+
+
+                    string fileName = pensionerNo.Replace("/", "");
+                    string pdfFileName = $"PensionerStatement-{fileName}.pdf";
+                    string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
+                    Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
+
+                    // Call the method with the validated dates
+                    webportals.PensionerStatement(path, fileName, pensionerNo, startDate.Value, endDate.Value);
+                    //webportals.PensionerStatement(path, fileName, pensionerNo, DateTime.Parse("2024-01-01"), DateTime.Parse("2024-07-01"));
+
+                    ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
+                    return View(new PensionerStatement { PayrollPeriods = list });
+                }
             }
             catch (Exception ex)
             {
@@ -58,7 +81,7 @@ namespace PensionPortal.Controllers
             return View();
         }
 
-        public ActionResult MemberStatement(string pensionerNo, DateTime? startDate, DateTime? endDate)
+        public ActionResult MemberStatement1(string pensionerNo, DateTime? startDate, DateTime? endDate)
         {
 
 
@@ -83,7 +106,7 @@ namespace PensionPortal.Controllers
                 // webportals.PensionerStatement1(pensionerNo, DateTime.Parse("2024-01-01"), DateTime.Parse("2024-07-01"));
                 //  myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("PAYSLIP{0}.pdf
                 byte[] bytes = Convert.FromBase64String(returnstring);
-                string path = "D:\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads";
+                string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads";
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);

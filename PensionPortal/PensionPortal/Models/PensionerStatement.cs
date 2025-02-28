@@ -12,9 +12,13 @@ namespace PensionPortal.Models
         //public string memberNo { get; set; }
 
         //[Required, DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         [Required, DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
+        [Required]
+        public List<PensionerStatement> PayrollPeriods { get; set; }
+
     }
 }
