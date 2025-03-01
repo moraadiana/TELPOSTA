@@ -54,33 +54,18 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <form action="@Url.Action("MemberStatement", "Statements")" method="get">
+                    <form action="@Url.Action("GenerateMemberStatement", "Statements")" method="get">
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="startDate" class="form-label">Start Date:</label>
                                 @*<input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />*@
-                                @if (Model != null && Model.PayrollPeriods != null)
-                                {
-                                    @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate"))
-                                }
-                                else
-                                {
-                                    <p class="text-danger">No payroll periods available.</p>
-                                }
+                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })
 
                             </div>
 
                             <div class="col-md-4">
                                 <label for="endDate" class="form-label">End Date:</label>
-                                @if (Model != null && Model.PayrollPeriods != null)
-                                {
-                                    @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate"))
-                                }
-                                else
-                                {
-                                    <p class="text-danger">No payroll periods available.</p>
-                                }
-
+                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })
                             </div>
 
                             <div class="col-md-4 d-flex align-items-end">

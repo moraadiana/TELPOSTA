@@ -79,7 +79,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 @*<img alt="" class="img-circle" src="@Url.Content("~/Profiles/" + Session["username"].ToString() + ".png?"+ DateTime.Now.Ticks.ToString())" />*@
                                 <img src="~/Profiles/defaultavatar.png" class="img-circle" alt="" />
-                                <span style="color: #ffffff !important" class="username username-hide-on-mobile"> @Session["memberName"] </span>
+                                <span style="color: #ffffff !important" class="username username-hide-on-mobile"> @Session["pensionerName"] </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -145,8 +145,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-users"></i>
-                                <span style="color: #ffffff !important" class="title">Statements</span>
+                                <i class="icon-envelope-open "></i>
+                                <span style="color: #ffffff !important" class="title">Reports</span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
@@ -155,14 +155,38 @@
                                         <span style="color: #ffffff !important" class="title">Member Statement</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("lifeCertificate", "statements")" class="nav-link nav-toggle">
+                                        <i class="icon-envelope-open"></i>
+                                        <span style="color: #ffffff !important" class="title">Life Certificate
+                                        </span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("news", "dashboard")" class="nav-link nav-toggle">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-envelope-open"></i>
                                 <span style="color: #ffffff !important" class="title">Updates</span>
                             </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("news", "dashboard")" class="nav-link nav-toggle">
+                                        <i class="icon-envelope-open"></i>
+                                        <span style="color: #ffffff !important" class="title">News</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
+                                        <i class="icon-envelope-open"></i>
+                                        <span style="color: #ffffff !important" class="title">
+                                           Pay Schedule
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
 
                         @*<li class="nav-item">

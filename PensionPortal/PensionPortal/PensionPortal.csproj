@@ -127,8 +127,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Beneficiary.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OTP.cs" />
     <Compile Include="Models\Pensioner.cs" />
@@ -205,6 +207,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerifyOTP.cshtml" />
     <Content Include="Views\Statements\MemberStatement.cshtml" />
+    <Content Include="Views\Statements\LifeCertificate.cshtml" />
     <None Include="Web References\NAVWS\Pension.wsdl" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
