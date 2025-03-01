@@ -168,7 +168,7 @@ namespace PensionPortal.Controllers
            
             try
             {
-                 webportals.LifeCertificate(path, fileName, pensionerNo, period);
+                 webportals.LifeCertificate(path, pdfFileName, pensionerNo, period);
                // webportals.LifeCertificate(path2, fileName, pensionerNo, period);
             }
             catch (Exception ex)
