@@ -68,42 +68,10 @@ namespace PensionPortal.Controllers
                 var pdfUrl = _helper.GeneratePensionerStatement(pensionerNo, startDate, endDate);
                 if (string.IsNullOrEmpty(pdfUrl))
                 {
-<<<<<<< HEAD
 
-                    string[] periodsArr = periods.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
-                    Array.Reverse(periodsArr);
-                    foreach (string line in periodsArr)
-                    {
-
-                        string[] responseArr = line.Split(strLimiters, StringSplitOptions.None);
-                        list.Add(new PensionerStatement()
-                        {
-
-                            StartDate = Convert.ToDateTime(responseArr[0]),
-                            EndDate = Convert.ToDateTime(responseArr[0]),
-                          
-                        });
-                    }
-                    PensionerStatement.PayrollPeriods = list;
-
-
-                    string fileName = pensionerNo.Replace("/", "");
-                    string pdfFileName = $"PensionerStatement-{fileName}.pdf";
-                    string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
-                    string path2 = "C:\\inetpub\\wwwroot\\Portals\\PensionPortal\\Downloads\\";
-                    Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
-
-                    // Call the method with the validated dates
-                    webportals.PensionerStatement(path2, fileName, pensionerNo, startDate.Value, endDate.Value);
-                    webportals.PensionerStatement(path, fileName, pensionerNo, startDate.Value, endDate.Value);
-                    //webportals.PensionerStatement(path, fileName, pensionerNo, DateTime.Parse("2024-01-01"), DateTime.Parse("2024-07-01"));
-
-                    ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
-                    return View(new PensionerStatement { PayrollPeriods = list });
-=======
                     TempData["Error"] = "Failed to generate the statement.";
                     return RedirectToAction("MemberStatement");
->>>>>>> 0e922feb32b0c681e1e063ea9bab644781246041
+
                 }
                 var model = new PensionerStatement
                 {
@@ -189,19 +157,22 @@ namespace PensionPortal.Controllers
             }
             string fileName = pensionerNo.Replace(@"/", @"");
             string pdfFileName = $"LifeCertificate-{fileName}.pdf";
-           // string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
-            string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
+          
+            string path = Server.MapPath("~/Downloads/");
+            
             DateTime period = DateTime.Today;
            
             try
             {
                  webportals.LifeCertificate(path, fileName, pensionerNo, period);
+               // webportals.LifeCertificate(path2, fileName, pensionerNo, period);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
-            ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
+            
+            ViewBag.filepath = Url.Content($"~/Downloads/{pdfFileName}").Replace("http://", "https://");
 
             return View();
 
