@@ -159,7 +159,11 @@ namespace PensionPortal.Controllers
             string pdfFileName = $"LifeCertificate-{fileName}.pdf";
           
             string path = Server.MapPath("~/Downloads/");
-            
+            string pdfFilePath = Path.Combine(path, pdfFileName);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path); // Create the Downloads folder if it doesn't exist
+            }
             DateTime period = DateTime.Today;
            
             try
@@ -170,10 +174,20 @@ namespace PensionPortal.Controllers
             catch (Exception ex)
             {
                 ex.Data.Clear();
+                ViewBag.Error = "An error occurred while generating the life certificate.";
+                return View();
             }
-            
-            ViewBag.filepath = Url.Content($"~/Downloads/{pdfFileName}").Replace("http://", "https://");
 
+            //  ViewBag.filepath = Url.Content($"~/Downloads/{pdfFileName}").Replace("http://", "https://");
+            if (System.IO.File.Exists(pdfFilePath))
+            {
+                // Set the URL for the PDF file
+                ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
+            }
+            else
+            {
+                ViewBag.Error = "Life Certificate generation failed. File not found.";
+            }
             return View();
 
         }
