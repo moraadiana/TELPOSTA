@@ -62,9 +62,11 @@ namespace PensionPortal.Controllers
                     string fileName = pensionerNo.Replace("/", "");
                     string pdfFileName = $"PensionerStatement-{fileName}.pdf";
                     string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
+                    string path2 = "C:\\inetpub\\wwwroot\\Portals\\PensionPortal\\Downloads\\";
                     Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
 
                     // Call the method with the validated dates
+                    webportals.PensionerStatement(path2, fileName, pensionerNo, startDate.Value, endDate.Value);
                     webportals.PensionerStatement(path, fileName, pensionerNo, startDate.Value, endDate.Value);
                     //webportals.PensionerStatement(path, fileName, pensionerNo, DateTime.Parse("2024-01-01"), DateTime.Parse("2024-07-01"));
 
