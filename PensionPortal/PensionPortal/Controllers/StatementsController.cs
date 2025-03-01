@@ -68,8 +68,10 @@ namespace PensionPortal.Controllers
                 var pdfUrl = _helper.GeneratePensionerStatement(pensionerNo, startDate, endDate);
                 if (string.IsNullOrEmpty(pdfUrl))
                 {
+
                     TempData["Error"] = "Failed to generate the statement.";
                     return RedirectToAction("MemberStatement");
+
                 }
                 var model = new PensionerStatement
                 {
@@ -155,19 +157,22 @@ namespace PensionPortal.Controllers
             }
             string fileName = pensionerNo.Replace(@"/", @"");
             string pdfFileName = $"LifeCertificate-{fileName}.pdf";
-           // string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
-            string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
+          
+            string path = Server.MapPath("~/Downloads/");
+            
             DateTime period = DateTime.Today;
            
             try
             {
                  webportals.LifeCertificate(path, fileName, pensionerNo, period);
+               // webportals.LifeCertificate(path2, fileName, pensionerNo, period);
             }
             catch (Exception ex)
             {
                 ex.Data.Clear();
             }
-            ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
+            
+            ViewBag.filepath = Url.Content($"~/Downloads/{pdfFileName}").Replace("http://", "https://");
 
             return View();
 
