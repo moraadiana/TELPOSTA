@@ -45,6 +45,18 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetPaySchedule">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPaySchedule_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetPayrollPeriods">
         <complexType>
           <sequence />
@@ -183,6 +195,12 @@
   <message name="GetMemberBeneficiaries_Result">
     <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
   </message>
+  <message name="GetPaySchedule">
+    <part name="parameters" element="tns:GetPaySchedule" />
+  </message>
+  <message name="GetPaySchedule_Result">
+    <part name="parameters" element="tns:GetPaySchedule_Result" />
+  </message>
   <message name="GetPayrollPeriods">
     <part name="parameters" element="tns:GetPayrollPeriods" />
   </message>
@@ -244,6 +262,10 @@
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
     </operation>
+    <operation name="GetPaySchedule">
+      <input name="GetPaySchedule" message="tns:GetPaySchedule" />
+      <output name="GetPaySchedule_Result" message="tns:GetPaySchedule_Result" />
+    </operation>
     <operation name="GetPayrollPeriods">
       <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
       <output name="GetPayrollPeriods_Result" message="tns:GetPayrollPeriods_Result" />
@@ -303,6 +325,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetMemberBeneficiaries_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPaySchedule">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetPaySchedule" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPaySchedule">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPaySchedule_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

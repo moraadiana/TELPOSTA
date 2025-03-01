@@ -52,7 +52,10 @@ namespace PensionPortal.Controllers
                     Session["Sponsor"] = responseArr[7];
                     Session["Salutation"] = responseArr[8];
                     Session["Status"] = responseArr[9];
-                    Session["Name"] = responseArr[10];
+                    Session["AccountNo"] = responseArr[10];
+                    Session["Name"] = responseArr[11];
+                    Session["BankName"] = responseArr[12];
+                    Session["BranchName"] = responseArr[13];
                     //Session["MemberName"]
 
                 }
@@ -106,6 +109,39 @@ namespace PensionPortal.Controllers
             {
                 string username = Session["pensionerNo"].ToString();
                 string newsList = webportals.GetUpdates();
+                if (!string.IsNullOrEmpty(newsList))
+                {
+                    string[] newsListArr = newsList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string newsupdate in newsListArr)
+                    {
+                        string[] response = newsupdate.Split(strLimiters, StringSplitOptions.None);
+                        News News = new News()
+                        {
+                            Name = response[0].Trim(),
+                            Description = response[1].Trim(),
+
+
+                        };
+                        news.Add(News);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("index", "dashboard");
+            }
+            return View(news);
+        }
+        public ActionResult PaySchedule()
+        {
+            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+
+            var news = new List<News>();
+            try
+            {
+                string username = Session["pensionerNo"].ToString();
+                string newsList = webportals.GetPaySchedule();
                 if (!string.IsNullOrEmpty(newsList))
                 {
                     string[] newsListArr = newsList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);

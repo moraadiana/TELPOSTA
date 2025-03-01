@@ -9,16 +9,14 @@ namespace PensionPortal.Models
     public class PensionerStatement
     {
         [Required]
-        //public string memberNo { get; set; }
-
-        //[Required, DataType(DataType.Date)]
-        public DateTime? StartDate { get; set; }
-
-        [Required, DataType(DataType.Date)]
-        public DateTime? EndDate { get; set; }
+        public string StartDate { get; set; }
 
         [Required]
-        public List<PensionerStatement> PayrollPeriods { get; set; }
+        public string EndDate { get; set; }
+      
+        public string PayrollPeriod { get; set; }
 
+        public string PdfUrl { get; set; }
+        public List<PensionerStatement> PayrollPeriods { get; set; }
     }
 }
