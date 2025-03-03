@@ -119,6 +119,7 @@ namespace PensionPortal.Controllers
 
                 Console.WriteLine($"Pensioner No: {pensionerNo}");
                 Console.WriteLine($"Start Date: {startDate.Value.ToString("yyyy-MM-dd")}, End Date: {endDate.Value.ToString("yyyy-MM-dd")}");
+                DateTime startingDate= Convert.ToDateTime(startDate.Value);
                // .Value.ToString("yyyy-MM-dd"
                 // Ensure directory exists
                 if (!Directory.Exists(path))
