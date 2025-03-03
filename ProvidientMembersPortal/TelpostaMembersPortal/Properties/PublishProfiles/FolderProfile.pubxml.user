@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Portals\MembersPortal</_PublishTargetUrl>
-    <History>True|2025-03-01T05:03:32.2181464Z||;</History>
+    <History>True|2025-03-03T11:27:38.9757687Z||;True|2025-03-01T08:03:32.2181464+03:00||;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/apps/css/inbox.min.css">
@@ -7278,13 +7278,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/27/2025 09:04:46</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.dll">
-      <publishTime>03/01/2025 08:07:36</publishTime>
+      <publishTime>03/03/2025 14:27:34</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.pdb">
-      <publishTime>03/01/2025 08:07:36</publishTime>
+      <publishTime>03/03/2025 14:27:34</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.XmlSerializers.dll">
-      <publishTime>03/01/2025 08:07:37</publishTime>
+      <publishTime>03/03/2025 14:27:35</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>02/27/2025 09:04:47</publishTime>
@@ -7395,7 +7395,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/27/2025 09:04:45</publishTime>
     </File>
     <File Include="images/logo.png">
-      <publishTime>02/27/2025 09:04:46</publishTime>
+      <publishTime>03/03/2025 14:24:19</publishTime>
     </File>
     <File Include="images/profile_f.png">
       <publishTime>02/27/2025 09:04:46</publishTime>
@@ -7494,10 +7494,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/27/2025 09:04:45</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/27/2025 09:04:45</publishTime>
+      <publishTime>03/03/2025 14:27:32</publishTime>
     </File>
     <File Include="Views/Shared/_Login.cshtml">
-      <publishTime>02/27/2025 09:04:45</publishTime>
+      <publishTime>03/03/2025 14:27:32</publishTime>
     </File>
     <File Include="Views/Statements/MemberStatement.cshtml">
       <publishTime>02/27/2025 09:04:45</publishTime>
