@@ -5,12 +5,9 @@ using System.Web;
 
 namespace PensionPortal.Models
 {
-    public class News
+    public class PaySchedule
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-       
-
+        public string payDays { get; set; }
+        public string Months { get; set; }
     }
 }

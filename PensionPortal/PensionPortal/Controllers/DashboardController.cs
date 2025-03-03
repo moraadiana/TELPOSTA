@@ -137,7 +137,7 @@ namespace PensionPortal.Controllers
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
 
-            var news = new List<News>();
+            var schedule = new List<PaySchedule>();
             try
             {
                 string username = Session["pensionerNo"].ToString();
@@ -148,14 +148,14 @@ namespace PensionPortal.Controllers
                     foreach (string newsupdate in newsListArr)
                     {
                         string[] response = newsupdate.Split(strLimiters, StringSplitOptions.None);
-                        News News = new News()
+                        PaySchedule PaySchedule = new PaySchedule()
                         {
-                            Name = response[0].Trim(),
-                            Description = response[1].Trim(),
+                            payDays = response[0].Trim(),
+                            Months = response[1].Trim(),
 
 
                         };
-                        news.Add(News);
+                        schedule.Add(PaySchedule);
                     }
                 }
             }
@@ -164,7 +164,7 @@ namespace PensionPortal.Controllers
                 TempData["Error"] = ex.Message;
                 return RedirectToAction("index", "dashboard");
             }
-            return View(news);
+            return View(schedule);
         }
     }
 }
