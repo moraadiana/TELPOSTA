@@ -133,12 +133,19 @@ namespace PensionPortal.Controllers
                 string endingDate = endDateOnly.ToString("yyyy-MM-dd");
                
                 Console.WriteLine($"Pensioner No: {pensionerNo}");
+<<<<<<< HEAD
+                Console.WriteLine($"Start Date: {startDate.Value.ToString("yyyy-MM-dd")}, End Date: {endDate.Value.ToString("yyyy-MM-dd")}");
+                DateTime startingDate= Convert.ToDateTime(startDate.Value);
+               // .Value.ToString("yyyy-MM-dd"
+                // Ensure directory exists
+=======
                 string path = Server.MapPath("~/Downloads/");
                 string pdfFilePath = Path.Combine(path, pdfFileName);
                 //Console.WriteLine($"Start Date: {startDateOnly}, End Date: {endDateOnly}");
                 Console.WriteLine($"Start Date: {startingDate}, End Date: {endingDate}");
 
 
+>>>>>>> e7c637240935ddb9283c2596037ca0733bf4bec9
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
