@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 
@@ -47,53 +48,62 @@ namespace PensionPortal.Controllers
             return View(PensionerStatement);
         }
 
-        public ActionResult  GenerateMemberStatement1(string payrollPeriod)
-        {
-            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
-            if (string.IsNullOrEmpty(payrollPeriod))
-            {
-                TempData["Error"] = "Please select a payroll period.";
-                return RedirectToAction("MemberStatement");
-            }
-           
-            // Initialize the model
-           
-            try
-            {
-                string pensionerNo = Session["pensionerNo"]?.ToString();
-                string[] dates = payrollPeriod.Split('-');
-                string startDate = dates[0].Trim();
-                string endDate = dates[1].Trim();
+     
+//        public ActionResult GenerateMemberStatement1(string pensionerNo, DateTime? startDate, DateTime? endDate)
+//        {
+//            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+//            if (startDate == null || endDate == null)
+//            {
+//                ViewBag.Error = "Both Start Date and End Date must be provided.";
+//                return RedirectToAction("MemberStatement");
+//            }
 
-                var pdfUrl = _helper.GeneratePensionerStatement(pensionerNo, startDate, endDate);
-                if (string.IsNullOrEmpty(pdfUrl))
-                {
+//            pensionerNo = Session["pensionerNo"]?.ToString();
 
-                    TempData["Error"] = "Failed to generate the statement.";
-                    return RedirectToAction("MemberStatement");
+//            if (string.IsNullOrEmpty(pensionerNo))
+//            {
+//                ViewBag.Error = "Pensioner number is missing.";
+//                return RedirectToAction("MemberStatement");
+//            }
 
-                }
-                var model = new PensionerStatement
-                {
-                    PayrollPeriods = Helper.GetPayrollPeriods(),
-                    PayrollPeriod = payrollPeriod,
-                    PdfUrl = pdfUrl
-                };
+//            try
+//            {
+//                string returnstring = "";
+//                string fileName = pensionerNo.Replace(@"/", @"");
+//                string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads";
+//                DateTime startDateOnly = startDate.Value.Date;
+//                string startingDate = startDateOnly.ToString("yyyy-MM-dd");
+//                DateTime endDateOnly = endDate.Value.Date;
+//                string endingDate = endDateOnly.ToString("yyyy-MM-dd");
+//                Console.WriteLine($"Pensioner No: {pensionerNo}");
+////Console.WriteLine($"Start Date: {startDateOnly}, End Date: {endDateOnly}");
+//                Console.WriteLine($"Start Date: {startingDate}, End Date: {endingDate}");
 
-                return View("MemberStatement", model);
-                // Call the method with the validated dates
 
-                // return View(new PensionerStatement { PayrollPeriods = list });
+//                if (!Directory.Exists(path))
+//                {
+//                    Directory.CreateDirectory(path);
+//                }
 
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"An error occurred: {ex.Message}";
-                return View();
-            }
+               
+//                string filePath = Path.Combine(path, $"PensionerStatement{fileName}.pdf");
+//                if (System.IO.File.Exists(filePath))
+//                {
+//                    System.IO.File.Delete(filePath);
+//                }
 
-            return View();
-        }
+//                webportals.GeneratePensionStatement(pensionerNo, startDateOnly, endDateOnly,filePath);
+
+//                ViewBag.PdfUrl = Url.Content($"~/Downloads/" + $"PensionerStatement{fileName}.pdf");
+//            }
+//            catch (Exception ex)
+//            {
+//                ViewBag.Error = $"An error occurred: {ex.Message}";
+//                return RedirectToAction("MemberStatement");
+//            }
+            
+//            return RedirectToAction("MemberStatement");
+//        }
         public ActionResult GenerateMemberStatement(string pensionerNo, DateTime? startDate, DateTime? endDate)
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
@@ -115,27 +125,55 @@ namespace PensionPortal.Controllers
             {
                 string returnstring = "";
                 string fileName = pensionerNo.Replace(@"/", @"");
-                string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads";
-
+                string pdfFileName = $"Statement-{fileName}.pdf";
+                
+                DateTime startDateOnly = startDate.Value.Date;
+                string startingDate = startDateOnly.ToString("yyyy-MM-dd");
+                DateTime endDateOnly = endDate.Value.Date;
+                string endingDate = endDateOnly.ToString("yyyy-MM-dd");
+               
                 Console.WriteLine($"Pensioner No: {pensionerNo}");
+<<<<<<< HEAD
                 Console.WriteLine($"Start Date: {startDate.Value.ToString("yyyy-MM-dd")}, End Date: {endDate.Value.ToString("yyyy-MM-dd")}");
                 DateTime startingDate= Convert.ToDateTime(startDate.Value);
                // .Value.ToString("yyyy-MM-dd"
                 // Ensure directory exists
+=======
+                string path = Server.MapPath("~/Downloads/");
+                string pdfFilePath = Path.Combine(path, pdfFileName);
+                //Console.WriteLine($"Start Date: {startDateOnly}, End Date: {endDateOnly}");
+                Console.WriteLine($"Start Date: {startingDate}, End Date: {endingDate}");
+
+
+>>>>>>> e7c637240935ddb9283c2596037ca0733bf4bec9
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
                 }
 
-                // Ensure file does not exist before generating the statement
-                string filePath = Path.Combine(path, $"PensionerStatement{fileName}.pdf");
-                if (System.IO.File.Exists(filePath))
+
+              
+                if (System.IO.File.Exists(pdfFilePath))
                 {
-                    System.IO.File.Delete(filePath);
+                    System.IO.File.Delete(pdfFilePath);
                 }
 
-                // Call the web service to generate the statement
-                webportals.PensionerStatement(path, fileName, pensionerNo,Convert.ToDateTime( startDate.Value.ToString("yyyy-MM-dd")), Convert.ToDateTime(endDate.Value.ToString("yyyy-MM-dd")));
+                
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName);
+
+                byte[] bytes = Convert.FromBase64String(returnstring);
+                //string path = HostingEnvironment.MapPath("~/Download/" + $"PAYSLIP{filename}.pdf");
+
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                FileStream stream = new FileStream(path, FileMode.CreateNew);
+                BinaryWriter writer = new BinaryWriter(stream);
+                writer.Write(bytes, 0, bytes.Length);
+                writer.Close();
+              //  myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("PAYSLIP{0}.pdf", filename)));
 
                 ViewBag.PdfUrl = Url.Content($"~/Downloads/" + $"PensionerStatement{fileName}.pdf");
             }
@@ -144,7 +182,7 @@ namespace PensionPortal.Controllers
                 ViewBag.Error = $"An error occurred: {ex.Message}";
                 return RedirectToAction("MemberStatement");
             }
-            
+
             return RedirectToAction("MemberStatement");
         }
         public ActionResult LifeCertificate(string pensionerNo)

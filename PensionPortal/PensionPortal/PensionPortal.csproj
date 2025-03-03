@@ -133,6 +133,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OTP.cs" />
+    <Compile Include="Models\PaySchedule.cs" />
     <Compile Include="Models\Pensioner.cs" />
     <Compile Include="Models\PensionerStatement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

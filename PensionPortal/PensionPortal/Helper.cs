@@ -67,7 +67,7 @@ namespace PensionPortal
                     Directory.CreateDirectory(path);
 
                 // Call the AL procedure via NAV web service
-                webportals.PensionerStatement(path, fileName, pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime( endDate));
+               // webportals.PensionerStatement(path, fileName, pensionerNo, startDate,endDate);
 
                 // Return the file path (ensure it's accessible via web)
                 return "/GeneratedStatements/" + fileName;
