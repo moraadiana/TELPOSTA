@@ -138,6 +138,21 @@
           </sequence>
         </complexType>
       </element>
+      <element name="LifeCertificate1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LifeCertificate1_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="LifeCertificate">
         <complexType>
           <sequence>
@@ -231,6 +246,12 @@
   <message name="GetUpdates_Result">
     <part name="parameters" element="tns:GetUpdates_Result" />
   </message>
+  <message name="LifeCertificate1">
+    <part name="parameters" element="tns:LifeCertificate1" />
+  </message>
+  <message name="LifeCertificate1_Result">
+    <part name="parameters" element="tns:LifeCertificate1_Result" />
+  </message>
   <message name="LifeCertificate">
     <part name="parameters" element="tns:LifeCertificate" />
   </message>
@@ -283,6 +304,10 @@
     <operation name="GetUpdates">
       <input name="GetUpdates" message="tns:GetUpdates" />
       <output name="GetUpdates_Result" message="tns:GetUpdates_Result" />
+    </operation>
+    <operation name="LifeCertificate1">
+      <input name="LifeCertificate1" message="tns:LifeCertificate1" />
+      <output name="LifeCertificate1_Result" message="tns:LifeCertificate1_Result" />
     </operation>
     <operation name="LifeCertificate">
       <input name="LifeCertificate" message="tns:LifeCertificate" />
@@ -382,6 +407,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetUpdates_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="LifeCertificate1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:LifeCertificate1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LifeCertificate1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LifeCertificate1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
