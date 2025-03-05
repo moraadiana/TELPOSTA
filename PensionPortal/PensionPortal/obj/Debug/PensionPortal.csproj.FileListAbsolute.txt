@@ -77,14 +77,3 @@ D:\TELPOSTA\PensionPortal\PensionPortal\obj\Debug\PensionPortal.csproj.CoreCompi
 D:\TELPOSTA\PensionPortal\PensionPortal\obj\Debug\PensionP.ABCDF9F8.Up2Date
 D:\TELPOSTA\PensionPortal\PensionPortal\obj\Debug\PensionPortal.dll
 D:\TELPOSTA\PensionPortal\PensionPortal\obj\Debug\PensionPortal.pdb
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.Collections.Immutable.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.IO.FileSystem.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.Reflection.Metadata.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.Security.Cryptography.Primitives.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\System.ValueTuple.dll
-D:\Portals\TELPOSTA\PensionPortal\PensionPortal\bin\roslyn\VBCSCompiler.exe

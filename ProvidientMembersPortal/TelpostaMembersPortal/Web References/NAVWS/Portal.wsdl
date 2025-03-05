@@ -2,6 +2,19 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RejectStoreReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectStoreReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="RemoveImprestReqLine">
         <complexType>
           <sequence>
@@ -934,6 +947,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetMemberName">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberName_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetMemberProfileDetails">
         <complexType>
           <sequence>
@@ -1306,21 +1333,14 @@
           <sequence />
         </complexType>
       </element>
-      <element name="RejectStoreReq">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="RejectStoreReq_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="RejectStoreReq">
+    <part name="parameters" element="tns:RejectStoreReq" />
+  </message>
+  <message name="RejectStoreReq_Result">
+    <part name="parameters" element="tns:RejectStoreReq_Result" />
+  </message>
   <message name="RemoveImprestReqLine">
     <part name="parameters" element="tns:RemoveImprestReqLine" />
   </message>
@@ -1711,6 +1731,12 @@
   <message name="GetMemberMail_Result">
     <part name="parameters" element="tns:GetMemberMail_Result" />
   </message>
+  <message name="GetMemberName">
+    <part name="parameters" element="tns:GetMemberName" />
+  </message>
+  <message name="GetMemberName_Result">
+    <part name="parameters" element="tns:GetMemberName_Result" />
+  </message>
   <message name="GetMemberProfileDetails">
     <part name="parameters" element="tns:GetMemberProfileDetails" />
   </message>
@@ -1861,13 +1887,11 @@
   <message name="RejectPV_Result">
     <part name="parameters" element="tns:RejectPV_Result" />
   </message>
-  <message name="RejectStoreReq">
-    <part name="parameters" element="tns:RejectStoreReq" />
-  </message>
-  <message name="RejectStoreReq_Result">
-    <part name="parameters" element="tns:RejectStoreReq_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="RejectStoreReq">
+      <input name="RejectStoreReq" message="tns:RejectStoreReq" />
+      <output name="RejectStoreReq_Result" message="tns:RejectStoreReq_Result" />
+    </operation>
     <operation name="RemoveImprestReqLine">
       <input name="RemoveImprestReqLine" message="tns:RemoveImprestReqLine" />
       <output name="RemoveImprestReqLine_Result" message="tns:RemoveImprestReqLine_Result" />
@@ -2128,6 +2152,10 @@
       <input name="GetMemberMail" message="tns:GetMemberMail" />
       <output name="GetMemberMail_Result" message="tns:GetMemberMail_Result" />
     </operation>
+    <operation name="GetMemberName">
+      <input name="GetMemberName" message="tns:GetMemberName" />
+      <output name="GetMemberName_Result" message="tns:GetMemberName_Result" />
+    </operation>
     <operation name="GetMemberProfileDetails">
       <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
       <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
@@ -2228,13 +2256,18 @@
       <input name="RejectPV" message="tns:RejectPV" />
       <output name="RejectPV_Result" message="tns:RejectPV_Result" />
     </operation>
-    <operation name="RejectStoreReq">
-      <input name="RejectStoreReq" message="tns:RejectStoreReq" />
-      <output name="RejectStoreReq_Result" message="tns:RejectStoreReq_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RejectStoreReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectStoreReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectStoreReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectStoreReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RemoveImprestReqLine">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RemoveImprestReqLine" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RemoveImprestReqLine">
@@ -2820,6 +2853,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetMemberName">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberName" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberName">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberName_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetMemberProfileDetails">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetMemberProfileDetails">
@@ -3042,15 +3084,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="RejectPV_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="RejectStoreReq">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectStoreReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="RejectStoreReq">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="RejectStoreReq_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

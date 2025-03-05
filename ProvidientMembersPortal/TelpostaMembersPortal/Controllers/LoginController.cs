@@ -50,7 +50,7 @@ namespace TelpostaMembersPortal.Controllers
                             //string otp = GenerateOtp(6);
                             //Session["otp"] = otp;
 
-                            //string subject = "Telposta Pension Portal OTP";
+                            //string subject = "Telposta Provident Fund Portal OTP";
                             //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
                             //Components.SendEmailAlerts(memberEmail, subject, body);
                             //return RedirectToAction("verifyotp");
@@ -119,11 +119,93 @@ namespace TelpostaMembersPortal.Controllers
 
             return result;
         }
+        public void SendPasswordResetLink(string email, string memberNo)
+        {
+            try
+            {
+                //Session["memberEmail"] = email;
+               
+             string memberName = webportals.GetMemberName(memberNo);
+                string subject = "Telposta Provident Fund Portal Password Reset";
+                string body = $"Hello {memberName};" +
+                    $"<br/><br/>" +
+                    $"Please follow the link below to reset your Telposta Provident Fund Portal Account Password." +
+                    $"<br/><br/>" +
+                    $"<a href='{String.Format(@"{0}://{1}/login/resetpassword?", Request.Url.Scheme, Request.Url.Authority)}'>Click here.</a>" +
+                    $"<br/><br/>" +
+                    $"Regards, Administrator";
+                Components.SendEmailAlerts(email, subject, body);
+                TempData["Success"] = "Check your email to reset password";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+        }
 
         [ChildActionOnly]
         public PartialViewResult Notification()
         {
             return PartialView("_Notification");
+        }
+        public ActionResult ResetPassword(string email , string memberNo)
+        {
+            Session["memberEmail"] = email;
+            Session["memberNo"] = memberNo;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPassword reset)
+        {
+            try
+            {
+                string newPassword = reset.Password;
+                string confirmPassword = reset.PasswordConfirmation;
+                string memberNo = reset.memberNo;
+
+                
+                string response = webportals.ChangeMemberPassword(memberNo, newPassword);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    if (response == "SUCCESS")
+                    {
+                        TempData["Success"] = "Password has been updated successfully";
+                        return RedirectToAction("index", "login");
+                    }
+                    else
+                    {
+                        TempData["Error"] = "An error occured while updating your password. Please try again later.";
+                        return RedirectToAction("resetpassword", "login");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+            return View();
+        }
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(ResetPassword reset)
+        {
+            try
+            {
+                string username = reset.UserName;
+                string memberNo = reset.memberNo;
+                SendPasswordResetLink(username, memberNo);
+                TempData["Success"] = "Please Follow the link sent to your email to set a password for your account.";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return View("forgotpassword");
+            }
+            return View("forgotpassword");
         }
     }
 }
