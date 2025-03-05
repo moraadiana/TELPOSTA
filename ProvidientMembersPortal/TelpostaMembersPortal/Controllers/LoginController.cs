@@ -131,7 +131,7 @@ namespace TelpostaMembersPortal.Controllers
                     $"<br/><br/>" +
                     $"Please follow the link below to reset your Telposta Provident Fund Portal Account Password." +
                     $"<br/><br/>" +
-                    $"<a href='{String.Format(@"{0}://{1}/login/resetpassword?memberNo={2}", Request.Url.Scheme, Request.Url.Authority, memberNo)}'>Click here.</a>" +
+                    $"<a href='{String.Format(@"{0}://{1}/login/resetpassword?", Request.Url.Scheme, Request.Url.Authority)}'>Click here.</a>" +
                     $"<br/><br/>" +
                     $"Regards, Administrator";
                 Components.SendEmailAlerts(email, subject, body);
@@ -148,9 +148,10 @@ namespace TelpostaMembersPortal.Controllers
         {
             return PartialView("_Notification");
         }
-        public ActionResult ResetPassword(string email)
+        public ActionResult ResetPassword(string email , string memberNo)
         {
             Session["memberEmail"] = email;
+            Session["memberNo"] = memberNo;
             return View();
         }
 
@@ -161,9 +162,9 @@ namespace TelpostaMembersPortal.Controllers
             {
                 string newPassword = reset.Password;
                 string confirmPassword = reset.PasswordConfirmation;
-               // string email = Session["memberEmail"].ToString();
-                string memberNo = Session["memberNo"].ToString();
+                string memberNo = reset.memberNo;
 
+                
                 string response = webportals.ChangeMemberPassword(memberNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
                 {
@@ -195,8 +196,8 @@ namespace TelpostaMembersPortal.Controllers
             try
             {
                 string username = reset.UserName;
-                string pfNo = reset.PfNo;
-                SendPasswordResetLink(username, pfNo);
+                string memberNo = reset.memberNo;
+                SendPasswordResetLink(username, memberNo);
                 TempData["Success"] = "Please Follow the link sent to your email to set a password for your account.";
             }
             catch (Exception ex)
