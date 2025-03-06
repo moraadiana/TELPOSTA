@@ -58,13 +58,7 @@ namespace PensionPortal.Controllers
                 return RedirectToAction("MemberStatement");
             }
 
-            pensionerNo = Session["pensionerNo"]?.ToString();
-
-            if (string.IsNullOrEmpty(pensionerNo))
-            {
-                ViewBag.Error = "Pensioner number is missing.";
-                return RedirectToAction("MemberStatement");
-            }
+           
 
             try
             {
@@ -128,12 +122,7 @@ namespace PensionPortal.Controllers
         public ActionResult LifeCertificate(string pensionerNo)
         {
             pensionerNo = Session["pensionerNo"]?.ToString();
-
-            if (string.IsNullOrEmpty(pensionerNo))
-            {
-                ViewBag.Error = "Pensioner number is missing.";
-                return RedirectToAction("lifecertificate");
-            }
+            if (pensionerNo == null) return RedirectToAction("index", "login");
             string fileName = pensionerNo.Replace(@"/", @"");
             string pdfFileName = $"LifeCertificate-{fileName}.pdf";
           
