@@ -36,7 +36,7 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Year:</label>
                                     <div class="col-sm-3">
                                         <asp:DropDownList ID="ddlYear" class="form-control select2" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                         <asp:DropDownList ID="DropDownList1" class="form-control select2" runat="server"  AutoPostBack="true"></asp:DropDownList>
+                                         <%--<asp:DropDownList ID="DropDownList1" class="form-control select2" runat="server"  AutoPostBack="true"></asp:DropDownList>--%>
                                     </div>
                                     <label for="inputEmail3" class="col-sm-2 control-label">Month</label>
                                     <div class="col-sm-3">

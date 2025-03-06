@@ -23,13 +23,15 @@ namespace PensionPortal.NAVWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Pension_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Pension")]
     public partial class Pension : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback CheckPensionerLoginOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckPensionerPasswordChangedOperationCompleted;
         
         private System.Threading.SendOrPostCallback CheckValidPensionerNoOperationCompleted;
         
@@ -40,6 +42,8 @@ namespace PensionPortal.NAVWS {
         private System.Threading.SendOrPostCallback GetPayScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPayrollPeriodsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPensionerEmailOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPensionerNameOperationCompleted;
         
@@ -53,7 +57,13 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback LifeCertificateOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LoginForUnchangedPasswordOperationCompleted;
+        
         private System.Threading.SendOrPostCallback PensionerLiabilityStatementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdatePensionerAutoGenPasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdatePensionerPasswordOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -97,6 +107,9 @@ namespace PensionPortal.NAVWS {
         public event CheckPensionerLoginCompletedEventHandler CheckPensionerLoginCompleted;
         
         /// <remarks/>
+        public event CheckPensionerPasswordChangedCompletedEventHandler CheckPensionerPasswordChangedCompleted;
+        
+        /// <remarks/>
         public event CheckValidPensionerNoCompletedEventHandler CheckValidPensionerNoCompleted;
         
         /// <remarks/>
@@ -110,6 +123,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event GetPayrollPeriodsCompletedEventHandler GetPayrollPeriodsCompleted;
+        
+        /// <remarks/>
+        public event GetPensionerEmailCompletedEventHandler GetPensionerEmailCompleted;
         
         /// <remarks/>
         public event GetPensionerNameCompletedEventHandler GetPensionerNameCompleted;
@@ -130,7 +146,16 @@ namespace PensionPortal.NAVWS {
         public event LifeCertificateCompletedEventHandler LifeCertificateCompleted;
         
         /// <remarks/>
+        public event LoginForUnchangedPasswordCompletedEventHandler LoginForUnchangedPasswordCompleted;
+        
+        /// <remarks/>
         public event PensionerLiabilityStatementCompletedEventHandler PensionerLiabilityStatementCompleted;
+        
+        /// <remarks/>
+        public event UpdatePensionerAutoGenPasswordCompletedEventHandler UpdatePensionerAutoGenPasswordCompleted;
+        
+        /// <remarks/>
+        public event UpdatePensionerPasswordCompletedEventHandler UpdatePensionerPasswordCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckPensionerLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -161,6 +186,36 @@ namespace PensionPortal.NAVWS {
             if ((this.CheckPensionerLoginCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckPensionerLoginCompleted(this, new CheckPensionerLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerPasswordChanged", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckPensionerPasswordChanged_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string CheckPensionerPasswordChanged(string username) {
+            object[] results = this.Invoke("CheckPensionerPasswordChanged", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckPensionerPasswordChangedAsync(string username) {
+            this.CheckPensionerPasswordChangedAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void CheckPensionerPasswordChangedAsync(string username, object userState) {
+            if ((this.CheckPensionerPasswordChangedOperationCompleted == null)) {
+                this.CheckPensionerPasswordChangedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckPensionerPasswordChangedOperationCompleted);
+            }
+            this.InvokeAsync("CheckPensionerPasswordChanged", new object[] {
+                        username}, this.CheckPensionerPasswordChangedOperationCompleted, userState);
+        }
+        
+        private void OnCheckPensionerPasswordChangedOperationCompleted(object arg) {
+            if ((this.CheckPensionerPasswordChangedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckPensionerPasswordChangedCompleted(this, new CheckPensionerPasswordChangedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -313,6 +368,36 @@ namespace PensionPortal.NAVWS {
             if ((this.GetPayrollPeriodsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetPayrollPeriodsCompleted(this, new GetPayrollPeriodsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerEmail", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetPensionerEmail_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPensionerEmail(string username) {
+            object[] results = this.Invoke("GetPensionerEmail", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPensionerEmailAsync(string username) {
+            this.GetPensionerEmailAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetPensionerEmailAsync(string username, object userState) {
+            if ((this.GetPensionerEmailOperationCompleted == null)) {
+                this.GetPensionerEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPensionerEmailOperationCompleted);
+            }
+            this.InvokeAsync("GetPensionerEmail", new object[] {
+                        username}, this.GetPensionerEmailOperationCompleted, userState);
+        }
+        
+        private void OnGetPensionerEmailOperationCompleted(object arg) {
+            if ((this.GetPensionerEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPensionerEmailCompleted(this, new GetPensionerEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -503,6 +588,38 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:LoginForUnchangedPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="LoginForUnchangedPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string LoginForUnchangedPassword(string username, string password) {
+            object[] results = this.Invoke("LoginForUnchangedPassword", new object[] {
+                        username,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginForUnchangedPasswordAsync(string username, string password) {
+            this.LoginForUnchangedPasswordAsync(username, password, null);
+        }
+        
+        /// <remarks/>
+        public void LoginForUnchangedPasswordAsync(string username, string password, object userState) {
+            if ((this.LoginForUnchangedPasswordOperationCompleted == null)) {
+                this.LoginForUnchangedPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginForUnchangedPasswordOperationCompleted);
+            }
+            this.InvokeAsync("LoginForUnchangedPassword", new object[] {
+                        username,
+                        password}, this.LoginForUnchangedPasswordOperationCompleted, userState);
+        }
+        
+        private void OnLoginForUnchangedPasswordOperationCompleted(object arg) {
+            if ((this.LoginForUnchangedPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginForUnchangedPasswordCompleted(this, new LoginForUnchangedPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:PensionerLiabilityStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="PensionerLiabilityStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PensionerLiabilityStatement(string path, string fileName, string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
             this.Invoke("PensionerLiabilityStatement", new object[] {
@@ -539,6 +656,70 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:UpdatePensionerAutoGenPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="UpdatePensionerAutoGenPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UpdatePensionerAutoGenPassword(string username, string genpass) {
+            object[] results = this.Invoke("UpdatePensionerAutoGenPassword", new object[] {
+                        username,
+                        genpass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdatePensionerAutoGenPasswordAsync(string username, string genpass) {
+            this.UpdatePensionerAutoGenPasswordAsync(username, genpass, null);
+        }
+        
+        /// <remarks/>
+        public void UpdatePensionerAutoGenPasswordAsync(string username, string genpass, object userState) {
+            if ((this.UpdatePensionerAutoGenPasswordOperationCompleted == null)) {
+                this.UpdatePensionerAutoGenPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdatePensionerAutoGenPasswordOperationCompleted);
+            }
+            this.InvokeAsync("UpdatePensionerAutoGenPassword", new object[] {
+                        username,
+                        genpass}, this.UpdatePensionerAutoGenPasswordOperationCompleted, userState);
+        }
+        
+        private void OnUpdatePensionerAutoGenPasswordOperationCompleted(object arg) {
+            if ((this.UpdatePensionerAutoGenPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdatePensionerAutoGenPasswordCompleted(this, new UpdatePensionerAutoGenPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:UpdatePensionerPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="UpdatePensionerPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UpdatePensionerPassword(string username, string password) {
+            object[] results = this.Invoke("UpdatePensionerPassword", new object[] {
+                        username,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdatePensionerPasswordAsync(string username, string password) {
+            this.UpdatePensionerPasswordAsync(username, password, null);
+        }
+        
+        /// <remarks/>
+        public void UpdatePensionerPasswordAsync(string username, string password, object userState) {
+            if ((this.UpdatePensionerPasswordOperationCompleted == null)) {
+                this.UpdatePensionerPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdatePensionerPasswordOperationCompleted);
+            }
+            this.InvokeAsync("UpdatePensionerPassword", new object[] {
+                        username,
+                        password}, this.UpdatePensionerPasswordOperationCompleted, userState);
+        }
+        
+        private void OnUpdatePensionerPasswordOperationCompleted(object arg) {
+            if ((this.UpdatePensionerPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdatePensionerPasswordCompleted(this, new UpdatePensionerPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -558,11 +739,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void CheckPensionerLoginCompletedEventHandler(object sender, CheckPensionerLoginCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckPensionerLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -584,11 +765,37 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void CheckPensionerPasswordChangedCompletedEventHandler(object sender, CheckPensionerPasswordChangedCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckPensionerPasswordChangedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckPensionerPasswordChangedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void CheckValidPensionerNoCompletedEventHandler(object sender, CheckValidPensionerNoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckValidPensionerNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -610,15 +817,15 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GeneratePensionStatementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetMemberBeneficiariesCompletedEventHandler(object sender, GetMemberBeneficiariesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetMemberBeneficiariesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -640,11 +847,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetPayScheduleCompletedEventHandler(object sender, GetPayScheduleCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPayScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -666,11 +873,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetPayrollPeriodsCompletedEventHandler(object sender, GetPayrollPeriodsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPayrollPeriodsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -692,11 +899,37 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetPensionerEmailCompletedEventHandler(object sender, GetPensionerEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPensionerEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPensionerEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetPensionerNameCompletedEventHandler(object sender, GetPensionerNameCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPensionerNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -718,11 +951,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetPensionerProfileDetails1CompletedEventHandler(object sender, GetPensionerProfileDetails1CompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPensionerProfileDetails1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -744,11 +977,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetPensionerProfileDetailsCompletedEventHandler(object sender, GetPensionerProfileDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPensionerProfileDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -770,11 +1003,11 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetUpdatesCompletedEventHandler(object sender, GetUpdatesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUpdatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -796,16 +1029,94 @@ namespace PensionPortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void LifeCertificate1CompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void LifeCertificateCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void LoginForUnchangedPasswordCompletedEventHandler(object sender, LoginForUnchangedPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginForUnchangedPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginForUnchangedPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void PensionerLiabilityStatementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void UpdatePensionerAutoGenPasswordCompletedEventHandler(object sender, UpdatePensionerAutoGenPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdatePensionerAutoGenPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdatePensionerAutoGenPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void UpdatePensionerPasswordCompletedEventHandler(object sender, UpdatePensionerPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdatePensionerPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdatePensionerPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

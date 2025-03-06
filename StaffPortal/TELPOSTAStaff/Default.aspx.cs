@@ -98,7 +98,7 @@ namespace TELPOSTAStaff
           {
               try
               {
-                  string response = webportals.LoginForUnchnagedPassword(username);
+                  string response = webportals.LoginForUnchnagedPassword(username, password);
                   if (!string.IsNullOrEmpty(response))
                   {
                       string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
@@ -224,10 +224,10 @@ namespace TELPOSTAStaff
                 }
                 string email = GetStaffEmail(username);
                 //string staffPassword = GetStaffPassword(username);
-                string subject = "Telposta Portal Password Reset";
-                string body = $"Use this password to log into your portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong>. Login and change password <br/><br/>Do not reply to this email.";
+                string subject = "Telposta Staff Portal Password Reset";
+                string body = $"Use this password to log Telposta Staff your portal .<br/> <br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
                 Components.SentEmailAlerts(email, subject, body);
-                lblError.Text = $"Auto generated Portal password has been sent to your email address {email}";
+                lblError.Text = $"Auto generated password has been sent to your email address {email}";
                 return;
 
 

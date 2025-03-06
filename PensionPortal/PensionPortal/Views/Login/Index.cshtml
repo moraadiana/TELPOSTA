@@ -3,6 +3,15 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 
 <form class="login-form" autocomplete="off" action="@Url.Action("login", "login")" method="post">
     <p>Login To Start Your Session.</p>

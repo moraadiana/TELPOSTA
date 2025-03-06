@@ -73,6 +73,21 @@
           </sequence>
         </complexType>
       </element>
+      <element name="UpdateMemberAutoGenPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="genpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberAutoGenPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="UpdateMemberNSSFDate">
         <complexType>
           <sequence />
@@ -94,6 +109,21 @@
         </complexType>
       </element>
       <element name="UpdateMemberPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateMemberPassword_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -919,6 +949,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetMemberEmail">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberEmail_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetMemberGender">
         <complexType>
           <sequence>
@@ -969,6 +1013,18 @@
         </complexType>
       </element>
       <element name="GetMemberProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1200,51 +1256,19 @@
           </sequence>
         </complexType>
       </element>
-      <element name="LifeCertificate">
+      <element name="LoginForUnchangedPassword">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
           </sequence>
         </complexType>
       </element>
-      <element name="LifeCertificate_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="PensionerLiabilityStatement">
+      <element name="LoginForUnchangedPassword_Result">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
           </sequence>
-        </complexType>
-      </element>
-      <element name="PensionerLiabilityStatement_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="PensionerStatement1">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="PensionerStatement1_Result">
-        <complexType>
-          <sequence />
         </complexType>
       </element>
       <element name="PensionerStatement">
@@ -1365,6 +1389,12 @@
   <message name="UpdateBeneficiaryPass_Result">
     <part name="parameters" element="tns:UpdateBeneficiaryPass_Result" />
   </message>
+  <message name="UpdateMemberAutoGenPassword">
+    <part name="parameters" element="tns:UpdateMemberAutoGenPassword" />
+  </message>
+  <message name="UpdateMemberAutoGenPassword_Result">
+    <part name="parameters" element="tns:UpdateMemberAutoGenPassword_Result" />
+  </message>
   <message name="UpdateMemberNSSFDate">
     <part name="parameters" element="tns:UpdateMemberNSSFDate" />
   </message>
@@ -1376,6 +1406,12 @@
   </message>
   <message name="UpdateMemberPass_Result">
     <part name="parameters" element="tns:UpdateMemberPass_Result" />
+  </message>
+  <message name="UpdateMemberPassword">
+    <part name="parameters" element="tns:UpdateMemberPassword" />
+  </message>
+  <message name="UpdateMemberPassword_Result">
+    <part name="parameters" element="tns:UpdateMemberPassword_Result" />
   </message>
   <message name="UpdateStaffPass">
     <part name="parameters" element="tns:UpdateStaffPass" />
@@ -1719,6 +1755,12 @@
   <message name="GetMemberBeneficiaries_Result">
     <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
   </message>
+  <message name="GetMemberEmail">
+    <part name="parameters" element="tns:GetMemberEmail" />
+  </message>
+  <message name="GetMemberEmail_Result">
+    <part name="parameters" element="tns:GetMemberEmail_Result" />
+  </message>
   <message name="GetMemberGender">
     <part name="parameters" element="tns:GetMemberGender" />
   </message>
@@ -1742,6 +1784,12 @@
   </message>
   <message name="GetMemberProfileDetails_Result">
     <part name="parameters" element="tns:GetMemberProfileDetails_Result" />
+  </message>
+  <message name="GetPayrollPeriods">
+    <part name="parameters" element="tns:GetPayrollPeriods" />
+  </message>
+  <message name="GetPayrollPeriods_Result">
+    <part name="parameters" element="tns:GetPayrollPeriods_Result" />
   </message>
   <message name="GetPostedLeaves">
     <part name="parameters" element="tns:GetPostedLeaves" />
@@ -1833,23 +1881,11 @@
   <message name="InsertImprestRequisitionLines_Result">
     <part name="parameters" element="tns:InsertImprestRequisitionLines_Result" />
   </message>
-  <message name="LifeCertificate">
-    <part name="parameters" element="tns:LifeCertificate" />
+  <message name="LoginForUnchangedPassword">
+    <part name="parameters" element="tns:LoginForUnchangedPassword" />
   </message>
-  <message name="LifeCertificate_Result">
-    <part name="parameters" element="tns:LifeCertificate_Result" />
-  </message>
-  <message name="PensionerLiabilityStatement">
-    <part name="parameters" element="tns:PensionerLiabilityStatement" />
-  </message>
-  <message name="PensionerLiabilityStatement_Result">
-    <part name="parameters" element="tns:PensionerLiabilityStatement_Result" />
-  </message>
-  <message name="PensionerStatement1">
-    <part name="parameters" element="tns:PensionerStatement1" />
-  </message>
-  <message name="PensionerStatement1_Result">
-    <part name="parameters" element="tns:PensionerStatement1_Result" />
+  <message name="LoginForUnchangedPassword_Result">
+    <part name="parameters" element="tns:LoginForUnchangedPassword_Result" />
   </message>
   <message name="PensionerStatement">
     <part name="parameters" element="tns:PensionerStatement" />
@@ -1908,6 +1944,10 @@
       <input name="UpdateBeneficiaryPass" message="tns:UpdateBeneficiaryPass" />
       <output name="UpdateBeneficiaryPass_Result" message="tns:UpdateBeneficiaryPass_Result" />
     </operation>
+    <operation name="UpdateMemberAutoGenPassword">
+      <input name="UpdateMemberAutoGenPassword" message="tns:UpdateMemberAutoGenPassword" />
+      <output name="UpdateMemberAutoGenPassword_Result" message="tns:UpdateMemberAutoGenPassword_Result" />
+    </operation>
     <operation name="UpdateMemberNSSFDate">
       <input name="UpdateMemberNSSFDate" message="tns:UpdateMemberNSSFDate" />
       <output name="UpdateMemberNSSFDate_Result" message="tns:UpdateMemberNSSFDate_Result" />
@@ -1915,6 +1955,10 @@
     <operation name="UpdateMemberPass">
       <input name="UpdateMemberPass" message="tns:UpdateMemberPass" />
       <output name="UpdateMemberPass_Result" message="tns:UpdateMemberPass_Result" />
+    </operation>
+    <operation name="UpdateMemberPassword">
+      <input name="UpdateMemberPassword" message="tns:UpdateMemberPassword" />
+      <output name="UpdateMemberPassword_Result" message="tns:UpdateMemberPassword_Result" />
     </operation>
     <operation name="UpdateStaffPass">
       <input name="UpdateStaffPass" message="tns:UpdateStaffPass" />
@@ -2144,6 +2188,10 @@
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
     </operation>
+    <operation name="GetMemberEmail">
+      <input name="GetMemberEmail" message="tns:GetMemberEmail" />
+      <output name="GetMemberEmail_Result" message="tns:GetMemberEmail_Result" />
+    </operation>
     <operation name="GetMemberGender">
       <input name="GetMemberGender" message="tns:GetMemberGender" />
       <output name="GetMemberGender_Result" message="tns:GetMemberGender_Result" />
@@ -2159,6 +2207,10 @@
     <operation name="GetMemberProfileDetails">
       <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
       <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
+    </operation>
+    <operation name="GetPayrollPeriods">
+      <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
+      <output name="GetPayrollPeriods_Result" message="tns:GetPayrollPeriods_Result" />
     </operation>
     <operation name="GetPostedLeaves">
       <input name="GetPostedLeaves" message="tns:GetPostedLeaves" />
@@ -2220,17 +2272,9 @@
       <input name="InsertImprestRequisitionLines" message="tns:InsertImprestRequisitionLines" />
       <output name="InsertImprestRequisitionLines_Result" message="tns:InsertImprestRequisitionLines_Result" />
     </operation>
-    <operation name="LifeCertificate">
-      <input name="LifeCertificate" message="tns:LifeCertificate" />
-      <output name="LifeCertificate_Result" message="tns:LifeCertificate_Result" />
-    </operation>
-    <operation name="PensionerLiabilityStatement">
-      <input name="PensionerLiabilityStatement" message="tns:PensionerLiabilityStatement" />
-      <output name="PensionerLiabilityStatement_Result" message="tns:PensionerLiabilityStatement_Result" />
-    </operation>
-    <operation name="PensionerStatement1">
-      <input name="PensionerStatement1" message="tns:PensionerStatement1" />
-      <output name="PensionerStatement1_Result" message="tns:PensionerStatement1_Result" />
+    <operation name="LoginForUnchangedPassword">
+      <input name="LoginForUnchangedPassword" message="tns:LoginForUnchangedPassword" />
+      <output name="LoginForUnchangedPassword_Result" message="tns:LoginForUnchangedPassword_Result" />
     </operation>
     <operation name="PensionerStatement">
       <input name="PensionerStatement" message="tns:PensionerStatement" />
@@ -2304,6 +2348,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="UpdateMemberAutoGenPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateMemberAutoGenPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMemberAutoGenPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMemberAutoGenPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="UpdateMemberNSSFDate">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateMemberNSSFDate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="UpdateMemberNSSFDate">
@@ -2319,6 +2372,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdateMemberPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateMemberPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UpdateMemberPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMemberPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMemberPassword_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -2835,6 +2897,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetMemberEmail">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberEmail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberEmail">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberEmail_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetMemberGender">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberGender" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetMemberGender">
@@ -2868,6 +2939,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetMemberProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPayrollPeriods">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayrollPeriods">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayrollPeriods_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3006,30 +3086,12 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="LifeCertificate">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:LifeCertificate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="LifeCertificate">
+    <operation name="LoginForUnchangedPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:LoginForUnchangedPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LoginForUnchangedPassword">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
-      <output name="LifeCertificate_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="PensionerLiabilityStatement">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerLiabilityStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="PensionerLiabilityStatement">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="PensionerLiabilityStatement_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="PensionerStatement1">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="PensionerStatement1">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="PensionerStatement1_Result">
+      <output name="LoginForUnchangedPassword_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
