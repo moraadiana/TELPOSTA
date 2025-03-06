@@ -49,7 +49,7 @@ namespace PensionPortal.Controllers
         }
 
  
-        public ActionResult GenerateMemberStatement(string pensionerNo, DateTime? startDate, DateTime? endDate)
+        public ActionResult GenerateMemberStatement(string pensionerNo,string pensionerStatus ,DateTime? startDate, DateTime? endDate)
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
             if (startDate == null || endDate == null)
@@ -59,61 +59,41 @@ namespace PensionPortal.Controllers
             }
 
             pensionerNo = Session["pensionerNo"]?.ToString();
+            pensionerStatus = Session["Status"]?.ToString();
 
-            if (string.IsNullOrEmpty(pensionerNo))
-            {
-                ViewBag.Error = "Pensioner number is missing.";
-                return RedirectToAction("MemberStatement");
-            }
 
             try
             {
-                string returnstring = "";
+                
                 string fileName = pensionerNo.Replace(@"/", @"");
                 string pdfFileName = $"Statement-{fileName}.pdf";
-                
-                DateTime startDateOnly = startDate.Value.Date;
-                string startingDate = startDateOnly.ToString("yyyy-MM-dd");
-                DateTime endDateOnly = endDate.Value.Date;
-                string endingDate = endDateOnly.ToString("yyyy-MM-dd");
                
-                Console.WriteLine($"Pensioner No: {pensionerNo}");
+                Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
 
                 string path = Server.MapPath("~/Downloads/");
-                string pdfFilePath = Path.Combine(path, pdfFileName);
-                //Console.WriteLine($"Start Date: {startDateOnly}, End Date: {endDateOnly}");
-                Console.WriteLine($"Start Date: {startingDate}, End Date: {endingDate}");
-
-
 
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
                 }
+                string pdfFilePath = Path.Combine(path, pdfFileName);
 
-
-              
                 if (System.IO.File.Exists(pdfFilePath))
                 {
                     System.IO.File.Delete(pdfFilePath);
                 }
 
                 
-                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName);
-
-                byte[] bytes = Convert.FromBase64String(returnstring);
-                //string path = HostingEnvironment.MapPath("~/Download/" + $"PAYSLIP{filename}.pdf");
+               // webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName, pensionerStatus);
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(startDate), pdfFileName, pensionerStatus);
 
 
                 if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
                 }
-                FileStream stream = new FileStream(path, FileMode.CreateNew);
-                BinaryWriter writer = new BinaryWriter(stream);
-                writer.Write(bytes, 0, bytes.Length);
-                writer.Close();
-              //  myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("PAYSLIP{0}.pdf", filename)));
+               
+             
 
                 ViewBag.PdfUrl = Url.Content($"~/Downloads/" + $"PensionerStatement{fileName}.pdf");
             }
@@ -147,7 +127,7 @@ namespace PensionPortal.Controllers
            
             try
             {
-                 webportals.LifeCertificate1(path, pdfFileName, pensionerNo, period);
+                 webportals.LifeCertificate(path, pdfFileName, pensionerNo, period);
                // webportals.LifeCertificate(path2, fileName, pensionerNo, period);
             }
             catch (Exception ex)

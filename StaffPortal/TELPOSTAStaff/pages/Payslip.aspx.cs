@@ -100,8 +100,9 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlMonth.Items.Clear();
+                int currentYear = ddlYear.SelectedIndex;
 
-                string payslipMonths = webportals.GetPayslipMonths();
+                string payslipMonths = webportals.GetPayslipMonths(currentYear);
                 if (!string.IsNullOrEmpty(payslipMonths))
                 {
                     string[] monthsArr = payslipMonths.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);

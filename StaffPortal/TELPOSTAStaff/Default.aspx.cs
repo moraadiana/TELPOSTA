@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -76,7 +78,8 @@ namespace TELPOSTAStaff
                           string staffName = responseArr[2];
                           Session["username"] = staffNo;
                           Session["staffName"] = staffName;
-                          Response.Redirect("pages/Dashboard.aspx");
+                        //Response.Redirect("Dashboard.aspx");
+                        Response.Redirect($"pages/Dashboard.aspx?");
                       }
                       else
                       {
@@ -198,7 +201,7 @@ namespace TELPOSTAStaff
                   string username = txtusername.Text.Trim();
                   if (string.IsNullOrEmpty(username))
                   {
-                      lblError.Text = "Username cannot be null";
+                      lblError.Text = "Kindly input Staff Number";
                       txtusername.Focus();
                       return;
                   }
@@ -208,19 +211,57 @@ namespace TELPOSTAStaff
                     lblError.Text = "Invalid Staff No";
                     return;
                 }
+                string newPassword = GenerateRandomPassword(10);
+                string response = Components.ObjNav.UpdateStaffAutoGenPassword(username, newPassword);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    if (response != "SUCCESS")
+                    {
+                        lblError.Text = "Failed to reset the password. Please try again.";
+                        return;
+                    }
 
+                }
                 string email = GetStaffEmail(username);
-                string staffPassword = GetStaffPassword(username);
+                //string staffPassword = GetStaffPassword(username);
                 string subject = "Telposta Portal Password Reset";
-                string body = $"Use this password to log into your portal.<br/><br/>Portal password: <strong>{staffPassword}</strong><br/><br/>Do not reply to this email.";
+                string body = $"Use this password to log into your portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong>. Login and change password <br/><br/>Do not reply to this email.";
                 Components.SentEmailAlerts(email, subject, body);
-                lblError.Text = $"Portal password has been sent to your email address {email.ToUpper()}";
+                lblError.Text = $"Auto generated Portal password has been sent to your email address {email}";
                 return;
+
+
+                //  was before
+                //string email = GetStaffEmail(username);
+                //string staffPassword = GetStaffPassword(username);
+                //string subject = "Telposta Portal Password Reset";
+                //string body = $"Use this password to log into your portal.<br/><br/>Portal password: <strong>{staffPassword}</strong><br/><br/>Do not reply to this email.";
+                //Components.SentEmailAlerts(email, subject, body);
+                //lblError.Text = $"Portal password has been sent to your email address {email.ToUpper()}";
+                //return;
               }
               catch (Exception ex)
               {
                   ex.Data.Clear();
               }
           }
+        private string GenerateRandomPassword(int length)
+        {
+            const string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
+            StringBuilder password = new StringBuilder();
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] byteBuffer = new byte[1];
+
+                for (int i = 0; i < length; i++)
+                {
+                    rng.GetBytes(byteBuffer);
+                    int index = byteBuffer[0] % validChars.Length;
+                    password.Append(validChars[index]);
+                }
+            }
+
+            return password.ToString();
+        }
     }
 }

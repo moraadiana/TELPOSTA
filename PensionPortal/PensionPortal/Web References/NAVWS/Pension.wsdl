@@ -35,9 +35,10 @@
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="fileNameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="status" type="string" />
           </sequence>
         </complexType>
       </element>
