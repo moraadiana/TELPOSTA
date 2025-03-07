@@ -94,7 +94,8 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlMonth.Items.Clear();
-                int currentYear = ddlYear.SelectedIndex;
+                 string Year = ddlYear.SelectedValue;
+                int currentYear = Convert.ToInt32(Year);
 
                 string payslipMonths = webportals.GetPayslipMonths(currentYear);
                 if (!string.IsNullOrEmpty(payslipMonths))
