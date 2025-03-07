@@ -2,6 +2,103 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Staffportall" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="GetPayslipYears">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayslipYears_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidStaffNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidStaffNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckStaffPasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="StaffLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="StaffLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffGender">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStaffGender_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayslipMonths">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="currentYear" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayslipMonths_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="InsertClaimRequisitionLines">
         <complexType>
           <sequence>
@@ -512,21 +609,6 @@
           <sequence />
         </complexType>
       </element>
-      <element name="StaffLogin">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="StaffLogin_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="SubmitbacktoOffice1">
         <complexType>
           <sequence>
@@ -764,34 +846,6 @@
         </complexType>
       </element>
       <element name="ChangeStaffPassword_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckStaffPasswordChanged">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckStaffPasswordChanged_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckValidStaffNo">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckValidStaffNo_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1455,32 +1509,6 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GetPayslipMonths">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="currentYear" type="int" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetPayslipMonths_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetPayslipYears">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="GetPayslipYears_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="GetPettyCashDetails">
         <complexType>
           <sequence>
@@ -1603,20 +1631,6 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GetStaffDetails">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetStaffDetails_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="GetStaffEmail">
         <complexType>
           <sequence>
@@ -1625,20 +1639,6 @@
         </complexType>
       </element>
       <element name="GetStaffEmail_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetStaffGender">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetStaffGender_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1803,6 +1803,48 @@
       </element>
     </schema>
   </types>
+  <message name="GetPayslipYears">
+    <part name="parameters" element="tns:GetPayslipYears" />
+  </message>
+  <message name="GetPayslipYears_Result">
+    <part name="parameters" element="tns:GetPayslipYears_Result" />
+  </message>
+  <message name="CheckValidStaffNo">
+    <part name="parameters" element="tns:CheckValidStaffNo" />
+  </message>
+  <message name="CheckValidStaffNo_Result">
+    <part name="parameters" element="tns:CheckValidStaffNo_Result" />
+  </message>
+  <message name="CheckStaffPasswordChanged">
+    <part name="parameters" element="tns:CheckStaffPasswordChanged" />
+  </message>
+  <message name="CheckStaffPasswordChanged_Result">
+    <part name="parameters" element="tns:CheckStaffPasswordChanged_Result" />
+  </message>
+  <message name="StaffLogin">
+    <part name="parameters" element="tns:StaffLogin" />
+  </message>
+  <message name="StaffLogin_Result">
+    <part name="parameters" element="tns:StaffLogin_Result" />
+  </message>
+  <message name="GetStaffDetails">
+    <part name="parameters" element="tns:GetStaffDetails" />
+  </message>
+  <message name="GetStaffDetails_Result">
+    <part name="parameters" element="tns:GetStaffDetails_Result" />
+  </message>
+  <message name="GetStaffGender">
+    <part name="parameters" element="tns:GetStaffGender" />
+  </message>
+  <message name="GetStaffGender_Result">
+    <part name="parameters" element="tns:GetStaffGender_Result" />
+  </message>
+  <message name="GetPayslipMonths">
+    <part name="parameters" element="tns:GetPayslipMonths" />
+  </message>
+  <message name="GetPayslipMonths_Result">
+    <part name="parameters" element="tns:GetPayslipMonths_Result" />
+  </message>
   <message name="InsertClaimRequisitionLines">
     <part name="parameters" element="tns:InsertClaimRequisitionLines" />
   </message>
@@ -2007,12 +2049,6 @@
   <message name="SaveMemoAttchmnts_Result">
     <part name="parameters" element="tns:SaveMemoAttchmnts_Result" />
   </message>
-  <message name="StaffLogin">
-    <part name="parameters" element="tns:StaffLogin" />
-  </message>
-  <message name="StaffLogin_Result">
-    <part name="parameters" element="tns:StaffLogin_Result" />
-  </message>
   <message name="SubmitbacktoOffice1">
     <part name="parameters" element="tns:SubmitbacktoOffice1" />
   </message>
@@ -2102,18 +2138,6 @@
   </message>
   <message name="ChangeStaffPassword_Result">
     <part name="parameters" element="tns:ChangeStaffPassword_Result" />
-  </message>
-  <message name="CheckStaffPasswordChanged">
-    <part name="parameters" element="tns:CheckStaffPasswordChanged" />
-  </message>
-  <message name="CheckStaffPasswordChanged_Result">
-    <part name="parameters" element="tns:CheckStaffPasswordChanged_Result" />
-  </message>
-  <message name="CheckValidStaffNo">
-    <part name="parameters" element="tns:CheckValidStaffNo" />
-  </message>
-  <message name="CheckValidStaffNo_Result">
-    <part name="parameters" element="tns:CheckValidStaffNo_Result" />
   </message>
   <message name="CreateClaimRequisitionHeader">
     <part name="parameters" element="tns:CreateClaimRequisitionHeader" />
@@ -2385,18 +2409,6 @@
   <message name="GetNextPettyCashNo_Result">
     <part name="parameters" element="tns:GetNextPettyCashNo_Result" />
   </message>
-  <message name="GetPayslipMonths">
-    <part name="parameters" element="tns:GetPayslipMonths" />
-  </message>
-  <message name="GetPayslipMonths_Result">
-    <part name="parameters" element="tns:GetPayslipMonths_Result" />
-  </message>
-  <message name="GetPayslipYears">
-    <part name="parameters" element="tns:GetPayslipYears" />
-  </message>
-  <message name="GetPayslipYears_Result">
-    <part name="parameters" element="tns:GetPayslipYears_Result" />
-  </message>
   <message name="GetPettyCashDetails">
     <part name="parameters" element="tns:GetPettyCashDetails" />
   </message>
@@ -2451,23 +2463,11 @@
   <message name="GetStaffDepartmentDetails_Result">
     <part name="parameters" element="tns:GetStaffDepartmentDetails_Result" />
   </message>
-  <message name="GetStaffDetails">
-    <part name="parameters" element="tns:GetStaffDetails" />
-  </message>
-  <message name="GetStaffDetails_Result">
-    <part name="parameters" element="tns:GetStaffDetails_Result" />
-  </message>
   <message name="GetStaffEmail">
     <part name="parameters" element="tns:GetStaffEmail" />
   </message>
   <message name="GetStaffEmail_Result">
     <part name="parameters" element="tns:GetStaffEmail_Result" />
-  </message>
-  <message name="GetStaffGender">
-    <part name="parameters" element="tns:GetStaffGender" />
-  </message>
-  <message name="GetStaffGender_Result">
-    <part name="parameters" element="tns:GetStaffGender_Result" />
   </message>
   <message name="GetStaffPassword">
     <part name="parameters" element="tns:GetStaffPassword" />
@@ -2530,6 +2530,34 @@
     <part name="parameters" element="tns:ImprestRequisitionApprovalRequest_Result" />
   </message>
   <portType name="Staffportall_Port">
+    <operation name="GetPayslipYears">
+      <input name="GetPayslipYears" message="tns:GetPayslipYears" />
+      <output name="GetPayslipYears_Result" message="tns:GetPayslipYears_Result" />
+    </operation>
+    <operation name="CheckValidStaffNo">
+      <input name="CheckValidStaffNo" message="tns:CheckValidStaffNo" />
+      <output name="CheckValidStaffNo_Result" message="tns:CheckValidStaffNo_Result" />
+    </operation>
+    <operation name="CheckStaffPasswordChanged">
+      <input name="CheckStaffPasswordChanged" message="tns:CheckStaffPasswordChanged" />
+      <output name="CheckStaffPasswordChanged_Result" message="tns:CheckStaffPasswordChanged_Result" />
+    </operation>
+    <operation name="StaffLogin">
+      <input name="StaffLogin" message="tns:StaffLogin" />
+      <output name="StaffLogin_Result" message="tns:StaffLogin_Result" />
+    </operation>
+    <operation name="GetStaffDetails">
+      <input name="GetStaffDetails" message="tns:GetStaffDetails" />
+      <output name="GetStaffDetails_Result" message="tns:GetStaffDetails_Result" />
+    </operation>
+    <operation name="GetStaffGender">
+      <input name="GetStaffGender" message="tns:GetStaffGender" />
+      <output name="GetStaffGender_Result" message="tns:GetStaffGender_Result" />
+    </operation>
+    <operation name="GetPayslipMonths">
+      <input name="GetPayslipMonths" message="tns:GetPayslipMonths" />
+      <output name="GetPayslipMonths_Result" message="tns:GetPayslipMonths_Result" />
+    </operation>
     <operation name="InsertClaimRequisitionLines">
       <input name="InsertClaimRequisitionLines" message="tns:InsertClaimRequisitionLines" />
       <output name="InsertClaimRequisitionLines_Result" message="tns:InsertClaimRequisitionLines_Result" />
@@ -2666,10 +2694,6 @@
       <input name="SaveMemoAttchmnts" message="tns:SaveMemoAttchmnts" />
       <output name="SaveMemoAttchmnts_Result" message="tns:SaveMemoAttchmnts_Result" />
     </operation>
-    <operation name="StaffLogin">
-      <input name="StaffLogin" message="tns:StaffLogin" />
-      <output name="StaffLogin_Result" message="tns:StaffLogin_Result" />
-    </operation>
     <operation name="SubmitbacktoOffice1">
       <input name="SubmitbacktoOffice1" message="tns:SubmitbacktoOffice1" />
       <output name="SubmitbacktoOffice1_Result" message="tns:SubmitbacktoOffice1_Result" />
@@ -2729,14 +2753,6 @@
     <operation name="ChangeStaffPassword">
       <input name="ChangeStaffPassword" message="tns:ChangeStaffPassword" />
       <output name="ChangeStaffPassword_Result" message="tns:ChangeStaffPassword_Result" />
-    </operation>
-    <operation name="CheckStaffPasswordChanged">
-      <input name="CheckStaffPasswordChanged" message="tns:CheckStaffPasswordChanged" />
-      <output name="CheckStaffPasswordChanged_Result" message="tns:CheckStaffPasswordChanged_Result" />
-    </operation>
-    <operation name="CheckValidStaffNo">
-      <input name="CheckValidStaffNo" message="tns:CheckValidStaffNo" />
-      <output name="CheckValidStaffNo_Result" message="tns:CheckValidStaffNo_Result" />
     </operation>
     <operation name="CreateClaimRequisitionHeader">
       <input name="CreateClaimRequisitionHeader" message="tns:CreateClaimRequisitionHeader" />
@@ -2918,14 +2934,6 @@
       <input name="GetNextPettyCashNo" message="tns:GetNextPettyCashNo" />
       <output name="GetNextPettyCashNo_Result" message="tns:GetNextPettyCashNo_Result" />
     </operation>
-    <operation name="GetPayslipMonths">
-      <input name="GetPayslipMonths" message="tns:GetPayslipMonths" />
-      <output name="GetPayslipMonths_Result" message="tns:GetPayslipMonths_Result" />
-    </operation>
-    <operation name="GetPayslipYears">
-      <input name="GetPayslipYears" message="tns:GetPayslipYears" />
-      <output name="GetPayslipYears_Result" message="tns:GetPayslipYears_Result" />
-    </operation>
     <operation name="GetPettyCashDetails">
       <input name="GetPettyCashDetails" message="tns:GetPettyCashDetails" />
       <output name="GetPettyCashDetails_Result" message="tns:GetPettyCashDetails_Result" />
@@ -2962,17 +2970,9 @@
       <input name="GetStaffDepartmentDetails" message="tns:GetStaffDepartmentDetails" />
       <output name="GetStaffDepartmentDetails_Result" message="tns:GetStaffDepartmentDetails_Result" />
     </operation>
-    <operation name="GetStaffDetails">
-      <input name="GetStaffDetails" message="tns:GetStaffDetails" />
-      <output name="GetStaffDetails_Result" message="tns:GetStaffDetails_Result" />
-    </operation>
     <operation name="GetStaffEmail">
       <input name="GetStaffEmail" message="tns:GetStaffEmail" />
       <output name="GetStaffEmail_Result" message="tns:GetStaffEmail_Result" />
-    </operation>
-    <operation name="GetStaffGender">
-      <input name="GetStaffGender" message="tns:GetStaffGender" />
-      <output name="GetStaffGender_Result" message="tns:GetStaffGender_Result" />
     </operation>
     <operation name="GetStaffPassword">
       <input name="GetStaffPassword" message="tns:GetStaffPassword" />
@@ -3017,6 +3017,69 @@
   </portType>
   <binding name="Staffportall_Binding" type="tns:Staffportall_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GetPayslipYears">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetPayslipYears" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayslipYears">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayslipYears_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidStaffNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CheckValidStaffNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidStaffNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidStaffNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckStaffPasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CheckStaffPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckStaffPasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckStaffPasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="StaffLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:StaffLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="StaffLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="StaffLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetStaffDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetStaffDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetStaffDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetStaffDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetStaffGender">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetStaffGender" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetStaffGender">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetStaffGender_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPayslipMonths">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetPayslipMonths" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayslipMonths">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayslipMonths_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="InsertClaimRequisitionLines">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:InsertClaimRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="InsertClaimRequisitionLines">
@@ -3323,15 +3386,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="StaffLogin">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:StaffLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="StaffLogin">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="StaffLogin_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
     <operation name="SubmitbacktoOffice1">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:SubmitbacktoOffice1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="SubmitbacktoOffice1">
@@ -3464,24 +3518,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="ChangeStaffPassword_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="CheckStaffPasswordChanged">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CheckStaffPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="CheckStaffPasswordChanged">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="CheckStaffPasswordChanged_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="CheckValidStaffNo">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CheckValidStaffNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="CheckValidStaffNo">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="CheckValidStaffNo_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3890,24 +3926,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="GetPayslipMonths">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetPayslipMonths" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetPayslipMonths">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetPayslipMonths_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="GetPayslipYears">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetPayslipYears" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetPayslipYears">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetPayslipYears_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
     <operation name="GetPettyCashDetails">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetPettyCashDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetPettyCashDetails">
@@ -3989,30 +4007,12 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="GetStaffDetails">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetStaffDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetStaffDetails">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetStaffDetails_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
     <operation name="GetStaffEmail">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetStaffEmail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetStaffEmail">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetStaffEmail_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="GetStaffGender">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetStaffGender" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetStaffGender">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetStaffGender_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
