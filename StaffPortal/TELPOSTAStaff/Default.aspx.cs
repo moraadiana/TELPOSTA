@@ -225,7 +225,7 @@ namespace TELPOSTAStaff
                 string email = GetStaffEmail(username);
                 //string staffPassword = GetStaffPassword(username);
                 string subject = "Telposta Staff Portal Password Reset";
-                string body = $"Use this password to log Telposta Staff your portal .<br/> <br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                string body = $"Use this password to log into Telposta Staff portal .<br/> <br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
                 Components.SentEmailAlerts(email, subject, body);
                 lblError.Text = $"Auto generated password has been sent to your email address {email}";
                 return;

@@ -106,7 +106,7 @@ namespace TELPOSTAStaff
                 {
                     if (response == "SUCCESS")
                     {
-                        string subject = "Telposta Pension Scheme Portal Password";
+                        string subject = "Telposta Staff Portal Password Reset";
                         string body = $"Your portals password has been reset successfully";
                         Components.SentEmailAlerts(email, subject, body);
                         SuccessMessage($"Password has been reset successfully.");

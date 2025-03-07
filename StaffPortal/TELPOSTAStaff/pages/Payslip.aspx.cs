@@ -68,31 +68,24 @@ namespace TELPOSTAStaff.pages
         {
             try
             {
-                ddlMonth.Items.Clear();
+                ddlYear.Items.Clear();
 
-                string payslipMonths = webportals.GetPayslipYears();
-                if (!string.IsNullOrEmpty(payslipMonths))
+                string payslipYears = webportals.GetPayslipYears();
+                if (!string.IsNullOrEmpty(payslipYears))
                 {
-                    string[] monthsArr = payslipMonths.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string months in monthsArr)
+                    string[] yearsArr = payslipYears.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Directly add all unique years to the dropdown
+                    foreach (string year in yearsArr.Distinct()) // Remove duplicates if any
                     {
-
-                        string[] responseArr = months.Split(strLimiters, StringSplitOptions.None);
-                        if (responseArr.Length == 1)
-                        {
-                            string monthNumber = responseArr[0];
-                           
-
-
-                            ListItem li = new ListItem( monthNumber);
-                            ddlYear.Items.Add(li);
-                        }
+                        ddlYear.Items.Add(new ListItem(year.Trim()));
                     }
                 }
             }
             catch (Exception ex)
             {
-                ex.Data.Clear();
+                // Log error instead of clearing it
+                Console.WriteLine($"Error in LoadYears: {ex.Message}");
             }
         }
         private void LoadMonths()
@@ -100,7 +93,8 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlMonth.Items.Clear();
-                int currentYear = ddlYear.SelectedIndex;
+                 string Year = ddlYear.SelectedValue;
+                int currentYear = Convert.ToInt32(Year);
 
                 string payslipMonths = webportals.GetPayslipMonths(currentYear);
                 if (!string.IsNullOrEmpty(payslipMonths))
