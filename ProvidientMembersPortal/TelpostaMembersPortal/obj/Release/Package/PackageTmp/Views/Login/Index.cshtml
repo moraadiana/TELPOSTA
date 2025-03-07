@@ -3,6 +3,34 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <button class="close" data-close="alert"></button>
+        <span> @ViewBag.Error </span>
+    </div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">
+        <button class="close" data-close="alert"></button>
+        <span> @ViewBag.Success </span>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        <button class="close" data-close="alert"></button>
+        <span>@TempData["Error"]</span>
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        <button class="close" data-close="alert"></button>
+        <span>@TempData["Success"]</span>
+    </div>
+}
 
 <form class="login-form" autocomplete="off" action="@Url.Action("login", "login")" method="post">
     <p>Login To Start Your Session.</p>
@@ -32,7 +60,7 @@
     <div class="form-actions">
         <div class="row">
             <div class="col-md-6">
-                <a href="@Url.Action("ForgotPassword", "Login")" class="btn green pull-left"> <i class="icon-question"> Reset Password</i></a>
+                <a href="@Url.Action("forgotPassword", "Login")" class="btn green pull-left"> <i class="icon-question"> Reset Password</i></a>
             </div>
             <div class="col-md-6">
                 <button type="submit" class="btn green pull-right"> <i class="icon-login"> Login</i></button>

@@ -54,18 +54,18 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <form action="@Url.Action("MemberStatement", "Statements")" method="get">
+                    <form action="@Url.Action("GenerateMemberStatement", "Statements")" method="get">
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="startDate" class="form-label">Start Date:</label>
-                                <input type="date" class="form-control" name="startDate" required
-                                       value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" />
+                                @*<input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />*@
+                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })
+
                             </div>
 
                             <div class="col-md-4">
                                 <label for="endDate" class="form-label">End Date:</label>
-                                <input type="date" class="form-control" name="endDate" required
-                                       value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })
                             </div>
 
                             <div class="col-md-4 d-flex align-items-end">
@@ -75,6 +75,7 @@
                             </div>
                         </div>
                     </form>
+
 
                     @if (ViewBag.PdfUrl != null)
                     {
