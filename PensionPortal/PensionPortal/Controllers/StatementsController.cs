@@ -47,9 +47,48 @@ namespace PensionPortal.Controllers
             }
             return View(PensionerStatement);
         }
+        public ActionResult GenerateMemberStatement(string pensionerNo, string pensionerStatus, DateTime? startDate, DateTime? endDate)
+        {
+            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+            if (startDate == null || endDate == null)
+            {
+                TempData["Error"] = "Both Start Date and End Date must be provided.";
+                return RedirectToAction("MemberStatement");
+            }
 
- 
-        public ActionResult GenerateMemberStatement(string pensionerNo,string pensionerStatus ,DateTime? startDate, DateTime? endDate)
+            try
+            {
+                pensionerNo = Session["pensionerNo"].ToString();
+                pensionerStatus = Session["Status"].ToString();
+                string fileName = pensionerNo.Replace(@"/", @"");
+                string pdfFileName = $"Statement-{fileName}.pdf";
+
+                string path = Server.MapPath("~/Downloads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                string pdfFilePath = Path.Combine(path, pdfFileName);
+                if (System.IO.File.Exists(pdfFilePath))
+                {
+                    System.IO.File.Delete(pdfFilePath);
+                }
+
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName, pensionerStatus);
+
+                TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"An error occurred: {ex.Message}";
+            }
+
+            return RedirectToAction("MemberStatement");
+        }
+
+
+        public ActionResult GenerateMemberStatement1(string pensionerNo,string pensionerStatus ,DateTime? startDate, DateTime? endDate)
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
             if (startDate == null || endDate == null)

@@ -54,14 +54,13 @@ namespace PensionPortal.Controllers
                     Session["Status"] = responseArr[9];
                     Session["AccountNo"] = responseArr[10];
                     Session["Name"] = responseArr[11];
-                    Session["BankName"] = responseArr[12];
-                    Session["BranchName"] = responseArr[13];
-                   Session["SuspensionReason"] = responseArr[14];
-                    Session["SuspensionDate"] = responseArr[15];
-                    Session["SuspensionReason"] = responseArr[16];
-                    Session["Employer"] = responseArr[17];
-                    Session["SuspensionReason"] = responseArr[18];
-                    Session["RetirementDate"] = responseArr[19];
+                   
+                   Session["SuspensionReason"] = responseArr[12];
+                    Session["SuspensionDate"] = responseArr[13];
+                    Session["Employer"] = responseArr[14]; 
+                    Session["RetirementDate"] = responseArr[15];
+                    Session["BankName"] = responseArr[16];
+                    Session["BranchName"] = responseArr[17];
                     //Session["MemberName"]
 
                 }
