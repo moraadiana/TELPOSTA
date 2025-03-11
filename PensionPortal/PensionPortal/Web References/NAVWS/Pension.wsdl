@@ -75,6 +75,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetMonthlyPension">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pensiorNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMonthlyPension_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetPaySchedule">
         <complexType>
           <sequence />
@@ -290,6 +304,12 @@
   <message name="GetMemberBeneficiaries_Result">
     <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
   </message>
+  <message name="GetMonthlyPension">
+    <part name="parameters" element="tns:GetMonthlyPension" />
+  </message>
+  <message name="GetMonthlyPension_Result">
+    <part name="parameters" element="tns:GetMonthlyPension_Result" />
+  </message>
   <message name="GetPaySchedule">
     <part name="parameters" element="tns:GetPaySchedule" />
   </message>
@@ -389,6 +409,10 @@
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
     </operation>
+    <operation name="GetMonthlyPension">
+      <input name="GetMonthlyPension" message="tns:GetMonthlyPension" />
+      <output name="GetMonthlyPension_Result" message="tns:GetMonthlyPension_Result" />
+    </operation>
     <operation name="GetPaySchedule">
       <input name="GetPaySchedule" message="tns:GetPaySchedule" />
       <output name="GetPaySchedule_Result" message="tns:GetPaySchedule_Result" />
@@ -486,6 +510,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetMemberBeneficiaries_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMonthlyPension">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPension" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMonthlyPension">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMonthlyPension_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

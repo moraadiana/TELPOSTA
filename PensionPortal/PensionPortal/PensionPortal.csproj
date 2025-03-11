@@ -131,6 +131,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Beneficiary.cs" />
     <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\MonthlyPension.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OTP.cs" />
     <Compile Include="Models\PaySchedule.cs" />
@@ -2577,6 +2578,7 @@
     <Content Include="Views\Statements\LifeCertificate.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Dashboard\MonthlyPension.cshtml" />
     <None Include="Web References\NAVWS\Pension.wsdl" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

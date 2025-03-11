@@ -39,6 +39,8 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GetMemberBeneficiariesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetMonthlyPensionOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetPayScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPayrollPeriodsOperationCompleted;
@@ -117,6 +119,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event GetMemberBeneficiariesCompletedEventHandler GetMemberBeneficiariesCompleted;
+        
+        /// <remarks/>
+        public event GetMonthlyPensionCompletedEventHandler GetMonthlyPensionCompleted;
         
         /// <remarks/>
         public event GetPayScheduleCompletedEventHandler GetPayScheduleCompleted;
@@ -312,6 +317,36 @@ namespace PensionPortal.NAVWS {
             if ((this.GetMemberBeneficiariesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetMemberBeneficiariesCompleted(this, new GetMemberBeneficiariesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPension", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetMonthlyPension_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetMonthlyPension(string pensiorNo) {
+            object[] results = this.Invoke("GetMonthlyPension", new object[] {
+                        pensiorNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetMonthlyPensionAsync(string pensiorNo) {
+            this.GetMonthlyPensionAsync(pensiorNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetMonthlyPensionAsync(string pensiorNo, object userState) {
+            if ((this.GetMonthlyPensionOperationCompleted == null)) {
+                this.GetMonthlyPensionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetMonthlyPensionOperationCompleted);
+            }
+            this.InvokeAsync("GetMonthlyPension", new object[] {
+                        pensiorNo}, this.GetMonthlyPensionOperationCompleted, userState);
+        }
+        
+        private void OnGetMonthlyPensionOperationCompleted(object arg) {
+            if ((this.GetMonthlyPensionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetMonthlyPensionCompleted(this, new GetMonthlyPensionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -833,6 +868,32 @@ namespace PensionPortal.NAVWS {
         private object[] results;
         
         internal GetMemberBeneficiariesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetMonthlyPensionCompletedEventHandler(object sender, GetMonthlyPensionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetMonthlyPensionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetMonthlyPensionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

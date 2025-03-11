@@ -56,6 +56,12 @@ namespace PensionPortal.Controllers
                     Session["Name"] = responseArr[11];
                     Session["BankName"] = responseArr[12];
                     Session["BranchName"] = responseArr[13];
+                   Session["SuspensionReason"] = responseArr[14];
+                    Session["SuspensionDate"] = responseArr[15];
+                    Session["SuspensionReason"] = responseArr[16];
+                    Session["Employer"] = responseArr[17];
+                    Session["SuspensionReason"] = responseArr[18];
+                    Session["RetirementDate"] = responseArr[19];
                     //Session["MemberName"]
 
                 }
@@ -156,6 +162,40 @@ namespace PensionPortal.Controllers
 
                         };
                         schedule.Add(PaySchedule);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("index", "dashboard");
+            }
+            return View(schedule);
+        }
+
+        public ActionResult MonthlyPension()
+        {
+            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+
+            var schedule = new List<MonthlyPension>();
+            try
+            {
+                string username = Session["pensionerNo"].ToString();
+                string pensionList = webportals.GetMonthlyPension(username);
+                if (!string.IsNullOrEmpty(pensionList))
+                {
+                    string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string pension in pensionListArr)
+                    {
+                        string[] response = pension.Split(strLimiters, StringSplitOptions.None);
+                        MonthlyPension MonthlyPension = new MonthlyPension()
+                        {
+                            payPeriod = response[0].Trim(),
+                            Amount = response[1].Trim(),
+
+
+                        };
+                        schedule.Add(MonthlyPension);
                     }
                 }
             }

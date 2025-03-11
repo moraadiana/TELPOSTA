@@ -61,8 +61,11 @@ namespace PensionPortal.Controllers
 
             try
             {
-                
-                string fileName = pensionerNo.Replace(@"/", @"");
+                pensionerNo = Session["pensionerNo"].ToString();
+                pensionerStatus = Session["Status"].ToString();
+
+
+               string fileName = pensionerNo.Replace(@"/", @"");
                 string pdfFileName = $"Statement-{fileName}.pdf";
                
                 Console.WriteLine($"Start Date: {startDate}, End Date: {endDate}");
@@ -82,7 +85,7 @@ namespace PensionPortal.Controllers
 
                 
                // webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName, pensionerStatus);
-                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(startDate), pdfFileName, pensionerStatus);
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName, pensionerStatus);
 
 
                 if (System.IO.File.Exists(path))
