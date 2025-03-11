@@ -256,22 +256,21 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GeneratePensionStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GeneratePensionStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GeneratePensionStatement(string username, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp, string status) {
+        public void GeneratePensionStatement(string username, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp) {
             this.Invoke("GeneratePensionStatement", new object[] {
                         username,
                         startDate,
                         endDate,
-                        fileNameFromApp,
-                        status});
+                        fileNameFromApp});
         }
         
         /// <remarks/>
-        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, string status) {
-            this.GeneratePensionStatementAsync(username, startDate, endDate, fileNameFromApp, status, null);
+        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp) {
+            this.GeneratePensionStatementAsync(username, startDate, endDate, fileNameFromApp, null);
         }
         
         /// <remarks/>
-        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, string status, object userState) {
+        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, object userState) {
             if ((this.GeneratePensionStatementOperationCompleted == null)) {
                 this.GeneratePensionStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePensionStatementOperationCompleted);
             }
@@ -279,8 +278,7 @@ namespace PensionPortal.NAVWS {
                         username,
                         startDate,
                         endDate,
-                        fileNameFromApp,
-                        status}, this.GeneratePensionStatementOperationCompleted, userState);
+                        fileNameFromApp}, this.GeneratePensionStatementOperationCompleted, userState);
         }
         
         private void OnGeneratePensionStatementOperationCompleted(object arg) {
