@@ -31,7 +31,7 @@ namespace TELPOSTAStaff.pages
                  string approvalStatus = Request.QueryString["status"].Replace("%", " ");
                  LoadLeaveTypes();
                  LoadReliever();
-                 LoadResponsibilityCenter();
+                 //LoadResponsibilityCenter();
                  LoadLeaveBalance();
                  LoadStaffDepartmentDetails();
                  if (query == "new")
@@ -120,34 +120,34 @@ namespace TELPOSTAStaff.pages
         }
 
 
-        private void LoadResponsibilityCenter()
-        {
-            try
-            {
-                ddlResponsibilityCenter.Items.Clear();
+        //private void LoadResponsibilityCenter()
+        //{
+        //    try
+        //    {
+        //        ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "LEAVE";
-                string resCenters = webportals.GetAllResponsibilityCentres();
-                if (!string.IsNullOrEmpty(resCenters))
-                {
-                    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+        //        string grouping = "LEAVE";
+        //        string resCenters = webportals.GetAllResponsibilityCentres();
+        //        if (!string.IsNullOrEmpty(resCenters))
+        //        {
+        //            string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (string rescenter in resCenterArr)
-                    {
-                        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
-                    }
-                }
-                else
-                {
-                    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
-            }
-        }
+        //            foreach (string rescenter in resCenterArr)
+        //            {
+        //                ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error: " + ex.Message);
+        //        ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
+        //    }
+        //}
         private void LoadReliever()
         {
             try
@@ -367,7 +367,7 @@ namespace TELPOSTAStaff.pages
                 string username = Session["username"].ToString();
                 string leaveType = ddlLeaveType.SelectedValue;
                 string reliever = ddlReliver.SelectedValue;
-                string resCenter = ddlResponsibilityCenter.SelectedValue;
+               // string resCenter = ddlResponsibilityCenter.SelectedValue;
                 string appliedDays = txtAppliedDays.Text;
                 string startDate = txtStartDate.Text;
                // string directorate = lblDirectorate.Text;
@@ -394,11 +394,11 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                if (string.IsNullOrEmpty(resCenter))
-                {
-                    Message("Responsibility center cannot be null");
-                    return;
-                }
+                //if (string.IsNullOrEmpty(resCenter))
+                //{
+                //    Message("Responsibility center cannot be null");
+                //    return;
+                //}
 
                 if (string.IsNullOrEmpty(appliedDays))
                 {
@@ -457,8 +457,9 @@ namespace TELPOSTAStaff.pages
                 {
                     LeaveNo = Request.QueryString["leaveNo"]; // Get the leaveNo from the query string
                 }
+                var test = "test";
                 // Applications
-                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate,  resCenter, purpose);
+                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate, test,purpose);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);

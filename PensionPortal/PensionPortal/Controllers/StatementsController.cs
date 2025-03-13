@@ -75,7 +75,7 @@ namespace PensionPortal.Controllers
                     System.IO.File.Delete(pdfFilePath);
                 }
 
-                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName, pensionerStatus);
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
 
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
             }
@@ -124,7 +124,7 @@ namespace PensionPortal.Controllers
 
                 
                // webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName, pensionerStatus);
-                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName, pensionerStatus);
+                webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
 
 
                 if (System.IO.File.Exists(path))
@@ -177,10 +177,10 @@ namespace PensionPortal.Controllers
                 // Set the URL for the PDF file
                 ViewBag.PdfUrl = Url.Content($"~/Downloads/{pdfFileName}");
             }
-            else
-            {
-                ViewBag.Error = "Life Certificate generation failed. File not found.";
-            }
+           // else
+            //{
+            //    ViewBag.Error = "Life Certificate generation failed. File not found.";
+            //}
             return View();
 
         }

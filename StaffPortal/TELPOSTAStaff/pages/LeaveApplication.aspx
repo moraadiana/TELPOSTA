@@ -34,12 +34,12 @@
                                         <asp:DropDownList ID="ddlReliver" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                              <%--  <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Responsibility Canter</label>
                                         <asp:DropDownList ID="ddlResponsibilityCenter" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <%--<div class="col-md-3">
                                      <div class="form-group">
                                          <label>Responsibility Center: </label>
