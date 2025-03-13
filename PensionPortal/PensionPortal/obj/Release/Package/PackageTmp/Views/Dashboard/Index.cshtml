@@ -65,19 +65,39 @@
                                 <td><i class="fa fa-check-circle"></i> Status:</td>
                                 <td>@Session["Status"]</td>
                             </tr>
-                            <tr>
-                                <td><i class="fa fa-credit-card"></i> Account Number:</td>
-                                <td>@Session["AccountNo"]</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-bank"></i> Bank Name:</td>
-                                <td>@Session["BankName"]</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-map-marker"></i> Branch Name:</td>
-                                <td>@Session["BranchName"]</td>
-                            </tr>
-                        </tbody>
+                            @if (Session["Status"] != null && Session["Status"].ToString() == "Suspended")
+                            {
+                                <tr>
+                                    <td><i class="fa fa-map-marker"></i> Suspension reason:</td>
+                                    <td>@Session["SuspensionReason"]</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-map-marker"></i> Suspension Date:</td>
+                                    <td>@Session["SuspensionDate"]</td>
+                                </tr>
+                            }
+                                <tr>
+                                    <td><i class="fa fa-credit-card"></i> Employer/Former Employer:</td>
+                                    <td>@Session["Employer"]</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-credit-card"></i> Retirement Date:</td>
+                                    <td>@Session["RetirementDate"]</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-credit-card"></i> Account Number:</td>
+                                    <td>@Session["AccountNo"]</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-bank"></i> Bank Name:</td>
+                                    <td>@Session["BankName"]</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-map-marker"></i> Branch Name:</td>
+                                    <td>@Session["BranchName"]</td>
+                                </tr>
+
+                            </tbody>
                     </table>
 
                     <div class="text-center mt-4">
