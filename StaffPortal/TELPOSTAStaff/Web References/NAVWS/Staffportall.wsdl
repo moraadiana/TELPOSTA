@@ -71,9 +71,7 @@
       <element name="InsertPettyCashRequisitionLine">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
             <element minOccurs="1" maxOccurs="1" name="pettyCashNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="accountNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="advanceType" type="string" />
             <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
           </sequence>
@@ -234,6 +232,18 @@
           <sequence />
         </complexType>
       </element>
+      <element name="OnCancelImprestRequisition1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="imprestNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnCancelImprestRequisition1_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="OnCancelImprestRequisition">
         <complexType>
           <sequence>
@@ -243,7 +253,9 @@
       </element>
       <element name="OnCancelImprestRequisition_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="OnCancelImprestSurrender">
@@ -274,6 +286,18 @@
           </sequence>
         </complexType>
       </element>
+      <element name="OnCancelPettyCashRequisition1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pettyCashNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnCancelPettyCashRequisition1_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="OnCancelPettyCashRequisition">
         <complexType>
           <sequence>
@@ -283,7 +307,9 @@
       </element>
       <element name="OnCancelPettyCashRequisition_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="OnCancelPettyCashSurrender">
@@ -324,6 +350,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="OnSendImprestRequisitionForApproval1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="imprestNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnSendImprestRequisitionForApproval1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="OnSendImprestRequisitionForApproval">
         <complexType>
           <sequence>
@@ -346,6 +386,20 @@
         </complexType>
       </element>
       <element name="OnSendImprestSurrenderForApproval_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnSendPettyCashRequisitionForApproval1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pettyCashNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnSendPettyCashRequisitionForApproval1_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -635,6 +689,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="getEmployeeUserId">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="staffNum" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getEmployeeUserId_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="updateleave">
         <complexType>
           <sequence>
@@ -798,22 +866,6 @@
           </sequence>
         </complexType>
       </element>
-      <element name="CreateClaimRequisitionHeader">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="travelType" type="int" />
-            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CreateClaimRequisitionHeader_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="CreateImprestRequisitionHeader">
         <complexType>
           <sequence>
@@ -914,6 +966,23 @@
         </complexType>
       </element>
       <element name="CreateStoreRequisitionHeader_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateTravelRequisitionHeader">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="travelType" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="resCenter" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateTravelRequisitionHeader_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1738,7 +1807,6 @@
             <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="responsibilityCenter" type="string" />
             <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
           </sequence>
         </complexType>
@@ -1887,6 +1955,12 @@
   <message name="OnCancelClaimRequisition_Result">
     <part name="parameters" element="tns:OnCancelClaimRequisition_Result" />
   </message>
+  <message name="OnCancelImprestRequisition1">
+    <part name="parameters" element="tns:OnCancelImprestRequisition1" />
+  </message>
+  <message name="OnCancelImprestRequisition1_Result">
+    <part name="parameters" element="tns:OnCancelImprestRequisition1_Result" />
+  </message>
   <message name="OnCancelImprestRequisition">
     <part name="parameters" element="tns:OnCancelImprestRequisition" />
   </message>
@@ -1904,6 +1978,12 @@
   </message>
   <message name="OnCancelLeaveApplication_Result">
     <part name="parameters" element="tns:OnCancelLeaveApplication_Result" />
+  </message>
+  <message name="OnCancelPettyCashRequisition1">
+    <part name="parameters" element="tns:OnCancelPettyCashRequisition1" />
+  </message>
+  <message name="OnCancelPettyCashRequisition1_Result">
+    <part name="parameters" element="tns:OnCancelPettyCashRequisition1_Result" />
   </message>
   <message name="OnCancelPettyCashRequisition">
     <part name="parameters" element="tns:OnCancelPettyCashRequisition" />
@@ -1929,6 +2009,12 @@
   <message name="OnSendClaimRequisitionForApproval_Result">
     <part name="parameters" element="tns:OnSendClaimRequisitionForApproval_Result" />
   </message>
+  <message name="OnSendImprestRequisitionForApproval1">
+    <part name="parameters" element="tns:OnSendImprestRequisitionForApproval1" />
+  </message>
+  <message name="OnSendImprestRequisitionForApproval1_Result">
+    <part name="parameters" element="tns:OnSendImprestRequisitionForApproval1_Result" />
+  </message>
   <message name="OnSendImprestRequisitionForApproval">
     <part name="parameters" element="tns:OnSendImprestRequisitionForApproval" />
   </message>
@@ -1940,6 +2026,12 @@
   </message>
   <message name="OnSendImprestSurrenderForApproval_Result">
     <part name="parameters" element="tns:OnSendImprestSurrenderForApproval_Result" />
+  </message>
+  <message name="OnSendPettyCashRequisitionForApproval1">
+    <part name="parameters" element="tns:OnSendPettyCashRequisitionForApproval1" />
+  </message>
+  <message name="OnSendPettyCashRequisitionForApproval1_Result">
+    <part name="parameters" element="tns:OnSendPettyCashRequisitionForApproval1_Result" />
   </message>
   <message name="OnSendPettyCashRequisitionForApproval">
     <part name="parameters" element="tns:OnSendPettyCashRequisitionForApproval" />
@@ -2049,6 +2141,12 @@
   <message name="getEmployeeName_Result">
     <part name="parameters" element="tns:getEmployeeName_Result" />
   </message>
+  <message name="getEmployeeUserId">
+    <part name="parameters" element="tns:getEmployeeUserId" />
+  </message>
+  <message name="getEmployeeUserId_Result">
+    <part name="parameters" element="tns:getEmployeeUserId_Result" />
+  </message>
   <message name="updateleave">
     <part name="parameters" element="tns:updateleave" />
   </message>
@@ -2115,12 +2213,6 @@
   <message name="CheckValidStaffNo_Result">
     <part name="parameters" element="tns:CheckValidStaffNo_Result" />
   </message>
-  <message name="CreateClaimRequisitionHeader">
-    <part name="parameters" element="tns:CreateClaimRequisitionHeader" />
-  </message>
-  <message name="CreateClaimRequisitionHeader_Result">
-    <part name="parameters" element="tns:CreateClaimRequisitionHeader_Result" />
-  </message>
   <message name="CreateImprestRequisitionHeader">
     <part name="parameters" element="tns:CreateImprestRequisitionHeader" />
   </message>
@@ -2156,6 +2248,12 @@
   </message>
   <message name="CreateStoreRequisitionHeader_Result">
     <part name="parameters" element="tns:CreateStoreRequisitionHeader_Result" />
+  </message>
+  <message name="CreateTravelRequisitionHeader">
+    <part name="parameters" element="tns:CreateTravelRequisitionHeader" />
+  </message>
+  <message name="CreateTravelRequisitionHeader_Result">
+    <part name="parameters" element="tns:CreateTravelRequisitionHeader_Result" />
   </message>
   <message name="DeleteDocumentAttachment">
     <part name="parameters" element="tns:DeleteDocumentAttachment" />
@@ -2586,6 +2684,10 @@
       <input name="OnCancelClaimRequisition" message="tns:OnCancelClaimRequisition" />
       <output name="OnCancelClaimRequisition_Result" message="tns:OnCancelClaimRequisition_Result" />
     </operation>
+    <operation name="OnCancelImprestRequisition1">
+      <input name="OnCancelImprestRequisition1" message="tns:OnCancelImprestRequisition1" />
+      <output name="OnCancelImprestRequisition1_Result" message="tns:OnCancelImprestRequisition1_Result" />
+    </operation>
     <operation name="OnCancelImprestRequisition">
       <input name="OnCancelImprestRequisition" message="tns:OnCancelImprestRequisition" />
       <output name="OnCancelImprestRequisition_Result" message="tns:OnCancelImprestRequisition_Result" />
@@ -2597,6 +2699,10 @@
     <operation name="OnCancelLeaveApplication">
       <input name="OnCancelLeaveApplication" message="tns:OnCancelLeaveApplication" />
       <output name="OnCancelLeaveApplication_Result" message="tns:OnCancelLeaveApplication_Result" />
+    </operation>
+    <operation name="OnCancelPettyCashRequisition1">
+      <input name="OnCancelPettyCashRequisition1" message="tns:OnCancelPettyCashRequisition1" />
+      <output name="OnCancelPettyCashRequisition1_Result" message="tns:OnCancelPettyCashRequisition1_Result" />
     </operation>
     <operation name="OnCancelPettyCashRequisition">
       <input name="OnCancelPettyCashRequisition" message="tns:OnCancelPettyCashRequisition" />
@@ -2614,6 +2720,10 @@
       <input name="OnSendClaimRequisitionForApproval" message="tns:OnSendClaimRequisitionForApproval" />
       <output name="OnSendClaimRequisitionForApproval_Result" message="tns:OnSendClaimRequisitionForApproval_Result" />
     </operation>
+    <operation name="OnSendImprestRequisitionForApproval1">
+      <input name="OnSendImprestRequisitionForApproval1" message="tns:OnSendImprestRequisitionForApproval1" />
+      <output name="OnSendImprestRequisitionForApproval1_Result" message="tns:OnSendImprestRequisitionForApproval1_Result" />
+    </operation>
     <operation name="OnSendImprestRequisitionForApproval">
       <input name="OnSendImprestRequisitionForApproval" message="tns:OnSendImprestRequisitionForApproval" />
       <output name="OnSendImprestRequisitionForApproval_Result" message="tns:OnSendImprestRequisitionForApproval_Result" />
@@ -2621,6 +2731,10 @@
     <operation name="OnSendImprestSurrenderForApproval">
       <input name="OnSendImprestSurrenderForApproval" message="tns:OnSendImprestSurrenderForApproval" />
       <output name="OnSendImprestSurrenderForApproval_Result" message="tns:OnSendImprestSurrenderForApproval_Result" />
+    </operation>
+    <operation name="OnSendPettyCashRequisitionForApproval1">
+      <input name="OnSendPettyCashRequisitionForApproval1" message="tns:OnSendPettyCashRequisitionForApproval1" />
+      <output name="OnSendPettyCashRequisitionForApproval1_Result" message="tns:OnSendPettyCashRequisitionForApproval1_Result" />
     </operation>
     <operation name="OnSendPettyCashRequisitionForApproval">
       <input name="OnSendPettyCashRequisitionForApproval" message="tns:OnSendPettyCashRequisitionForApproval" />
@@ -2694,6 +2808,10 @@
       <input name="getEmployeeName" message="tns:getEmployeeName" />
       <output name="getEmployeeName_Result" message="tns:getEmployeeName_Result" />
     </operation>
+    <operation name="getEmployeeUserId">
+      <input name="getEmployeeUserId" message="tns:getEmployeeUserId" />
+      <output name="getEmployeeUserId_Result" message="tns:getEmployeeUserId_Result" />
+    </operation>
     <operation name="updateleave">
       <input name="updateleave" message="tns:updateleave" />
       <output name="updateleave_Result" message="tns:updateleave_Result" />
@@ -2738,10 +2856,6 @@
       <input name="CheckValidStaffNo" message="tns:CheckValidStaffNo" />
       <output name="CheckValidStaffNo_Result" message="tns:CheckValidStaffNo_Result" />
     </operation>
-    <operation name="CreateClaimRequisitionHeader">
-      <input name="CreateClaimRequisitionHeader" message="tns:CreateClaimRequisitionHeader" />
-      <output name="CreateClaimRequisitionHeader_Result" message="tns:CreateClaimRequisitionHeader_Result" />
-    </operation>
     <operation name="CreateImprestRequisitionHeader">
       <input name="CreateImprestRequisitionHeader" message="tns:CreateImprestRequisitionHeader" />
       <output name="CreateImprestRequisitionHeader_Result" message="tns:CreateImprestRequisitionHeader_Result" />
@@ -2765,6 +2879,10 @@
     <operation name="CreateStoreRequisitionHeader">
       <input name="CreateStoreRequisitionHeader" message="tns:CreateStoreRequisitionHeader" />
       <output name="CreateStoreRequisitionHeader_Result" message="tns:CreateStoreRequisitionHeader_Result" />
+    </operation>
+    <operation name="CreateTravelRequisitionHeader">
+      <input name="CreateTravelRequisitionHeader" message="tns:CreateTravelRequisitionHeader" />
+      <output name="CreateTravelRequisitionHeader_Result" message="tns:CreateTravelRequisitionHeader_Result" />
     </operation>
     <operation name="DeleteDocumentAttachment">
       <input name="DeleteDocumentAttachment" message="tns:DeleteDocumentAttachment" />
@@ -3143,6 +3261,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="OnCancelImprestRequisition1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelImprestRequisition1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnCancelImprestRequisition1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnCancelImprestRequisition1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="OnCancelImprestRequisition">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelImprestRequisition" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="OnCancelImprestRequisition">
@@ -3167,6 +3294,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="OnCancelLeaveApplication_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OnCancelPettyCashRequisition1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelPettyCashRequisition1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnCancelPettyCashRequisition1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnCancelPettyCashRequisition1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3206,6 +3342,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="OnSendImprestRequisitionForApproval1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendImprestRequisitionForApproval1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnSendImprestRequisitionForApproval1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnSendImprestRequisitionForApproval1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="OnSendImprestRequisitionForApproval">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendImprestRequisitionForApproval" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="OnSendImprestRequisitionForApproval">
@@ -3221,6 +3366,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="OnSendImprestSurrenderForApproval_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OnSendPettyCashRequisitionForApproval1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendPettyCashRequisitionForApproval1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnSendPettyCashRequisitionForApproval1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnSendPettyCashRequisitionForApproval1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3386,6 +3540,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="getEmployeeUserId">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:getEmployeeUserId" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="getEmployeeUserId">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="getEmployeeUserId_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="updateleave">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:updateleave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="updateleave">
@@ -3485,15 +3648,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="CreateClaimRequisitionHeader">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateClaimRequisitionHeader" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="CreateClaimRequisitionHeader">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="CreateClaimRequisitionHeader_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
     <operation name="CreateImprestRequisitionHeader">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateImprestRequisitionHeader" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="CreateImprestRequisitionHeader">
@@ -3545,6 +3699,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="CreateStoreRequisitionHeader_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateTravelRequisitionHeader">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateTravelRequisitionHeader" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateTravelRequisitionHeader">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateTravelRequisitionHeader_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

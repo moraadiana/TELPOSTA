@@ -30,6 +30,7 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
                 LoadStaffDepartmentDetails();
+                LoadResponsibilityCenter();
                 // newLines.Visible = false;
                 // LoadPassengers();
                 string query = Request.QueryString["query"];
@@ -77,7 +78,34 @@ namespace TELPOSTAStaff.pages
                 }
             }
         }
-       
+        private void LoadResponsibilityCenter()
+        {
+            try
+            {
+                ddlResponsibilityCenter.Items.Clear();
+
+                string grouping = "LEAVE";
+                string resCenters = webportals.GetAllResponsibilityCentres();
+                if (!string.IsNullOrEmpty(resCenters))
+                {
+                    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (string rescenter in resCenterArr)
+                    {
+                        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
+                    }
+                }
+                else
+                {
+                    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
+            }
+        }
         private void LoadStaffDepartmentDetails()
         {
             try
@@ -122,13 +150,14 @@ namespace TELPOSTAStaff.pages
                 int type = Convert.ToInt32(travelType);
                 string purpose = txtPurpose.Text;
                 string reqNo = Session["RequestNo"]?.ToString() ?? string.Empty;
+                string resCenter = ddlResponsibilityCenter.SelectedValue;
                
                // string description = txtDescription.Text.Trim();
                 
 
 
                 // string details = Components.ObjNav.CreateTransportRequest(reqNo, description, dateOfTravel, noOfDays, expectedReturnDate, from, destination, unitCode, department, createdBy);
-                string details = webportals.CreateClaimRequisitionHeader(empNo, type, purpose);
+                string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter);
                 
                 if(!string.IsNullOrEmpty(details))
                 {

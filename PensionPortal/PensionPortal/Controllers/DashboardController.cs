@@ -2,6 +2,7 @@
 using PensionPortal.NAVWS;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -59,8 +60,10 @@ namespace PensionPortal.Controllers
                     Session["SuspensionDate"] = responseArr[13];
                     Session["Employer"] = responseArr[14]; 
                     Session["RetirementDate"] = responseArr[15];
-                    Session["BankName"] = responseArr[16];
-                    Session["BranchName"] = responseArr[17];
+                    Session["PensionerType"] = responseArr[16];
+                    Session["CeaseDate"] = responseArr[17];
+                    Session["BankName"] = responseArr[18];
+                    Session["BranchName"] = responseArr[19];
                     //Session["MemberName"]
 
                 }
@@ -184,26 +187,53 @@ namespace PensionPortal.Controllers
                 if (!string.IsNullOrEmpty(pensionList))
                 {
                     string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    //foreach (string pension in pensionListArr)
+                    //{
+                    //    string[] response = pension.Split(strLimiters, StringSplitOptions.None);
+                    //    MonthlyPension MonthlyPension = new MonthlyPension()
+                    //    {
+                    //        payPeriod = response[0].Trim(),
+                    //        Amount = response[1].Trim(),
+
+
+                    //    };
+                    //    schedule.Add(MonthlyPension);
+                    //}
+
                     foreach (string pension in pensionListArr)
                     {
-                        string[] response = pension.Split(strLimiters, StringSplitOptions.None);
-                        MonthlyPension MonthlyPension = new MonthlyPension()
+                        string[] response = pension.Split(new string[] { "::" }, StringSplitOptions.None);
+                        if (response.Length == 2)
                         {
-                            payPeriod = response[0].Trim(),
-                            Amount = response[1].Trim(),
+                            DateTime parsedDate;
+                            string formattedDate = response[0].Trim();
 
-
-                        };
-                        schedule.Add(MonthlyPension);
+                            // Parse the date
+                            if (DateTime.TryParseExact(formattedDate, "MM/dd/yy",
+                                CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
+                            {
+                                schedule.Add(new MonthlyPension()
+                                {
+                                    payPeriod = $"{parsedDate:MMMM yyyy}",
+                                    Amount = response[1].Trim(),
+                                    SortKey = parsedDate // Sorting key
+                                });
+                            }
+                        }
                     }
                 }
+            
             }
             catch (Exception ex)
             {
                 TempData["Error"] = ex.Message;
                 return RedirectToAction("index", "dashboard");
             }
-            return View(schedule);
+            // return View(schedule);
+            // return View(schedule.OrderByDescending(x => x.payPeriod).ToList());
+            var sortedSchedule = schedule.OrderByDescending(x => x.SortKey).ToList();
+            return View(sortedSchedule);
+
         }
     }
 }

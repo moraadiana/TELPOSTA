@@ -141,7 +141,7 @@ namespace TELPOSTAStaff.pages
 
             try
             {
-                ddlAccountNo.Items.Clear();
+                //ddlAccountNo.Items.Clear();
                 string AccountNo = webportals.GetAccountNo();
                 if (!string.IsNullOrEmpty(AccountNo))
                 {
@@ -156,7 +156,7 @@ namespace TELPOSTAStaff.pages
                             string displayText = $"{responseArr[0]} - {responseArr[1]}"; // Display as "No - Name"
                             string value = responseArr[0]; // Only the account number is stored
                             ListItem li = new ListItem(displayText, value);
-                            ddlAccountNo.Items.Add(li);
+                            //ddlAccountNo.Items.Add(li);
                         }
 
                     }
@@ -452,6 +452,13 @@ namespace TELPOSTAStaff.pages
             }
 
         }
+        protected void gvLines_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvLines.PageIndex = e.NewPageIndex;
+            string pettyCashNo = Request.QueryString["PettyCashNo"];
+            BindGridViewData(pettyCashNo); // Rebind data with the current pettyCashNo
+        }
+
 
 
         private void Message(string message)
@@ -475,17 +482,17 @@ namespace TELPOSTAStaff.pages
                 string username = Session["username"].ToString();
                 string advanceType = ddlAdvancType.SelectedValue;
                 string amount = txtAmnt.Text;
-                string accountNo = ddlAccountNo.SelectedValue;
+                //string accountNo = ddlAccountNo.SelectedValue;
                 if (advanceType == "0")
                 {
                     Message("Advance type cannot be null!");
                     return;
                 }
-                if (accountNo == "0")
-                {
-                    Message("Account Number cannot be null!");
-                    return;
-                }
+                //if (accountNo == "0")
+                //{
+                //    Message("Account Number cannot be null!");
+                //    return;
+                //}
                 if (amount == "")
                 {
                     Message("Amount cannot be empty!");
@@ -493,7 +500,8 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                string response = webportals.InsertPettyCashRequisitionLine(username, pettyCashNo, accountNo, advanceType, Convert.ToDecimal(amount));
+                // string response = webportals.InsertPettyCashRequisitionLine(username, pettyCashNo, accountNo, advanceType, Convert.ToDecimal(amount));
+                string response = webportals.InsertPettyCashRequisitionLine(pettyCashNo, advanceType, Convert.ToDecimal(amount));
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] strLimiters = new string[] { "::" };
@@ -571,6 +579,7 @@ namespace TELPOSTAStaff.pages
 
         protected void btnApproval_Click(object sender, EventArgs e)
         {
+           
             try
             {
                 string pettyCashNo = lblPettyCashNo.Text;
@@ -592,11 +601,14 @@ namespace TELPOSTAStaff.pages
                 else
                 {
                     Message("ERROR: " + msg);
+                   
                 }
             }
             catch (Exception ex)
             {
-                ex.Data.Clear();
+                
+                Message("ERROR: No approval workflow");
+               
             }
         }
 

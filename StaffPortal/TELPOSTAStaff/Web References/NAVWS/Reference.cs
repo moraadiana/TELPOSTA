@@ -57,11 +57,15 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback OnCancelClaimRequisitionOperationCompleted;
         
+        private System.Threading.SendOrPostCallback OnCancelImprestRequisition1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback OnCancelImprestRequisitionOperationCompleted;
         
         private System.Threading.SendOrPostCallback OnCancelImprestSurrenderOperationCompleted;
         
         private System.Threading.SendOrPostCallback OnCancelLeaveApplicationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback OnCancelPettyCashRequisition1OperationCompleted;
         
         private System.Threading.SendOrPostCallback OnCancelPettyCashRequisitionOperationCompleted;
         
@@ -71,9 +75,13 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback OnSendClaimRequisitionForApprovalOperationCompleted;
         
+        private System.Threading.SendOrPostCallback OnSendImprestRequisitionForApproval1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback OnSendImprestRequisitionForApprovalOperationCompleted;
         
         private System.Threading.SendOrPostCallback OnSendImprestSurrenderForApprovalOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback OnSendPettyCashRequisitionForApproval1OperationCompleted;
         
         private System.Threading.SendOrPostCallback OnSendPettyCashRequisitionForApprovalOperationCompleted;
         
@@ -111,6 +119,8 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback getEmployeeNameOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getEmployeeUserIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback updateleaveOperationCompleted;
         
         private System.Threading.SendOrPostCallback AvailableLeaveDaysOperationCompleted;
@@ -133,8 +143,6 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback CheckValidStaffNoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback CreateClaimRequisitionHeaderOperationCompleted;
-        
         private System.Threading.SendOrPostCallback CreateImprestRequisitionHeaderOperationCompleted;
         
         private System.Threading.SendOrPostCallback CreateImprestSurrenderHeaderOperationCompleted;
@@ -146,6 +154,8 @@ namespace TELPOSTAStaff.NAVWS {
         private System.Threading.SendOrPostCallback CreateStoreRequisitionHeader1OperationCompleted;
         
         private System.Threading.SendOrPostCallback CreateStoreRequisitionHeaderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CreateTravelRequisitionHeaderOperationCompleted;
         
         private System.Threading.SendOrPostCallback DeleteDocumentAttachmentOperationCompleted;
         
@@ -352,6 +362,9 @@ namespace TELPOSTAStaff.NAVWS {
         public event OnCancelClaimRequisitionCompletedEventHandler OnCancelClaimRequisitionCompleted;
         
         /// <remarks/>
+        public event OnCancelImprestRequisition1CompletedEventHandler OnCancelImprestRequisition1Completed;
+        
+        /// <remarks/>
         public event OnCancelImprestRequisitionCompletedEventHandler OnCancelImprestRequisitionCompleted;
         
         /// <remarks/>
@@ -359,6 +372,9 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         public event OnCancelLeaveApplicationCompletedEventHandler OnCancelLeaveApplicationCompleted;
+        
+        /// <remarks/>
+        public event OnCancelPettyCashRequisition1CompletedEventHandler OnCancelPettyCashRequisition1Completed;
         
         /// <remarks/>
         public event OnCancelPettyCashRequisitionCompletedEventHandler OnCancelPettyCashRequisitionCompleted;
@@ -373,10 +389,16 @@ namespace TELPOSTAStaff.NAVWS {
         public event OnSendClaimRequisitionForApprovalCompletedEventHandler OnSendClaimRequisitionForApprovalCompleted;
         
         /// <remarks/>
+        public event OnSendImprestRequisitionForApproval1CompletedEventHandler OnSendImprestRequisitionForApproval1Completed;
+        
+        /// <remarks/>
         public event OnSendImprestRequisitionForApprovalCompletedEventHandler OnSendImprestRequisitionForApprovalCompleted;
         
         /// <remarks/>
         public event OnSendImprestSurrenderForApprovalCompletedEventHandler OnSendImprestSurrenderForApprovalCompleted;
+        
+        /// <remarks/>
+        public event OnSendPettyCashRequisitionForApproval1CompletedEventHandler OnSendPettyCashRequisitionForApproval1Completed;
         
         /// <remarks/>
         public event OnSendPettyCashRequisitionForApprovalCompletedEventHandler OnSendPettyCashRequisitionForApprovalCompleted;
@@ -433,6 +455,9 @@ namespace TELPOSTAStaff.NAVWS {
         public event getEmployeeNameCompletedEventHandler getEmployeeNameCompleted;
         
         /// <remarks/>
+        public event getEmployeeUserIdCompletedEventHandler getEmployeeUserIdCompleted;
+        
+        /// <remarks/>
         public event updateleaveCompletedEventHandler updateleaveCompleted;
         
         /// <remarks/>
@@ -466,9 +491,6 @@ namespace TELPOSTAStaff.NAVWS {
         public event CheckValidStaffNoCompletedEventHandler CheckValidStaffNoCompleted;
         
         /// <remarks/>
-        public event CreateClaimRequisitionHeaderCompletedEventHandler CreateClaimRequisitionHeaderCompleted;
-        
-        /// <remarks/>
         public event CreateImprestRequisitionHeaderCompletedEventHandler CreateImprestRequisitionHeaderCompleted;
         
         /// <remarks/>
@@ -485,6 +507,9 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         public event CreateStoreRequisitionHeaderCompletedEventHandler CreateStoreRequisitionHeaderCompleted;
+        
+        /// <remarks/>
+        public event CreateTravelRequisitionHeaderCompletedEventHandler CreateTravelRequisitionHeaderCompleted;
         
         /// <remarks/>
         public event DeleteDocumentAttachmentCompletedEventHandler DeleteDocumentAttachmentCompleted;
@@ -818,30 +843,26 @@ namespace TELPOSTAStaff.NAVWS {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:InsertPettyCashRequisitionLi" +
             "ne", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="InsertPettyCashRequisitionLine_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string InsertPettyCashRequisitionLine(string username, string pettyCashNo, string accountNo, string advanceType, decimal amount) {
+        public string InsertPettyCashRequisitionLine(string pettyCashNo, string advanceType, decimal amount) {
             object[] results = this.Invoke("InsertPettyCashRequisitionLine", new object[] {
-                        username,
                         pettyCashNo,
-                        accountNo,
                         advanceType,
                         amount});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void InsertPettyCashRequisitionLineAsync(string username, string pettyCashNo, string accountNo, string advanceType, decimal amount) {
-            this.InsertPettyCashRequisitionLineAsync(username, pettyCashNo, accountNo, advanceType, amount, null);
+        public void InsertPettyCashRequisitionLineAsync(string pettyCashNo, string advanceType, decimal amount) {
+            this.InsertPettyCashRequisitionLineAsync(pettyCashNo, advanceType, amount, null);
         }
         
         /// <remarks/>
-        public void InsertPettyCashRequisitionLineAsync(string username, string pettyCashNo, string accountNo, string advanceType, decimal amount, object userState) {
+        public void InsertPettyCashRequisitionLineAsync(string pettyCashNo, string advanceType, decimal amount, object userState) {
             if ((this.InsertPettyCashRequisitionLineOperationCompleted == null)) {
                 this.InsertPettyCashRequisitionLineOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertPettyCashRequisitionLineOperationCompleted);
             }
             this.InvokeAsync("InsertPettyCashRequisitionLine", new object[] {
-                        username,
                         pettyCashNo,
-                        accountNo,
                         advanceType,
                         amount}, this.InsertPettyCashRequisitionLineOperationCompleted, userState);
         }
@@ -1173,10 +1194,40 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelImprestRequisition", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelImprestRequisition_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void OnCancelImprestRequisition(string imprestNo) {
-            this.Invoke("OnCancelImprestRequisition", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelImprestRequisition1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelImprestRequisition1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void OnCancelImprestRequisition1(string imprestNo) {
+            this.Invoke("OnCancelImprestRequisition1", new object[] {
                         imprestNo});
+        }
+        
+        /// <remarks/>
+        public void OnCancelImprestRequisition1Async(string imprestNo) {
+            this.OnCancelImprestRequisition1Async(imprestNo, null);
+        }
+        
+        /// <remarks/>
+        public void OnCancelImprestRequisition1Async(string imprestNo, object userState) {
+            if ((this.OnCancelImprestRequisition1OperationCompleted == null)) {
+                this.OnCancelImprestRequisition1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnOnCancelImprestRequisition1OperationCompleted);
+            }
+            this.InvokeAsync("OnCancelImprestRequisition1", new object[] {
+                        imprestNo}, this.OnCancelImprestRequisition1OperationCompleted, userState);
+        }
+        
+        private void OnOnCancelImprestRequisition1OperationCompleted(object arg) {
+            if ((this.OnCancelImprestRequisition1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.OnCancelImprestRequisition1Completed(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelImprestRequisition", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelImprestRequisition_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string OnCancelImprestRequisition(string imprestNo) {
+            object[] results = this.Invoke("OnCancelImprestRequisition", new object[] {
+                        imprestNo});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
@@ -1196,7 +1247,7 @@ namespace TELPOSTAStaff.NAVWS {
         private void OnOnCancelImprestRequisitionOperationCompleted(object arg) {
             if ((this.OnCancelImprestRequisitionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.OnCancelImprestRequisitionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.OnCancelImprestRequisitionCompleted(this, new OnCancelImprestRequisitionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1262,10 +1313,41 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelPettyCashRequisition" +
-            "", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelPettyCashRequisition_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void OnCancelPettyCashRequisition(string pettyCashNo) {
-            this.Invoke("OnCancelPettyCashRequisition", new object[] {
+            "1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelPettyCashRequisition1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void OnCancelPettyCashRequisition1(string pettyCashNo) {
+            this.Invoke("OnCancelPettyCashRequisition1", new object[] {
                         pettyCashNo});
+        }
+        
+        /// <remarks/>
+        public void OnCancelPettyCashRequisition1Async(string pettyCashNo) {
+            this.OnCancelPettyCashRequisition1Async(pettyCashNo, null);
+        }
+        
+        /// <remarks/>
+        public void OnCancelPettyCashRequisition1Async(string pettyCashNo, object userState) {
+            if ((this.OnCancelPettyCashRequisition1OperationCompleted == null)) {
+                this.OnCancelPettyCashRequisition1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnOnCancelPettyCashRequisition1OperationCompleted);
+            }
+            this.InvokeAsync("OnCancelPettyCashRequisition1", new object[] {
+                        pettyCashNo}, this.OnCancelPettyCashRequisition1OperationCompleted, userState);
+        }
+        
+        private void OnOnCancelPettyCashRequisition1OperationCompleted(object arg) {
+            if ((this.OnCancelPettyCashRequisition1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.OnCancelPettyCashRequisition1Completed(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnCancelPettyCashRequisition" +
+            "", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnCancelPettyCashRequisition_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string OnCancelPettyCashRequisition(string pettyCashNo) {
+            object[] results = this.Invoke("OnCancelPettyCashRequisition", new object[] {
+                        pettyCashNo});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
@@ -1285,7 +1367,7 @@ namespace TELPOSTAStaff.NAVWS {
         private void OnOnCancelPettyCashRequisitionOperationCompleted(object arg) {
             if ((this.OnCancelPettyCashRequisitionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.OnCancelPettyCashRequisitionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.OnCancelPettyCashRequisitionCompleted(this, new OnCancelPettyCashRequisitionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1379,6 +1461,37 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendImprestRequisitionForA" +
+            "pproval1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnSendImprestRequisitionForApproval1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string OnSendImprestRequisitionForApproval1(string imprestNo) {
+            object[] results = this.Invoke("OnSendImprestRequisitionForApproval1", new object[] {
+                        imprestNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void OnSendImprestRequisitionForApproval1Async(string imprestNo) {
+            this.OnSendImprestRequisitionForApproval1Async(imprestNo, null);
+        }
+        
+        /// <remarks/>
+        public void OnSendImprestRequisitionForApproval1Async(string imprestNo, object userState) {
+            if ((this.OnSendImprestRequisitionForApproval1OperationCompleted == null)) {
+                this.OnSendImprestRequisitionForApproval1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnOnSendImprestRequisitionForApproval1OperationCompleted);
+            }
+            this.InvokeAsync("OnSendImprestRequisitionForApproval1", new object[] {
+                        imprestNo}, this.OnSendImprestRequisitionForApproval1OperationCompleted, userState);
+        }
+        
+        private void OnOnSendImprestRequisitionForApproval1OperationCompleted(object arg) {
+            if ((this.OnSendImprestRequisitionForApproval1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.OnSendImprestRequisitionForApproval1Completed(this, new OnSendImprestRequisitionForApproval1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendImprestRequisitionForA" +
             "pproval", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnSendImprestRequisitionForApproval_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string OnSendImprestRequisitionForApproval(string imprestNo) {
@@ -1436,6 +1549,37 @@ namespace TELPOSTAStaff.NAVWS {
             if ((this.OnSendImprestSurrenderForApprovalCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.OnSendImprestSurrenderForApprovalCompleted(this, new OnSendImprestSurrenderForApprovalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:OnSendPettyCashRequisitionFo" +
+            "rApproval1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="OnSendPettyCashRequisitionForApproval1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string OnSendPettyCashRequisitionForApproval1(string pettyCashNo) {
+            object[] results = this.Invoke("OnSendPettyCashRequisitionForApproval1", new object[] {
+                        pettyCashNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void OnSendPettyCashRequisitionForApproval1Async(string pettyCashNo) {
+            this.OnSendPettyCashRequisitionForApproval1Async(pettyCashNo, null);
+        }
+        
+        /// <remarks/>
+        public void OnSendPettyCashRequisitionForApproval1Async(string pettyCashNo, object userState) {
+            if ((this.OnSendPettyCashRequisitionForApproval1OperationCompleted == null)) {
+                this.OnSendPettyCashRequisitionForApproval1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnOnSendPettyCashRequisitionForApproval1OperationCompleted);
+            }
+            this.InvokeAsync("OnSendPettyCashRequisitionForApproval1", new object[] {
+                        pettyCashNo}, this.OnSendPettyCashRequisitionForApproval1OperationCompleted, userState);
+        }
+        
+        private void OnOnSendPettyCashRequisitionForApproval1OperationCompleted(object arg) {
+            if ((this.OnSendPettyCashRequisitionForApproval1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.OnSendPettyCashRequisitionForApproval1Completed(this, new OnSendPettyCashRequisitionForApproval1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2053,6 +2197,36 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:getEmployeeUserId", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="getEmployeeUserId_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string getEmployeeUserId(string staffNum) {
+            object[] results = this.Invoke("getEmployeeUserId", new object[] {
+                        staffNum});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getEmployeeUserIdAsync(string staffNum) {
+            this.getEmployeeUserIdAsync(staffNum, null);
+        }
+        
+        /// <remarks/>
+        public void getEmployeeUserIdAsync(string staffNum, object userState) {
+            if ((this.getEmployeeUserIdOperationCompleted == null)) {
+                this.getEmployeeUserIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEmployeeUserIdOperationCompleted);
+            }
+            this.InvokeAsync("getEmployeeUserId", new object[] {
+                        staffNum}, this.getEmployeeUserIdOperationCompleted, userState);
+        }
+        
+        private void OngetEmployeeUserIdOperationCompleted(object arg) {
+            if ((this.getEmployeeUserIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getEmployeeUserIdCompleted(this, new getEmployeeUserIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:updateleave", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="updateleave_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void updateleave(string leaveApplicationNo, int remark) {
             this.Invoke("updateleave", new object[] {
@@ -2403,41 +2577,6 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateClaimRequisitionHeader" +
-            "", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="CreateClaimRequisitionHeader_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CreateClaimRequisitionHeader(string username, int travelType, string purpose) {
-            object[] results = this.Invoke("CreateClaimRequisitionHeader", new object[] {
-                        username,
-                        travelType,
-                        purpose});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CreateClaimRequisitionHeaderAsync(string username, int travelType, string purpose) {
-            this.CreateClaimRequisitionHeaderAsync(username, travelType, purpose, null);
-        }
-        
-        /// <remarks/>
-        public void CreateClaimRequisitionHeaderAsync(string username, int travelType, string purpose, object userState) {
-            if ((this.CreateClaimRequisitionHeaderOperationCompleted == null)) {
-                this.CreateClaimRequisitionHeaderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateClaimRequisitionHeaderOperationCompleted);
-            }
-            this.InvokeAsync("CreateClaimRequisitionHeader", new object[] {
-                        username,
-                        travelType,
-                        purpose}, this.CreateClaimRequisitionHeaderOperationCompleted, userState);
-        }
-        
-        private void OnCreateClaimRequisitionHeaderOperationCompleted(object arg) {
-            if ((this.CreateClaimRequisitionHeaderCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CreateClaimRequisitionHeaderCompleted(this, new CreateClaimRequisitionHeaderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateImprestRequisitionHead" +
             "er", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="CreateImprestRequisitionHeader_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
@@ -2664,6 +2803,43 @@ namespace TELPOSTAStaff.NAVWS {
             if ((this.CreateStoreRequisitionHeaderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CreateStoreRequisitionHeaderCompleted(this, new CreateStoreRequisitionHeaderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateTravelRequisitionHeade" +
+            "r", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="CreateTravelRequisitionHeader_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string CreateTravelRequisitionHeader(string username, int travelType, string purpose, string resCenter) {
+            object[] results = this.Invoke("CreateTravelRequisitionHeader", new object[] {
+                        username,
+                        travelType,
+                        purpose,
+                        resCenter});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter) {
+            this.CreateTravelRequisitionHeaderAsync(username, travelType, purpose, resCenter, null);
+        }
+        
+        /// <remarks/>
+        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter, object userState) {
+            if ((this.CreateTravelRequisitionHeaderOperationCompleted == null)) {
+                this.CreateTravelRequisitionHeaderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateTravelRequisitionHeaderOperationCompleted);
+            }
+            this.InvokeAsync("CreateTravelRequisitionHeader", new object[] {
+                        username,
+                        travelType,
+                        purpose,
+                        resCenter}, this.CreateTravelRequisitionHeaderOperationCompleted, userState);
+        }
+        
+        private void OnCreateTravelRequisitionHeaderOperationCompleted(object arg) {
+            if ((this.CreateTravelRequisitionHeaderCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CreateTravelRequisitionHeaderCompleted(this, new CreateTravelRequisitionHeaderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4422,7 +4598,7 @@ namespace TELPOSTAStaff.NAVWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="HRMLeaveApplication1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string HRMLeaveApplication1(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime returnDate, string responsibilityCenter, string purpose) {
+        public string HRMLeaveApplication1(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime returnDate, string purpose) {
             object[] results = this.Invoke("HRMLeaveApplication1", new object[] {
                         leaveNo,
                         username,
@@ -4432,18 +4608,17 @@ namespace TELPOSTAStaff.NAVWS {
                         startDate,
                         endDate,
                         returnDate,
-                        responsibilityCenter,
                         purpose});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string responsibilityCenter, string purpose) {
-            this.HRMLeaveApplication1Async(leaveNo, username, reliever, leaveType, appliedDays, startDate, endDate, returnDate, responsibilityCenter, purpose, null);
+        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose) {
+            this.HRMLeaveApplication1Async(leaveNo, username, reliever, leaveType, appliedDays, startDate, endDate, returnDate, purpose, null);
         }
         
         /// <remarks/>
-        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string responsibilityCenter, string purpose, object userState) {
+        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose, object userState) {
             if ((this.HRMLeaveApplication1OperationCompleted == null)) {
                 this.HRMLeaveApplication1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnHRMLeaveApplication1OperationCompleted);
             }
@@ -4456,7 +4631,6 @@ namespace TELPOSTAStaff.NAVWS {
                         startDate,
                         endDate,
                         returnDate,
-                        responsibilityCenter,
                         purpose}, this.HRMLeaveApplication1OperationCompleted, userState);
         }
         
@@ -4939,7 +5113,33 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    public delegate void OnCancelImprestRequisitionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void OnCancelImprestRequisition1CompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void OnCancelImprestRequisitionCompletedEventHandler(object sender, OnCancelImprestRequisitionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class OnCancelImprestRequisitionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal OnCancelImprestRequisitionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
@@ -4995,7 +5195,33 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    public delegate void OnCancelPettyCashRequisitionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void OnCancelPettyCashRequisition1CompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void OnCancelPettyCashRequisitionCompletedEventHandler(object sender, OnCancelPettyCashRequisitionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class OnCancelPettyCashRequisitionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal OnCancelPettyCashRequisitionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
@@ -5018,6 +5244,32 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal OnSendClaimRequisitionForApprovalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void OnSendImprestRequisitionForApproval1CompletedEventHandler(object sender, OnSendImprestRequisitionForApproval1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class OnSendImprestRequisitionForApproval1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal OnSendImprestRequisitionForApproval1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -5070,6 +5322,32 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal OnSendImprestSurrenderForApprovalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void OnSendPettyCashRequisitionForApproval1CompletedEventHandler(object sender, OnSendPettyCashRequisitionForApproval1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class OnSendPettyCashRequisitionForApproval1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal OnSendPettyCashRequisitionForApproval1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -5509,6 +5787,32 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void getEmployeeUserIdCompletedEventHandler(object sender, getEmployeeUserIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getEmployeeUserIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getEmployeeUserIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void updateleaveCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -5773,32 +6077,6 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    public delegate void CreateClaimRequisitionHeaderCompletedEventHandler(object sender, CreateClaimRequisitionHeaderCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CreateClaimRequisitionHeaderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CreateClaimRequisitionHeaderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void CreateImprestRequisitionHeaderCompletedEventHandler(object sender, CreateImprestRequisitionHeaderCompletedEventArgs e);
     
     /// <remarks/>
@@ -5940,6 +6218,32 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal CreateStoreRequisitionHeaderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void CreateTravelRequisitionHeaderCompletedEventHandler(object sender, CreateTravelRequisitionHeaderCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CreateTravelRequisitionHeaderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CreateTravelRequisitionHeaderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

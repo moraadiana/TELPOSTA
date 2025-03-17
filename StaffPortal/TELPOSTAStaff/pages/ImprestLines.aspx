@@ -194,7 +194,7 @@
                                                         <th>&nbsp;</th>
                                                         <th>
                                                             <asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Submit" OnClick="btnApproval_Click" />&nbsp;
-                                    <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />
+                                    <%--<asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />--%>
                                                         </th>
                                                     </tr>
                                                 </thead>

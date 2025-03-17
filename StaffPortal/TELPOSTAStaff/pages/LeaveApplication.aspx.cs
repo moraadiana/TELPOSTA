@@ -457,9 +457,8 @@ namespace TELPOSTAStaff.pages
                 {
                     LeaveNo = Request.QueryString["leaveNo"]; // Get the leaveNo from the query string
                 }
-                var test = "test";
-                // Applications
-                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate, test,purpose);
+
+                string response = webportals.HRMLeaveApplication1(LeaveNo ?? string.Empty, username, reliever, leaveType, Convert.ToDecimal(appliedDays), Convert.ToDateTime(startDate), endDate, returnDate,purpose);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);

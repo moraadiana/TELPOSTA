@@ -54,13 +54,13 @@ namespace TELPOSTAStaff.pages
                 if (approvalStatus == "Open" || approvalStatus == "Pending")
                 {
                     btnApproval.Visible = true;
-                    btnCancellApproval.Visible = false;
+                   // btnCancellApproval.Visible = false;
                     attachments.Visible = true;
                 }
                 else if (approvalStatus == "Pending Approval")
                 {
                     btnApproval.Visible = false;
-                    btnCancellApproval.Visible = true;
+                    //btnCancellApproval.Visible = true;
                     lbtnAddLine.Visible = false;
                     lbtnClose.Visible = false;
                     attachments.Visible = false;
@@ -68,7 +68,7 @@ namespace TELPOSTAStaff.pages
                 else
                 {
                     btnApproval.Visible = false;
-                    btnCancellApproval.Visible = false;
+                   // btnCancellApproval.Visible = false;
                     lbtnAddLine.Visible = false;
                     lbtnClose.Visible = false;
                     attachments.Visible = false;

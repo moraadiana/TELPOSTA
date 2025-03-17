@@ -10,5 +10,9 @@ namespace PensionPortal.Models
         public string payPeriod {  get; set; }
 
         public string Amount { get; set; }
+        //public int Year { get; set; }
+        //public int Month { get; set; }
+
+        public DateTime SortKey { get; set; }
     }
 }
