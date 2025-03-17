@@ -54,41 +54,7 @@ namespace TELPOSTAStaff.pages
                 Console.WriteLine($"Error in LoadYears: {ex.Message}");
             }
         }
-        protected void LoadYears1()
-          {
-              string username = Session["username"].ToString();
-              //string nameu = "'"+username+"'";
-              try
-              {
-                  using (SqlConnection connToNAV = Components.GetconnToNAV())
-                  {
-                      string sqlStmt = null;
-                      sqlStmt = "spGetP9Years";
-                      SqlCommand cmdProgStage = new SqlCommand();
-                      cmdProgStage.CommandText = sqlStmt;
-                      cmdProgStage.Connection = connToNAV;
-                      cmdProgStage.CommandType = CommandType.StoredProcedure;
-                      cmdProgStage.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                      cmdProgStage.Parameters.AddWithValue("@username", "'" + username + "'");
-                      using (SqlDataReader sqlReaderStages = cmdProgStage.ExecuteReader())
-                      {
-                          if (sqlReaderStages.HasRows)
-                          {
-                              ddlYear.DataSource = sqlReaderStages;
-                              ddlYear.DataTextField = "Period Year";
-                              ddlYear.DataValueField = "Period Year";
-                              ddlYear.DataBind();
-                          }
-                      }
-                      connToNAV.Close();
-                  }
-              }
-              catch (Exception ex)
-              {
-
-                  ex.Data.Clear();
-              }
-          }
+       
           protected void LoadP9()
           {
               try
