@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Next</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -193,8 +193,8 @@
                                                         <th></th>
                                                         <th>&nbsp;</th>
                                                         <th>
-                                                            <asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Send Approval" OnClick="btnApproval_Click" />&nbsp;
-                                    <asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />
+                                                            <asp:Button ID="btnApproval" CssClass="btn btn-success pull-right" runat="server" Text="Submit" OnClick="btnApproval_Click" />&nbsp;
+                                    <%--<asp:Button ID="btnCancellApproval" runat="server" CssClass="btn btn-danger pull-right" OnClick="btnCancellApproval_Click" Text="Cancel Approval Request" />--%>
                                                         </th>
                                                     </tr>
                                                 </thead>

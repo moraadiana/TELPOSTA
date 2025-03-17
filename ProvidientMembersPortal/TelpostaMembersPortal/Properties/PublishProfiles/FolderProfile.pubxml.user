@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Portals\MembersPortal</_PublishTargetUrl>
-    <History>True|2025-03-06T16:11:49.7138684Z||;False|2025-03-06T19:10:13.8728820+03:00||;True|2025-03-03T14:27:38.9757687+03:00||;True|2025-03-01T08:03:32.2181464+03:00||;</History>
+    <History>True|2025-03-17T07:31:21.7490805Z||;True|2025-03-06T19:11:49.7138684+03:00||;False|2025-03-06T19:10:13.8728820+03:00||;True|2025-03-03T14:27:38.9757687+03:00||;True|2025-03-01T08:03:32.2181464+03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -7279,13 +7279,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/05/2025 14:00:26</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.dll">
-      <publishTime>03/06/2025 19:11:38</publishTime>
+      <publishTime>03/17/2025 10:31:17</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.pdb">
-      <publishTime>03/06/2025 19:11:38</publishTime>
+      <publishTime>03/17/2025 10:31:17</publishTime>
     </File>
     <File Include="bin/TelpostaMembersPortal.XmlSerializers.dll">
-      <publishTime>03/06/2025 19:11:38</publishTime>
+      <publishTime>03/17/2025 10:31:18</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/05/2025 14:00:26</publishTime>
