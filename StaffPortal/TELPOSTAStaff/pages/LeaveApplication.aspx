@@ -24,8 +24,8 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Leave Type</label>
-                                        <%--<asp:DropDownList ID="ddlLeaveType" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlLeaveType_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
-                                        <asp:DropDownList ID="ddlLeaveType" runat="server" CssClass="form-control select2" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlLeaveType" runat="server" CssClass="form-control select2"  OnSelectedIndexChanged="ddlLeaveType_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                       <%-- <asp:DropDownList ID="ddlLeaveType" runat="server" CssClass="form-control select2" AutoPostBack="true"></asp:DropDownList>--%>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
