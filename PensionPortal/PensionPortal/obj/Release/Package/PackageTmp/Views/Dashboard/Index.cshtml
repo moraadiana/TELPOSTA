@@ -1,110 +1,135 @@
 ﻿<div class="page-content">
     <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <a href="@Url.Action("index", "dashboard")">Home</a>
-                <i class="fa fa-circle"></i>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("index", "dashboard")">
+                    <i class="fas fa-home"></i> Home
+                </a>
             </li>
-            <li><span>Dashboard</span></li>
+            <li class="breadcrumb-item active">Dashboard</li>
         </ul>
     </div>
 
-    <h1 class="page-title">Dashboard</h1>
+    <h1 class="page-title text-primary"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
 
     <div class="row">
         <!-- Profile Sidebar -->
-        <div class="col-md-2">
-            <div class="profile-sidebar">
-                <div class="portlet light profile-sidebar-portlet text-center shadow rounded">
-                    <div class="profile-userpic mb-3">
-                        <img src="~/images/profile_m.png" class="img-fluid rounded-circle" alt="Avatar" style="width: 120px; height: 120px;">
-                    </div>
-                    <div class="profile-usertitle">
-                        <h4 class="profile-usertitle-name text-primary">@Session["memberName"]</h4>
-                    </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-body text-center">
+                    <img src="~/images/profile_m.png" class="img-fluid rounded-circle mb-3" alt="Avatar" style="width: 120px; height: 120px;">
+                    <h4 class="text-primary">@Session["pensionerName"]</h4>
+                    <p class="text-muted"><i class="fas fa-user-tag"></i> @Session["PensionerType"] </p>
                 </div>
             </div>
         </div>
 
         <!-- Main Content -->
-        <div class="col-md-10">
-            <div class="portlet box green shadow-lg rounded">
-                <div class="portlet-title d-flex justify-content-between align-items-center p-3 bg-success text-white">
-                    <div>
-                        <i class="fa fa-user"></i> Welcome, @Session["memberName"]
-                    </div>
-                    <a href="javascript:;" class="collapse text-white"><i class="fa fa-chevron-down"></i></a>
+        <div class="col-md-9">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-user-circle"></i> Welcome, @Session["pensionerName"]</h5>
+                    <a href="javascript:;" class="text-white toggle-portlet" data-bs-toggle="collapse" data-bs-target="#portletBody">
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+
                 </div>
 
-                <div class="portlet-body p-4">
-                    <h5 class="mb-3"><strong>Pensioner Information</strong></h5>
+                <div id="portletBody" class="collapse show card-body">
+                    <h5 class="mb-3"><strong><i class="fas fa-info-circle"></i> Pensioner Information</strong></h5>
 
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-hover">
                         <tbody>
+                            @*<tr>
+                    <td><i class="fas fa-user"></i> Name:</td>
+                    <td>@Session["Name"]</td>
+                </tr>*@
                             <tr>
-                                <td><i class="fa fa-user"></i> Name:</td>
-                                <td>@Session["Name"]</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-envelope"></i> Email:</td>
+                                <td><i class="fas fa-envelope"></i> Email:</td>
                                 <td>@Session["Email"]</td>
                             </tr>
                             <tr>
-                                <td><i class="fa fa-phone"></i> Phone No:</td>
+                                <td><i class="fas fa-phone"></i> Phone No:</td>
                                 <td>@Session["PhoneNo"]</td>
                             </tr>
                             <tr>
-                                <td><i class="fa fa-id-card"></i> ID Number:</td>
+                                <td><i class="fas fa-id-card"></i> ID Number:</td>
                                 <td>@Session["ID"]</td>
                             </tr>
                             <tr>
-                                <td><i class="fa fa-calendar"></i> Date of Joining:</td>
+                                <td><i class="fas fa-calendar-alt"></i> Date of Joining:</td>
                                 <td>@Session["JoiningDate"]</td>
                             </tr>
                             <tr>
-                                <td><i class="fa fa-check-circle"></i> Status:</td>
-                                <td>@Session["Status"]</td>
+                                <td><i class="fas fa-check-circle"></i> Status:</td>
+                                <td>
+                                    <span class="badge bg-@((Session["Status"]?.ToString() == "Suspended") ? "warning" : (Session["Status"]?.ToString() == "Ceased") ? "danger" : "success")">
+                                        @Session["Status"]
+                                    </span>
+                                </td>
                             </tr>
-                            @if (Session["Status"] != null && Session["Status"].ToString() == "Suspended")
+
+                            @if (Session["Status"]?.ToString() == "Suspended")
                             {
                                 <tr>
-                                    <td><i class="fa fa-map-marker"></i> Suspension reason:</td>
+                                    <td><i class="fas fa-exclamation-triangle"></i> Suspension reason:</td>
                                     <td>@Session["SuspensionReason"]</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-map-marker"></i> Suspension Date:</td>
+                                    <td><i class="fas fa-calendar-times"></i> Suspension Date:</td>
                                     <td>@Session["SuspensionDate"]</td>
                                 </tr>
                             }
-                                <tr>
-                                    <td><i class="fa fa-credit-card"></i> Employer/Former Employer:</td>
-                                    <td>@Session["Employer"]</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-credit-card"></i> Retirement Date:</td>
-                                    <td>@Session["RetirementDate"]</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-credit-card"></i> Account Number:</td>
-                                    <td>@Session["AccountNo"]</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-bank"></i> Bank Name:</td>
-                                    <td>@Session["BankName"]</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-map-marker"></i> Branch Name:</td>
-                                    <td>@Session["BranchName"]</td>
-                                </tr>
 
-                            </tbody>
+                          @if (@Session["PensionerType"]?.ToString() == "Beneficiary")
+                          {
+                                <tr>
+                                    <td><i class="fas fa-calendar-times"></i> Cease Date:</td>
+                                    <td>@Session["CeaseDate"]</td>
+                                </tr>
+                          }
+
+                            <tr>
+                                <td><i class="fas fa-building"></i> Employer/Former Employer:</td>
+                                <td>@Session["Employer"]</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-calendar-check"></i> Retirement Date:</td>
+                                <td>@Session["RetirementDate"]</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-credit-card"></i> Account Number:</td>
+                                <td>@Session["AccountNo"]</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-university"></i> Bank Name:</td>
+                                <td>@Session["BankName"]</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-map-marker-alt"></i> Branch Name:</td>
+                                <td>@Session["BranchName"]</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <div class="text-center mt-4">
-                        <a href="@Url.Action("index", "dashboard")" class="btn btn-secondary">Back</a>
+                        <a href="@Url.Action("index", "dashboard")" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".toggle-portlet").addEventListener("click", function () {
+            let icon = this.querySelector("i");
+            icon.classList.toggle("fa-chevron-down");
+            icon.classList.toggle("fa-chevron-up"); // Toggle icon
+        });
+    });
+
+
+</script>

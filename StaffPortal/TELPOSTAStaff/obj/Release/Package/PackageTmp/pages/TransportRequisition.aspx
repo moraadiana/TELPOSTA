@@ -49,7 +49,13 @@
                                                  <label>Department: </label>
                                                  <asp:Label ID="lblDepartment" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                              </div>
-                                         </div>                                      
+                                         </div>  
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Responsibility Canter</label>
+                                                    <asp:DropDownList ID="ddlResponsibilityCenter" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                </div>
+                                            </div>
 
                                           <div class="col-md-4">
                                                  <div class="form-group">
@@ -59,9 +65,7 @@
                                                            <asp:ListItem Value="">Select an option</asp:ListItem>
                                                             <asp:ListItem Value="0">Local</asp:ListItem>
                                                             <asp:ListItem Value="1">International</asp:ListItem>
-
                                                         </asp:DropDownList>
-                                                   
                                                  </div>
                                              </div>
                                              <div class="col-md-12">
@@ -131,11 +135,11 @@
                                                    
                                                      <td>
 
-                                                           <asp:DropDownList ID="ddlStaffNo" CssClass="form-control" runat="server" AutoPostBack="true"  OnSelectedIndexChanged="ddlDestination_SelectedIndexChanged" ></asp:DropDownList>
+                                                           <asp:DropDownList ID="ddlStaffNo" CssClass="form-control" runat="server"   ></asp:DropDownList>
                                                      </td>       
 
                                                        <td>
-                                                             <asp:DropDownList ID="ddlDestinationType" runat="server" CssClass="form-control">
+                                                             <asp:DropDownList ID="ddlDestinationType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDestination_SelectedIndexChanged">
                                                                  <asp:ListItem>-- Select -- </asp:ListItem>
                                                                    <asp:ListItem Value="1">Local</asp:ListItem>
                                                                    <asp:ListItem Value="0">International</asp:ListItem>
