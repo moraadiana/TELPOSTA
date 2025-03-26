@@ -14,6 +14,35 @@ namespace PensionPortal
         private static string[] strLimiters = new string[] { "::" };
         private static string[] strLimiters2 = new string[] { "[]" };
 
+        public static List<LifeCertificate> GetLifeCertPeriods()
+        {
+            var list = new List<LifeCertificate>();
+            try
+            {
+                string result = webportals.GetLifeCertDates();
+                if (!string.IsNullOrEmpty(result))
+                {
+                    string[] resultsArr = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string str in resultsArr)
+                    {
+                        string[] responseArr = str.Split(strLimiters, StringSplitOptions.None);
+                        list.Add(new LifeCertificate()
+                        {
+                            Period = responseArr[0]
+
+
+                        }
+                       );
+
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                ex.Data.Clear();
+            }
+            return list;
+        }
         public static List<PensionerStatement> GetPayrollPeriods()
         {
 
@@ -49,34 +78,7 @@ namespace PensionPortal
 
         }
 
-        public string GeneratePensionerStatement(string pensionerNo, string startDate, string endDate)
-        {
-            try
-            {
-                // Generate a unique file name
-                string fileName = pensionerNo.Replace("/", "");
-                string pdffileName = $"PensionerStatement-{fileName}.pdf";
-                string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
-                string filePath = Path.Combine(path, fileName);
-                //PensionerStatement PensionerStatement = new PensionerStatement();
-
-                //startDate = PensionerStatement.StartDate;
-                //endDate = PensionerStatement.EndDate;
-                // Ensure directory exists
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                // Call the AL procedure via NAV web service
-               // webportals.PensionerStatement(path, fileName, pensionerNo, startDate,endDate);
-
-                // Return the file path (ensure it's accessible via web)
-                return "/GeneratedStatements/" + fileName;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        
 
     }
 }

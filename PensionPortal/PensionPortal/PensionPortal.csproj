@@ -131,6 +131,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Beneficiary.cs" />
     <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\LifeCertificate.cs" />
     <Compile Include="Models\MonthlyPension.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OTP.cs" />
@@ -2574,7 +2575,7 @@
     <Content Include="Views\Dashboard\PaySchedule.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerifyOTP.cshtml" />
-    <Content Include="Views\Statements\MemberStatement.cshtml" />
+    <Content Include="Views\Statements\PensionerStatement.cshtml" />
     <Content Include="Views\Statements\LifeCertificate.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />

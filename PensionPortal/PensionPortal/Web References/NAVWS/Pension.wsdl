@@ -75,6 +75,18 @@
           <sequence />
         </complexType>
       </element>
+      <element name="GetLifeCertDates">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetLifeCertDates_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetMemberBeneficiaries">
         <complexType>
           <sequence>
@@ -318,6 +330,12 @@
   <message name="GeneratePensionStatement_Result">
     <part name="parameters" element="tns:GeneratePensionStatement_Result" />
   </message>
+  <message name="GetLifeCertDates">
+    <part name="parameters" element="tns:GetLifeCertDates" />
+  </message>
+  <message name="GetLifeCertDates_Result">
+    <part name="parameters" element="tns:GetLifeCertDates_Result" />
+  </message>
   <message name="GetMemberBeneficiaries">
     <part name="parameters" element="tns:GetMemberBeneficiaries" />
   </message>
@@ -429,6 +447,10 @@
       <input name="GeneratePensionStatement" message="tns:GeneratePensionStatement" />
       <output name="GeneratePensionStatement_Result" message="tns:GeneratePensionStatement_Result" />
     </operation>
+    <operation name="GetLifeCertDates">
+      <input name="GetLifeCertDates" message="tns:GetLifeCertDates" />
+      <output name="GetLifeCertDates_Result" message="tns:GetLifeCertDates_Result" />
+    </operation>
     <operation name="GetMemberBeneficiaries">
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
@@ -534,6 +556,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GeneratePensionStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetLifeCertDates">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetLifeCertDates" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetLifeCertDates">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetLifeCertDates_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

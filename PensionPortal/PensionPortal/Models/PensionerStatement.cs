@@ -15,7 +15,7 @@ namespace PensionPortal.Models
         [Required]
         public string EndDate { get; set; }
       
-        public string PayrollPeriod { get; set; }
+       // public string PayrollPeriod { get; set; }
 
         public string PdfUrl { get; set; }
         public List<PensionerStatement> PayrollPeriods { get; set; }
