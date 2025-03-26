@@ -93,33 +93,6 @@
         </div>
     </div>
 </div>
-@*<script>
-    $(document).ready(function () {
-        // Register Moment.js format for sorting dates in format "MMMM YYYY"
-        $.fn.dataTable.moment('MMMM YYYY');
-
-        $('#pension').DataTable({
-            "processing": true,  // Ensures smooth UI updates
-            "serverSide": false,  // Ensures client-side pagination works
-            "pageLength": 10,  // Number of rows per page
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            "ordering": true,
-            "searching": true,
-            "stateSave": true,
-            "paging": true,  // Enable pagination
-            "retrieve": true,
-            "destroy": true,  // Ensures reinitialization works
-            //"order": [[0, "desc"]], // Sort by the first column (payPeriod) descending
-            //"columnDefs": [
-            //    { "type": "date", "targets": 0 } // Ensures correct date sorting
-            //]
-        });
-    });
-
-
-</script>*@
-
-
 
 <script>
 
@@ -127,24 +100,17 @@
             $('#pension').DataTable({
                 "pageLength": 15,
                 "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
-                "ordering": true,
+                //"ordering": true,
                 "searching": true,
-                "stateSave": true,
-                retrieve: true,
+              //"stateSave": true,
+                //retrieve: true,
+                "paging": true,
                 // "order": [[0, "desc"]]
-                // "order": [[0, "desc"]],  // Force descending order on first column (Period)
-                //"columnDefs": [
-                //    { "type": "date", "targets": 0 }// Ensures correct date sorting
+                 "order": [[0, "desc"]], 
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }]
 
             });
         });
-    $(document).ready(function () {
-        $('#payperiod').columnDefs({
-             "order": [[0, "desc"]],
-             //"order": [[0, "desc"]],  // Force descending order on first column (Period)
-            "columnDefs": [
-             { "type": "date", "targets": 0 }]// Ensures correct date sorting
-
-        });
-    });
+   
     </script>
