@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrusteePortal", "TrusteePortal\TrusteePortal.csproj", "{439DC530-5111-4FC1-ABD5-3D45DE60468D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{439DC530-5111-4FC1-ABD5-3D45DE60468D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{439DC530-5111-4FC1-ABD5-3D45DE60468D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{439DC530-5111-4FC1-ABD5-3D45DE60468D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{439DC530-5111-4FC1-ABD5-3D45DE60468D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42482015-DFCB-47FF-B1A9-80D0B9D1DF41}
+	EndGlobalSection
+EndGlobal
