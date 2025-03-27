@@ -45,6 +45,23 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GenerateP9">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateP9_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetAssignedBoards">
         <complexType>
           <sequence>
@@ -166,6 +183,12 @@
   <message name="CheckValidTrusteeNo_Result">
     <part name="parameters" element="tns:CheckValidTrusteeNo_Result" />
   </message>
+  <message name="GenerateP9">
+    <part name="parameters" element="tns:GenerateP9" />
+  </message>
+  <message name="GenerateP9_Result">
+    <part name="parameters" element="tns:GenerateP9_Result" />
+  </message>
   <message name="GetAssignedBoards">
     <part name="parameters" element="tns:GetAssignedBoards" />
   </message>
@@ -220,6 +243,10 @@
     <operation name="CheckValidTrusteeNo">
       <input name="CheckValidTrusteeNo" message="tns:CheckValidTrusteeNo" />
       <output name="CheckValidTrusteeNo_Result" message="tns:CheckValidTrusteeNo_Result" />
+    </operation>
+    <operation name="GenerateP9">
+      <input name="GenerateP9" message="tns:GenerateP9" />
+      <output name="GenerateP9_Result" message="tns:GenerateP9_Result" />
     </operation>
     <operation name="GetAssignedBoards">
       <input name="GetAssignedBoards" message="tns:GetAssignedBoards" />
@@ -276,6 +303,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="CheckValidTrusteeNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateP9">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GenerateP9" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateP9">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateP9_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

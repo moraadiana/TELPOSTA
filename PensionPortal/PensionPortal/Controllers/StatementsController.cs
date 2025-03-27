@@ -30,7 +30,7 @@ namespace PensionPortal.Controllers
 
             return View();
         }
-        public ActionResult PensionerStatement()
+        public ActionResult PensionerStatement1()
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
             PensionerStatement PensionerStatement = new PensionerStatement();
@@ -48,6 +48,28 @@ namespace PensionPortal.Controllers
             }
             return View(PensionerStatement);
         }
+    public ActionResult PensionerStatement()
+ {
+     if (Session["pensionerNo"] == null)
+         return RedirectToAction("index", "login");
+
+     var model = new PensionerStatement();
+     try
+     {
+         model.PayrollPeriods = Helper.GetPayrollPeriods();
+
+         ViewBag.PdfUrl = TempData["PdfUrl"];
+
+
+
+     }
+     catch (Exception ex)
+     {
+         ViewBag.Error = ex.Message;
+     }
+
+     return View(model);
+ }
         public ActionResult GeneratePensionerStatement(string pensionerNo, string pensionerStatus, DateTime? startDate, DateTime? endDate)
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");

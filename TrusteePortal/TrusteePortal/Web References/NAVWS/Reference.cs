@@ -35,6 +35,8 @@ namespace TrusteePortal.NAVWS {
         
         private System.Threading.SendOrPostCallback CheckValidTrusteeNoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GenerateP9OperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetAssignedBoardsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetBoardMeetingsAttendedOperationCompleted;
@@ -95,6 +97,9 @@ namespace TrusteePortal.NAVWS {
         
         /// <remarks/>
         public event CheckValidTrusteeNoCompletedEventHandler CheckValidTrusteeNoCompleted;
+        
+        /// <remarks/>
+        public event GenerateP9CompletedEventHandler GenerateP9Completed;
         
         /// <remarks/>
         public event GetAssignedBoardsCompletedEventHandler GetAssignedBoardsCompleted;
@@ -206,6 +211,42 @@ namespace TrusteePortal.NAVWS {
             if ((this.CheckValidTrusteeNoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckValidTrusteeNoCompleted(this, new CheckValidTrusteeNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GenerateP9", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GenerateP9_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GenerateP9(string username, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime period, string path, string fileName) {
+            object[] results = this.Invoke("GenerateP9", new object[] {
+                        username,
+                        period,
+                        path,
+                        fileName});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GenerateP9Async(string username, System.DateTime period, string path, string fileName) {
+            this.GenerateP9Async(username, period, path, fileName, null);
+        }
+        
+        /// <remarks/>
+        public void GenerateP9Async(string username, System.DateTime period, string path, string fileName, object userState) {
+            if ((this.GenerateP9OperationCompleted == null)) {
+                this.GenerateP9OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateP9OperationCompleted);
+            }
+            this.InvokeAsync("GenerateP9", new object[] {
+                        username,
+                        period,
+                        path,
+                        fileName}, this.GenerateP9OperationCompleted, userState);
+        }
+        
+        private void OnGenerateP9OperationCompleted(object arg) {
+            if ((this.GenerateP9Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GenerateP9Completed(this, new GenerateP9CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -518,6 +559,32 @@ namespace TrusteePortal.NAVWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GenerateP9CompletedEventHandler(object sender, GenerateP9CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GenerateP9CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GenerateP9CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
