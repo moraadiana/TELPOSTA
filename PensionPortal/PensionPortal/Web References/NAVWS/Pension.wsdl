@@ -45,6 +45,19 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GenerateBeneficiaryReport">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryReport_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="GeneratePensionStatement1">
         <complexType>
           <sequence>
@@ -219,7 +232,9 @@
       </element>
       <element name="LifeCertificate1_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="LifeCertificate">
@@ -234,7 +249,9 @@
       </element>
       <element name="LifeCertificate_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="LoginForUnchangedPassword">
@@ -317,6 +334,12 @@
   </message>
   <message name="CheckValidPensionerNo_Result">
     <part name="parameters" element="tns:CheckValidPensionerNo_Result" />
+  </message>
+  <message name="GenerateBeneficiaryReport">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport" />
+  </message>
+  <message name="GenerateBeneficiaryReport_Result">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport_Result" />
   </message>
   <message name="GeneratePensionStatement1">
     <part name="parameters" element="tns:GeneratePensionStatement1" />
@@ -439,6 +462,10 @@
       <input name="CheckValidPensionerNo" message="tns:CheckValidPensionerNo" />
       <output name="CheckValidPensionerNo_Result" message="tns:CheckValidPensionerNo_Result" />
     </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <input name="GenerateBeneficiaryReport" message="tns:GenerateBeneficiaryReport" />
+      <output name="GenerateBeneficiaryReport_Result" message="tns:GenerateBeneficiaryReport_Result" />
+    </operation>
     <operation name="GeneratePensionStatement1">
       <input name="GeneratePensionStatement1" message="tns:GeneratePensionStatement1" />
       <output name="GeneratePensionStatement1_Result" message="tns:GeneratePensionStatement1_Result" />
@@ -538,6 +565,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="CheckValidPensionerNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GenerateBeneficiaryReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateBeneficiaryReport">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateBeneficiaryReport_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

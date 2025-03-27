@@ -1,12 +1,13 @@
-﻿@{
+﻿@model PensionPortal.Models.LifeCertificate
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Life Certificate";
 }
 
-<div class="container-fluid page-content d-flex justify-content-center">
+<div class="container-fluid page-content d-flex flex-column align-items-center py-4">
     <!-- PAGE HEADER -->
-    <div class="page-bar mb-4">
-        <ul class="breadcrumb">
+    <div class="page-bar mb-4 w-100">
+        <ul class="breadcrumb bg-transparent px-0">
             <li class="breadcrumb-item">
                 <a href="@Url.Action("index", "dashboard")" class="text-decoration-none">Home</a>
             </li>
@@ -15,67 +16,102 @@
     </div>
 
     <!-- Alerts -->
-    @if (ViewBag.Error != null)
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
     {
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
             <i class="bi bi-exclamation-circle-fill me-2"></i>
             <span>@ViewBag.Error</span>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
         </div>
     }
-    @if (ViewBag.Success != null)
+    @if (!string.IsNullOrEmpty(ViewBag.Success))
     {
-        <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i>
             <span>@ViewBag.Success</span>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
         </div>
     }
 
-    <!-- Life Certificate Section -->
+    <!-- Life Certificate Form -->
     <div class="row">
-        <div class="col-lg-10 mx-auto justify-content-center" width="100%">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-gradient-primary text-white d-flex align-items-center">
-                    <h5 class="mb-0">
-                        <i class="bi bi-file-earmark-text me-2"></i> Life Certificate
-                    </h5>
-                </div>
-                <div class="card-body text-center">
-                    @if (!string.IsNullOrEmpty(ViewBag.PdfUrl))
-                    {
-                        <div class="pdf-container">
-                            <iframe id="pdfViewer" class="" width="100%" height="600px" src="@ViewBag.PdfUrl"></iframe>
-                            
+        <div>
+           
+        </div>
+    </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-settings font-red"></i>
+                            <span class="caption-subject font-red sbold uppercase">Life Certificate</span>
                         </div>
-                        <div class="mt-3">
-                            @*<a href="@ViewBag.PdfUrl" class="btn btn-outline-primary" target="_blank">
-                                <i class="bi bi-box-arrow-up-right"></i> Open in New Tab
-                            </a>*@
-                            <a href="@ViewBag.PdfUrl" download class="btn btn-outline-success ms-2">
-                                <i class="bi bi-download"></i> Download Certificate
-                            </a>
-                        </div>
-                       
-                    }
-                    else
-                    {
-                        <div>
+                    </div>
 
-                        </div>
-                        <div class="alert alert-info text-center">
-                            <i class=""></i> No Life Certificate available.
-                        </div>
-                    }
+                    <div class="portlet-body">
+                        <form action="@Url.Action("GenerateLifeCertificate", "Statements")" method="get">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @Html.DropDownListFor(m => m.Period, new SelectList(Model.LifeCertPeriods), new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">  </label>
+                                        <button type="submit" class="btn btn-primary  pull-right">Generate Certificate</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Display Life Certificate -->
+                    <div class="portlet-body text-center">
+                        @if (!string.IsNullOrEmpty(ViewBag.PdfUrl))
+                        {
+                            <div class="row w-200 mt-12">
+                                <div class="col-lg-10 mx-auto">
+                                    <div class="card shadow-lg border-0">
+                                       
+                                        <div class="card-body text-center">
+                                            <div class="pdf-container">
+                                                <iframe id="pdfViewer" class="w-100" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                                            </div>
+                                            <div class="mt-3 d-flex justify-content-center gap-2">
+                                                <a href="@ViewBag.PdfUrl" target="_blank" class="btn btn-outline-primary">
+                                                    <i class="bi bi-eye"></i> View Certificate
+                                                </a>
+                                                <a href="@ViewBag.PdfUrl" download class="btn btn-outline-success">
+                                                    <i class="bi bi-download"></i> Download Certificate
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info text-center mt-4">
+                                <i class="bi bi-info-circle"></i> No Life Certificate available.
+                            </div>
+
+                        }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Custom Styling -->
-<style>
+    <!-- Custom Styling -->
+    <style>
     .container-fluid {
         background-color: #f8f9fa;
         padding: 20px;
@@ -88,13 +124,12 @@
 
     .card {
         border-radius: 12px;
-        overflow: hidden;
         transition: transform 0.2s ease-in-out;
     }
 
-        .card:hover {
-            transform: scale(1.02);
-        }
+    .card:hover {
+        transform: scale(1.02);
+    }
 
     .card-header {
         background: linear-gradient(90deg, #007bff, #0056b3);
@@ -108,7 +143,21 @@
         transition: all 0.2s ease-in-out;
     }
 
-        .btn-outline-primary:hover, .btn-outline-success:hover {
-            transform: scale(1.05);
+    .btn-outline-primary:hover, .btn-outline-success:hover {
+        transform: scale(1.05);
+    }
+
+    /* Ensure PDF iframe fits well */
+    .pdf-container iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+    }
+
+    /* Responsive */
+    @*@media (max-width: 768px) {
+        .pdf-container iframe {
+            height: 400px;
         }
-</style>
+    }*@
+    </style>

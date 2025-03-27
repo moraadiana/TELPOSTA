@@ -17,11 +17,10 @@ namespace PensionPortal.Controllers
 {
     public class StatementsController : Controller
     {
-        //  private string connectionString = "your_database_connection_string"; // Update with your DB details
         
         private readonly string[] strLimiters2 = new string[] { "[]" };
         private readonly string[] strLimiters = new string[] { "::" };
-        // GET: Dashboard
+        
 
         Pension webportals = Components.ObjNav;
         private Helper _helper = new Helper();
@@ -40,12 +39,12 @@ namespace PensionPortal.Controllers
                 var periods = Helper.GetPayrollPeriods();
 
                 PensionerStatement.PayrollPeriods = periods;
-               
+                ViewBag.PdfUrl = TempData["PdfUrl"];
+
             }
             catch (Exception ex)
             {
                 TempData["Error"] = ex.Message;
-                //return RedirectToAction("payperiods", "jobapplication");
             }
             return View(PensionerStatement);
         }
@@ -90,93 +89,66 @@ namespace PensionPortal.Controllers
         }
 
 
-        
         public ActionResult LifeCertificate()
         {
-            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
-            LifeCertificate LifeCertificate = new LifeCertificate();
+            if (Session["pensionerNo"] == null)
+                return RedirectToAction("index", "login");
+
+            var model = new LifeCertificate();
             try
             {
-                var periods = Helper.GetLifeCertPeriods();
+                model.LifeCertPeriods = Helper.GetLifeCertPeriods();
+               
+                ViewBag.PdfUrl = TempData["PdfUrl"];
 
-                LifeCertificate.LifeCertPeriods = periods;
+
 
             }
             catch (Exception ex)
             {
-                TempData["Error"] = ex.Message;
-
+                ViewBag.Error = ex.Message;
             }
-            return View(LifeCertificate);
+
+            return View(model);
         }
-        public ActionResult GenerateLifeCertificate(string pensionerNo, DateTime period)
-        {
-            pensionerNo = Session["pensionerNo"]?.ToString();
-            //string date = "8/31/2024";
-           // period = Convert.ToDateTime(date);
-            if (pensionerNo == null) return RedirectToAction("index", "login");
+         public ActionResult GenerateLifeCertificate(DateTime period)
+         {
+            string pensionerNo = Session["pensionerNo"]?.ToString();
+            if (pensionerNo == null)
+             return RedirectToAction("index", "login");
 
             try
             {
-                string fileName = Regex.Replace(pensionerNo, @"[\/:*?""<>|]", "");
-                string pdfFileName = $"LifeCertificate-{fileName}.pdf";
-
-                string path = Server.MapPath("~/Downloads/");
-                if (string.IsNullOrEmpty(path))
-                {
-                    throw new Exception("Resolved path is null or empty.");
-                }
-
-                string pdfFilePath = Path.Combine(path, pdfFileName);
-                Debug.WriteLine($"Resolved path: {path}");
-
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-
-                if (System.IO.File.Exists(pdfFilePath))
-                {
-                    System.IO.File.Delete(pdfFilePath);
-                }
-
-                webportals.LifeCertificate(path, pdfFileName, pensionerNo, period);
-                TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = $"An error occurred: {ex.Message}";
-            }
-
-            return View("LifeCertificate");
-        }
-
-        public ActionResult GenerateLifeCertificate1(string pensionerNo, DateTime period)
-        {
-            pensionerNo = Session["pensionerNo"]?.ToString();
-            if (pensionerNo == null) return RedirectToAction("index", "login");
-           
-           
-            try
-            {
-                string date = "8/31/2024";
-                period = Convert.ToDateTime(date);
                 string fileName = pensionerNo.Replace(@"/", @"");
                 string pdfFileName = $"LifeCertificate-{fileName}.pdf";
 
                 string path = Server.MapPath("~/Downloads/");
+                if (string.IsNullOrEmpty(path))
+                    throw new Exception("Resolved path is null or empty.");
+
                 string pdfFilePath = Path.Combine(path, pdfFileName);
+                
                 if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path); // Create the Downloads folder if it doesn't exist
-                }
+                    Directory.CreateDirectory(path);
 
                 if (System.IO.File.Exists(pdfFilePath))
-                {
                     System.IO.File.Delete(pdfFilePath);
-                }
 
-                webportals.LifeCertificate(path, pdfFileName, pensionerNo, period);
+                //static date
+              //  DateTime periodDate = Convert.ToDateTime("01/01/25");
+                
+
+             string response = webportals.LifeCertificate1(path,pdfFileName, pensionerNo, period);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    if(response=="SUCCESS")
+                    {
+                        TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+                    }
+                   
+                   
+                }
+              
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                
             }
@@ -185,9 +157,47 @@ namespace PensionPortal.Controllers
                 TempData["Error"] = $"An error occurred: {ex.Message}";
             }
 
-            return View("LifeCertificate");
-
+            return RedirectToAction("LifeCertificate");
         }
+
+        public ActionResult BeneficiaryNomination()
+        {
+            string pensionerNo = Session["pensionerNo"]?.ToString();
+            if (pensionerNo == null) return RedirectToAction("index", "login");
+
+            try
+            {
+                string fileName = pensionerNo.Replace(@"/", @"");
+                string pdfFileName = $"DependantForm-{fileName}.pdf";
+
+                string path = Server.MapPath("~/Downloads/");
+                if (string.IsNullOrEmpty(path))
+                    throw new Exception("Resolved path is null or empty.");
+
+                string pdfFilePath = Path.Combine(path, pdfFileName);
+                Debug.WriteLine($"Resolved path: {path}");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                if (System.IO.File.Exists(pdfFilePath))
+                    System.IO.File.Delete(pdfFilePath);
+
+                 webportals.GenerateBeneficiaryReport(path, pdfFileName);            
+                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+                ViewBag.PdfUrl = TempData["PdfUrl"];
+              
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"An error occurred: {ex.Message}";
+            }
+
+            return View();
+        }
+
+
 
 
     }

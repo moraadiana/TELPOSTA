@@ -12,6 +12,7 @@ namespace PensionPortal.Models
         public string Period { get; set; }
 
         public string PdfUrl { get; set; }
-        public List<LifeCertificate>LifeCertPeriods{ get; set; }
+        public List<string> LifeCertPeriods { get; set; } // Change from List<LifeCertificate> to List<string>
     }
+
 }
