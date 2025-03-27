@@ -14,7 +14,27 @@ namespace PensionPortal
         private static string[] strLimiters = new string[] { "::" };
         private static string[] strLimiters2 = new string[] { "[]" };
 
-        public static List<LifeCertificate> GetLifeCertPeriods()
+        public static List<string> GetLifeCertPeriods()
+        {
+            var list = new List<string>();
+            try
+            {
+                string result = webportals.GetLifeCertDates();
+                if (!string.IsNullOrEmpty(result))
+                {
+                    string[] resultsArr = result.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                    list.Add("-- Select Period--");
+                    list.AddRange(resultsArr); // Add all periods correctly
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
+            }
+            return list;
+        }
+
+        public static List<LifeCertificate> GetLifeCertPeriods1()
         {
             var list = new List<LifeCertificate>();
             try
@@ -25,10 +45,10 @@ namespace PensionPortal
                     string[] resultsArr = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string str in resultsArr)
                     {
-                        string[] responseArr = str.Split(strLimiters, StringSplitOptions.None);
+                       // string[] responseArr = str.Split(strLimiters, StringSplitOptions.None);
                         list.Add(new LifeCertificate()
                         {
-                            Period = responseArr[0]
+                            Period = resultsArr[0]
 
 
                         }

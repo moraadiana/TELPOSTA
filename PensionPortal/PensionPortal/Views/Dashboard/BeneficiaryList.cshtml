@@ -65,36 +65,48 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="table-toolbar">
-                    </div>
-                    <table class="table table-striped table-hover table-bordered" id="beneficiary">
-                        <thead>
-                            <tr>
-                                <th> Name  </th>
-                                <th> Date of Birth </th>
-                                <th> Relationship </th>
-                                <th> Phone Number </th>
-                                <th> Email </th>
+                    @*<form action="@Url.Action("BeneficiaryNomination", "Statements")" method="get">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">  </label>
+                                    <button type="submit" class="btn btn-primary  pull-right">Download form</button>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (!Model.Equals(null))
-                            {
-                                foreach (var item in Model)
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>*@
+                        <div class="table-toolbar">
+                        </div>
+                        <table class="table table-striped table-hover table-bordered" id="beneficiary">
+                            <thead>
+                                <tr>
+                                    <th> Name  </th>
+                                    <th> Date of Birth </th>
+                                    <th> Relationship </th>
+                                    <th> Phone Number </th>
+                                    <th> Email </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (!Model.Equals(null))
                                 {
-                                    <tr>
-                                        <td>@item.Name</td>
-                                        <td>@item.DOB</td>
-                                        <td>@item.Rlshp</td>
-                                        <td>@item.PhoneNo</td>
-                                        <td>@item.Email</td>
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.DOB</td>
+                                            <td>@item.Rlshp</td>
+                                            <td>@item.PhoneNo</td>
+                                            <td>@item.Email</td>
 
-                                    </tr>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                 </div>
             </div>
         </div>

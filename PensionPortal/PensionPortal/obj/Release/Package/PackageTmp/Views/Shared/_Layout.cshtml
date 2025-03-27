@@ -167,13 +167,13 @@
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="fa fa-users"></i>
-                                <span style="color: #ffffff !important" class="title">Dependents</span>
+                                <span style="color: #ffffff !important" class="title">Beneficiaries</span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
                                     <a href="@Url.Action("beneficiarylist", "dashboard")" class="nav-link nav-toggle">
                                         <i class="fa fa-user-friends"></i>
-                                        <span style="color: #ffffff !important" class="title">View Dependents</span>
+                                        <span style="color: #ffffff !important" class="title">View Beneficiaries</span>
                                     </a>
                                 </li>
 
@@ -186,7 +186,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("memberstatement", "statements")" class="nav-link nav-toggle">
+                                    <a href="@Url.Action("pensionerStatement", "statements")" class="nav-link nav-toggle">
                                         <i class="fa fa-file-invoice"></i>
                                         <span style="color: #ffffff !important" class="title">Pension Statement</span>
                                     </a>
@@ -200,10 +200,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="@Url.Action("BeneficiaryNomination", "statements")" class="nav-link nav-toggle">
+                                        <i class="fa fa-users"></i>
+                                        <span style="color: #ffffff !important" class="title">
+                                            Beneficiary Nomination
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="@Url.Action("monthlypension", "dashboard")" class="nav-link nav-toggle">
                                         <i class="fa fa-money-check-alt"></i>
                                         <span style="color: #ffffff !important" class="title">
-                                            Pension Payments
+                                            Monthly Pension
                                         </span>
                                     </a>
                                 </li>
@@ -226,7 +234,7 @@
                                     <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
                                         <i class="fas fa-calendar-alt"></i> <!-- Calendar icon -->
                                         <span style="color: #ffffff !important" class="title">
-                                            Payroll Schedule
+                                            Pay Schedule
                                         </span>
                                     </a>
                                 </li>

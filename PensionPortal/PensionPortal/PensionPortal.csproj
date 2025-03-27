@@ -2580,6 +2580,7 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Dashboard\MonthlyPension.cshtml" />
+    <Content Include="Views\Statements\BeneficiaryNomination.cshtml" />
     <None Include="Web References\NAVWS\Pension.wsdl" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
