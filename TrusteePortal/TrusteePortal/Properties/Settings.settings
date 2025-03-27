@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TrusteePortal.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TrusteePortal_NAVWS_Trustee" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://erp.telpostapension.org:7047/TelPosta/WS/Telposta%20Test/Codeunit/Trustee</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using static System.Net.WebRequestMethods;
 using TrusteePortal.Models;
+using TrusteePortal.NAVWS;
 
 namespace TrusteePortal.Controllers
 {
@@ -14,7 +15,7 @@ namespace TrusteePortal.Controllers
     {
 
 
-        Pension webportals = Components.ObjNav;
+        Trustee webportals = Components.ObjNav;
         string[] strLimiters = new string[] { "::" };
         public ActionResult Index()
         {
@@ -29,13 +30,13 @@ namespace TrusteePortal.Controllers
                 string PFno = account.PFno;
                 string emailAddress = account.Email;
                 string password = account.Password.Trim();
-                bool isValid = webportals.CheckValidPensionerNo(PFno);
-                Console.WriteLine($"CheckValidPensionerNo returned: {isValid}");
+                bool isValid = webportals.CheckValidTrusteeNo(PFno);
+               // Console.WriteLine($"CheckValidPensionerNo returned: {isValid}");
                 bool changedpwd = false;
 
-                if (webportals.CheckValidPensionerNo(PFno))
+                if (webportals.CheckValidTrusteeNo(PFno))
                 {
-                    string responsepwd = webportals.CheckPensionerPasswordChanged(PFno);
+                    string responsepwd = webportals.CheckTrusteePasswordChanged(PFno);
                     if (!string.IsNullOrEmpty(responsepwd))
                     {
                         if (responsepwd == "Yes")
@@ -45,27 +46,27 @@ namespace TrusteePortal.Controllers
                     }
                     if (changedpwd == true)
                     {
-                        string response = webportals.CheckPensionerLogin(PFno, password);
+                        string response = webportals.CheckTrusteeLogin(PFno, password);
                         if (!string.IsNullOrEmpty(response))
                         {
                             string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
                             string returnMsg = responseArr[0];
                             if (returnMsg == "SUCCESS")
                             {
-                                string pensionerNo = responseArr[2];
-                                string pensionerName = responseArr[3];
-                                string pensionerEmail = responseArr[4];
-                                // string vendorVat = responseArr[4];
+                                string trusteeNo = responseArr[2];
+                                string trusteeName = responseArr[3];
+                                string trusteeEmail = responseArr[4];
+                               
 
-                                Session["pensionerNo"] = pensionerNo;
-                                Session["pensionerName"] = pensionerName;
-                                Session["pensionerEmail"] = pensionerEmail;
-                                // Session["VendorVat"] = vendorVat;
+                                Session["trusteeNo"] = trusteeNo;
+                                Session["trusteeName"] = trusteeName;
+                                Session["trusteeEmail"] = trusteeEmail;
+                               
 
                                 //string otp = GenerateOtp(6);
                                 //Session["otp"] = otp;
 
-                                //string subject = "Telposta Pension Portal OTP";
+                                //string subject = "Telposta Trustee Portal OTP";
                                 //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
                                 //Components.SendEmailAlerts(pensionerEmail, subject, body);
                                 //return RedirectToAction("verifyotp");
@@ -87,15 +88,15 @@ namespace TrusteePortal.Controllers
                             string returnMsg = responseArr[0];
                             if (returnMsg == "SUCCESS")
                             {
-                                string pensionerNo = responseArr[1];
-                                string pensionerName = responseArr[2];
-                                string pensionerEmail = responseArr[3];
+                                string trusteeNo = responseArr[1];
+                                string trusteeName = responseArr[2];
+                                string trusteeEmail = responseArr[3];
                                 // string vendorVat = responseArr[4];
 
-                                Session["pensionerNo"] = pensionerNo;
-                                Session["pensionerName"] = pensionerName;
-                                Session["pensionerEmail"] = pensionerEmail;
-                                // Response.Redirect($"ResetPassword.aspx?staffNo={staffNo}&email={staffEmail}");
+                                Session["trusteeNo"] = trusteeNo;
+                                Session["trusteeName"] = trusteeName;
+                                Session["trusteeEmail"] = trusteeEmail;
+                         
                                 return RedirectToAction("resetpassword", "login");
                             }
                             else
@@ -123,7 +124,7 @@ namespace TrusteePortal.Controllers
 
         public ActionResult VerifyOTP()
         {
-            if (Session["pensionerNo"] == null) return View("index");
+            if (Session["trusteeNo"] == null) return View("index");
             return View();
         }
 
@@ -173,12 +174,12 @@ namespace TrusteePortal.Controllers
 
             if (!string.IsNullOrEmpty(pensionerNo))
             {
-                Session["pensionerNo"] = pensionerNo;
+                Session["trusteeNo"] = pensionerNo;
             }
 
             // Retrieve stored session values if they exist
             ViewBag.EmailAddress = Session["EmailAddress"] as string;
-            ViewBag.PensionerNo = Session["pensionerNo"] as string;
+            ViewBag.PensionerNo = Session["trusteeNo"] as string;
 
             return View();
         }
@@ -188,16 +189,16 @@ namespace TrusteePortal.Controllers
         {
             try
             {
-                if (Session["pensionerNo"] == null)
+                if (Session["trusteeNo"] == null)
                 {
                     TempData["Error"] = "Session expired. Please log in again.";
                     return RedirectToAction("index", "login");
                 }
                 string newPassword = reset.Password;
                 string confirmPassword = reset.PasswordConfirmation;
-                string pensionerNo = Session["pensionerNo"].ToString();
+                string pensionerNo = Session["trusteeNo"].ToString();
 
-                string response = webportals.UpdatePensionerPassword(pensionerNo, newPassword);
+                string response = webportals.UpdateTrusteePassword(pensionerNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
                 {
                     if (response == "SUCCESS")
@@ -230,10 +231,10 @@ namespace TrusteePortal.Controllers
             {
 
                 string newPassword = GenerateRandomPassword(10);
-                string pensionerNo = reset.PfNo;
-                string pensionerEmail = reset.Email;
+                string trusteeNo = reset.PfNo;
+                string trusteeEmail = reset.Email;
                 //string email = Components.ObjNav.GetPensionerEmail(pensionerNo);
-                string response = Components.ObjNav.UpdatePensionerAutoGenPassword(pensionerNo, newPassword);
+                string response = Components.ObjNav.UpdateTrusteeAutoGenPassword(trusteeNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
                 {
                     if (response != "SUCCESS")
@@ -243,12 +244,12 @@ namespace TrusteePortal.Controllers
                     }
 
                 }
-                string subject = "Telposta Pension Portal Password Reset";
-                string body = $"Use this password to log into Telposta Pension Portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
-                Components.SendEmailAlerts(pensionerEmail, subject, body);
+                string subject = "Telposta Trustee Portal Password Reset";
+                string body = $"Use this password to log into Telposta Trustee Pension Portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                Components.SendEmailAlerts(trusteeEmail, subject, body);
                 //return RedirectToAction("verifyotp");
                 //SendPasswordResetLink(username);
-                TempData["Success"] = $"Auto generated password has been sent to your email address {pensionerEmail}";
+                TempData["Success"] = $"Auto generated password has been sent to your email address {trusteeEmail}";
                 //  return RedirectToAction("index");
             }
             catch (Exception ex)

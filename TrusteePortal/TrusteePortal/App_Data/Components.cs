@@ -5,12 +5,13 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net;
 using System.Web;
+using TrusteePortal.NAVWS;
 
 namespace TrusteePortal
 {
     public class Components
     {
-        public static Pension ObjNav
+        public static Trustee ObjNav
         {
             get
             {
@@ -21,7 +22,7 @@ namespace TrusteePortal
                 ServicePointManager.ServerCertificateValidationCallback +=
                     (sender, certificate, chain, sslPolicyErrors) => true;
 
-                var webservice = new Pension();
+                var webservice = new Trustee();
                 try
                 {
                     var credentials = new NetworkCredential(

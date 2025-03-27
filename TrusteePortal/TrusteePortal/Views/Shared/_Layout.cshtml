@@ -60,9 +60,9 @@
 <!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-    <div id="loading" class="loading">
+    @*<div id="loading" class="loading">
         <img id="loading-image" src="../assets/pages/img/spinner.png" alt="Loading..." />
-    </div>
+    </div>*@
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top" style="background-color: #244767">
@@ -81,7 +81,7 @@
                 <div class="page-logo" style="display: flex; align-items: center; justify-content: space-between; background-color: #244767; padding: 10px 15px;">
                     <a href="@Url.Action("index", "dashboard")" style="text-decoration: none; flex-grow: 1;">
                         <div class="logo-default" style="font-size: 14px;  color: #ffffff; text-align: center;">
-                            TELPOSTA PENSION SCHEME PORTAL
+                            TELPOSTA TRUSTEE PORTAL
                         </div>
                     </a>
                     <div class="menu-toggler sidebar-toggler" style="cursor: pointer; margin-left: 10px;">
@@ -153,97 +153,58 @@
                                 <span style="color: #ffffff !important" class="title">My Profile</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("AssignedBoardList", "board")" class="nav-link nav-toggle">
+                                <i class="fa fa-group"></i>
+                                <span style="color: #ffffff !important" class="title">Assigned Commitees</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("BoardMeetingList", "board")" class="nav-link nav-toggle">
+                                <i class="fa fa-file-archive"></i>
+                                <span style="color: #ffffff !important" class="title">Board Attendance</span>
+                            </a>
+                        </li>
+
+                        <!--<li class="nav-item">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fas fa-bell"></i>-->
+                        <!-- Notification icon -->
+                        <!--<span style="color: #ffffff !important" class="title">B</span>
+    </a>
+    <ul class="sub-menu">
+        <li class="nav-item">
+            <a href="@Url.Action("news", "dashboard")" class="nav-link nav-toggle">
+                <i class="fas fa-newspaper"></i>-->
+                        <!-- News icon -->
+                        <!--<span style="color: #ffffff !important" class="title">Latest News</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
+            <i class="fas fa-calendar-alt"></i>-->
+                        <!-- Calendar icon -->
+                        <!--<span style="color: #ffffff !important" class="title">
+                        Pay Schedule
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </li>-->
                         @*<li class="nav-item">
-                                <a href="@Url.Action("index", "dashboard")" class="nav-link nav-toggle">
-                                    <i class="fa fa-user"></i>
-                                    <span style="color: #ffffff !important" class="title">Pensioners</span>
-                                </a>
-                            </li>*@
-
-
-                        <li class="nav-item">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-users"></i>
-                                <span style="color: #ffffff !important" class="title">Beneficiaries</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("beneficiarylist", "dashboard")" class="nav-link nav-toggle">
-                                        <i class="fa fa-user-friends"></i>
-                                        <span style="color: #ffffff !important" class="title">View Beneficiaries</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-file-alt "></i>
-                                <span style="color: #ffffff !important" class="title">Reports</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("memberstatement", "statements")" class="nav-link nav-toggle">
-                                        <i class="fa fa-file-invoice"></i>
-                                        <span style="color: #ffffff !important" class="title">Pension Statement</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("lifeCertificate", "statements")" class="nav-link nav-toggle">
-                                        <i class="fa fa-certificate"></i>
-                                        <span style="color: #ffffff !important" class="title">
-                                            Life Certificate
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("monthlypension", "dashboard")" class="nav-link nav-toggle">
-                                        <i class="fa fa-money-check-alt"></i>
-                                        <span style="color: #ffffff !important" class="title">
-                                            Monthly Pension
-                                        </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fas fa-bell"></i> <!-- Notification icon -->
-                                <span style="color: #ffffff !important" class="title">Notifications</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("news", "dashboard")" class="nav-link nav-toggle">
-                                        <i class="fas fa-newspaper"></i> <!-- News icon -->
-                                        <span style="color: #ffffff !important" class="title">Latest News</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
-                                        <i class="fas fa-calendar-alt"></i> <!-- Calendar icon -->
-                                        <span style="color: #ffffff !important" class="title">
-                                            Pay Schedule
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        @*<li class="nav-item">
-                                <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
-                                    <i class="icon-calendar "></i>
-                                    <span style="color: #ffffff !important" class="title">Pay Schedule</span>
-                                </a>
-                            </li>*@
+            <a href="@Url.Action("payschedule", "dashboard")" class="nav-link nav-toggle">
+                <i class="icon-calendar "></i>
+                <span style="color: #ffffff !important" class="title">Pay Schedule</span>
+            </a>
+        </li>*@
                         @*
-                            <li class="nav-item">
-                                <a href="@Url.Action("logout", "dashboard")" class="nav-link nav-toggle">
-                                    <i class="icon-logout"></i>
-                                    <span style="color: #ffffff !important" class="title">Logout</span>
-                                </a>
-                            </li>*@
+        <li class="nav-item">
+            <a href="@Url.Action("logout", "dashboard")" class="nav-link nav-toggle">
+                <i class="icon-logout"></i>
+                <span style="color: #ffffff !important" class="title">Logout</span>
+            </a>
+        </li>*@
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Trustee" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="CheckTrusteeLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckTrusteeLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckTrusteePasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckTrusteePasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidTrusteeNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckValidTrusteeNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAssignedBoards">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAssignedBoards_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBoardMeetingsAttended">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBoardMeetingsAttended_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeEmail">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrusteeEmail_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LoginForUnchangedPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LoginForUnchangedPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateTrusteeAutoGenPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="genpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateTrusteeAutoGenPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateTrusteePassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateTrusteePassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="CheckTrusteeLogin">
+    <part name="parameters" element="tns:CheckTrusteeLogin" />
+  </message>
+  <message name="CheckTrusteeLogin_Result">
+    <part name="parameters" element="tns:CheckTrusteeLogin_Result" />
+  </message>
+  <message name="CheckTrusteePasswordChanged">
+    <part name="parameters" element="tns:CheckTrusteePasswordChanged" />
+  </message>
+  <message name="CheckTrusteePasswordChanged_Result">
+    <part name="parameters" element="tns:CheckTrusteePasswordChanged_Result" />
+  </message>
+  <message name="CheckValidTrusteeNo">
+    <part name="parameters" element="tns:CheckValidTrusteeNo" />
+  </message>
+  <message name="CheckValidTrusteeNo_Result">
+    <part name="parameters" element="tns:CheckValidTrusteeNo_Result" />
+  </message>
+  <message name="GetAssignedBoards">
+    <part name="parameters" element="tns:GetAssignedBoards" />
+  </message>
+  <message name="GetAssignedBoards_Result">
+    <part name="parameters" element="tns:GetAssignedBoards_Result" />
+  </message>
+  <message name="GetBoardMeetingsAttended">
+    <part name="parameters" element="tns:GetBoardMeetingsAttended" />
+  </message>
+  <message name="GetBoardMeetingsAttended_Result">
+    <part name="parameters" element="tns:GetBoardMeetingsAttended_Result" />
+  </message>
+  <message name="GetTrusteeDetails">
+    <part name="parameters" element="tns:GetTrusteeDetails" />
+  </message>
+  <message name="GetTrusteeDetails_Result">
+    <part name="parameters" element="tns:GetTrusteeDetails_Result" />
+  </message>
+  <message name="GetTrusteeEmail">
+    <part name="parameters" element="tns:GetTrusteeEmail" />
+  </message>
+  <message name="GetTrusteeEmail_Result">
+    <part name="parameters" element="tns:GetTrusteeEmail_Result" />
+  </message>
+  <message name="LoginForUnchangedPassword">
+    <part name="parameters" element="tns:LoginForUnchangedPassword" />
+  </message>
+  <message name="LoginForUnchangedPassword_Result">
+    <part name="parameters" element="tns:LoginForUnchangedPassword_Result" />
+  </message>
+  <message name="UpdateTrusteeAutoGenPassword">
+    <part name="parameters" element="tns:UpdateTrusteeAutoGenPassword" />
+  </message>
+  <message name="UpdateTrusteeAutoGenPassword_Result">
+    <part name="parameters" element="tns:UpdateTrusteeAutoGenPassword_Result" />
+  </message>
+  <message name="UpdateTrusteePassword">
+    <part name="parameters" element="tns:UpdateTrusteePassword" />
+  </message>
+  <message name="UpdateTrusteePassword_Result">
+    <part name="parameters" element="tns:UpdateTrusteePassword_Result" />
+  </message>
+  <portType name="Trustee_Port">
+    <operation name="CheckTrusteeLogin">
+      <input name="CheckTrusteeLogin" message="tns:CheckTrusteeLogin" />
+      <output name="CheckTrusteeLogin_Result" message="tns:CheckTrusteeLogin_Result" />
+    </operation>
+    <operation name="CheckTrusteePasswordChanged">
+      <input name="CheckTrusteePasswordChanged" message="tns:CheckTrusteePasswordChanged" />
+      <output name="CheckTrusteePasswordChanged_Result" message="tns:CheckTrusteePasswordChanged_Result" />
+    </operation>
+    <operation name="CheckValidTrusteeNo">
+      <input name="CheckValidTrusteeNo" message="tns:CheckValidTrusteeNo" />
+      <output name="CheckValidTrusteeNo_Result" message="tns:CheckValidTrusteeNo_Result" />
+    </operation>
+    <operation name="GetAssignedBoards">
+      <input name="GetAssignedBoards" message="tns:GetAssignedBoards" />
+      <output name="GetAssignedBoards_Result" message="tns:GetAssignedBoards_Result" />
+    </operation>
+    <operation name="GetBoardMeetingsAttended">
+      <input name="GetBoardMeetingsAttended" message="tns:GetBoardMeetingsAttended" />
+      <output name="GetBoardMeetingsAttended_Result" message="tns:GetBoardMeetingsAttended_Result" />
+    </operation>
+    <operation name="GetTrusteeDetails">
+      <input name="GetTrusteeDetails" message="tns:GetTrusteeDetails" />
+      <output name="GetTrusteeDetails_Result" message="tns:GetTrusteeDetails_Result" />
+    </operation>
+    <operation name="GetTrusteeEmail">
+      <input name="GetTrusteeEmail" message="tns:GetTrusteeEmail" />
+      <output name="GetTrusteeEmail_Result" message="tns:GetTrusteeEmail_Result" />
+    </operation>
+    <operation name="LoginForUnchangedPassword">
+      <input name="LoginForUnchangedPassword" message="tns:LoginForUnchangedPassword" />
+      <output name="LoginForUnchangedPassword_Result" message="tns:LoginForUnchangedPassword_Result" />
+    </operation>
+    <operation name="UpdateTrusteeAutoGenPassword">
+      <input name="UpdateTrusteeAutoGenPassword" message="tns:UpdateTrusteeAutoGenPassword" />
+      <output name="UpdateTrusteeAutoGenPassword_Result" message="tns:UpdateTrusteeAutoGenPassword_Result" />
+    </operation>
+    <operation name="UpdateTrusteePassword">
+      <input name="UpdateTrusteePassword" message="tns:UpdateTrusteePassword" />
+      <output name="UpdateTrusteePassword_Result" message="tns:UpdateTrusteePassword_Result" />
+    </operation>
+  </portType>
+  <binding name="Trustee_Binding" type="tns:Trustee_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="CheckTrusteeLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:CheckTrusteeLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckTrusteeLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckTrusteeLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckTrusteePasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:CheckTrusteePasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckTrusteePasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckTrusteePasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckValidTrusteeNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:CheckValidTrusteeNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckValidTrusteeNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckValidTrusteeNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetAssignedBoards">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetAssignedBoards" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetAssignedBoards">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetAssignedBoards_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBoardMeetingsAttended">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBoardMeetingsAttended">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBoardMeetingsAttended_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrusteeDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetTrusteeDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrusteeDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrusteeDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrusteeEmail">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetTrusteeEmail" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrusteeEmail">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrusteeEmail_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="LoginForUnchangedPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:LoginForUnchangedPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LoginForUnchangedPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LoginForUnchangedPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateTrusteeAutoGenPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:UpdateTrusteeAutoGenPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateTrusteeAutoGenPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateTrusteeAutoGenPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateTrusteePassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:UpdateTrusteePassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateTrusteePassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateTrusteePassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Trustee">
+    <port name="Trustee_Port" binding="tns:Trustee_Binding">
+      <address location="https://erp.telpostapension.org:7047/TelPosta/WS/Telposta%20Test/Codeunit/Trustee" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
