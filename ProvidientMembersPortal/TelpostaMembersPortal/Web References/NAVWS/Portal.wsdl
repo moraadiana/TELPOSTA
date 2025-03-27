@@ -2,6 +2,19 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RejectPV">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectPV_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="RejectStoreReq">
         <complexType>
           <sequence>
@@ -752,6 +765,19 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GenerateBeneficiaryReport">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryReport_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="GenerateBeneficiaryStatement">
         <complexType>
           <sequence>
@@ -1344,21 +1370,14 @@
           <sequence />
         </complexType>
       </element>
-      <element name="RejectPV">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="RejectPV_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="RejectPV">
+    <part name="parameters" element="tns:RejectPV" />
+  </message>
+  <message name="RejectPV_Result">
+    <part name="parameters" element="tns:RejectPV_Result" />
+  </message>
   <message name="RejectStoreReq">
     <part name="parameters" element="tns:RejectStoreReq" />
   </message>
@@ -1671,6 +1690,12 @@
   <message name="FnAttachments_Result">
     <part name="parameters" element="tns:FnAttachments_Result" />
   </message>
+  <message name="GenerateBeneficiaryReport">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport" />
+  </message>
+  <message name="GenerateBeneficiaryReport_Result">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport_Result" />
+  </message>
   <message name="GenerateBeneficiaryStatement">
     <part name="parameters" element="tns:GenerateBeneficiaryStatement" />
   </message>
@@ -1917,13 +1942,11 @@
   <message name="RejectLeave_Result">
     <part name="parameters" element="tns:RejectLeave_Result" />
   </message>
-  <message name="RejectPV">
-    <part name="parameters" element="tns:RejectPV" />
-  </message>
-  <message name="RejectPV_Result">
-    <part name="parameters" element="tns:RejectPV_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="RejectPV">
+      <input name="RejectPV" message="tns:RejectPV" />
+      <output name="RejectPV_Result" message="tns:RejectPV_Result" />
+    </operation>
     <operation name="RejectStoreReq">
       <input name="RejectStoreReq" message="tns:RejectStoreReq" />
       <output name="RejectStoreReq_Result" message="tns:RejectStoreReq_Result" />
@@ -2132,6 +2155,10 @@
       <input name="FnAttachments" message="tns:FnAttachments" />
       <output name="FnAttachments_Result" message="tns:FnAttachments_Result" />
     </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <input name="GenerateBeneficiaryReport" message="tns:GenerateBeneficiaryReport" />
+      <output name="GenerateBeneficiaryReport_Result" message="tns:GenerateBeneficiaryReport_Result" />
+    </operation>
     <operation name="GenerateBeneficiaryStatement">
       <input name="GenerateBeneficiaryStatement" message="tns:GenerateBeneficiaryStatement" />
       <output name="GenerateBeneficiaryStatement_Result" message="tns:GenerateBeneficiaryStatement_Result" />
@@ -2296,13 +2323,18 @@
       <input name="RejectLeave" message="tns:RejectLeave" />
       <output name="RejectLeave_Result" message="tns:RejectLeave_Result" />
     </operation>
-    <operation name="RejectPV">
-      <input name="RejectPV" message="tns:RejectPV" />
-      <output name="RejectPV_Result" message="tns:RejectPV_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RejectPV">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectPV" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectPV">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectPV_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RejectStoreReq">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectStoreReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RejectStoreReq">
@@ -2771,6 +2803,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateBeneficiaryReport">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateBeneficiaryReport_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GenerateBeneficiaryStatement">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GenerateBeneficiaryStatement">
@@ -3137,15 +3178,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="RejectLeave_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="RejectPV">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectPV" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="RejectPV">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="RejectPV_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -20,30 +21,35 @@ namespace TelpostaMembersPortal.Controllers
         // GET: Dashboard
 
         Portal webportals = Components.Portal;
-      //  private Helper _helper = new Helper();
+        //  private Helper _helper = new Helper();
         public ActionResult Index()
         {
             if (Session["memberNo"] == null) return RedirectToAction("index", "login");
 
             return View();
         }
+        
         public ActionResult MemberStatement()
         {
-            if (Session["memberNo"] == null) return RedirectToAction("index", "login");
-            MemberStatement MemberStatement = new MemberStatement();
+            if (Session["memberNo"] == null)
+                return RedirectToAction("index", "login");
+
+            var model = new MemberStatement();
             try
             {
-                var periods = Helper.GetPayrollPeriods();
+                model.PayrollPeriods = Helper.GetPayrollPeriods();
 
-                MemberStatement.PayrollPeriods = periods;
+                ViewBag.PdfUrl = TempData["PdfUrl"];
+
+
 
             }
             catch (Exception ex)
             {
-                TempData["Error"] = ex.Message;
-                return RedirectToAction("payperiods", "jobapplication");
+                ViewBag.Error = ex.Message;
             }
-            return View(MemberStatement);
+
+            return View(model);
         }
 
 
@@ -66,54 +72,27 @@ namespace TelpostaMembersPortal.Controllers
 
             try
             {
-                string returnstring = "";
                 string fileName = memberNo.Replace(@"/", @"");
-                string pdfFileName = $"Statement-{fileName}.pdf";
-
-                DateTime startDateOnly = startDate.Value.Date;
-                string startingDate = startDateOnly.ToString("yyyy-MM-dd");
-                DateTime endDateOnly = endDate.Value.Date;
-                string endingDate = endDateOnly.ToString("yyyy-MM-dd");
-
-                Console.WriteLine($"Pensioner No: {memberNo}");
+                string pdfFileName = $"MemberStatement-{fileName}.pdf";
 
                 string path = Server.MapPath("~/Downloads/");
+                if (string.IsNullOrEmpty(path))
+                    throw new Exception("Resolved path is null or empty.");
+
                 string pdfFilePath = Path.Combine(path, pdfFileName);
-                //Console.WriteLine($"Start Date: {startDateOnly}, End Date: {endDateOnly}");
-                Console.WriteLine($"Start Date: {startingDate}, End Date: {endingDate}");
-
-
+                Debug.WriteLine($"Resolved path: {path}");
 
                 if (!Directory.Exists(path))
-                {
                     Directory.CreateDirectory(path);
-                }
-
-
 
                 if (System.IO.File.Exists(pdfFilePath))
-                {
                     System.IO.File.Delete(pdfFilePath);
-                }
 
+                webportals.GenerateMemberStatement(memberNo, pdfFileName, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate));
+                TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+                //ViewBag.PdfUrl = TempData["PdfUrl"];
 
-                //webportals.GeneratePensionStatement(pensionerNo, Convert.ToDateTime("7/1/1999").ToString("yyyy-MM-dd"), Convert.ToDateTime("8/1/1999").ToString("yyyy-MM-dd"), pdfFileName);
-
-                byte[] bytes = Convert.FromBase64String(returnstring);
-                //string path = HostingEnvironment.MapPath("~/Download/" + $"PAYSLIP{filename}.pdf");
-
-
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                }
-                FileStream stream = new FileStream(path, FileMode.CreateNew);
-                BinaryWriter writer = new BinaryWriter(stream);
-                writer.Write(bytes, 0, bytes.Length);
-                writer.Close();
-                //  myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("PAYSLIP{0}.pdf", filename)));
-
-                ViewBag.PdfUrl = Url.Content($"~/Downloads/" + $"MemberStatement{fileName}.pdf");
+                //ViewBag.PdfUrl = Url.Content($"~/Downloads/" + $"MemberStatement{fileName}.pdf");
             }
             catch (Exception ex)
             {
@@ -123,10 +102,44 @@ namespace TelpostaMembersPortal.Controllers
 
             return RedirectToAction("MemberStatement");
         }
-       
 
+        public ActionResult BeneficiaryNomination()
+        {
+            if (Session["memberNo"] == null) return RedirectToAction("index", "login");
+            string memberNo = Session["memberNo"].ToString();
+
+            try
+            {
+                string fileName = memberNo.Replace(@"/", @"");
+                string pdfFileName = $"DependantForm-{fileName}.pdf";
+
+                string path = Server.MapPath("~/Downloads/");
+                if (string.IsNullOrEmpty(path))
+                    throw new Exception("Resolved path is null or empty.");
+
+                string pdfFilePath = Path.Combine(path, pdfFileName);
+                Debug.WriteLine($"Resolved path: {path}");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                if (System.IO.File.Exists(pdfFilePath))
+                    System.IO.File.Delete(pdfFilePath);
+
+                webportals.GenerateBeneficiaryReport(path, pdfFileName);
+                TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+                ViewBag.PdfUrl = TempData["PdfUrl"];
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"An error occurred: {ex.Message}";
+            }
+
+            return View();
         }
 
-
+    }
 }
 

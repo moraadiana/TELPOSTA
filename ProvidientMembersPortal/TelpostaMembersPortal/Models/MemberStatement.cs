@@ -16,6 +16,7 @@ namespace TelpostaMembersPortal.Models
         public string PayrollPeriod { get; set; }
 
         public string PdfUrl { get; set; }
-        public List<MemberStatement> PayrollPeriods { get; set; }
+        public List<string> PayrollPeriods { get; set; }
+        //public List<string> LifeCertPeriods { get; set; }
     }
 }

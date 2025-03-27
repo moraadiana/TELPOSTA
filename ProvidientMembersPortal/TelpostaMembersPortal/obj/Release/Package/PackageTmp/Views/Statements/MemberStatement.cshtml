@@ -11,7 +11,7 @@
             <li class="breadcrumb-item">
                 <a href="@Url.Action("index", "dashboard")">Home</a>
             </li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Member Statement</li>
         </ul>
     </div>
 
@@ -47,25 +47,30 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">
-                        <i class="bi bi-file-earmark-text me-2"></i> Member Statement
-                    </h5>
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-red"></i>
+                        <span class="caption-subject font-red sbold uppercase">Member Statement</span>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="portlet-body">
                     <form action="@Url.Action("GenerateMemberStatement", "Statements")" method="get">
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="startDate" class="form-label">Start Date:</label>
                                 @*<input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />*@
-                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })
+                                @*@Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })*@
+
+                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
 
                             </div>
 
                             <div class="col-md-4">
                                 <label for="endDate" class="form-label">End Date:</label>
-                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })
+                                @*@Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })*@
+
+                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
                             </div>
 
                             <div class="col-md-4 d-flex align-items-end">
@@ -75,9 +80,42 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <!-- Display Life Certificate -->
+                <div class="portlet-body text-center">
+                    @if (!string.IsNullOrEmpty(ViewBag.PdfUrl))
+                    {
+                        <div class="row w-200 mt-12">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="card shadow-lg border-0">
 
+                                    <div class="card-body text-center">
+                                        <div class="pdf-container">
+                                            <iframe id="pdfViewer" class="w-100" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                                        </div>
+                                        <div class="mt-3 d-flex justify-content-center gap-2">
+                                            <a href="@ViewBag.PdfUrl" target="_blank" class="btn btn-outline-primary">
+                                                <i class="bi bi-eye"></i> View Statement
+                                            </a>
+                                            <a href="@ViewBag.PdfUrl" download class="btn btn-outline-success">
+                                                <i class="bi bi-download"></i> Download Statement
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center mt-4">
+                            <i class="bi bi-info-circle"></i> Statement not found.
+                        </div>
 
-                    @if (ViewBag.PdfUrl != null)
+                    }
+                </div>
+
+                @*@if (ViewBag.PdfUrl != null)
                     {
                         <div class="mt-4">
                             <h5 class="text-center">Generated Statement</h5>
@@ -86,8 +124,65 @@
                             </div>
                         </div>
                     }
-                </div>
+                    else
+                    {
+                        <div class="alert alert-info text-center">
+                            <i class=""></i> No Pension Statement available.
+                        </div>
+                    }*@
+
             </div>
         </div>
     </div>
 </div>
+<!-- Custom Styling -->
+<style>
+    .container-fluid {
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .card-header {
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        border-radius: 12px 12px 0 0;
+        padding: 15px;
+        font-weight: bold;
+    }
+
+    .btn-outline-primary, .btn-outline-success {
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn-outline-primary:hover, .btn-outline-success:hover {
+        transform: scale(1.05);
+    }
+
+    /* Ensure PDF iframe fits well */
+    .pdf-container iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+    }
+
+    /* Responsive */
+    @*@media (max-width: 768px) {
+        .pdf-container iframe {
+            height: 400px;
+        }
+    }*@
+</style>
