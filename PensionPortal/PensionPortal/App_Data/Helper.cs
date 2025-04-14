@@ -35,24 +35,24 @@ namespace PensionPortal
         }
 
          public static List<string> GetPayrollPeriods()
- {
-     var list = new List<string>();
-     try
-     {
-         string result = webportals.GetPayrollPeriods();
-         if (!string.IsNullOrEmpty(result))
          {
-             string[] resultsArr = result.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
-             list.Add("-- Select Period--");
-             list.AddRange(resultsArr); // Add all periods correctly
+             var list = new List<string>();
+             try
+             {
+                 string result = webportals.GetPayrollPeriods();
+                 if (!string.IsNullOrEmpty(result))
+                 {
+                     string[] resultsArr = result.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                     list.Add("-- Select Period--");
+                     list.AddRange(resultsArr); // Add all periods correctly
+                 }
+             }
+             catch (Exception ex)
+             {
+                 ex.Data.Clear();
+             }
+             return list;
          }
-     }
-     catch (Exception ex)
-     {
-         ex.Data.Clear();
-     }
-     return list;
- }
         public static List<PensionerStatement> GetPayrollPeriods1()
         {
 

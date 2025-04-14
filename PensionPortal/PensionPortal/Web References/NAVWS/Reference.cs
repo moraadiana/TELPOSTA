@@ -301,26 +301,28 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GeneratePensionStatement1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GeneratePensionStatement1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GeneratePensionStatement1(string username, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp) {
+        public void GeneratePensionStatement1(string path, string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp) {
             this.Invoke("GeneratePensionStatement1", new object[] {
-                        username,
+                        path,
+                        pensionerNo,
                         startDate,
                         endDate,
                         fileNameFromApp});
         }
         
         /// <remarks/>
-        public void GeneratePensionStatement1Async(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp) {
-            this.GeneratePensionStatement1Async(username, startDate, endDate, fileNameFromApp, null);
+        public void GeneratePensionStatement1Async(string path, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp) {
+            this.GeneratePensionStatement1Async(path, pensionerNo, startDate, endDate, fileNameFromApp, null);
         }
         
         /// <remarks/>
-        public void GeneratePensionStatement1Async(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, object userState) {
+        public void GeneratePensionStatement1Async(string path, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, object userState) {
             if ((this.GeneratePensionStatement1OperationCompleted == null)) {
                 this.GeneratePensionStatement1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePensionStatement1OperationCompleted);
             }
             this.InvokeAsync("GeneratePensionStatement1", new object[] {
-                        username,
+                        path,
+                        pensionerNo,
                         startDate,
                         endDate,
                         fileNameFromApp}, this.GeneratePensionStatement1OperationCompleted, userState);
@@ -335,26 +337,28 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GeneratePensionStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GeneratePensionStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GeneratePensionStatement(string username, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp) {
+        public void GeneratePensionStatement(string path, string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string fileNameFromApp) {
             this.Invoke("GeneratePensionStatement", new object[] {
-                        username,
+                        path,
+                        pensionerNo,
                         startDate,
                         endDate,
                         fileNameFromApp});
         }
         
         /// <remarks/>
-        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp) {
-            this.GeneratePensionStatementAsync(username, startDate, endDate, fileNameFromApp, null);
+        public void GeneratePensionStatementAsync(string path, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp) {
+            this.GeneratePensionStatementAsync(path, pensionerNo, startDate, endDate, fileNameFromApp, null);
         }
         
         /// <remarks/>
-        public void GeneratePensionStatementAsync(string username, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, object userState) {
+        public void GeneratePensionStatementAsync(string path, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string fileNameFromApp, object userState) {
             if ((this.GeneratePensionStatementOperationCompleted == null)) {
                 this.GeneratePensionStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePensionStatementOperationCompleted);
             }
             this.InvokeAsync("GeneratePensionStatement", new object[] {
-                        username,
+                        path,
+                        pensionerNo,
                         startDate,
                         endDate,
                         fileNameFromApp}, this.GeneratePensionStatementOperationCompleted, userState);

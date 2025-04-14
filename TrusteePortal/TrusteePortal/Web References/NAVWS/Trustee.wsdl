@@ -76,6 +76,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetBoardMeetingsAttended1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBoardMeetingsAttended1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetBoardMeetingsAttended">
         <complexType>
           <sequence>
@@ -195,6 +209,12 @@
   <message name="GetAssignedBoards_Result">
     <part name="parameters" element="tns:GetAssignedBoards_Result" />
   </message>
+  <message name="GetBoardMeetingsAttended1">
+    <part name="parameters" element="tns:GetBoardMeetingsAttended1" />
+  </message>
+  <message name="GetBoardMeetingsAttended1_Result">
+    <part name="parameters" element="tns:GetBoardMeetingsAttended1_Result" />
+  </message>
   <message name="GetBoardMeetingsAttended">
     <part name="parameters" element="tns:GetBoardMeetingsAttended" />
   </message>
@@ -251,6 +271,10 @@
     <operation name="GetAssignedBoards">
       <input name="GetAssignedBoards" message="tns:GetAssignedBoards" />
       <output name="GetAssignedBoards_Result" message="tns:GetAssignedBoards_Result" />
+    </operation>
+    <operation name="GetBoardMeetingsAttended1">
+      <input name="GetBoardMeetingsAttended1" message="tns:GetBoardMeetingsAttended1" />
+      <output name="GetBoardMeetingsAttended1_Result" message="tns:GetBoardMeetingsAttended1_Result" />
     </operation>
     <operation name="GetBoardMeetingsAttended">
       <input name="GetBoardMeetingsAttended" message="tns:GetBoardMeetingsAttended" />
@@ -321,6 +345,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetAssignedBoards_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBoardMeetingsAttended1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBoardMeetingsAttended1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBoardMeetingsAttended1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

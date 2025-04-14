@@ -29,6 +29,8 @@ namespace TelpostaMembersPortal.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Portal_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Portal")]
     public partial class Portal : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback RejectLeaveOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RejectPVOperationCompleted;
         
         private System.Threading.SendOrPostCallback RejectStoreReqOperationCompleted;
@@ -143,6 +145,8 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GenerateMemberDetailedStatementOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GenerateMemberStatement1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback GenerateMemberStatementNSSFOperationCompleted;
         
         private System.Threading.SendOrPostCallback GenerateMemberStatementOperationCompleted;
@@ -217,8 +221,6 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback RejectImprestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RejectLeaveOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -256,6 +258,9 @@ namespace TelpostaMembersPortal.NAVWS {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event RejectLeaveCompletedEventHandler RejectLeaveCompleted;
         
         /// <remarks/>
         public event RejectPVCompletedEventHandler RejectPVCompleted;
@@ -429,6 +434,9 @@ namespace TelpostaMembersPortal.NAVWS {
         public event GenerateMemberDetailedStatementCompletedEventHandler GenerateMemberDetailedStatementCompleted;
         
         /// <remarks/>
+        public event GenerateMemberStatement1CompletedEventHandler GenerateMemberStatement1Completed;
+        
+        /// <remarks/>
         public event GenerateMemberStatementNSSFCompletedEventHandler GenerateMemberStatementNSSFCompleted;
         
         /// <remarks/>
@@ -540,7 +548,34 @@ namespace TelpostaMembersPortal.NAVWS {
         public event RejectImprestCompletedEventHandler RejectImprestCompleted;
         
         /// <remarks/>
-        public event RejectLeaveCompletedEventHandler RejectLeaveCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectLeave_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RejectLeave(string documentNo, string userID) {
+            this.Invoke("RejectLeave", new object[] {
+                        documentNo,
+                        userID});
+        }
+        
+        /// <remarks/>
+        public void RejectLeaveAsync(string documentNo, string userID) {
+            this.RejectLeaveAsync(documentNo, userID, null);
+        }
+        
+        /// <remarks/>
+        public void RejectLeaveAsync(string documentNo, string userID, object userState) {
+            if ((this.RejectLeaveOperationCompleted == null)) {
+                this.RejectLeaveOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectLeaveOperationCompleted);
+            }
+            this.InvokeAsync("RejectLeave", new object[] {
+                        documentNo,
+                        userID}, this.RejectLeaveOperationCompleted, userState);
+        }
+        
+        private void OnRejectLeaveOperationCompleted(object arg) {
+            if ((this.RejectLeaveCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RejectLeaveCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectPV", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectPV_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2323,6 +2358,42 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateMemberStatement1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void GenerateMemberStatement1(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
+            this.Invoke("GenerateMemberStatement1", new object[] {
+                        path,
+                        memberNo,
+                        filenameFromApp,
+                        startDate,
+                        endDate});
+        }
+        
+        /// <remarks/>
+        public void GenerateMemberStatement1Async(string path, string memberNo, string filenameFromApp, System.DateTime startDate, System.DateTime endDate) {
+            this.GenerateMemberStatement1Async(path, memberNo, filenameFromApp, startDate, endDate, null);
+        }
+        
+        /// <remarks/>
+        public void GenerateMemberStatement1Async(string path, string memberNo, string filenameFromApp, System.DateTime startDate, System.DateTime endDate, object userState) {
+            if ((this.GenerateMemberStatement1OperationCompleted == null)) {
+                this.GenerateMemberStatement1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateMemberStatement1OperationCompleted);
+            }
+            this.InvokeAsync("GenerateMemberStatement1", new object[] {
+                        path,
+                        memberNo,
+                        filenameFromApp,
+                        startDate,
+                        endDate}, this.GenerateMemberStatement1OperationCompleted, userState);
+        }
+        
+        private void OnGenerateMemberStatement1OperationCompleted(object arg) {
+            if ((this.GenerateMemberStatement1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GenerateMemberStatement1Completed(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatementNSSF", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateMemberStatementNSSF_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void GenerateMemberStatementNSSF(string username, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
             this.Invoke("GenerateMemberStatementNSSF", new object[] {
@@ -2358,29 +2429,29 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateMemberStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GenerateMemberStatement(string username, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
+        public void GenerateMemberStatement(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate) {
             this.Invoke("GenerateMemberStatement", new object[] {
-                        username,
+                        path,
+                        memberNo,
                         filenameFromApp,
-                        startDate,
-                        endDate});
+                        startDate});
         }
         
         /// <remarks/>
-        public void GenerateMemberStatementAsync(string username, string filenameFromApp, System.DateTime startDate, System.DateTime endDate) {
-            this.GenerateMemberStatementAsync(username, filenameFromApp, startDate, endDate, null);
+        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime startDate) {
+            this.GenerateMemberStatementAsync(path, memberNo, filenameFromApp, startDate, null);
         }
         
         /// <remarks/>
-        public void GenerateMemberStatementAsync(string username, string filenameFromApp, System.DateTime startDate, System.DateTime endDate, object userState) {
+        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime startDate, object userState) {
             if ((this.GenerateMemberStatementOperationCompleted == null)) {
                 this.GenerateMemberStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateMemberStatementOperationCompleted);
             }
             this.InvokeAsync("GenerateMemberStatement", new object[] {
-                        username,
+                        path,
+                        memberNo,
                         filenameFromApp,
-                        startDate,
-                        endDate}, this.GenerateMemberStatementOperationCompleted, userState);
+                        startDate}, this.GenerateMemberStatementOperationCompleted, userState);
         }
         
         private void OnGenerateMemberStatementOperationCompleted(object arg) {
@@ -3490,36 +3561,6 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectLeave_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RejectLeave(string documentNo, string userID) {
-            this.Invoke("RejectLeave", new object[] {
-                        documentNo,
-                        userID});
-        }
-        
-        /// <remarks/>
-        public void RejectLeaveAsync(string documentNo, string userID) {
-            this.RejectLeaveAsync(documentNo, userID, null);
-        }
-        
-        /// <remarks/>
-        public void RejectLeaveAsync(string documentNo, string userID, object userState) {
-            if ((this.RejectLeaveOperationCompleted == null)) {
-                this.RejectLeaveOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectLeaveOperationCompleted);
-            }
-            this.InvokeAsync("RejectLeave", new object[] {
-                        documentNo,
-                        userID}, this.RejectLeaveOperationCompleted, userState);
-        }
-        
-        private void OnRejectLeaveOperationCompleted(object arg) {
-            if ((this.RejectLeaveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RejectLeaveCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3537,6 +3578,10 @@ namespace TelpostaMembersPortal.NAVWS {
             return false;
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RejectLeaveCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -4694,6 +4739,10 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GenerateMemberStatement1CompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GenerateMemberStatementNSSFCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -5507,10 +5556,6 @@ namespace TelpostaMembersPortal.NAVWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RejectImprestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void RejectLeaveCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

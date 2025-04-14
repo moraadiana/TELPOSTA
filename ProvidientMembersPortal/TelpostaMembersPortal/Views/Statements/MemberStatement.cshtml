@@ -16,20 +16,7 @@
     </div>
 
     <!-- Alerts -->
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> @ViewBag.Error
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
-    @if (ViewBag.Success != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success:</strong> @ViewBag.Success
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
+   
     @if (TempData["Error"] != null)
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -57,23 +44,21 @@
                 <div class="portlet-body">
                     <form action="@Url.Action("GenerateMemberStatement", "Statements")" method="get">
                         <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="startDate" class="form-label">Start Date:</label>
-                                @*<input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />*@
-                                @*@Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })*@
-
+                            <div class="col-md-6">
+                                <label for="startDate" class="form-label">Period :</label>
+                              
                                 @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
 
                             </div>
 
-                            <div class="col-md-4">
-                                <label for="endDate" class="form-label">End Date:</label>
+                            <!--<div class="col-md-4">
+                                <label for="endDate" class="form-label">End Date:</label>-->
                                 @*@Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })*@
 
-                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
-                            </div>
+                                <!--@Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
+                            </div>-->
 
-                            <div class="col-md-4 d-flex align-items-end">
+                            <div class="col-md-6 d-flex align-items-end">
                                 <button type="submit" class="btn btn-primary w-100">
                                     <i class="bi bi-file-earmark-arrow-down me-2"></i> Generate Statement
                                 </button>
@@ -115,21 +100,7 @@
                     }
                 </div>
 
-                @*@if (ViewBag.PdfUrl != null)
-                    {
-                        <div class="mt-4">
-                            <h5 class="text-center">Generated Statement</h5>
-                            <div class="d-flex justify-content-center">
-                                <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-info text-center">
-                            <i class=""></i> No Pension Statement available.
-                        </div>
-                    }*@
+               
 
             </div>
         </div>

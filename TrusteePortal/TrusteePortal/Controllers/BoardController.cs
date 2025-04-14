@@ -39,9 +39,10 @@ namespace TrusteePortal.Controllers
                         string[] response = boardMeeting.Split(strLimiters, StringSplitOptions.None);
                         BoardMeeting attendedBoardMeetings = new BoardMeeting()
                         {
-                            Code = response[1].Trim(),
+                            //Code = response[1].Trim(),
+                            BoardNo = response[1].Trim(),
                             Description = response[2].Trim(),
-                            BoardNo = response[3].Trim(),
+                            
 
 
                         };

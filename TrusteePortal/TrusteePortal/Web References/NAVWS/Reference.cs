@@ -23,7 +23,7 @@ namespace TrusteePortal.NAVWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Trustee_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Trustee")]
@@ -38,6 +38,8 @@ namespace TrusteePortal.NAVWS {
         private System.Threading.SendOrPostCallback GenerateP9OperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAssignedBoardsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBoardMeetingsAttended1OperationCompleted;
         
         private System.Threading.SendOrPostCallback GetBoardMeetingsAttendedOperationCompleted;
         
@@ -103,6 +105,9 @@ namespace TrusteePortal.NAVWS {
         
         /// <remarks/>
         public event GetAssignedBoardsCompletedEventHandler GetAssignedBoardsCompleted;
+        
+        /// <remarks/>
+        public event GetBoardMeetingsAttended1CompletedEventHandler GetBoardMeetingsAttended1Completed;
         
         /// <remarks/>
         public event GetBoardMeetingsAttendedCompletedEventHandler GetBoardMeetingsAttendedCompleted;
@@ -277,6 +282,36 @@ namespace TrusteePortal.NAVWS {
             if ((this.GetAssignedBoardsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetAssignedBoardsCompleted(this, new GetAssignedBoardsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetBoardMeetingsAttended1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetBoardMeetingsAttended1(string username) {
+            object[] results = this.Invoke("GetBoardMeetingsAttended1", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBoardMeetingsAttended1Async(string username) {
+            this.GetBoardMeetingsAttended1Async(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetBoardMeetingsAttended1Async(string username, object userState) {
+            if ((this.GetBoardMeetingsAttended1OperationCompleted == null)) {
+                this.GetBoardMeetingsAttended1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBoardMeetingsAttended1OperationCompleted);
+            }
+            this.InvokeAsync("GetBoardMeetingsAttended1", new object[] {
+                        username}, this.GetBoardMeetingsAttended1OperationCompleted, userState);
+        }
+        
+        private void OnGetBoardMeetingsAttended1OperationCompleted(object arg) {
+            if ((this.GetBoardMeetingsAttended1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBoardMeetingsAttended1Completed(this, new GetBoardMeetingsAttended1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -486,11 +521,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CheckTrusteeLoginCompletedEventHandler(object sender, CheckTrusteeLoginCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckTrusteeLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -512,11 +547,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CheckTrusteePasswordChangedCompletedEventHandler(object sender, CheckTrusteePasswordChangedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckTrusteePasswordChangedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -538,11 +573,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CheckValidTrusteeNoCompletedEventHandler(object sender, CheckValidTrusteeNoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckValidTrusteeNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -564,11 +599,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GenerateP9CompletedEventHandler(object sender, GenerateP9CompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateP9CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -590,11 +625,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetAssignedBoardsCompletedEventHandler(object sender, GetAssignedBoardsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAssignedBoardsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -616,11 +651,37 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetBoardMeetingsAttended1CompletedEventHandler(object sender, GetBoardMeetingsAttended1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBoardMeetingsAttended1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBoardMeetingsAttended1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetBoardMeetingsAttendedCompletedEventHandler(object sender, GetBoardMeetingsAttendedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBoardMeetingsAttendedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -642,11 +703,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetTrusteeDetailsCompletedEventHandler(object sender, GetTrusteeDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTrusteeDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -668,11 +729,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetTrusteeEmailCompletedEventHandler(object sender, GetTrusteeEmailCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTrusteeEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -694,11 +755,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void LoginForUnchangedPasswordCompletedEventHandler(object sender, LoginForUnchangedPasswordCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoginForUnchangedPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -720,11 +781,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void UpdateTrusteeAutoGenPasswordCompletedEventHandler(object sender, UpdateTrusteeAutoGenPasswordCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateTrusteeAutoGenPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -746,11 +807,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void UpdateTrusteePasswordCompletedEventHandler(object sender, UpdateTrusteePasswordCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateTrusteePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

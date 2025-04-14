@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Helper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Beneficiary.cs" />
     <Compile Include="Models\Config.cs" />
@@ -2619,6 +2619,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Downloads\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

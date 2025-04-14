@@ -1,0 +1,165 @@
+﻿@model TrusteePortal.Models.Pnine
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "P9 Report";
+}
+
+<div class="container-fluid page-content d-flex flex-column align-items-center py-4">
+    <!-- PAGE HEADER -->
+    <div class="page-bar mb-4 w-100">
+        <ul class="breadcrumb bg-transparent px-0">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("index", "dashboard")" class="text-decoration-none">Home</a>
+            </li>
+            <li class="breadcrumb-item active">P9 Report</li>
+        </ul>
+    </div>
+
+    <!-- Alerts -->
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2"></i>
+            <span>@ViewBag.Error</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.Success))
+    {
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <span>@ViewBag.Success</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Life Certificate Form -->
+    <div class="row">
+        <div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-red"></i>
+                        <span class="caption-subject font-red sbold uppercase">P9 Report</span>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
+                    <form action="@Url.Action("GenerateP9Report", "Reports")" method="get">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Period">Period</label>
+                                    <input type="date" id="Period" name="Period" class="form-control" required />
+
+                                    @*@Html.DropDownListFor(m => m.Period, new SelectList(Model.PninePeriods), new { @class = "form-control" })*@
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">  </label>
+                                    <button type="submit" class="btn btn-primary  pull-right">Generate P9</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Display Life Certificate -->
+                <div class="portlet-body text-center">
+                    @if (!string.IsNullOrEmpty(ViewBag.PdfUrl))
+                    {
+                        <div class="row w-200 mt-12">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="card shadow-lg border-0">
+
+                                    <div class="card-body text-center">
+                                        <div class="pdf-container">
+                                            <iframe id="pdfViewer" class="w-100" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                                        </div>
+                                        <div class="mt-3 d-flex justify-content-center gap-2">
+                                            <a href="@ViewBag.PdfUrl" target="_blank" class="btn btn-outline-primary">
+                                                <i class="bi bi-eye"></i> View P9
+                                            </a>
+                                            <a href="@ViewBag.PdfUrl" download class="btn btn-outline-success">
+                                                <i class="bi bi-download"></i> Download P9
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center mt-4">
+                            <i class="bi bi-info-circle"></i> P9 report not found.
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Styling -->
+<style>
+    .container-fluid {
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .card-header {
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        border-radius: 12px 12px 0 0;
+        padding: 15px;
+        font-weight: bold;
+    }
+
+    .btn-outline-primary, .btn-outline-success {
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn-outline-primary:hover, .btn-outline-success:hover {
+        transform: scale(1.05);
+    }
+
+    /* Ensure PDF iframe fits well */
+    .pdf-container iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+    }
+
+    /* Responsive */
+    @*@media (max-width: 768px) {
+        .pdf-container iframe {
+            height: 400px;
+        }
+    }*@
+</style>

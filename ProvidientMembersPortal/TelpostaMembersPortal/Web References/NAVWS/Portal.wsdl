@@ -2,6 +2,19 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RejectLeave">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectLeave_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="RejectPV">
         <complexType>
           <sequence>
@@ -819,6 +832,22 @@
           <sequence />
         </complexType>
       </element>
+      <element name="GenerateMemberStatement1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="memberNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateMemberStatement1_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="GenerateMemberStatementNSSF">
         <complexType>
           <sequence>
@@ -837,10 +866,10 @@
       <element name="GenerateMemberStatement">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="memberNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
             <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
           </sequence>
         </complexType>
       </element>
@@ -1357,21 +1386,14 @@
           <sequence />
         </complexType>
       </element>
-      <element name="RejectLeave">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="RejectLeave_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="RejectLeave">
+    <part name="parameters" element="tns:RejectLeave" />
+  </message>
+  <message name="RejectLeave_Result">
+    <part name="parameters" element="tns:RejectLeave_Result" />
+  </message>
   <message name="RejectPV">
     <part name="parameters" element="tns:RejectPV" />
   </message>
@@ -1714,6 +1736,12 @@
   <message name="GenerateMemberDetailedStatement_Result">
     <part name="parameters" element="tns:GenerateMemberDetailedStatement_Result" />
   </message>
+  <message name="GenerateMemberStatement1">
+    <part name="parameters" element="tns:GenerateMemberStatement1" />
+  </message>
+  <message name="GenerateMemberStatement1_Result">
+    <part name="parameters" element="tns:GenerateMemberStatement1_Result" />
+  </message>
   <message name="GenerateMemberStatementNSSF">
     <part name="parameters" element="tns:GenerateMemberStatementNSSF" />
   </message>
@@ -1936,13 +1964,11 @@
   <message name="RejectImprest_Result">
     <part name="parameters" element="tns:RejectImprest_Result" />
   </message>
-  <message name="RejectLeave">
-    <part name="parameters" element="tns:RejectLeave" />
-  </message>
-  <message name="RejectLeave_Result">
-    <part name="parameters" element="tns:RejectLeave_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="RejectLeave">
+      <input name="RejectLeave" message="tns:RejectLeave" />
+      <output name="RejectLeave_Result" message="tns:RejectLeave_Result" />
+    </operation>
     <operation name="RejectPV">
       <input name="RejectPV" message="tns:RejectPV" />
       <output name="RejectPV_Result" message="tns:RejectPV_Result" />
@@ -2171,6 +2197,10 @@
       <input name="GenerateMemberDetailedStatement" message="tns:GenerateMemberDetailedStatement" />
       <output name="GenerateMemberDetailedStatement_Result" message="tns:GenerateMemberDetailedStatement_Result" />
     </operation>
+    <operation name="GenerateMemberStatement1">
+      <input name="GenerateMemberStatement1" message="tns:GenerateMemberStatement1" />
+      <output name="GenerateMemberStatement1_Result" message="tns:GenerateMemberStatement1_Result" />
+    </operation>
     <operation name="GenerateMemberStatementNSSF">
       <input name="GenerateMemberStatementNSSF" message="tns:GenerateMemberStatementNSSF" />
       <output name="GenerateMemberStatementNSSF_Result" message="tns:GenerateMemberStatementNSSF_Result" />
@@ -2319,13 +2349,18 @@
       <input name="RejectImprest" message="tns:RejectImprest" />
       <output name="RejectImprest_Result" message="tns:RejectImprest_Result" />
     </operation>
-    <operation name="RejectLeave">
-      <input name="RejectLeave" message="tns:RejectLeave" />
-      <output name="RejectLeave_Result" message="tns:RejectLeave_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RejectLeave">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectLeave">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectLeave_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RejectPV">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectPV" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RejectPV">
@@ -2839,6 +2874,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GenerateMemberStatement1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateMemberStatement1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateMemberStatement1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GenerateMemberStatementNSSF">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatementNSSF" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GenerateMemberStatementNSSF">
@@ -3169,15 +3213,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="RejectImprest_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="RejectLeave">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="RejectLeave">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="RejectLeave_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

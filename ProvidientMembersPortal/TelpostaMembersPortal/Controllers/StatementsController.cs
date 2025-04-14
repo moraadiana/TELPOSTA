@@ -52,8 +52,48 @@ namespace TelpostaMembersPortal.Controllers
             return View(model);
         }
 
+        public ActionResult GenerateMemberStatement( DateTime? startDate, DateTime? endDate)
+        {
+            string memberNo = Session["memberNo"]?.ToString();
+            if (memberNo == null)
+                return RedirectToAction("index", "login");
 
-        public ActionResult GenerateMemberStatement(string memberNo, DateTime? startDate, DateTime? endDate)
+            try
+            {
+                string fileName = memberNo.Replace(@"/", @"");
+                string pdfFileName = $"Statement-{fileName}.pdf";
+
+                string path = Server.MapPath("~/Downloads/");
+                if (string.IsNullOrEmpty(path))
+                    throw new Exception("Resolved path is null or empty.");
+
+                string pdfFilePath = Path.Combine(path, pdfFileName);
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                if (System.IO.File.Exists(pdfFilePath))
+                    System.IO.File.Delete(pdfFilePath);
+
+                //static date
+                //  DateTime periodDate = Convert.ToDateTime("01/01/25");
+
+
+                webportals.GenerateMemberStatement(path, pdfFileName, memberNo, Convert.ToDateTime(startDate));
+               
+                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+               
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"An error occurred: {ex.Message}";
+            }
+
+            return RedirectToAction("MemberStatement");
+        }
+
+        public ActionResult GenerateMemberStatement1(string memberNo, DateTime? startDate, DateTime? endDate)
         {
             if (Session["memberNo"] == null) return RedirectToAction("index", "login");
             if (startDate == null || endDate == null)
@@ -88,7 +128,7 @@ namespace TelpostaMembersPortal.Controllers
                 if (System.IO.File.Exists(pdfFilePath))
                     System.IO.File.Delete(pdfFilePath);
 
-                webportals.GenerateMemberStatement(memberNo, pdfFileName, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate));
+                webportals.GenerateMemberStatement(path,memberNo, pdfFileName, Convert.ToDateTime(startDate));
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                 //ViewBag.PdfUrl = TempData["PdfUrl"];
 
@@ -138,6 +178,49 @@ namespace TelpostaMembersPortal.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult SubmitBeneficiaryNomination(HttpPostedFileBase AttachmentFile)
+        {
+            if (AttachmentFile == null || AttachmentFile.ContentLength == 0)
+            {
+                ViewBag.Error = "Please select a file to upload.";
+                return View("BeneficiaryNomination");
+            }
+
+            try
+            {
+                if (AttachmentFile == null || AttachmentFile.ContentLength == 0)
+                {
+                    ViewBag.Error = "Please select a file to upload.";
+                    TempData["Error"] = "Please select a file to upload.";
+                    
+                    return RedirectToAction("BeneficiaryNomination");
+                }
+                string memberNo = Session["memberNo"].ToString();
+                string memberName = Session["memberName"].ToString();
+                string fileName = Path.GetFileName(AttachmentFile.FileName);
+                string filePath = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                AttachmentFile.SaveAs(filePath);
+
+                string subject = "Beneficiary Nomination Form Submission";
+                string body = $"Dear Admin,<br/><br/>A new beneficiary nomination form has been submitted by {memberName} PF No. {memberNo}.<br/><br/> This is sytem generated. Do not Reply.";
+
+                Components.SendEmailAlertswithAttachment(subject, body, filePath);
+
+                TempData["Success"] = "File submitted successfully!";
+
+            }
+            catch (Exception ex)
+            {
+                // ViewBag.Error = "Error sending email: " + ex.Message;
+                TempData["Error"] = "Error sending email." + ex.Message;
+            }
+
+            return RedirectToAction("BeneficiaryNomination");
+
         }
 
     }

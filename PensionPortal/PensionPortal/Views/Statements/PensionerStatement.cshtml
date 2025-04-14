@@ -16,93 +16,94 @@
     </div>
 
     <!-- Alerts -->
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> @ViewBag.Error
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
-    @if (ViewBag.Success != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success:</strong> @ViewBag.Success
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> @TempData["Error"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
+
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success:</strong> @TempData["Success"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+        <div class="alert alert-success">@TempData["Success"]</div>
     }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    <div class="row">
+        <div>
+
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card shadow-sm border-0">
-                
-                <div class="card-body">
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-red"></i>
+                        <span class="caption-subject font-red sbold uppercase">Pensioner Statement</span>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
                     <form action="@Url.Action("GeneratePensionerStatement", "Statements")" method="get">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label for="startDate" class="form-label">Start Date:</label>
-                                @*<input type="date" class="form-control" name="startDate" required value="@Model?.StartDate.ToString(" yyyy-MM-dd")" />*@
-                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate"), new { @class = "form-control" })
+                                <div class="form-group">
+                                    <label for="startDate" class="form-label">Start Date:</label>
+
+                                    @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="endDate" class="form-label">End Date:</label>
+                                    @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
+                                </div>
 
                             </div>
 
                             <div class="col-md-4">
-                                <label for="endDate" class="form-label">End Date:</label>
-                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })
-                            </div>
-
-                            <div class="col-md-4 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary w-100">
-                                    <i class="bi bi-file-earmark-arrow-down me-2"></i> Generate Statement
-                                </button>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-file-earmark-arrow-down me-2"></i> Generate Statement
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
-                    <div class="card-body text-center">
-                        @if (TempData["PdfUrl"] != null)
-                        {
-                            <div class="pdf-container">
-                                <iframe id="pdfViewer" class="" width="100%" height="600px" src="@TempData["PdfUrl"]"></iframe>
-                            </div>
-                            <div class="mt-3">
-                                <a href="@TempData["PdfUrl"]" download class="btn btn-outline-success ms-2">
-                                    <i class="bi bi-download"></i> Download Statement
-                                </a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="alert alert-info text-center">
-                                <i class=""></i> No Pension Statement available.
-                            </div>
-                        }
-
-                    </div>
-
-                    @*@if (ViewBag.PdfUrl != null)
-        {
-            <div class="mt-4">
-                <h5 class="text-center">Generated Statement</h5>
-                <div class="d-flex justify-content-center">
-                    <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
                 </div>
-            </div>
-        }*@
+
+                <div class="portlet-body text-center">
+                    @if (TempData["PdfUrl"] != null)
+                    {
+                        <div class="pdf-container">
+                            <iframe id="pdfViewer" class="" width="100%" height="600px" src="@TempData["PdfUrl"]"></iframe>
+                        </div>
+                        <div class="mt-3">
+                            <a href="@TempData["PdfUrl"]" download class="btn btn-outline-success ms-2">
+                                <i class="bi bi-download"></i> Download Statement
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center">
+                            <i class=""></i> No Pension Statement available.
+                        </div>
+                    }
+
                 </div>
+
+                @*@if (ViewBag.PdfUrl != null)
+                    {
+                        <div class="mt-4">
+                            <h5 class="text-center">Generated Statement</h5>
+                            <div class="d-flex justify-content-center">
+                                <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                            </div>
+                        </div>
+                    }*@
             </div>
         </div>
     </div>
 </div>
+
