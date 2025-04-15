@@ -231,14 +231,7 @@ namespace TELPOSTAStaff
                 return;
 
 
-                //  was before
-                //string email = GetStaffEmail(username);
-                //string staffPassword = GetStaffPassword(username);
-                //string subject = "Telposta Portal Password Reset";
-                //string body = $"Use this password to log into your portal.<br/><br/>Portal password: <strong>{staffPassword}</strong><br/><br/>Do not reply to this email.";
-                //Components.SentEmailAlerts(email, subject, body);
-                //lblError.Text = $"Portal password has been sent to your email address {email.ToUpper()}";
-                //return;
+               
               }
               catch (Exception ex)
               {

@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <p class="text-center"><a class="btn btn-pill btn-warning u-posRelative" href="ImprestLines.aspx?query=new&status=Open">New Imprest Accounting<span class="waves"></span> </a></p>
+                            <p class="text-center"><a class="btn btn-pill btn-warning u-posRelative" href="ImprestAccountingLines.aspx?query=new&status=Open">New Imprest Accounting<span class="waves"></span> </a></p>
                             <br />
                             <div class="row">
                                 <div class="col-md-12">
@@ -40,7 +40,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%--<%=Jobs()%>--%>
+                                                <%=Jobs()%>
                                             </tbody>
                                         </table>
                                     </div>

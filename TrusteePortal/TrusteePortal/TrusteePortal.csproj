@@ -123,6 +123,8 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\BoardMeeting.cs" />
+    <Compile Include="Models\DashboardStatusViewModel.cs" />
+    <Compile Include="Models\StatusCount.cs" />
     <Compile Include="Models\OTP.cs" />
     <Compile Include="Models\Pnine.cs" />
     <Compile Include="Models\ResetPassword.cs" />
@@ -2581,6 +2583,7 @@
     <Content Include="Views\Board\BoardMeetingList.cshtml" />
     <Content Include="Views\Board\AssignedBoardList.cshtml" />
     <Content Include="Views\Reports\Pnine.cshtml" />
+    <Content Include="Views\Dashboard\StatusSummary.cshtml" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

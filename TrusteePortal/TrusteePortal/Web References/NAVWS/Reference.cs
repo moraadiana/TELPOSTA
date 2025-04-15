@@ -37,9 +37,19 @@ namespace TrusteePortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GenerateP9OperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetActiveMemberCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAllMembersOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetAssignedBoardsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetBoardMeetingsAttended1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBoardMeetingsAttendedOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetMemberCountsByStatusOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPensionerCountsByStatusOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetTrusteeDetailsOperationCompleted;
         
@@ -102,10 +112,25 @@ namespace TrusteePortal.NAVWS {
         public event GenerateP9CompletedEventHandler GenerateP9Completed;
         
         /// <remarks/>
+        public event GetActiveMemberCountCompletedEventHandler GetActiveMemberCountCompleted;
+        
+        /// <remarks/>
+        public event GetAllMembersCompletedEventHandler GetAllMembersCompleted;
+        
+        /// <remarks/>
         public event GetAssignedBoardsCompletedEventHandler GetAssignedBoardsCompleted;
         
         /// <remarks/>
+        public event GetBoardMeetingsAttended1CompletedEventHandler GetBoardMeetingsAttended1Completed;
+        
+        /// <remarks/>
         public event GetBoardMeetingsAttendedCompletedEventHandler GetBoardMeetingsAttendedCompleted;
+        
+        /// <remarks/>
+        public event GetMemberCountsByStatusCompletedEventHandler GetMemberCountsByStatusCompleted;
+        
+        /// <remarks/>
+        public event GetPensionerCountsByStatusCompletedEventHandler GetPensionerCountsByStatusCompleted;
         
         /// <remarks/>
         public event GetTrusteeDetailsCompletedEventHandler GetTrusteeDetailsCompleted;
@@ -251,6 +276,62 @@ namespace TrusteePortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetActiveMemberCount", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetActiveMemberCount_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public int GetActiveMemberCount() {
+            object[] results = this.Invoke("GetActiveMemberCount", new object[0]);
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetActiveMemberCountAsync() {
+            this.GetActiveMemberCountAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetActiveMemberCountAsync(object userState) {
+            if ((this.GetActiveMemberCountOperationCompleted == null)) {
+                this.GetActiveMemberCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetActiveMemberCountOperationCompleted);
+            }
+            this.InvokeAsync("GetActiveMemberCount", new object[0], this.GetActiveMemberCountOperationCompleted, userState);
+        }
+        
+        private void OnGetActiveMemberCountOperationCompleted(object arg) {
+            if ((this.GetActiveMemberCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetActiveMemberCountCompleted(this, new GetActiveMemberCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetAllMembers", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetAllMembers_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetAllMembers() {
+            object[] results = this.Invoke("GetAllMembers", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllMembersAsync() {
+            this.GetAllMembersAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllMembersAsync(object userState) {
+            if ((this.GetAllMembersOperationCompleted == null)) {
+                this.GetAllMembersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllMembersOperationCompleted);
+            }
+            this.InvokeAsync("GetAllMembers", new object[0], this.GetAllMembersOperationCompleted, userState);
+        }
+        
+        private void OnGetAllMembersOperationCompleted(object arg) {
+            if ((this.GetAllMembersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllMembersCompleted(this, new GetAllMembersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetAssignedBoards", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetAssignedBoards_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string GetAssignedBoards(string username) {
@@ -281,6 +362,36 @@ namespace TrusteePortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetBoardMeetingsAttended1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetBoardMeetingsAttended1(string username) {
+            object[] results = this.Invoke("GetBoardMeetingsAttended1", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBoardMeetingsAttended1Async(string username) {
+            this.GetBoardMeetingsAttended1Async(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetBoardMeetingsAttended1Async(string username, object userState) {
+            if ((this.GetBoardMeetingsAttended1OperationCompleted == null)) {
+                this.GetBoardMeetingsAttended1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBoardMeetingsAttended1OperationCompleted);
+            }
+            this.InvokeAsync("GetBoardMeetingsAttended1", new object[] {
+                        username}, this.GetBoardMeetingsAttended1OperationCompleted, userState);
+        }
+        
+        private void OnGetBoardMeetingsAttended1OperationCompleted(object arg) {
+            if ((this.GetBoardMeetingsAttended1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBoardMeetingsAttended1Completed(this, new GetBoardMeetingsAttended1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetBoardMeetingsAttended_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string GetBoardMeetingsAttended(string username) {
@@ -307,6 +418,62 @@ namespace TrusteePortal.NAVWS {
             if ((this.GetBoardMeetingsAttendedCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetBoardMeetingsAttendedCompleted(this, new GetBoardMeetingsAttendedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetMemberCountsByStatus", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetMemberCountsByStatus_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetMemberCountsByStatus() {
+            object[] results = this.Invoke("GetMemberCountsByStatus", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetMemberCountsByStatusAsync() {
+            this.GetMemberCountsByStatusAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetMemberCountsByStatusAsync(object userState) {
+            if ((this.GetMemberCountsByStatusOperationCompleted == null)) {
+                this.GetMemberCountsByStatusOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetMemberCountsByStatusOperationCompleted);
+            }
+            this.InvokeAsync("GetMemberCountsByStatus", new object[0], this.GetMemberCountsByStatusOperationCompleted, userState);
+        }
+        
+        private void OnGetMemberCountsByStatusOperationCompleted(object arg) {
+            if ((this.GetMemberCountsByStatusCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetMemberCountsByStatusCompleted(this, new GetMemberCountsByStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Trustee:GetPensionerCountsByStatus", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", ResponseElementName="GetPensionerCountsByStatus_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Trustee", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPensionerCountsByStatus() {
+            object[] results = this.Invoke("GetPensionerCountsByStatus", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPensionerCountsByStatusAsync() {
+            this.GetPensionerCountsByStatusAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetPensionerCountsByStatusAsync(object userState) {
+            if ((this.GetPensionerCountsByStatusOperationCompleted == null)) {
+                this.GetPensionerCountsByStatusOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPensionerCountsByStatusOperationCompleted);
+            }
+            this.InvokeAsync("GetPensionerCountsByStatus", new object[0], this.GetPensionerCountsByStatusOperationCompleted, userState);
+        }
+        
+        private void OnGetPensionerCountsByStatusOperationCompleted(object arg) {
+            if ((this.GetPensionerCountsByStatusCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPensionerCountsByStatusCompleted(this, new GetPensionerCountsByStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -591,6 +758,58 @@ namespace TrusteePortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetActiveMemberCountCompletedEventHandler(object sender, GetActiveMemberCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetActiveMemberCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetActiveMemberCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetAllMembersCompletedEventHandler(object sender, GetAllMembersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllMembersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllMembersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetAssignedBoardsCompletedEventHandler(object sender, GetAssignedBoardsCompletedEventArgs e);
     
     /// <remarks/>
@@ -617,6 +836,32 @@ namespace TrusteePortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetBoardMeetingsAttended1CompletedEventHandler(object sender, GetBoardMeetingsAttended1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBoardMeetingsAttended1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBoardMeetingsAttended1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void GetBoardMeetingsAttendedCompletedEventHandler(object sender, GetBoardMeetingsAttendedCompletedEventArgs e);
     
     /// <remarks/>
@@ -628,6 +873,58 @@ namespace TrusteePortal.NAVWS {
         private object[] results;
         
         internal GetBoardMeetingsAttendedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetMemberCountsByStatusCompletedEventHandler(object sender, GetMemberCountsByStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetMemberCountsByStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetMemberCountsByStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetPensionerCountsByStatusCompletedEventHandler(object sender, GetPensionerCountsByStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPensionerCountsByStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPensionerCountsByStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
