@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="GetAccountDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="accno" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAccountDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayTransFinal">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="inbankreference" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="indebitaccount" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="intransactionDate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="inbillAmount" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="inpaymentMode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="inphonenumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="incustomerRefNumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="indebitcustname" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayTransFinal_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostKCBTransaction">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="transcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="transdate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="accno" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accname" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="transtype" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="mssidn" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shortcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accbal" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="narration" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostKCBTransaction_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TransactionCodeExists">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="incustomerRefNumber" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TransactionCodeExists_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateAccount">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="incustomerRefNumber" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateAccount_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="GetAccountDetails">
+    <part name="parameters" element="tns:GetAccountDetails" />
+  </message>
+  <message name="GetAccountDetails_Result">
+    <part name="parameters" element="tns:GetAccountDetails_Result" />
+  </message>
+  <message name="GetPayTransFinal">
+    <part name="parameters" element="tns:GetPayTransFinal" />
+  </message>
+  <message name="GetPayTransFinal_Result">
+    <part name="parameters" element="tns:GetPayTransFinal_Result" />
+  </message>
+  <message name="PostKCBTransaction">
+    <part name="parameters" element="tns:PostKCBTransaction" />
+  </message>
+  <message name="PostKCBTransaction_Result">
+    <part name="parameters" element="tns:PostKCBTransaction_Result" />
+  </message>
+  <message name="TransactionCodeExists">
+    <part name="parameters" element="tns:TransactionCodeExists" />
+  </message>
+  <message name="TransactionCodeExists_Result">
+    <part name="parameters" element="tns:TransactionCodeExists_Result" />
+  </message>
+  <message name="ValidateAccount">
+    <part name="parameters" element="tns:ValidateAccount" />
+  </message>
+  <message name="ValidateAccount_Result">
+    <part name="parameters" element="tns:ValidateAccount_Result" />
+  </message>
+  <portType name="KCBBankIntergration_Port">
+    <operation name="GetAccountDetails">
+      <input name="GetAccountDetails" message="tns:GetAccountDetails" />
+      <output name="GetAccountDetails_Result" message="tns:GetAccountDetails_Result" />
+    </operation>
+    <operation name="GetPayTransFinal">
+      <input name="GetPayTransFinal" message="tns:GetPayTransFinal" />
+      <output name="GetPayTransFinal_Result" message="tns:GetPayTransFinal_Result" />
+    </operation>
+    <operation name="PostKCBTransaction">
+      <input name="PostKCBTransaction" message="tns:PostKCBTransaction" />
+      <output name="PostKCBTransaction_Result" message="tns:PostKCBTransaction_Result" />
+    </operation>
+    <operation name="TransactionCodeExists">
+      <input name="TransactionCodeExists" message="tns:TransactionCodeExists" />
+      <output name="TransactionCodeExists_Result" message="tns:TransactionCodeExists_Result" />
+    </operation>
+    <operation name="ValidateAccount">
+      <input name="ValidateAccount" message="tns:ValidateAccount" />
+      <output name="ValidateAccount_Result" message="tns:ValidateAccount_Result" />
+    </operation>
+  </portType>
+  <binding name="KCBBankIntergration_Binding" type="tns:KCBBankIntergration_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GetAccountDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:GetAccountDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetAccountDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetAccountDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPayTransFinal">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:GetPayTransFinal" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayTransFinal">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayTransFinal_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostKCBTransaction">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:PostKCBTransaction" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostKCBTransaction">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostKCBTransaction_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="TransactionCodeExists">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:TransactionCodeExists" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="TransactionCodeExists">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="TransactionCodeExists_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateAccount">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:ValidateAccount" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateAccount">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateAccount_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="KCBBankIntergration">
+    <port name="KCBBankIntergration_Port" binding="tns:KCBBankIntergration_Binding">
+      <address location="https://tps-server2024.telposta.local:7047/TelPosta/WS/TELPOSTA/Codeunit/KCBBankIntergration" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

@@ -2568,6 +2568,7 @@
     <Content Include="Views\Statements\MemberStatement.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Statements\BeneficiaryNomination.cshtml" />
     <None Include="Web References\NAVWS\Portal.wsdl" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -2576,6 +2577,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Downloads\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

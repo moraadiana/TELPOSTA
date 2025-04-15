@@ -61,7 +61,8 @@
       <element name="GeneratePensionStatement1">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="fileNameFromApp" type="string" />
@@ -76,7 +77,8 @@
       <element name="GeneratePensionStatement">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
             <element minOccurs="1" maxOccurs="1" name="fileNameFromApp" type="string" />

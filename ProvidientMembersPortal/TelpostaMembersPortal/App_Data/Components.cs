@@ -67,6 +67,43 @@ namespace TelpostaMembersPortal
                 Ex.Data.Clear();
             }
         }
+        public static void SendEmailAlertswithAttachment(string subject, string message, string attachmentPath)
+        {
+            try
+            {
+               
+                string email = "dynamicsselfservice@gmail.com";
+                string password = "ydujienvejtdojgv";
+               string toaddress = "info@telpostapension.org";
+               
+
+                var loginInfo = new NetworkCredential(email, password);
+                var msg = new MailMessage();
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587); // Use port 587 for Gmail
+
+                msg.From = new MailAddress(email);
+                msg.To.Add(new MailAddress(toaddress));
+                msg.Subject = subject;
+                msg.Body = message;
+                msg.IsBodyHtml = true;
+
+                // Attach the uploaded file
+                if (!string.IsNullOrEmpty(attachmentPath) && System.IO.File.Exists(attachmentPath))
+                {
+                    msg.Attachments.Add(new Attachment(attachmentPath));
+                }
+
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = loginInfo;
+                smtpClient.Send(msg);
+            }
+            catch (Exception Ex)
+            {
+                // Log error instead of clearing data
+                Console.WriteLine("Error sending email: " + Ex.Message);
+            }
+        }
 
     }
 }

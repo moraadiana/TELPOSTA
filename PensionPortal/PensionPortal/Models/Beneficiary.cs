@@ -23,6 +23,8 @@ namespace PensionPortal.Models
         public string PhoneNo { get; set; }
         public string Email { get; set; }
 
+        public string NominationForm { get; set; }
+
 
 
 
