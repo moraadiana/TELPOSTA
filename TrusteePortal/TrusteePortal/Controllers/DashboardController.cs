@@ -56,7 +56,6 @@ namespace TrusteePortal.Controllers
                 ex.Data.Clear();
             }
         }
-<<<<<<< HEAD
 
         public ActionResult ChangeProfilePic(Account account)
         {
@@ -83,7 +82,6 @@ namespace TrusteePortal.Controllers
             }
             return RedirectToAction("Index", "Dashboard");
         }
-=======
         public ActionResult StatusSummary()
         {
             var memberResult = webportals.GetMemberCountsByStatus();
@@ -148,9 +146,6 @@ namespace TrusteePortal.Controllers
 
             return View(statusCounts);
         }
-
-
->>>>>>> 5c50847ea7d2502c97177daa99e572c36d1bf378
 
     }
 }
