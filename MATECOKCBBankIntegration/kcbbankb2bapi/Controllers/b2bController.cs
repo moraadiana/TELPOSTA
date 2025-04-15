@@ -207,5 +207,78 @@ namespace b2b.Controllers
 
             }
         }
+        [HttpPost]
+        [ResponseType(typeof(b2b.PaymentAdvise.RESPONSE.PaymentAdviseResponse))]
+        public IHttpActionResult disbursementnotification(b2b.PaymentAdvise.REQUEST.Disbursement request)
+        {
+            try
+            {
+                // **** serialize for log
+                string strAccRequest = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+                UTILITIES.WriteLogOnFile(strAccRequest);
+                // **** serialize for log
+                // -- check if account exists
+                
+                        bool posted = navService.DisbursementNotification(
+                                         request.ftReference
+                                         , request.transactionDate
+                                         , Convert.ToDecimal(request.amount)
+                                         , request.transactionStatus
+                                         , request.transactionMessage
+                                         , request.beneficiaryAccountNumber
+                                         , request.debitAccountNumber
+                                         , request.beneficiaryName
+                                         , request.transactionReference
+                                         , request.merchantId
+                                         );
+
+                        if (!posted)
+                        {
+                            // -- error occured                               
+                            var paymentAdviseRespResponse = new b2b.PaymentAdvise.RESPONSE.Response
+                            {
+                                transactionID = request.transactionReference,
+                                statusCode = "1",
+                                statusMessage = "A severe error has occurred."
+                            };
+                            return Ok(paymentAdviseRespResponse);
+                        }
+                        else
+                        {
+                            // ** successful
+                            var paymentAdviseRespResponse = new b2b.PaymentAdvise.RESPONSE.Response
+                            {
+                                transactionID = request.transactionReference,
+                                statusCode = "0",
+                                statusMessage = "Notification received successfully."
+                            };
+                            return Ok(paymentAdviseRespResponse);
+                        }
+
+
+                    
+                
+
+
+            }
+            catch (Exception ex)
+            {
+
+                #region error handler
+                // -- error occured                               
+                var paymentAdviseRespResponse = new b2b.PaymentAdvise.RESPONSE.Response
+                {
+                    transactionID = request.transactionReference,
+                    statusCode = "1",
+                    statusMessage = "A severe error has occurred."
+                };
+                // **** log for exception
+                UTILITIES.Logexception(ex);
+                // **** log for exception
+                return Ok(paymentAdviseRespResponse);
+                #endregion error handler
+
+            }
+        }
     }
 }

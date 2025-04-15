@@ -28,20 +28,33 @@
     <!-- BEGIN PAGE TITLE-->
     <h1 class="page-title">Dashboard</h1>
     <div class="row">
-        <div class="col-md-4">
-            <div class="profile-sidebar">
-                <!-- PORTLET MAIN -->
-                <div class="portlet light profile-sidebar-portlet ">
-                    <!-- SIDEBAR USERPIC -->
-                    <div class="profile-userpic">
-                        @*<img src="@Url.Content("~/Profiles/" + Session["VendorNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" class="img-responsive" alt="">*@
-                        <img src="~/images/profile_m.png" class="img-responsive" alt="Avatar" />
-                    </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name"> @Session["memberName"] </div>
-                    </div>
+        <!--<div class="col-md-4">
+        <div class="profile-sidebar">-->
+        <!-- PORTLET MAIN -->
+        <!--<div class="portlet light profile-sidebar-portlet ">-->
+        <!-- SIDEBAR USERPIC -->
+        <!--<div class="profile-userpic">
+                    <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" class="img-responsive" alt="">
+
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name"> @Session["memberName"] </div>
+                </div>
+
+            </div>
+        </div>
+    </div>-->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-body text-center">
+                    @*<img src="@Url.Content("~/Profiles/" + Session["trusteeNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" class="img-responsive" alt="">*@
+                    <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?" + DateTime.Now.Ticks.ToString())"
+                         class="img-responsive"
+                         alt="Profile Picture"
+                         onerror="this.onerror=null;this.src='@Url.Content("~/Profiles/profile_m.png")';" />
+
+                    <h4 class="text-primary">@Session["memberName"]</h4>
+                    @*<p class="text-muted"><i class="fas fa-user-tag"></i> @Session["Category"] </p>*@
                 </div>
             </div>
         </div>
@@ -56,23 +69,23 @@
                     <div class="tools">
                         <a href="javascript:;" class="collapse"> </a>
                     </div>
-                    @*<ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="#tab_1_1" data-toggle="tab">Company Info</a>
+                            <a href="#tab_1_1" data-toggle="tab">Member Information</a>
                         </li>
                         <li>
-                            <a href="#tab_1_2" data-toggle="tab">Change Logo</a>
+                            <a href="#tab_1_2" data-toggle="tab">Change Profile</a>
                         </li>
-                    </ul>*@
+                    </ul>
                 </div>
                 @*<div class="portlet-title">
-                        <div class="caption">
-                            <i class="fa fa-user"></i>Welcome @ViewBag.Name
-                        </div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"> </a>
-                        </div>
-                    </div>*@
+                    <div class="caption">
+                        <i class="fa fa-user"></i>Welcome @ViewBag.Name
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse"> </a>
+                    </div>
+                </div>*@
                 <div class="portlet-body">
                     <div class="tab-content">
                         <!-- PERSONAL INFO TAB -->
@@ -121,34 +134,42 @@
                                             <td> @Session["Status"] </td>
                                             <td></td>
                                         </tr>
+                                        <tr>
+                                            <td> Status: </td>
+                                            <td></td>
+                                            <td> @Session["Balance"] </td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="tab_1_2">
-                            <!--<form action="@Url.Action("ChangeProfilePic","Dashboard")" method="POST" , enctype="multipart/form-data" role="form">
+                            <form action="@Url.Action("ChangeProfilePic","Dashboard")" method="POST" , enctype="multipart/form-data" role="form">
                                 <div class="form-group">
                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                             <img src="@Url.Content("~/Profiles/" + Session["VenorNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" alt="" />
                                         </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>-->
-                                        @*<div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
                                             <span class="btn default btn-file">
                                                 <span class="fileinput-new"> Select image </span>
                                                 <span class="fileinput-exists"> Change </span>
                                                 <input type="file" name="profilePic" required>
                                             </span>
                                             <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                        </div>*@
-                                    <!--</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="margin-top-10">
                                     <button type="submit" class="btn green"> Submit </button>
                                     <a href="@Url.Action("index", "dashboard")" class="btn default"> Cancel </a>
                                 </div>
-                            </form>-->
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>

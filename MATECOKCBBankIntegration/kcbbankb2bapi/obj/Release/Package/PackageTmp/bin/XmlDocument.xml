@@ -26,6 +26,9 @@
         <member name="E:b2b.NAVWS.KCBBankIntergration.GetPayTransFinalCompleted">
             <remarks/>
         </member>
+        <member name="E:b2b.NAVWS.KCBBankIntergration.InsertTransactionNotificationCompleted">
+            <remarks/>
+        </member>
         <member name="E:b2b.NAVWS.KCBBankIntergration.PostKCBTransactionCompleted">
             <remarks/>
         </member>
@@ -51,6 +54,15 @@
             <remarks/>
         </member>
         <member name="M:b2b.NAVWS.KCBBankIntergration.GetPayTransFinalAsync(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:b2b.NAVWS.KCBBankIntergration.InsertTransactionNotification(System.String,System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:b2b.NAVWS.KCBBankIntergration.InsertTransactionNotificationAsync(System.String,System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:b2b.NAVWS.KCBBankIntergration.InsertTransactionNotificationAsync(System.String,System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Object)">
             <remarks/>
         </member>
         <member name="M:b2b.NAVWS.KCBBankIntergration.PostKCBTransaction(System.String,System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.Decimal,System.String)">
@@ -99,6 +111,15 @@
             <remarks/>
         </member>
         <member name="P:b2b.NAVWS.GetPayTransFinalCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:b2b.NAVWS.InsertTransactionNotificationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:b2b.NAVWS.InsertTransactionNotificationCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:b2b.NAVWS.InsertTransactionNotificationCompletedEventArgs.Result">
             <remarks/>
         </member>
         <member name="T:b2b.NAVWS.PostKCBTransactionCompletedEventHandler">

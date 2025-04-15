@@ -29,6 +29,8 @@ namespace TelpostaMembersPortal.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Portal_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Portal")]
     public partial class Portal : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback RejectImprestOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RejectLeaveOperationCompleted;
         
         private System.Threading.SendOrPostCallback RejectPVOperationCompleted;
@@ -52,6 +54,8 @@ namespace TelpostaMembersPortal.NAVWS {
         private System.Threading.SendOrPostCallback UpdateMemberPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateStaffPassOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UploadProfilePictureOperationCompleted;
         
         private System.Threading.SendOrPostCallback ValidTrusteeOperationCompleted;
         
@@ -179,6 +183,8 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GetMemberProfileDetailsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetPayrollPeriods1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetPayrollPeriodsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPostedLeavesOperationCompleted;
@@ -219,8 +225,6 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback RejectClaimReqOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RejectImprestOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -260,6 +264,9 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
+        public event RejectImprestCompletedEventHandler RejectImprestCompleted;
+        
+        /// <remarks/>
         public event RejectLeaveCompletedEventHandler RejectLeaveCompleted;
         
         /// <remarks/>
@@ -294,6 +301,9 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         public event UpdateStaffPassCompletedEventHandler UpdateStaffPassCompleted;
+        
+        /// <remarks/>
+        public event UploadProfilePictureCompletedEventHandler UploadProfilePictureCompleted;
         
         /// <remarks/>
         public event ValidTrusteeCompletedEventHandler ValidTrusteeCompleted;
@@ -485,6 +495,9 @@ namespace TelpostaMembersPortal.NAVWS {
         public event GetMemberProfileDetailsCompletedEventHandler GetMemberProfileDetailsCompleted;
         
         /// <remarks/>
+        public event GetPayrollPeriods1CompletedEventHandler GetPayrollPeriods1Completed;
+        
+        /// <remarks/>
         public event GetPayrollPeriodsCompletedEventHandler GetPayrollPeriodsCompleted;
         
         /// <remarks/>
@@ -545,7 +558,34 @@ namespace TelpostaMembersPortal.NAVWS {
         public event RejectClaimReqCompletedEventHandler RejectClaimReqCompleted;
         
         /// <remarks/>
-        public event RejectImprestCompletedEventHandler RejectImprestCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectImprest_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RejectImprest(string documentNo, string userID) {
+            this.Invoke("RejectImprest", new object[] {
+                        documentNo,
+                        userID});
+        }
+        
+        /// <remarks/>
+        public void RejectImprestAsync(string documentNo, string userID) {
+            this.RejectImprestAsync(documentNo, userID, null);
+        }
+        
+        /// <remarks/>
+        public void RejectImprestAsync(string documentNo, string userID, object userState) {
+            if ((this.RejectImprestOperationCompleted == null)) {
+                this.RejectImprestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectImprestOperationCompleted);
+            }
+            this.InvokeAsync("RejectImprest", new object[] {
+                        documentNo,
+                        userID}, this.RejectImprestOperationCompleted, userState);
+        }
+        
+        private void OnRejectImprestOperationCompleted(object arg) {
+            if ((this.RejectImprestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RejectImprestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectLeave_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -916,6 +956,40 @@ namespace TelpostaMembersPortal.NAVWS {
             if ((this.UpdateStaffPassCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateStaffPassCompleted(this, new UpdateStaffPassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:UploadProfilePicture", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="UploadProfilePicture_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UploadProfilePicture(string username, string fileName, string description) {
+            object[] results = this.Invoke("UploadProfilePicture", new object[] {
+                        username,
+                        fileName,
+                        description});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UploadProfilePictureAsync(string username, string fileName, string description) {
+            this.UploadProfilePictureAsync(username, fileName, description, null);
+        }
+        
+        /// <remarks/>
+        public void UploadProfilePictureAsync(string username, string fileName, string description, object userState) {
+            if ((this.UploadProfilePictureOperationCompleted == null)) {
+                this.UploadProfilePictureOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadProfilePictureOperationCompleted);
+            }
+            this.InvokeAsync("UploadProfilePicture", new object[] {
+                        username,
+                        fileName,
+                        description}, this.UploadProfilePictureOperationCompleted, userState);
+        }
+        
+        private void OnUploadProfilePictureOperationCompleted(object arg) {
+            if ((this.UploadProfilePictureCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UploadProfilePictureCompleted(this, new UploadProfilePictureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2429,21 +2503,21 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateMemberStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GenerateMemberStatement(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate) {
+        public void GenerateMemberStatement(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime period) {
             this.Invoke("GenerateMemberStatement", new object[] {
                         path,
                         memberNo,
                         filenameFromApp,
-                        startDate});
+                        period});
         }
         
         /// <remarks/>
-        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime startDate) {
-            this.GenerateMemberStatementAsync(path, memberNo, filenameFromApp, startDate, null);
+        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime period) {
+            this.GenerateMemberStatementAsync(path, memberNo, filenameFromApp, period, null);
         }
         
         /// <remarks/>
-        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime startDate, object userState) {
+        public void GenerateMemberStatementAsync(string path, string memberNo, string filenameFromApp, System.DateTime period, object userState) {
             if ((this.GenerateMemberStatementOperationCompleted == null)) {
                 this.GenerateMemberStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateMemberStatementOperationCompleted);
             }
@@ -2451,7 +2525,7 @@ namespace TelpostaMembersPortal.NAVWS {
                         path,
                         memberNo,
                         filenameFromApp,
-                        startDate}, this.GenerateMemberStatementOperationCompleted, userState);
+                        period}, this.GenerateMemberStatementOperationCompleted, userState);
         }
         
         private void OnGenerateMemberStatementOperationCompleted(object arg) {
@@ -2878,6 +2952,34 @@ namespace TelpostaMembersPortal.NAVWS {
             if ((this.GetMemberProfileDetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetMemberProfileDetailsCompleted(this, new GetMemberProfileDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetPayrollPeriods1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPayrollPeriods1() {
+            object[] results = this.Invoke("GetPayrollPeriods1", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPayrollPeriods1Async() {
+            this.GetPayrollPeriods1Async(null);
+        }
+        
+        /// <remarks/>
+        public void GetPayrollPeriods1Async(object userState) {
+            if ((this.GetPayrollPeriods1OperationCompleted == null)) {
+                this.GetPayrollPeriods1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPayrollPeriods1OperationCompleted);
+            }
+            this.InvokeAsync("GetPayrollPeriods1", new object[0], this.GetPayrollPeriods1OperationCompleted, userState);
+        }
+        
+        private void OnGetPayrollPeriods1OperationCompleted(object arg) {
+            if ((this.GetPayrollPeriods1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPayrollPeriods1Completed(this, new GetPayrollPeriods1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3531,36 +3633,6 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectImprest_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RejectImprest(string documentNo, string userID) {
-            this.Invoke("RejectImprest", new object[] {
-                        documentNo,
-                        userID});
-        }
-        
-        /// <remarks/>
-        public void RejectImprestAsync(string documentNo, string userID) {
-            this.RejectImprestAsync(documentNo, userID, null);
-        }
-        
-        /// <remarks/>
-        public void RejectImprestAsync(string documentNo, string userID, object userState) {
-            if ((this.RejectImprestOperationCompleted == null)) {
-                this.RejectImprestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectImprestOperationCompleted);
-            }
-            this.InvokeAsync("RejectImprest", new object[] {
-                        documentNo,
-                        userID}, this.RejectImprestOperationCompleted, userState);
-        }
-        
-        private void OnRejectImprestOperationCompleted(object arg) {
-            if ((this.RejectImprestCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RejectImprestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3578,6 +3650,10 @@ namespace TelpostaMembersPortal.NAVWS {
             return false;
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RejectImprestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -3790,6 +3866,32 @@ namespace TelpostaMembersPortal.NAVWS {
         private object[] results;
         
         internal UpdateStaffPassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UploadProfilePictureCompletedEventHandler(object sender, UploadProfilePictureCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UploadProfilePictureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UploadProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -5115,6 +5217,32 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPayrollPeriods1CompletedEventHandler(object sender, GetPayrollPeriods1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPayrollPeriods1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPayrollPeriods1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetPayrollPeriodsCompletedEventHandler(object sender, GetPayrollPeriodsCompletedEventArgs e);
     
     /// <remarks/>
@@ -5552,10 +5680,6 @@ namespace TelpostaMembersPortal.NAVWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RejectClaimReqCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void RejectImprestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

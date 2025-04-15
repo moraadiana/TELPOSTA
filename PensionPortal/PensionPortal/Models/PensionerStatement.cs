@@ -19,6 +19,6 @@ namespace PensionPortal.Models
 
         public string PdfUrl { get; set; }
         public List<string> PayrollPeriods { get; set; }
-        //public List<PensionerStatement> PayrollPeriods { get; set; }
+        
     }
 }

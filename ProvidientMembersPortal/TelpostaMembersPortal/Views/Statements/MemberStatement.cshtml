@@ -43,30 +43,27 @@
                 </div>
                 <div class="portlet-body">
                     <form action="@Url.Action("GenerateMemberStatement", "Statements")" method="get">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="startDate" class="form-label">Period :</label>
-                              
-                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
-
+                        <div class="row g-3 align-items-end">
+                            
+                            <div class="col-md-8">
+                                
+                                <label for="Period" class="form-label fw-bold">Period</label>
+                                @Html.DropDownListFor(m => m.StartDate, new SelectList(Model.PayrollPeriods, "StartDate", "StartDate", Model.StartDate), new { @class = "form-select" })
+                                
                             </div>
+                            @*<div class="col-md-4">
+                                <label for="endDate" class="form-label fw-bold">End Date:</label>
+                                @Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate", Model.EndDate), new { @class = "form-select" })
+                            </div>*@
 
-                            <!--<div class="col-md-4">
-                                <label for="endDate" class="form-label">End Date:</label>-->
-                                @*@Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods, "EndDate", "EndDate"), new { @class = "form-control" })*@
-
-                                <!--@Html.DropDownListFor(m => m.EndDate, new SelectList(Model.PayrollPeriods), new { @class = "form-control" })
-                            </div>-->
-
-                            <div class="col-md-6 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary w-100">
-                                    <i class="bi bi-file-earmark-arrow-down me-2"></i> Generate Statement
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary mt-2">
+                                    <i class="bi bi-file-earmark-arrow-down mt-2"></i> Generate Statement
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!-- Display Life Certificate -->
                 <div class="portlet-body text-center">
                     @if (!string.IsNullOrEmpty(ViewBag.PdfUrl))
                     {
@@ -80,10 +77,10 @@
                                         </div>
                                         <div class="mt-3 d-flex justify-content-center gap-2">
                                             <a href="@ViewBag.PdfUrl" target="_blank" class="btn btn-outline-primary">
-                                                <i class="bi bi-eye"></i> View Statement
+                                                <i class="bi bi-eye"></i> View Certificate
                                             </a>
                                             <a href="@ViewBag.PdfUrl" download class="btn btn-outline-success">
-                                                <i class="bi bi-download"></i> Download Statement
+                                                <i class="bi bi-download"></i> Download Certificate
                                             </a>
                                         </div>
                                     </div>
@@ -94,7 +91,7 @@
                     else
                     {
                         <div class="alert alert-info text-center mt-4">
-                            <i class="bi bi-info-circle"></i> Statement not found.
+                            <i class="bi bi-info-circle"></i> No Life Certificate available.
                         </div>
 
                     }

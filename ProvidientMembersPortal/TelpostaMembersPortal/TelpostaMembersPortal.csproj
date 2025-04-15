@@ -124,6 +124,7 @@
     <Compile Include="App_Data\Helper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Beneficiary.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberStatement.cs" />
     <Compile Include="Models\News.cs" />
@@ -2613,10 +2614,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://192.168.10.19:7047/TelPosta/WS/Telposta%2520Test/Codeunit/Portal">
+    <WebReferenceUrl Include="https://192.168.10.19:7047/TelPosta/WS/Teleposta%2520Provident%2520Fund/Codeunit/Portal">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\NAVWS\</RelPath>
-      <UpdateFromURL>https://192.168.10.19:7047/TelPosta/WS/Telposta%2520Test/Codeunit/Portal</UpdateFromURL>
+      <UpdateFromURL>https://192.168.10.19:7047/TelPosta/WS/Teleposta%2520Provident%2520Fund/Codeunit/Portal</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

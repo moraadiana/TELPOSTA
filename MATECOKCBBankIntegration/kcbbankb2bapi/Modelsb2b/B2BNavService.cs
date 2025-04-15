@@ -98,5 +98,36 @@ namespace b2b
 
             return rst;
         }
+        public bool DisbursementNotification(
+
+              string ftReference
+            , string TransactionDate
+            , decimal Amount
+            , string Status
+            , string Message
+            , string BenAccountNo
+         
+            , string DebitAccountNo
+            , string Beneficiaryname
+            , string Reference
+            , string Merchantid 
+            )
+        {
+            bool rst;
+
+            rst = KCBNavService.InsertTransactionNotification(
+                  ftReference
+            , TransactionDate
+            , Amount
+            , Status
+            , Message
+            , BenAccountNo
+            , DebitAccountNo
+            , Beneficiaryname
+            , Reference
+            , Merchantid);
+
+            return rst;
+        }
     }
 }

@@ -37,6 +37,29 @@
           </sequence>
         </complexType>
       </element>
+      <element name="InsertTransactionNotification">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="ftReference" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="transactionDate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="transactionStatus" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="transactionMessage" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="beneficiaryAccountNumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="debitAccountNumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="beneficiaryName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="transactionReference" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="merchantId" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertTransactionNotification_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="PostKCBTransaction">
         <complexType>
           <sequence>
@@ -102,6 +125,12 @@
   <message name="GetPayTransFinal_Result">
     <part name="parameters" element="tns:GetPayTransFinal_Result" />
   </message>
+  <message name="InsertTransactionNotification">
+    <part name="parameters" element="tns:InsertTransactionNotification" />
+  </message>
+  <message name="InsertTransactionNotification_Result">
+    <part name="parameters" element="tns:InsertTransactionNotification_Result" />
+  </message>
   <message name="PostKCBTransaction">
     <part name="parameters" element="tns:PostKCBTransaction" />
   </message>
@@ -128,6 +157,10 @@
     <operation name="GetPayTransFinal">
       <input name="GetPayTransFinal" message="tns:GetPayTransFinal" />
       <output name="GetPayTransFinal_Result" message="tns:GetPayTransFinal_Result" />
+    </operation>
+    <operation name="InsertTransactionNotification">
+      <input name="InsertTransactionNotification" message="tns:InsertTransactionNotification" />
+      <output name="InsertTransactionNotification_Result" message="tns:InsertTransactionNotification_Result" />
     </operation>
     <operation name="PostKCBTransaction">
       <input name="PostKCBTransaction" message="tns:PostKCBTransaction" />
@@ -159,6 +192,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetPayTransFinal_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertTransactionNotification">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:InsertTransactionNotification" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertTransactionNotification">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertTransactionNotification_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

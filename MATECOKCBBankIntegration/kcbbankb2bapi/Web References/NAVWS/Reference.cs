@@ -33,6 +33,8 @@ namespace b2b.NAVWS {
         
         private System.Threading.SendOrPostCallback GetPayTransFinalOperationCompleted;
         
+        private System.Threading.SendOrPostCallback InsertTransactionNotificationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback PostKCBTransactionOperationCompleted;
         
         private System.Threading.SendOrPostCallback TransactionCodeExistsOperationCompleted;
@@ -82,6 +84,9 @@ namespace b2b.NAVWS {
         
         /// <remarks/>
         public event GetPayTransFinalCompletedEventHandler GetPayTransFinalCompleted;
+        
+        /// <remarks/>
+        public event InsertTransactionNotificationCompletedEventHandler InsertTransactionNotificationCompleted;
         
         /// <remarks/>
         public event PostKCBTransactionCompletedEventHandler PostKCBTransactionCompleted;
@@ -163,6 +168,55 @@ namespace b2b.NAVWS {
             if ((this.GetPayTransFinalCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetPayTransFinalCompleted(this, new GetPayTransFinalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration:InsertTransactionNoti" +
+            "fication", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration", ResponseElementName="InsertTransactionNotification_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/KCBBankIntergration", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool InsertTransactionNotification(string ftReference, string transactionDate, decimal amount, string transactionStatus, string transactionMessage, string beneficiaryAccountNumber, string debitAccountNumber, string beneficiaryName, string transactionReference, string merchantId) {
+            object[] results = this.Invoke("InsertTransactionNotification", new object[] {
+                        ftReference,
+                        transactionDate,
+                        amount,
+                        transactionStatus,
+                        transactionMessage,
+                        beneficiaryAccountNumber,
+                        debitAccountNumber,
+                        beneficiaryName,
+                        transactionReference,
+                        merchantId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertTransactionNotificationAsync(string ftReference, string transactionDate, decimal amount, string transactionStatus, string transactionMessage, string beneficiaryAccountNumber, string debitAccountNumber, string beneficiaryName, string transactionReference, string merchantId) {
+            this.InsertTransactionNotificationAsync(ftReference, transactionDate, amount, transactionStatus, transactionMessage, beneficiaryAccountNumber, debitAccountNumber, beneficiaryName, transactionReference, merchantId, null);
+        }
+        
+        /// <remarks/>
+        public void InsertTransactionNotificationAsync(string ftReference, string transactionDate, decimal amount, string transactionStatus, string transactionMessage, string beneficiaryAccountNumber, string debitAccountNumber, string beneficiaryName, string transactionReference, string merchantId, object userState) {
+            if ((this.InsertTransactionNotificationOperationCompleted == null)) {
+                this.InsertTransactionNotificationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertTransactionNotificationOperationCompleted);
+            }
+            this.InvokeAsync("InsertTransactionNotification", new object[] {
+                        ftReference,
+                        transactionDate,
+                        amount,
+                        transactionStatus,
+                        transactionMessage,
+                        beneficiaryAccountNumber,
+                        debitAccountNumber,
+                        beneficiaryName,
+                        transactionReference,
+                        merchantId}, this.InsertTransactionNotificationOperationCompleted, userState);
+        }
+        
+        private void OnInsertTransactionNotificationOperationCompleted(object arg) {
+            if ((this.InsertTransactionNotificationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertTransactionNotificationCompleted(this, new InsertTransactionNotificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -342,6 +396,32 @@ namespace b2b.NAVWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void InsertTransactionNotificationCompletedEventHandler(object sender, InsertTransactionNotificationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertTransactionNotificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertTransactionNotificationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

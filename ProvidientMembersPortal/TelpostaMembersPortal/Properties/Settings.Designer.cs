@@ -12,7 +12,7 @@ namespace TelpostaMembersPortal.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.11.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,7 +26,8 @@ namespace TelpostaMembersPortal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Port" +
+            "al")]
         public string TelpostaMembersPortal_NAVWS_Portal {
             get {
                 return ((string)(this["TelpostaMembersPortal_NAVWS_Portal"]));

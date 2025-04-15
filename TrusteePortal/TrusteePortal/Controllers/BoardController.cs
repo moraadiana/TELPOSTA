@@ -30,18 +30,21 @@ namespace TrusteePortal.Controllers
             try
             {
                 // string username = Session["pensionerNo"].ToString();
-                string boardMeetingList = webportals.GetBoardMeetingsAttended(username);
+                string boardMeetingList = webportals.GetBoardMeetingsAttended1(username);
                 if (!string.IsNullOrEmpty(boardMeetingList))
                 {
                     string[] boardMeetingListArr = boardMeetingList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string boardMeeting in boardMeetingListArr)
                     {
                         string[] response = boardMeeting.Split(strLimiters, StringSplitOptions.None);
+                        //Message += 'SUCCESS' + '::' + BoardRegister."Board Meeting"  + '::' + format(BoardRegister."Posting Date") + '::' + format(BoardRegister."Meeting Type" )+ '::'+ BoardRegister.Description ;
                         BoardMeeting attendedBoardMeetings = new BoardMeeting()
                         {
                             //Code = response[1].Trim(),
-                            BoardNo = response[1].Trim(),
-                            Description = response[2].Trim(),
+                            MeetingNo = response[1].Trim(),
+                            Date = response[2].Trim(),
+                            Type = response[3].Trim(),
+                            Description = response[4].Trim(),
                             
 
 

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\KCBBankIntegration</_PublishTargetUrl>
-    <History>True|2025-04-08T08:25:45.4774463Z||;True|2024-01-17T23:45:31.3232018+03:00||;True|2023-12-20T10:34:19.1368537+03:00||;True|2023-11-08T22:55:33.3530962+03:00||;True|2023-07-11T02:05:45.2210403+03:00||;</History>
+    <History>True|2025-04-15T10:17:41.9513111Z||;True|2025-04-08T11:25:45.4774463+03:00||;True|2024-01-17T23:45:31.3232018+03:00||;True|2023-12-20T10:34:19.1368537+03:00||;True|2023-11-08T22:55:33.3530962+03:00||;True|2023-07-11T02:05:45.2210403+03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -46,10 +46,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="App_Data/XmlDocument.xml">
-      <publishTime>04/08/2025 11:25:42</publishTime>
+      <publishTime>04/15/2025 13:17:38</publishTime>
     </File>
     <File Include="Areas/HelpPage/HelpPage.css">
-      <publishTime>02/01/2017 09:01:04</publishTime>
+      <publishTime>01/02/2017 09:01:04</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/Api.cshtml">
       <publishTime>02/04/2020 16:32:11</publishTime>
@@ -88,7 +88,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/04/2020 16:32:11</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/Samples.cshtml">
-      <publishTime>02/01/2017 09:01:04</publishTime>
+      <publishTime>01/02/2017 09:01:04</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/SimpleTypeModelDescription.cshtml">
       <publishTime>02/04/2020 16:32:11</publishTime>
@@ -103,13 +103,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/04/2020 16:32:11</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Shared/_Layout.cshtml">
-      <publishTime>02/01/2017 09:01:02</publishTime>
+      <publishTime>01/02/2017 09:01:02</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Web.config">
-      <publishTime>02/01/2017 09:01:02</publishTime>
+      <publishTime>01/02/2017 09:01:02</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/_ViewStart.cshtml">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/22/2013 08:43:40</publishTime>
@@ -118,13 +118,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/b2b.dll">
-      <publishTime>04/08/2025 11:25:43</publishTime>
+      <publishTime>04/15/2025 13:17:39</publishTime>
     </File>
     <File Include="bin/b2b.pdb">
-      <publishTime>04/08/2025 11:25:43</publishTime>
+      <publishTime>04/15/2025 13:17:39</publishTime>
     </File>
     <File Include="bin/b2b.XmlSerializers.dll">
-      <publishTime>04/08/2025 11:25:44</publishTime>
+      <publishTime>04/15/2025 13:17:40</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -277,31 +277,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="bin/XmlDocument.xml">
-      <publishTime>04/08/2025 11:25:42</publishTime>
+      <publishTime>04/15/2025 13:17:38</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>02/01/2017 09:00:14</publishTime>
+      <publishTime>01/02/2017 09:00:14</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>02/01/2017 09:00:14</publishTime>
+      <publishTime>01/02/2017 09:00:14</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>02/01/2017 09:00:14</publishTime>
+      <publishTime>01/02/2017 09:00:14</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>02/01/2017 09:00:14</publishTime>
+      <publishTime>01/02/2017 09:00:14</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>02/01/2017 09:00:14</publishTime>
+      <publishTime>01/02/2017 09:00:14</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>02/01/2017 09:00:12</publishTime>
+      <publishTime>01/02/2017 09:00:12</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>06/09/2022 15:27:17</publishTime>
@@ -310,22 +310,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/27/2022 15:58:18</publishTime>
     </File>
     <File Include="restsharp.106.2.1.nupkg">
-      <publishTime>04/12/2018 15:20:56</publishTime>
+      <publishTime>12/04/2018 15:20:56</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>02/01/2017 09:00:12</publishTime>
+      <publishTime>01/02/2017 09:00:12</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>02/01/2017 09:00:12</publishTime>
+      <publishTime>01/02/2017 09:00:12</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>01/15/2019 13:21:22</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>02/01/2017 09:00:44</publishTime>
+      <publishTime>01/02/2017 09:00:44</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>02/01/2017 09:00:44</publishTime>
+      <publishTime>01/02/2017 09:00:44</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>01/15/2019 13:21:22</publishTime>
@@ -334,22 +334,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/15/2019 13:21:22</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>02/01/2017 09:01:32</publishTime>
+      <publishTime>01/02/2017 09:01:32</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>02/01/2017 09:01:32</publishTime>
+      <publishTime>01/02/2017 09:01:32</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>02/01/2017 09:01:06</publishTime>
+      <publishTime>01/02/2017 09:01:06</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>02/01/2017 09:01:08</publishTime>
+      <publishTime>01/02/2017 09:01:08</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>02/01/2017 09:01:08</publishTime>
+      <publishTime>01/02/2017 09:01:08</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>02/01/2017 09:01:08</publishTime>
+      <publishTime>01/02/2017 09:01:08</publishTime>
     </File>
     <File Include="SqlServerTypes/readme.htm">
       <publishTime>01/14/2018 10:24:26</publishTime>
@@ -367,19 +367,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/14/2018 10:24:28</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/04/2020 16:32:10</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>02/01/2017 09:00:00</publishTime>
+      <publishTime>01/02/2017 09:00:00</publishTime>
     </File>
     <File Include="Web References/NAVWS/Reference.map">
       <publishTime>04/08/2025 11:05:20</publishTime>

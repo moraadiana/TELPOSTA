@@ -2,6 +2,19 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RejectImprest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectImprest_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="RejectLeave">
         <complexType>
           <sequence>
@@ -165,6 +178,22 @@
         </complexType>
       </element>
       <element name="UpdateStaffPass_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -869,7 +898,7 @@
             <element minOccurs="1" maxOccurs="1" name="path" type="string" />
             <element minOccurs="1" maxOccurs="1" name="memberNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="period" type="date" />
           </sequence>
         </complexType>
       </element>
@@ -1068,6 +1097,18 @@
         </complexType>
       </element>
       <element name="GetMemberProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods1">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods1_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1373,21 +1414,14 @@
           <sequence />
         </complexType>
       </element>
-      <element name="RejectImprest">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="RejectImprest_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="RejectImprest">
+    <part name="parameters" element="tns:RejectImprest" />
+  </message>
+  <message name="RejectImprest_Result">
+    <part name="parameters" element="tns:RejectImprest_Result" />
+  </message>
   <message name="RejectLeave">
     <part name="parameters" element="tns:RejectLeave" />
   </message>
@@ -1459,6 +1493,12 @@
   </message>
   <message name="UpdateStaffPass_Result">
     <part name="parameters" element="tns:UpdateStaffPass_Result" />
+  </message>
+  <message name="UploadProfilePicture">
+    <part name="parameters" element="tns:UploadProfilePicture" />
+  </message>
+  <message name="UploadProfilePicture_Result">
+    <part name="parameters" element="tns:UploadProfilePicture_Result" />
   </message>
   <message name="ValidTrustee">
     <part name="parameters" element="tns:ValidTrustee" />
@@ -1838,6 +1878,12 @@
   <message name="GetMemberProfileDetails_Result">
     <part name="parameters" element="tns:GetMemberProfileDetails_Result" />
   </message>
+  <message name="GetPayrollPeriods1">
+    <part name="parameters" element="tns:GetPayrollPeriods1" />
+  </message>
+  <message name="GetPayrollPeriods1_Result">
+    <part name="parameters" element="tns:GetPayrollPeriods1_Result" />
+  </message>
   <message name="GetPayrollPeriods">
     <part name="parameters" element="tns:GetPayrollPeriods" />
   </message>
@@ -1958,13 +2004,11 @@
   <message name="RejectClaimReq_Result">
     <part name="parameters" element="tns:RejectClaimReq_Result" />
   </message>
-  <message name="RejectImprest">
-    <part name="parameters" element="tns:RejectImprest" />
-  </message>
-  <message name="RejectImprest_Result">
-    <part name="parameters" element="tns:RejectImprest_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="RejectImprest">
+      <input name="RejectImprest" message="tns:RejectImprest" />
+      <output name="RejectImprest_Result" message="tns:RejectImprest_Result" />
+    </operation>
     <operation name="RejectLeave">
       <input name="RejectLeave" message="tns:RejectLeave" />
       <output name="RejectLeave_Result" message="tns:RejectLeave_Result" />
@@ -2012,6 +2056,10 @@
     <operation name="UpdateStaffPass">
       <input name="UpdateStaffPass" message="tns:UpdateStaffPass" />
       <output name="UpdateStaffPass_Result" message="tns:UpdateStaffPass_Result" />
+    </operation>
+    <operation name="UploadProfilePicture">
+      <input name="UploadProfilePicture" message="tns:UploadProfilePicture" />
+      <output name="UploadProfilePicture_Result" message="tns:UploadProfilePicture_Result" />
     </operation>
     <operation name="ValidTrustee">
       <input name="ValidTrustee" message="tns:ValidTrustee" />
@@ -2265,6 +2313,10 @@
       <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
       <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
     </operation>
+    <operation name="GetPayrollPeriods1">
+      <input name="GetPayrollPeriods1" message="tns:GetPayrollPeriods1" />
+      <output name="GetPayrollPeriods1_Result" message="tns:GetPayrollPeriods1_Result" />
+    </operation>
     <operation name="GetPayrollPeriods">
       <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
       <output name="GetPayrollPeriods_Result" message="tns:GetPayrollPeriods_Result" />
@@ -2345,13 +2397,18 @@
       <input name="RejectClaimReq" message="tns:RejectClaimReq" />
       <output name="RejectClaimReq_Result" message="tns:RejectClaimReq_Result" />
     </operation>
-    <operation name="RejectImprest">
-      <input name="RejectImprest" message="tns:RejectImprest" />
-      <output name="RejectImprest_Result" message="tns:RejectImprest_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RejectImprest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectImprest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectImprest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RejectLeave">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectLeave" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RejectLeave">
@@ -2457,6 +2514,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdateStaffPass_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UploadProfilePicture">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:UploadProfilePicture" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UploadProfilePicture">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UploadProfilePicture_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3027,6 +3093,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetPayrollPeriods1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayrollPeriods1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayrollPeriods1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetPayrollPeriods">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetPayrollPeriods">
@@ -3207,19 +3282,10 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="RejectImprest">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="RejectImprest">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="RejectImprest_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
   </binding>
   <service name="Portal">
     <port name="Portal_Port" binding="tns:Portal_Binding">
-      <address location="https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

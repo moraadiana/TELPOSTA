@@ -11,5 +11,7 @@ namespace TrusteePortal.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public HttpPostedFileBase profilePic { get; set; }
+
     }
 }

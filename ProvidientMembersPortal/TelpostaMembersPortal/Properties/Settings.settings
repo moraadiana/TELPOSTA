@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TelpostaMembersPortal_NAVWS_Portal" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal</Value>
+      <Value Profile="(Default)">https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Portal</Value>
     </Setting>
   </Settings>
 </SettingsFile>

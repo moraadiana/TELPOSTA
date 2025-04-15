@@ -30,5 +30,7 @@ namespace TelpostaMembersPortal.Models
         public string LastName { get; set; }
         public string Designation { get; set; }
 
+        public HttpPostedFileBase profilePic { get; set; }
+
     }
 }

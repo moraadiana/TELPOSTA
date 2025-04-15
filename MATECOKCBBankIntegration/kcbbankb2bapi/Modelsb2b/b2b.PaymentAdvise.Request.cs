@@ -58,6 +58,19 @@ namespace b2b.PaymentAdvise.REQUEST
         public string last_payment_amount { get; set; }
         public List<PaymentReference> payment_reference { get; set; }
     }
+    public class Disbursement
+    {
+        public string ftReference { get; set; }
+        public string transactionDate { get;set; }
+        public string amount {  get; set; }
+        public string transactionStatus { get; set; }
+        public string transactionMessage { get; set; }
+        public string beneficiaryAccountNumber { get; set; }
+        public string debitAccountNumber { get; set; }
+        public string beneficiaryName { get; set; }
+        public string transactionReference { get; set; }
+        public string merchantId { get; set; }
+    }
     public class PaymentReference
     {
         public string payment_reference { get; set; }

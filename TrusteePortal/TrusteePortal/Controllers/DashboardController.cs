@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using TrusteePortal.Models;
 using TrusteePortal.NAVWS;
 
@@ -54,7 +56,32 @@ namespace TrusteePortal.Controllers
                 ex.Data.Clear();
             }
         }
-       
+
+        public ActionResult ChangeProfilePic(Account account)
+        {
+            if (Session["trusteeNo"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (account.profilePic != null && account.profilePic.ContentLength > 0)
+            {
+                string path = Server.MapPath("~/Profiles/");
+                string trusteeNo = Session["trusteeNo"].ToString();
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string filename = Session["trusteeNo"].ToString() + ".png";
+                string filepath = path + filename;
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+                account.profilePic.SaveAs(filepath);
+                // webportals.UploadProfilePicture(memberNo, filepath, "Profile pic");
+            }
+            return RedirectToAction("Index", "Dashboard");
+        }
 
     }
 }

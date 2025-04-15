@@ -56,9 +56,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="Period">Period</label>
-                                    <input type="date" id="Period" name="Period" class="form-control" required />
+                                    @*<input type="date" id="Period" name="Period" class="form-control" required />*@
 
-                                    @*@Html.DropDownListFor(m => m.Period, new SelectList(Model.PninePeriods), new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.Period, new SelectList(Model.PninePeriods), new { @class = "form-control" })
                                 </div>
                             </div>
 

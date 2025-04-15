@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,6 +52,7 @@ namespace TelpostaMembersPortal.Controllers
                     Session["Sponsor"] = responseArr[8];
                     Session["Salutation"] = responseArr[9];
                     Session["Status"] = responseArr[10];
+                    Session["Balance"] = responseArr[11];
                     //Session["MemberName"]
 
                 }
@@ -127,6 +129,31 @@ namespace TelpostaMembersPortal.Controllers
                 return RedirectToAction("index", "dashboard");
             }
             return View(news);
+        }
+        public ActionResult ChangeProfilePic(Member member)
+        {
+            if (Session["memberNo"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (member.profilePic != null && member.profilePic.ContentLength > 0)
+            {
+                string path = Server.MapPath("~/Profiles/");
+                string memberNo = Session["memberNo"].ToString();
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string filename = Session["memberNo"].ToString() + ".png";
+                string filepath = path + filename;
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+                member.profilePic.SaveAs(filepath);
+               webportals.UploadProfilePicture(memberNo, filepath, "Profile pic");
+            }
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 
