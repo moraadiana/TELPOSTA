@@ -377,8 +377,8 @@ namespace TELPOSTAStaff.pages
                 else
                 {
                     // Handle the case where there are no imprest lines
-                    gvLines.DataSource = null;
-                    gvLines.DataBind();
+                    gvAttachments.DataSource = null;
+                    gvAttachments.DataBind();
                 }
             }
             catch (Exception ex)
@@ -435,7 +435,6 @@ namespace TELPOSTAStaff.pages
                 }
                 else
                 {
-                    // Handle the case where there are no imprest lines
                     gvLines.DataSource = null;
                     gvLines.DataBind();
                 }

@@ -757,7 +757,63 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
+<<<<<<< HEAD
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetActiveMemberCountCompletedEventHandler(object sender, GetActiveMemberCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetActiveMemberCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetActiveMemberCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetAllMembersCompletedEventHandler(object sender, GetAllMembersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllMembersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllMembersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+=======
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+<<<<<<< HEAD
     public delegate void GetActiveMemberCountCompletedEventHandler(object sender, GetActiveMemberCountCompletedEventArgs e);
     
     /// <remarks/>
@@ -810,6 +866,9 @@ namespace TrusteePortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+=======
+>>>>>>> 744870335e3c39edb39258fa25230c994c2dc1a3
+>>>>>>> 5c50847ea7d2502c97177daa99e572c36d1bf378
     public delegate void GetAssignedBoardsCompletedEventHandler(object sender, GetAssignedBoardsCompletedEventArgs e);
     
     /// <remarks/>
@@ -835,11 +894,19 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
+<<<<<<< HEAD
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetBoardMeetingsAttended1CompletedEventHandler(object sender, GetBoardMeetingsAttended1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+=======
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetBoardMeetingsAttended1CompletedEventHandler(object sender, GetBoardMeetingsAttended1CompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+>>>>>>> 744870335e3c39edb39258fa25230c994c2dc1a3
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBoardMeetingsAttended1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -861,7 +928,11 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
+<<<<<<< HEAD
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+=======
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+>>>>>>> 744870335e3c39edb39258fa25230c994c2dc1a3
     public delegate void GetBoardMeetingsAttendedCompletedEventHandler(object sender, GetBoardMeetingsAttendedCompletedEventArgs e);
     
     /// <remarks/>
@@ -887,7 +958,63 @@ namespace TrusteePortal.NAVWS {
     }
     
     /// <remarks/>
+<<<<<<< HEAD
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetMemberCountsByStatusCompletedEventHandler(object sender, GetMemberCountsByStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetMemberCountsByStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetMemberCountsByStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void GetPensionerCountsByStatusCompletedEventHandler(object sender, GetPensionerCountsByStatusCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPensionerCountsByStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPensionerCountsByStatusCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+=======
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+<<<<<<< HEAD
     public delegate void GetMemberCountsByStatusCompletedEventHandler(object sender, GetMemberCountsByStatusCompletedEventArgs e);
     
     /// <remarks/>
@@ -940,6 +1067,9 @@ namespace TrusteePortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+=======
+>>>>>>> 744870335e3c39edb39258fa25230c994c2dc1a3
+>>>>>>> 5c50847ea7d2502c97177daa99e572c36d1bf378
     public delegate void GetTrusteeDetailsCompletedEventHandler(object sender, GetTrusteeDetailsCompletedEventArgs e);
     
     /// <remarks/>

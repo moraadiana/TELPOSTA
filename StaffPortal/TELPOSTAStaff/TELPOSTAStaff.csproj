@@ -6368,6 +6368,7 @@
     <Content Include="pages\ClaimLines.aspx" />
     <Content Include="pages\ClaimListing.aspx" />
     <Content Include="pages\Dashboard.aspx" />
+    <Content Include="pages\ImprestAccountingLines.aspx" />
     <Content Include="pages\ImprestAccountingListing.aspx" />
     <Content Include="pages\ImprestLines.aspx" />
     <Content Include="pages\ImprestListing.aspx" />
@@ -7190,6 +7191,13 @@
     </Compile>
     <Compile Include="pages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ImprestAccountingLines.aspx.cs">
+      <DependentUpon>ImprestAccountingLines.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ImprestAccountingLines.aspx.designer.cs">
+      <DependentUpon>ImprestAccountingLines.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\ImprestAccountingListing.aspx.cs">
       <DependentUpon>ImprestAccountingListing.aspx</DependentUpon>

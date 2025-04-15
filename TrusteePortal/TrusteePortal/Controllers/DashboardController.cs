@@ -56,6 +56,7 @@ namespace TrusteePortal.Controllers
                 ex.Data.Clear();
             }
         }
+<<<<<<< HEAD
 
         public ActionResult ChangeProfilePic(Account account)
         {
@@ -82,6 +83,74 @@ namespace TrusteePortal.Controllers
             }
             return RedirectToAction("Index", "Dashboard");
         }
+=======
+        public ActionResult StatusSummary()
+        {
+            var memberResult = webportals.GetMemberCountsByStatus();
+            var pensionerResult = webportals.GetPensionerCountsByStatus();
+
+            var memberStatusCounts = ParseStatusResult(memberResult);
+            var pensionerStatusCounts = ParseStatusResult(pensionerResult);
+
+            var dashboardViewModel = new DashboardStatusViewModel
+            {
+                MemberStatusCounts = memberStatusCounts,
+                PensionerStatusCounts = pensionerStatusCounts
+            };
+
+            return View(dashboardViewModel);
+        }
+
+        private List<StatusCount> ParseStatusResult(string result)
+        {
+            var list = new List<StatusCount>();
+            if (!string.IsNullOrEmpty(result))
+            {
+                var pairs = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var pair in pairs)
+                {
+                    var parts = pair.Split(':');
+                    if (parts.Length == 2)
+                    {
+                        list.Add(new StatusCount
+                        {
+                            Status = parts[0],
+                            Count = int.Parse(parts[1])
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        public ActionResult StatusSummary1()
+        {
+            var memberResult = webportals.GetMemberCountsByStatus();
+            var result = webportals.GetPensionerCountsByStatus(); // returns string like "Active=120;Deferred=45;..."
+            var statusCounts = new List<StatusCount>();
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                var pairs = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var pair in pairs)
+                {
+                    var parts = pair.Split(':');
+                    if (parts.Length == 2)
+                    {
+                        statusCounts.Add(new StatusCount
+                        {
+                            Status = parts[0],
+                            Count = int.Parse(parts[1])
+                        });
+                    }
+                }
+            }
+
+            return View(statusCounts);
+        }
+
+
+>>>>>>> 5c50847ea7d2502c97177daa99e572c36d1bf378
 
     }
 }

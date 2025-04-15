@@ -70,7 +70,7 @@ namespace TrusteePortal.Controllers
                                 //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
                                 //Components.SendEmailAlerts(pensionerEmail, subject, body);
                                 //return RedirectToAction("verifyotp");
-                                return RedirectToAction("index", "dashboard");
+                                return RedirectToAction("statussummary", "dashboard");
                             }
                             else
                             {

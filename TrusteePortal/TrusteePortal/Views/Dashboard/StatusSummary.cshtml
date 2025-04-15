@@ -1,0 +1,142 @@
+﻿
+@model TrusteePortal.Models.DashboardStatusViewModel
+@{
+    ViewBag.Title = "Status Summary Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var memberLabels = string.Join(",", Model.MemberStatusCounts.Select(m => $"'{m.Status}'"));
+    var memberCounts = string.Join(",", Model.MemberStatusCounts.Select(m => m.Count));
+
+    var pensionerLabels = string.Join(",", Model.PensionerStatusCounts.Select(p => $"'{p.Status}'"));
+    var pensionerCounts = string.Join(",", Model.PensionerStatusCounts.Select(p => p.Count));
+}
+
+<div class="container-fluid page-content d-flex flex-column align-items-center py-4">
+    <!-- PAGE HEADER -->
+    <div class="page-bar mb-4 w-100">
+        <ul class="breadcrumb bg-transparent px-0">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("index", "dashboard")" class="text-decoration-none">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Status Report</li>
+        </ul>
+    </div>
+    <!-- Alerts -->
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2"></i>
+            <span>@ViewBag.Error</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.Success))
+    {
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <span>@ViewBag.Success</span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            padding: 2rem;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
+
+    <h2>Status Report</h2>
+    <div class="dashboard">
+        <div class="chart-container">
+            <h3>Provident Members</h3>
+            <canvas id="memberChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Pensioners</h3>
+            <canvas id="pensionerChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+    const memberColors = ['#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f','#edc949','#af7aa1'];
+        const pensionerColors = ['#3498db', '#6bc5d2', '#ffa600', '#8e44ad', '#ff6b6b'];
+
+    const memberChart = new Chart(document.getElementById('memberChart'), {
+        type: 'doughnut',
+        data: {
+            labels: [@Html.Raw(memberLabels)],
+            datasets: [{
+                data: [@Html.Raw(memberCounts)],
+                backgroundColor: memberColors,
+                borderWidth: 1,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 14 } }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `${context.label}: ${context.parsed}`
+                    }
+                }
+            }
+        }
+    });
+
+    const pensionerChart = new Chart(document.getElementById('pensionerChart'), {
+        type: 'doughnut',
+        data: {
+            labels: [@Html.Raw(pensionerLabels)],
+            datasets: [{
+                data: [@Html.Raw(pensionerCounts)],
+                backgroundColor: pensionerColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 14 } }
+                }
+            },
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1
+                }
+            }
+        }
+    });
+    </script>
