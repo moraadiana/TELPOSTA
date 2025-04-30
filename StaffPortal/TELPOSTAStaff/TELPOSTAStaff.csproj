@@ -6363,6 +6363,7 @@
     <Content Include="js\main.js" />
     <Content Include="js\site.js" />
     <Content Include="js\site.min.js" />
+    <Content Include="pages\ApprovalTracking.aspx" />
     <Content Include="pages\BackToOffice.aspx" />
     <Content Include="pages\BackToOfficeListing.aspx" />
     <Content Include="pages\ClaimLines.aspx" />
@@ -6380,8 +6381,10 @@
     <Content Include="pages\PettyCashLines.aspx" />
     <Content Include="pages\PettyCashListing.aspx" />
     <Content Include="pages\pnineform.aspx" />
+    <Content Include="pages\transportreq2.aspx" />
     <Content Include="pages\TransportRequisition.aspx" />
     <Content Include="pages\TransportRequisitionListing.aspx" />
+    <Content Include="pages\LeaveStatement.aspx" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -7157,6 +7160,13 @@
     <Compile Include="Layout\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="pages\ApprovalTracking.aspx.cs">
+      <DependentUpon>ApprovalTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ApprovalTracking.aspx.designer.cs">
+      <DependentUpon>ApprovalTracking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\BackToOffice.aspx.cs">
       <DependentUpon>BackToOffice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7276,6 +7286,13 @@
     <Compile Include="pages\pnineform.aspx.designer.cs">
       <DependentUpon>pnineform.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\transportreq2.aspx.cs">
+      <DependentUpon>transportreq2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\transportreq2.aspx.designer.cs">
+      <DependentUpon>transportreq2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\TransportRequisition.aspx.cs">
       <DependentUpon>TransportRequisition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7289,6 +7306,13 @@
     </Compile>
     <Compile Include="pages\TransportRequisitionListing.aspx.designer.cs">
       <DependentUpon>TransportRequisitionListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\LeaveStatement.aspx.cs">
+      <DependentUpon>LeaveStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\LeaveStatement.aspx.designer.cs">
+      <DependentUpon>LeaveStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Layout\Site.Master.cs">

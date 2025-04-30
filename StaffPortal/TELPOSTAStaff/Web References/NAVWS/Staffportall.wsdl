@@ -2,6 +2,75 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Staffportall" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="HRMLeaveApplication">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reliever" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="responsibilityCenter" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRMLeaveApplication_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HasPendingLeaveApplication">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HasPendingLeaveApplication_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionApprovalRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="imprestNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="totalAmount" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprestRequisitionApprovalRequest_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertAccomodationLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accountType" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="accountNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertAccomodationLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="InsertClaimRequisitionLines">
         <complexType>
           <sequence>
@@ -494,6 +563,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="RemoveAccomodationLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="lineNo" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RemoveAccomodationLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="RemoveClaimRequisitionLines">
         <complexType>
           <sequence>
@@ -657,6 +740,22 @@
         </complexType>
       </element>
       <element name="UpdateStaffPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -979,6 +1078,7 @@
             <element minOccurs="1" maxOccurs="1" name="travelType" type="int" />
             <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
             <element minOccurs="1" maxOccurs="1" name="resCenter" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accomodationProvided" type="boolean" />
           </sequence>
         </complexType>
       </element>
@@ -1145,6 +1245,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetAccomodationLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAccomodationLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetAccountNo">
         <complexType>
           <sequence />
@@ -1235,15 +1349,14 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GetDocResponsibilityCentres">
+      <element name="GetDocumentApprovalEntries">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="grouping" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
           </sequence>
         </complexType>
       </element>
-      <element name="GetDocResponsibilityCentres_Result">
+      <element name="GetDocumentApprovalEntries_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1300,6 +1413,20 @@
         </complexType>
       </element>
       <element name="GetImprestLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetImprestSurrenderDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetImprestSurrenderDetails_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1771,7 +1898,7 @@
       <element name="GetTravelRequestLines">
         <complexType>
           <sequence>
-            <element minOccurs="1" maxOccurs="1" name="claimNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
           </sequence>
         </complexType>
       </element>
@@ -1790,6 +1917,18 @@
         </complexType>
       </element>
       <element name="GetTravelStaff_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetVendors">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetVendors_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1818,59 +1957,32 @@
           </sequence>
         </complexType>
       </element>
-      <element name="HRMLeaveApplication">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="reliever" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="responsibilityCenter" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="HRMLeaveApplication_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="HasPendingLeaveApplication">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="HasPendingLeaveApplication_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="ImprestRequisitionApprovalRequest">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="imprestNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="totalAmount" type="decimal" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="ImprestRequisitionApprovalRequest_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="HRMLeaveApplication">
+    <part name="parameters" element="tns:HRMLeaveApplication" />
+  </message>
+  <message name="HRMLeaveApplication_Result">
+    <part name="parameters" element="tns:HRMLeaveApplication_Result" />
+  </message>
+  <message name="HasPendingLeaveApplication">
+    <part name="parameters" element="tns:HasPendingLeaveApplication" />
+  </message>
+  <message name="HasPendingLeaveApplication_Result">
+    <part name="parameters" element="tns:HasPendingLeaveApplication_Result" />
+  </message>
+  <message name="ImprestRequisitionApprovalRequest">
+    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest" />
+  </message>
+  <message name="ImprestRequisitionApprovalRequest_Result">
+    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest_Result" />
+  </message>
+  <message name="InsertAccomodationLines">
+    <part name="parameters" element="tns:InsertAccomodationLines" />
+  </message>
+  <message name="InsertAccomodationLines_Result">
+    <part name="parameters" element="tns:InsertAccomodationLines_Result" />
+  </message>
   <message name="InsertClaimRequisitionLines">
     <part name="parameters" element="tns:InsertClaimRequisitionLines" />
   </message>
@@ -2069,6 +2181,12 @@
   <message name="RegFileUploadAtt_Result">
     <part name="parameters" element="tns:RegFileUploadAtt_Result" />
   </message>
+  <message name="RemoveAccomodationLines">
+    <part name="parameters" element="tns:RemoveAccomodationLines" />
+  </message>
+  <message name="RemoveAccomodationLines_Result">
+    <part name="parameters" element="tns:RemoveAccomodationLines_Result" />
+  </message>
   <message name="RemoveClaimRequisitionLines">
     <part name="parameters" element="tns:RemoveClaimRequisitionLines" />
   </message>
@@ -2128,6 +2246,12 @@
   </message>
   <message name="UpdateStaffPassword_Result">
     <part name="parameters" element="tns:UpdateStaffPassword_Result" />
+  </message>
+  <message name="UploadProfilePicture">
+    <part name="parameters" element="tns:UploadProfilePicture" />
+  </message>
+  <message name="UploadProfilePicture_Result">
+    <part name="parameters" element="tns:UploadProfilePicture_Result" />
   </message>
   <message name="ValidateStartDate">
     <part name="parameters" element="tns:ValidateStartDate" />
@@ -2315,6 +2439,12 @@
   <message name="Generatep9Report_Result">
     <part name="parameters" element="tns:Generatep9Report_Result" />
   </message>
+  <message name="GetAccomodationLines">
+    <part name="parameters" element="tns:GetAccomodationLines" />
+  </message>
+  <message name="GetAccomodationLines_Result">
+    <part name="parameters" element="tns:GetAccomodationLines_Result" />
+  </message>
   <message name="GetAccountNo">
     <part name="parameters" element="tns:GetAccountNo" />
   </message>
@@ -2357,11 +2487,11 @@
   <message name="GetDefaultDays_Result">
     <part name="parameters" element="tns:GetDefaultDays_Result" />
   </message>
-  <message name="GetDocResponsibilityCentres">
-    <part name="parameters" element="tns:GetDocResponsibilityCentres" />
+  <message name="GetDocumentApprovalEntries">
+    <part name="parameters" element="tns:GetDocumentApprovalEntries" />
   </message>
-  <message name="GetDocResponsibilityCentres_Result">
-    <part name="parameters" element="tns:GetDocResponsibilityCentres_Result" />
+  <message name="GetDocumentApprovalEntries_Result">
+    <part name="parameters" element="tns:GetDocumentApprovalEntries_Result" />
   </message>
   <message name="GetDocumentlines">
     <part name="parameters" element="tns:GetDocumentlines" />
@@ -2386,6 +2516,12 @@
   </message>
   <message name="GetImprestLines_Result">
     <part name="parameters" element="tns:GetImprestLines_Result" />
+  </message>
+  <message name="GetImprestSurrenderDetails">
+    <part name="parameters" element="tns:GetImprestSurrenderDetails" />
+  </message>
+  <message name="GetImprestSurrenderDetails_Result">
+    <part name="parameters" element="tns:GetImprestSurrenderDetails_Result" />
   </message>
   <message name="GetItemQuantity">
     <part name="parameters" element="tns:GetItemQuantity" />
@@ -2603,31 +2739,35 @@
   <message name="GetTravelStaff_Result">
     <part name="parameters" element="tns:GetTravelStaff_Result" />
   </message>
+  <message name="GetVendors">
+    <part name="parameters" element="tns:GetVendors" />
+  </message>
+  <message name="GetVendors_Result">
+    <part name="parameters" element="tns:GetVendors_Result" />
+  </message>
   <message name="HRMLeaveApplication1">
     <part name="parameters" element="tns:HRMLeaveApplication1" />
   </message>
   <message name="HRMLeaveApplication1_Result">
     <part name="parameters" element="tns:HRMLeaveApplication1_Result" />
   </message>
-  <message name="HRMLeaveApplication">
-    <part name="parameters" element="tns:HRMLeaveApplication" />
-  </message>
-  <message name="HRMLeaveApplication_Result">
-    <part name="parameters" element="tns:HRMLeaveApplication_Result" />
-  </message>
-  <message name="HasPendingLeaveApplication">
-    <part name="parameters" element="tns:HasPendingLeaveApplication" />
-  </message>
-  <message name="HasPendingLeaveApplication_Result">
-    <part name="parameters" element="tns:HasPendingLeaveApplication_Result" />
-  </message>
-  <message name="ImprestRequisitionApprovalRequest">
-    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest" />
-  </message>
-  <message name="ImprestRequisitionApprovalRequest_Result">
-    <part name="parameters" element="tns:ImprestRequisitionApprovalRequest_Result" />
-  </message>
   <portType name="Staffportall_Port">
+    <operation name="HRMLeaveApplication">
+      <input name="HRMLeaveApplication" message="tns:HRMLeaveApplication" />
+      <output name="HRMLeaveApplication_Result" message="tns:HRMLeaveApplication_Result" />
+    </operation>
+    <operation name="HasPendingLeaveApplication">
+      <input name="HasPendingLeaveApplication" message="tns:HasPendingLeaveApplication" />
+      <output name="HasPendingLeaveApplication_Result" message="tns:HasPendingLeaveApplication_Result" />
+    </operation>
+    <operation name="ImprestRequisitionApprovalRequest">
+      <input name="ImprestRequisitionApprovalRequest" message="tns:ImprestRequisitionApprovalRequest" />
+      <output name="ImprestRequisitionApprovalRequest_Result" message="tns:ImprestRequisitionApprovalRequest_Result" />
+    </operation>
+    <operation name="InsertAccomodationLines">
+      <input name="InsertAccomodationLines" message="tns:InsertAccomodationLines" />
+      <output name="InsertAccomodationLines_Result" message="tns:InsertAccomodationLines_Result" />
+    </operation>
     <operation name="InsertClaimRequisitionLines">
       <input name="InsertClaimRequisitionLines" message="tns:InsertClaimRequisitionLines" />
       <output name="InsertClaimRequisitionLines_Result" message="tns:InsertClaimRequisitionLines_Result" />
@@ -2760,6 +2900,10 @@
       <input name="RegFileUploadAtt" message="tns:RegFileUploadAtt" />
       <output name="RegFileUploadAtt_Result" message="tns:RegFileUploadAtt_Result" />
     </operation>
+    <operation name="RemoveAccomodationLines">
+      <input name="RemoveAccomodationLines" message="tns:RemoveAccomodationLines" />
+      <output name="RemoveAccomodationLines_Result" message="tns:RemoveAccomodationLines_Result" />
+    </operation>
     <operation name="RemoveClaimRequisitionLines">
       <input name="RemoveClaimRequisitionLines" message="tns:RemoveClaimRequisitionLines" />
       <output name="RemoveClaimRequisitionLines_Result" message="tns:RemoveClaimRequisitionLines_Result" />
@@ -2799,6 +2943,10 @@
     <operation name="UpdateStaffPassword">
       <input name="UpdateStaffPassword" message="tns:UpdateStaffPassword" />
       <output name="UpdateStaffPassword_Result" message="tns:UpdateStaffPassword_Result" />
+    </operation>
+    <operation name="UploadProfilePicture">
+      <input name="UploadProfilePicture" message="tns:UploadProfilePicture" />
+      <output name="UploadProfilePicture_Result" message="tns:UploadProfilePicture_Result" />
     </operation>
     <operation name="ValidateStartDate">
       <input name="ValidateStartDate" message="tns:ValidateStartDate" />
@@ -2924,6 +3072,10 @@
       <input name="Generatep9Report" message="tns:Generatep9Report" />
       <output name="Generatep9Report_Result" message="tns:Generatep9Report_Result" />
     </operation>
+    <operation name="GetAccomodationLines">
+      <input name="GetAccomodationLines" message="tns:GetAccomodationLines" />
+      <output name="GetAccomodationLines_Result" message="tns:GetAccomodationLines_Result" />
+    </operation>
     <operation name="GetAccountNo">
       <input name="GetAccountNo" message="tns:GetAccountNo" />
       <output name="GetAccountNo_Result" message="tns:GetAccountNo_Result" />
@@ -2952,9 +3104,9 @@
       <input name="GetDefaultDays" message="tns:GetDefaultDays" />
       <output name="GetDefaultDays_Result" message="tns:GetDefaultDays_Result" />
     </operation>
-    <operation name="GetDocResponsibilityCentres">
-      <input name="GetDocResponsibilityCentres" message="tns:GetDocResponsibilityCentres" />
-      <output name="GetDocResponsibilityCentres_Result" message="tns:GetDocResponsibilityCentres_Result" />
+    <operation name="GetDocumentApprovalEntries">
+      <input name="GetDocumentApprovalEntries" message="tns:GetDocumentApprovalEntries" />
+      <output name="GetDocumentApprovalEntries_Result" message="tns:GetDocumentApprovalEntries_Result" />
     </operation>
     <operation name="GetDocumentlines">
       <input name="GetDocumentlines" message="tns:GetDocumentlines" />
@@ -2971,6 +3123,10 @@
     <operation name="GetImprestLines">
       <input name="GetImprestLines" message="tns:GetImprestLines" />
       <output name="GetImprestLines_Result" message="tns:GetImprestLines_Result" />
+    </operation>
+    <operation name="GetImprestSurrenderDetails">
+      <input name="GetImprestSurrenderDetails" message="tns:GetImprestSurrenderDetails" />
+      <output name="GetImprestSurrenderDetails_Result" message="tns:GetImprestSurrenderDetails_Result" />
     </operation>
     <operation name="GetItemQuantity">
       <input name="GetItemQuantity" message="tns:GetItemQuantity" />
@@ -3116,25 +3272,53 @@
       <input name="GetTravelStaff" message="tns:GetTravelStaff" />
       <output name="GetTravelStaff_Result" message="tns:GetTravelStaff_Result" />
     </operation>
+    <operation name="GetVendors">
+      <input name="GetVendors" message="tns:GetVendors" />
+      <output name="GetVendors_Result" message="tns:GetVendors_Result" />
+    </operation>
     <operation name="HRMLeaveApplication1">
       <input name="HRMLeaveApplication1" message="tns:HRMLeaveApplication1" />
       <output name="HRMLeaveApplication1_Result" message="tns:HRMLeaveApplication1_Result" />
     </operation>
-    <operation name="HRMLeaveApplication">
-      <input name="HRMLeaveApplication" message="tns:HRMLeaveApplication" />
-      <output name="HRMLeaveApplication_Result" message="tns:HRMLeaveApplication_Result" />
-    </operation>
-    <operation name="HasPendingLeaveApplication">
-      <input name="HasPendingLeaveApplication" message="tns:HasPendingLeaveApplication" />
-      <output name="HasPendingLeaveApplication_Result" message="tns:HasPendingLeaveApplication_Result" />
-    </operation>
-    <operation name="ImprestRequisitionApprovalRequest">
-      <input name="ImprestRequisitionApprovalRequest" message="tns:ImprestRequisitionApprovalRequest" />
-      <output name="ImprestRequisitionApprovalRequest_Result" message="tns:ImprestRequisitionApprovalRequest_Result" />
-    </operation>
   </portType>
   <binding name="Staffportall_Binding" type="tns:Staffportall_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="HRMLeaveApplication">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HRMLeaveApplication">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HRMLeaveApplication_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="HasPendingLeaveApplication">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HasPendingLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HasPendingLeaveApplication">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HasPendingLeaveApplication_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprestRequisitionApprovalRequest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:ImprestRequisitionApprovalRequest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprestRequisitionApprovalRequest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprestRequisitionApprovalRequest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertAccomodationLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:InsertAccomodationLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertAccomodationLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertAccomodationLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="InsertClaimRequisitionLines">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:InsertClaimRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="InsertClaimRequisitionLines">
@@ -3432,6 +3616,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="RemoveAccomodationLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:RemoveAccomodationLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RemoveAccomodationLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RemoveAccomodationLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RemoveClaimRequisitionLines">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:RemoveClaimRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RemoveClaimRequisitionLines">
@@ -3519,6 +3712,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdateStaffPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UploadProfilePicture">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:UploadProfilePicture" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UploadProfilePicture">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UploadProfilePicture_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3801,6 +4003,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetAccomodationLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetAccomodationLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetAccomodationLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetAccomodationLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetAccountNo">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetAccountNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetAccountNo">
@@ -3864,12 +4075,12 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="GetDocResponsibilityCentres">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetDocResponsibilityCentres" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetDocResponsibilityCentres">
+    <operation name="GetDocumentApprovalEntries">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetDocumentApprovalEntries" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetDocumentApprovalEntries">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
-      <output name="GetDocResponsibilityCentres_Result">
+      <output name="GetDocumentApprovalEntries_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3906,6 +4117,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetImprestLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetImprestSurrenderDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetImprestSurrenderDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetImprestSurrenderDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetImprestSurrenderDetails_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -4233,39 +4453,21 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetVendors">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetVendors" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetVendors">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetVendors_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="HRMLeaveApplication1">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="HRMLeaveApplication1">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="HRMLeaveApplication1_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="HRMLeaveApplication">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="HRMLeaveApplication">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="HRMLeaveApplication_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="HasPendingLeaveApplication">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HasPendingLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="HasPendingLeaveApplication">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="HasPendingLeaveApplication_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="ImprestRequisitionApprovalRequest">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:ImprestRequisitionApprovalRequest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="ImprestRequisitionApprovalRequest">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="ImprestRequisitionApprovalRequest_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

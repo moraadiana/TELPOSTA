@@ -16,33 +16,15 @@
     </div>
 
     <!-- Alerts -->
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> @ViewBag.Error
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
-    @if (ViewBag.Success != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success:</strong> @ViewBag.Success
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> @TempData["Error"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
+
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success:</strong> @TempData["Success"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
     }
     <div class="row">
         <div>
@@ -112,14 +94,14 @@
                 </div>
 
                 @*@if (ViewBag.PdfUrl != null)
-        {
-            <div class="mt-4">
-                <h5 class="text-center">Generated Statement</h5>
-                <div class="d-flex justify-content-center">
-                    <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
-                </div>
-            </div>
-        }*@
+                    {
+                        <div class="mt-4">
+                            <h5 class="text-center">Generated Statement</h5>
+                            <div class="d-flex justify-content-center">
+                                <iframe id="pdfViewer" class="w-75 border rounded shadow-sm" height="600px" src="@ViewBag.PdfUrl"></iframe>
+                            </div>
+                        </div>
+                    }*@
             </div>
         </div>
     </div>

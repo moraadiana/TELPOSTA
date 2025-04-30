@@ -45,11 +45,15 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GetMemberBeneficiariesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetMonthlyPensionDeductionOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetMonthlyPensionOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPayScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPayrollPeriodsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPensionerDeductionsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPensionerEmailOperationCompleted;
         
@@ -72,6 +76,8 @@ namespace PensionPortal.NAVWS {
         private System.Threading.SendOrPostCallback UpdatePensionerAutoGenPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdatePensionerPasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UploadProfilePictureOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -136,6 +142,9 @@ namespace PensionPortal.NAVWS {
         public event GetMemberBeneficiariesCompletedEventHandler GetMemberBeneficiariesCompleted;
         
         /// <remarks/>
+        public event GetMonthlyPensionDeductionCompletedEventHandler GetMonthlyPensionDeductionCompleted;
+        
+        /// <remarks/>
         public event GetMonthlyPensionCompletedEventHandler GetMonthlyPensionCompleted;
         
         /// <remarks/>
@@ -143,6 +152,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event GetPayrollPeriodsCompletedEventHandler GetPayrollPeriodsCompleted;
+        
+        /// <remarks/>
+        public event GetPensionerDeductionsCompletedEventHandler GetPensionerDeductionsCompleted;
         
         /// <remarks/>
         public event GetPensionerEmailCompletedEventHandler GetPensionerEmailCompleted;
@@ -176,6 +188,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event UpdatePensionerPasswordCompletedEventHandler UpdatePensionerPasswordCompleted;
+        
+        /// <remarks/>
+        public event UploadProfilePictureCompletedEventHandler UploadProfilePictureCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckPensionerLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -430,6 +445,36 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPensionDeduction", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetMonthlyPensionDeduction_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetMonthlyPensionDeduction(string pensiorNo) {
+            object[] results = this.Invoke("GetMonthlyPensionDeduction", new object[] {
+                        pensiorNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetMonthlyPensionDeductionAsync(string pensiorNo) {
+            this.GetMonthlyPensionDeductionAsync(pensiorNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetMonthlyPensionDeductionAsync(string pensiorNo, object userState) {
+            if ((this.GetMonthlyPensionDeductionOperationCompleted == null)) {
+                this.GetMonthlyPensionDeductionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetMonthlyPensionDeductionOperationCompleted);
+            }
+            this.InvokeAsync("GetMonthlyPensionDeduction", new object[] {
+                        pensiorNo}, this.GetMonthlyPensionDeductionOperationCompleted, userState);
+        }
+        
+        private void OnGetMonthlyPensionDeductionOperationCompleted(object arg) {
+            if ((this.GetMonthlyPensionDeductionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetMonthlyPensionDeductionCompleted(this, new GetMonthlyPensionDeductionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPension", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetMonthlyPension_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string GetMonthlyPension(string pensiorNo) {
@@ -512,6 +557,36 @@ namespace PensionPortal.NAVWS {
             if ((this.GetPayrollPeriodsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetPayrollPeriodsCompleted(this, new GetPayrollPeriodsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerDeductions", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetPensionerDeductions_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPensionerDeductions(string username) {
+            object[] results = this.Invoke("GetPensionerDeductions", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPensionerDeductionsAsync(string username) {
+            this.GetPensionerDeductionsAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetPensionerDeductionsAsync(string username, object userState) {
+            if ((this.GetPensionerDeductionsOperationCompleted == null)) {
+                this.GetPensionerDeductionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPensionerDeductionsOperationCompleted);
+            }
+            this.InvokeAsync("GetPensionerDeductions", new object[] {
+                        username}, this.GetPensionerDeductionsOperationCompleted, userState);
+        }
+        
+        private void OnGetPensionerDeductionsOperationCompleted(object arg) {
+            if ((this.GetPensionerDeductionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPensionerDeductionsCompleted(this, new GetPensionerDeductionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -868,6 +943,40 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:UploadProfilePicture", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="UploadProfilePicture_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UploadProfilePicture(string username, string fileName, string description) {
+            object[] results = this.Invoke("UploadProfilePicture", new object[] {
+                        username,
+                        fileName,
+                        description});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UploadProfilePictureAsync(string username, string fileName, string description) {
+            this.UploadProfilePictureAsync(username, fileName, description, null);
+        }
+        
+        /// <remarks/>
+        public void UploadProfilePictureAsync(string username, string fileName, string description, object userState) {
+            if ((this.UploadProfilePictureOperationCompleted == null)) {
+                this.UploadProfilePictureOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadProfilePictureOperationCompleted);
+            }
+            this.InvokeAsync("UploadProfilePicture", new object[] {
+                        username,
+                        fileName,
+                        description}, this.UploadProfilePictureOperationCompleted, userState);
+        }
+        
+        private void OnUploadProfilePictureOperationCompleted(object arg) {
+            if ((this.UploadProfilePictureCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UploadProfilePictureCompleted(this, new UploadProfilePictureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1030,6 +1139,32 @@ namespace PensionPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetMonthlyPensionDeductionCompletedEventHandler(object sender, GetMonthlyPensionDeductionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetMonthlyPensionDeductionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetMonthlyPensionDeductionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetMonthlyPensionCompletedEventHandler(object sender, GetMonthlyPensionCompletedEventArgs e);
     
     /// <remarks/>
@@ -1093,6 +1228,32 @@ namespace PensionPortal.NAVWS {
         private object[] results;
         
         internal GetPayrollPeriodsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPensionerDeductionsCompletedEventHandler(object sender, GetPensionerDeductionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPensionerDeductionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPensionerDeductionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1357,6 +1518,32 @@ namespace PensionPortal.NAVWS {
         private object[] results;
         
         internal UpdatePensionerPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UploadProfilePictureCompletedEventHandler(object sender, UploadProfilePictureCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UploadProfilePictureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UploadProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

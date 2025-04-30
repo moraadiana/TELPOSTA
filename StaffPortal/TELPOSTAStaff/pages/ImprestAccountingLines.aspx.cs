@@ -70,7 +70,8 @@ namespace TELPOSTAStaff.pages
                     lbtnSubmit.Visible = false;
                 }
                 Session["DocumentNo"] = documentNo;
-                BindAttachedDocuments(documentNo);
+                //to uncomment if required
+                //BindAttachedDocuments(documentNo);
                 BindGridViewData();
 
                 //GetPostedReceipts();
@@ -114,8 +115,7 @@ namespace TELPOSTAStaff.pages
             {
                 ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "IMPSURR";
-                string resCenters = webportals.GetResponsibilityCentres(grouping);
+                string resCenters = webportals.GetAllResponsibilityCentres();
                 if (!string.IsNullOrEmpty(resCenters))
                 {
                     string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
@@ -145,26 +145,45 @@ namespace TELPOSTAStaff.pages
             try
             {
                 string imprestNo = ddlPostedImprest.SelectedValue.ToString();
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
+                string imprestLines = webportals.GetImprestLines(imprestNo);
+                if (!string.IsNullOrEmpty(imprestLines))
                 {
-                    CommandText = "spImprestLines",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                command.Parameters.AddWithValue("@ImpNo", "'" + imprestNo + "'");
-                adapter = new SqlDataAdapter();
-                adapter.SelectCommand = command;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                gvLines.DataSource = dt;
-                gvLines.DataBind();
-                connection.Close();
+                    string[] responseArr = imprestLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Advance Type");
+                    dt.Columns.Add("Account No");
+                    dt.Columns.Add("Account Name");
+                    dt.Columns.Add("Imprest Holder");
+                    dt.Columns.Add("Amount");
+                    foreach (string response in responseArr)
+                    {
+                        string[] fields = response.Split(strLimiters, StringSplitOptions.None);
+
+                        if (fields.Length == 5)
+                        {
+                            DataRow row = dt.NewRow();
+                            //row["Advance Type"] = fields[1];
+                            row["Account No"] = fields[2];
+                            row["Account Name"] = fields[3];
+                           // row["Imprest Holder"] = fields[3];
+                            row["Amount"] = fields[4];
+                            dt.Rows.Add(row);
+                        }
+
+                    }
+                    gvLines.DataSource = dt;
+                    gvLines.DataBind();
+                }
+                else
+                {
+                    gvLines.DataSource = null;
+                    gvLines.DataBind();
+                }
+
 
                 foreach (GridViewRow row in gvLines.Rows)
                 {
-                    string account = row.Cells[2].Text;
+                    string account = row.Cells[1].Text;
                     string surrenderNo = Session["DocumentNo"].ToString();
                     TextBox txtActualAmount = row.FindControl("txtActualAmount") as TextBox;
                     TextBox txtAmountReturned = row.FindControl("txtAmountReturned") as TextBox;
@@ -214,38 +233,54 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
-        private void BindAttachedDocuments(string documentNo)
+      /*  private void BindAttachedDocuments(string documentNo)
         {
             try
             {
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spDocumentLines",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                command.Parameters.AddWithValue("@DocNo", "'" + documentNo + "'");
-                adapter = new SqlDataAdapter();
-                adapter.SelectCommand = command;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                gvAttachments.DataSource = dt;
-                gvAttachments.DataBind();
-                connection.Close();
+                string docLines = webportals.GetDocumentlines(documentNo);
 
-                foreach (GridViewRow row in gvAttachments.Rows)
+                if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
                 {
-                    row.Cells[3].Text = row.Cells[3].Text.Split(' ')[0];
+                    string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Document No");
+                    dt.Columns.Add("Description");
+                    dt.Columns.Add("$systemCreatedAt");
+                    dt.Columns.Add("SystemId");
+
+
+                    foreach (string item in lineItems)
+                    {
+                        string[] fields = item.Split(strLimiters, StringSplitOptions.None);
+
+                        if (fields.Length == 4)
+                        {
+                            DataRow row = dt.NewRow();
+                            row["No_"] = fields[0];
+                            row["File Name"] = fields[1];
+                            row["$systemCreatedAt"] = fields[2];
+                            row["SystemId"] = fields[3];
+                            dt.Rows.Add(row);
+                        }
+                    }
+
+                    gvAttachments.DataSource = dt;
+                    gvAttachments.DataBind();
+                }
+                else
+                {
+                    gvLines.DataSource = null;
+                    gvLines.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                ex.Data.Clear();
+                // Handle exception (log or show an error message as needed)
+                Console.WriteLine("Error: " + ex.Message);
             }
-        }
+        }*/
+       
 
 
         protected void ddlPostedImprest_SelectedIndexChanged(object sender, EventArgs e)
@@ -273,11 +308,11 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                if (gvAttachments.Rows.Count < 1)
-                {
-                    Message("Please upload supporting documents.");
-                    return;
-                }
+                //if (gvAttachments.Rows.Count < 1)
+                //{
+                //    Message("Please upload supporting documents.");
+                //    return;
+                //}
 
                 string imprestSurrenderNo = Session["DocumentNo"].ToString();
 
@@ -308,18 +343,19 @@ namespace TELPOSTAStaff.pages
                         Message("Invalid Actual Amount Spent!");
                         return;
                     }
-                    if (!Components.IsNumeric(txtAmountReturned.Text))
-                    {
-                        Message("Invalid Cash Amount Returned!");
-                        return;
-                    }
+                    //if (!Components.IsNumeric(txtAmountReturned.Text))
+                    //{
+                    //    Message("Invalid Cash Amount Returned!");
+                    //    return;
+                    //}
+
 
                     decimal actualAmount = Convert.ToDecimal(txtActualAmount.Text);
                     decimal cashReturned = Convert.ToDecimal(txtAmountReturned.Text);
                     decimal totalAmount = actualAmount + cashReturned;
-                    decimal amount = Convert.ToDecimal(row.Cells[5].Text);
-                    string accountNo = row.Cells[2].Text;
-                    decimal amt = totalAmount - amount;
+                    //decimal amount = Convert.ToDecimal(row.Cells[5].Text);
+                    string accountNo = row.Cells[1].Text;
+                    //decimal amt = totalAmount - amount;
                    // string purpose = " Refund of overspent amount spent in " + documentNo;
                     // String AccNo = "BNK-0001";
                     // string resCenter = CLAIM
@@ -358,7 +394,9 @@ namespace TELPOSTAStaff.pages
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
         }
 
-        protected void lbtnUpload_Click(object sender, EventArgs e)
+        //uncomment on adding upload doc
+
+/*        protected void lbtnUpload_Click(object sender, EventArgs e)
         {
             try
             {
@@ -407,7 +445,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
+        */
         protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
         {
             try
@@ -419,7 +457,7 @@ namespace TELPOSTAStaff.pages
                 if (Components.ObjNav.DeleteDocumentAttachments(systemId))
                 {
                     Message("Document deleted successfully!");
-                    BindAttachedDocuments(documentNo);
+                    //BindAttachedDocuments(documentNo);
 
                 }
                 else

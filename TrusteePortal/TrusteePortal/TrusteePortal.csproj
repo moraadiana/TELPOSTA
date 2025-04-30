@@ -2580,10 +2580,11 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\VerifyOTP.cshtml" />
     <Content Include="Views\Board\Index.cshtml" />
-    <Content Include="Views\Board\BoardMeetingList.cshtml" />
-    <Content Include="Views\Board\AssignedBoardList.cshtml" />
+    <Content Include="Views\Board\BoardAttendance.cshtml" />
+    <Content Include="Views\Board\AssignedCommittees.cshtml" />
     <Content Include="Views\Reports\Pnine.cshtml" />
     <Content Include="Views\Dashboard\StatusSummary.cshtml" />
+    <Content Include="Views\Board\BoardRegisterDetails.cshtml" />
     <None Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Portals\PensionPortal</_PublishTargetUrl>
-    <History>True|2025-03-28T10:20:30.9507675Z||;True|2025-03-28T13:20:21.6429793+03:00||;True|2025-03-27T11:51:09.6410440+03:00||;True|2025-03-17T12:38:52.2450730+03:00||;False|2025-03-17T10:29:13.5121586+03:00||;True|2025-03-11T16:10:41.9024319+03:00||;False|2025-03-11T16:09:36.6860742+03:00||;True|2025-03-06T19:07:30.8204012+03:00||;False|2025-03-06T19:06:35.8094262+03:00||;True|2025-03-03T16:04:06.1414028+03:00||;True|2025-03-03T11:54:30.0441459+03:00||;False|2025-03-03T11:53:48.7385819+03:00||;True|2025-03-01T22:52:31.3050473+03:00||;True|2025-03-01T18:21:50.3567815+03:00||;True|2025-03-01T18:18:41.6375977+03:00||;True|2025-03-01T18:10:54.0637693+03:00||;False|2025-03-01T18:09:58.8596921+03:00||;True|2025-03-01T08:00:00.7447274+03:00||;True|2025-03-01T07:58:54.2719567+03:00||;False|2025-03-01T07:58:05.3804593+03:00||;True|2025-03-01T07:46:25.5812530+03:00||;False|2025-02-28T22:30:15.0816081+03:00||;False|2025-02-28T22:29:27.4711099+03:00||;False|2025-02-28T22:27:55.4425861+03:00||;False|2025-02-28T17:06:10.1164377+03:00||;False|2025-02-28T16:58:27.9049375+03:00||;</History>
+    <History>True|2025-04-28T11:25:15.3927466Z||;True|2025-04-28T10:47:25.3669116+03:00||;True|2025-04-15T17:02:55.4548116+03:00||;True|2025-03-28T13:20:30.9507675+03:00||;True|2025-03-28T13:20:21.6429793+03:00||;True|2025-03-27T11:51:09.6410440+03:00||;True|2025-03-17T12:38:52.2450730+03:00||;False|2025-03-17T10:29:13.5121586+03:00||;True|2025-03-11T16:10:41.9024319+03:00||;False|2025-03-11T16:09:36.6860742+03:00||;True|2025-03-06T19:07:30.8204012+03:00||;False|2025-03-06T19:06:35.8094262+03:00||;True|2025-03-03T16:04:06.1414028+03:00||;True|2025-03-03T11:54:30.0441459+03:00||;False|2025-03-03T11:53:48.7385819+03:00||;True|2025-03-01T22:52:31.3050473+03:00||;True|2025-03-01T18:21:50.3567815+03:00||;True|2025-03-01T18:18:41.6375977+03:00||;True|2025-03-01T18:10:54.0637693+03:00||;False|2025-03-01T18:09:58.8596921+03:00||;True|2025-03-01T08:00:00.7447274+03:00||;True|2025-03-01T07:58:54.2719567+03:00||;False|2025-03-01T07:58:05.3804593+03:00||;True|2025-03-01T07:46:25.5812530+03:00||;False|2025-02-28T22:30:15.0816081+03:00||;False|2025-02-28T22:29:27.4711099+03:00||;False|2025-02-28T22:27:55.4425861+03:00||;False|2025-02-28T17:06:10.1164377+03:00||;False|2025-02-28T16:58:27.9049375+03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -7111,13 +7111,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/05/2025 14:00:23</publishTime>
     </File>
     <File Include="bin/PensionPortal.dll">
-      <publishTime>03/28/2025 13:53:16</publishTime>
+      <publishTime>04/28/2025 14:25:11</publishTime>
     </File>
     <File Include="bin/PensionPortal.pdb">
-      <publishTime>03/28/2025 13:53:16</publishTime>
+      <publishTime>04/28/2025 14:25:11</publishTime>
     </File>
     <File Include="bin/PensionPortal.XmlSerializers.dll">
-      <publishTime>03/28/2025 13:53:16</publishTime>
+      <publishTime>04/28/2025 14:25:12</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>03/05/2025 14:00:23</publishTime>
@@ -7477,7 +7477,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/27/2025 10:07:30</publishTime>
     </File>
     <File Include="Views/Dashboard/Index.cshtml">
-      <publishTime>03/26/2025 17:12:06</publishTime>
+      <publishTime>04/28/2025 11:34:07</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Index1.cshtml">
+      <publishTime>04/28/2025 11:18:00</publishTime>
+    </File>
+    <File Include="Views/Dashboard/MonthlyDeductions.cshtml">
+      <publishTime>04/15/2025 16:37:25</publishTime>
     </File>
     <File Include="Views/Dashboard/MonthlyPension.cshtml">
       <publishTime>03/17/2025 12:37:01</publishTime>
@@ -7504,7 +7510,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/05/2025 14:00:21</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/27/2025 10:08:53</publishTime>
+      <publishTime>04/28/2025 11:32:23</publishTime>
     </File>
     <File Include="Views/Shared/_Login.cshtml">
       <publishTime>03/17/2025 10:27:24</publishTime>
@@ -7513,13 +7519,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/28/2025 13:52:24</publishTime>
     </File>
     <File Include="Views/Statements/LifeCertificate.cshtml">
-      <publishTime>03/28/2025 13:52:49</publishTime>
+      <publishTime>04/28/2025 11:45:04</publishTime>
     </File>
     <File Include="Views/Statements/MemberStatement.cshtml">
       <publishTime>03/11/2025 14:32:45</publishTime>
     </File>
     <File Include="Views/Statements/PensionerStatement.cshtml">
-      <publishTime>03/28/2025 11:02:17</publishTime>
+      <publishTime>03/28/2025 15:37:19</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>03/05/2025 14:00:21</publishTime>

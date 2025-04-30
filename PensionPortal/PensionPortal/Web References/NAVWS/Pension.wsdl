@@ -116,6 +116,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetMonthlyPensionDeduction">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pensiorNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMonthlyPensionDeduction_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetMonthlyPension">
         <complexType>
           <sequence>
@@ -148,6 +162,20 @@
         </complexType>
       </element>
       <element name="GetPayrollPeriods_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerDeductions">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPensionerDeductions_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -317,6 +345,22 @@
           </sequence>
         </complexType>
       </element>
+      <element name="UploadProfilePicture">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="CheckPensionerLogin">
@@ -367,6 +411,12 @@
   <message name="GetMemberBeneficiaries_Result">
     <part name="parameters" element="tns:GetMemberBeneficiaries_Result" />
   </message>
+  <message name="GetMonthlyPensionDeduction">
+    <part name="parameters" element="tns:GetMonthlyPensionDeduction" />
+  </message>
+  <message name="GetMonthlyPensionDeduction_Result">
+    <part name="parameters" element="tns:GetMonthlyPensionDeduction_Result" />
+  </message>
   <message name="GetMonthlyPension">
     <part name="parameters" element="tns:GetMonthlyPension" />
   </message>
@@ -384,6 +434,12 @@
   </message>
   <message name="GetPayrollPeriods_Result">
     <part name="parameters" element="tns:GetPayrollPeriods_Result" />
+  </message>
+  <message name="GetPensionerDeductions">
+    <part name="parameters" element="tns:GetPensionerDeductions" />
+  </message>
+  <message name="GetPensionerDeductions_Result">
+    <part name="parameters" element="tns:GetPensionerDeductions_Result" />
   </message>
   <message name="GetPensionerEmail">
     <part name="parameters" element="tns:GetPensionerEmail" />
@@ -451,6 +507,12 @@
   <message name="UpdatePensionerPassword_Result">
     <part name="parameters" element="tns:UpdatePensionerPassword_Result" />
   </message>
+  <message name="UploadProfilePicture">
+    <part name="parameters" element="tns:UploadProfilePicture" />
+  </message>
+  <message name="UploadProfilePicture_Result">
+    <part name="parameters" element="tns:UploadProfilePicture_Result" />
+  </message>
   <portType name="Pension_Port">
     <operation name="CheckPensionerLogin">
       <input name="CheckPensionerLogin" message="tns:CheckPensionerLogin" />
@@ -484,6 +546,10 @@
       <input name="GetMemberBeneficiaries" message="tns:GetMemberBeneficiaries" />
       <output name="GetMemberBeneficiaries_Result" message="tns:GetMemberBeneficiaries_Result" />
     </operation>
+    <operation name="GetMonthlyPensionDeduction">
+      <input name="GetMonthlyPensionDeduction" message="tns:GetMonthlyPensionDeduction" />
+      <output name="GetMonthlyPensionDeduction_Result" message="tns:GetMonthlyPensionDeduction_Result" />
+    </operation>
     <operation name="GetMonthlyPension">
       <input name="GetMonthlyPension" message="tns:GetMonthlyPension" />
       <output name="GetMonthlyPension_Result" message="tns:GetMonthlyPension_Result" />
@@ -495,6 +561,10 @@
     <operation name="GetPayrollPeriods">
       <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
       <output name="GetPayrollPeriods_Result" message="tns:GetPayrollPeriods_Result" />
+    </operation>
+    <operation name="GetPensionerDeductions">
+      <input name="GetPensionerDeductions" message="tns:GetPensionerDeductions" />
+      <output name="GetPensionerDeductions_Result" message="tns:GetPensionerDeductions_Result" />
     </operation>
     <operation name="GetPensionerEmail">
       <input name="GetPensionerEmail" message="tns:GetPensionerEmail" />
@@ -539,6 +609,10 @@
     <operation name="UpdatePensionerPassword">
       <input name="UpdatePensionerPassword" message="tns:UpdatePensionerPassword" />
       <output name="UpdatePensionerPassword_Result" message="tns:UpdatePensionerPassword_Result" />
+    </operation>
+    <operation name="UploadProfilePicture">
+      <input name="UploadProfilePicture" message="tns:UploadProfilePicture" />
+      <output name="UploadProfilePicture_Result" message="tns:UploadProfilePicture_Result" />
     </operation>
   </portType>
   <binding name="Pension_Binding" type="tns:Pension_Port">
@@ -615,6 +689,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetMonthlyPensionDeduction">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPensionDeduction" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMonthlyPensionDeduction">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMonthlyPensionDeduction_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetMonthlyPension">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetMonthlyPension" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetMonthlyPension">
@@ -639,6 +722,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetPayrollPeriods_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPensionerDeductions">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerDeductions" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPensionerDeductions">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPensionerDeductions_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -738,6 +830,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdatePensionerPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UploadProfilePicture">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:UploadProfilePicture" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UploadProfilePicture">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UploadProfilePicture_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

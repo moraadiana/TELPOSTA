@@ -26,6 +26,7 @@
                         </div>
                         <div class="box-body">
                             <p class="text-center"><a class="btn btn-pill btn-success u-posRelative" href="transportrequisition.aspx?query=new&status=Open">New Travel Requisitions<span class="waves"></span> </a></p>
+                            <%--<p class="text-center"><a class="btn btn-pill btn-success u-posRelative" href="transportreq2.aspx?query=new&status=Open">New Travel Requisitions<span class="waves"></span> </a></p>--%>
                             <br />
                             <div class="table-responsive">
                                 <table id="example1" class="table no-margin">

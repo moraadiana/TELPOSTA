@@ -55,14 +55,18 @@ namespace TELPOSTAStaff
          {
              try
              {
-                 string email = "dynamicsselfservice@gmail.com";
-                 string password = "ydujienvejtdojgv";
+                 //string email = "dynamicsselfservice@gmail.com";
+                 //string password = "ydujienvejtdojgv";
+                string email = "erp@telpostapension.org";
+                string password = "rtbbfthfnthfhhyx";
 
-                 var loginInfo = new NetworkCredential(email, password);
+
+
+                var loginInfo = new NetworkCredential(email, password);
                  var msg = new MailMessage();
-                 var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var smtpClient = new SmtpClient("smtp.office365.com", 587);
 
-                 msg.From = new MailAddress(email);
+                msg.From = new MailAddress(email);
                  msg.To.Add(new MailAddress(address));
                  msg.Subject = subject;
                  msg.Body = message;
@@ -87,9 +91,9 @@ namespace TELPOSTAStaff
                  {
                      var sqlConnectionString = ConfigurationManager.AppSettings["SqlConnection"];
 
-                     // connection = new SqlConnection(@"Data Source=192.168.10.19;Initial Catalog=Telposta;MultipleActiveResultSets=true;Async=true;User ID=webportals;Password=login*4");
+                    connection = new SqlConnection(@"Data Source=192.168.10.19;Initial Catalog=Telposta;MultipleActiveResultSets=true;Async=true;User ID=webportals;Password=login*4");
 
-                     connection = new SqlConnection(sqlConnectionString);
+                    connection = new SqlConnection(sqlConnectionString);
 
                      connection.Open();
                  }

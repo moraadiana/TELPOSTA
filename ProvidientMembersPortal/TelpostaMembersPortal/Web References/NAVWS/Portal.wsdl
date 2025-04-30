@@ -3285,7 +3285,7 @@
   </binding>
   <service name="Portal">
     <port name="Portal_Port" binding="tns:Portal_Binding">
-      <address location="https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

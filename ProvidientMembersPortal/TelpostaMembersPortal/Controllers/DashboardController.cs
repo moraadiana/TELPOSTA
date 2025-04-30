@@ -52,7 +52,7 @@ namespace TelpostaMembersPortal.Controllers
                     Session["Sponsor"] = responseArr[8];
                     Session["Salutation"] = responseArr[9];
                     Session["Status"] = responseArr[10];
-                    Session["Balance"] = responseArr[11];
+                    Session["Balance"] = responseArr[12];
                     //Session["MemberName"]
 
                 }

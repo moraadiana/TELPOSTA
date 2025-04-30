@@ -1,0 +1,201 @@
+﻿@model IEnumerable<TrusteePortal.Models.BoardMeeting>
+@{
+    ViewBag.Title = "Board Meetings Attendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="@Url.Action("index", "dashboard")">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="#">Dashboard</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            <span> @ViewBag.Error </span>
+        </div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success">
+            <button class="close" data-close="alert"></button>
+            <span> @ViewBag.Success </span>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            <span>@TempData["Error"]</span>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            <button class="close" data-close="alert"></button>
+            <span>@TempData["Success"]</span>
+        </div>
+    }
+    <!-- BEGIN PAGE TITLE
+    <h1 class="page-title">
+        NMK Tenders Portal
+    </h1>
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-red"></i>
+                        <span class="caption-subject font-red sbold uppercase">Board Attendance Register</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                    </div>
+                    <table class="table table-striped table-hover table-bordered" id="Meetings">
+                        <thead>
+                            <tr>
+                                <th> Board Meeting </th>
+                                <th> Date </th>
+                                <th> Mode of Attendance</th>
+                                <th> Details</th>
+                                <th> Action</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Equals(null))
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MeetingNo</td>
+                                        <td>@item.Date</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.Description</td>
+                                        <td>
+                                            @*<a href="@Url.Action("BoardRegisterDetails", "board")" class="btn default"> Details </a>*@
+                                           
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailsModal">
+                                                View Details
+                                            </button>
+
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                   
+                    <!-- Modal -->
+                    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header bg-success text-white">
+                                    <h5 class="modal-title" id="detailsModalLabel"><i class="fas fa-user-circle me-2"></i> Board Register Details</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <!-- Collapsible Section -->
+                                    <div class="card mb-3">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <span><i class="fas fa-info-circle me-2"></i> Allowance Information</span>
+                                            <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAllowance" aria-expanded="true" aria-controls="collapseAllowance">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="collapse show" id="collapseAllowance">
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped mb-0">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>Field</th>
+                                                                <th>Value</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Allowance:</td>
+                                                                <td>@Session["allowance"]</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <a href="@Url.Action("BoardAttendance", "board")" class="btn btn-outline-secondary">
+                                        <i class="fas fa-arrow-left me-1"></i> Back
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Toggle icon direction inside the collapse header
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var toggleButton = document.querySelector('[data-bs-target="#collapseAllowance"]');
+                            var collapseElement = document.getElementById('collapseAllowance');
+
+                            collapseElement.addEventListener('show.bs.collapse', function () {
+                                toggleButton.querySelector('i').classList.remove('fa-chevron-down');
+                                toggleButton.querySelector('i').classList.add('fa-chevron-up');
+                            });
+
+                            collapseElement.addEventListener('hide.bs.collapse', function () {
+                                toggleButton.querySelector('i').classList.remove('fa-chevron-up');
+                                toggleButton.querySelector('i').classList.add('fa-chevron-down');
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('#beneficiary').DataTable({
+            "pageLength": 10, // Ensure this is applied
+            "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]], // Dropdown options
+            "ordering": true,
+            "searching": true,
+            "stateSave": true, // Remember user preferences
+            retrieve: true
+        });
+    });
+
+</script>

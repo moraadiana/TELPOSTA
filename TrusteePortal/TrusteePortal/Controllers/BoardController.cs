@@ -18,7 +18,7 @@ namespace TrusteePortal.Controllers
         {
             return View();
         }
-        public ActionResult BoardMeetingList(string username)
+        public ActionResult BoardAttendance(string username)
    
         {
             if (Session["trusteeNo"] == null)
@@ -52,6 +52,22 @@ namespace TrusteePortal.Controllers
                         BoardMeetings.Add(attendedBoardMeetings);
                     }
                 }
+                string allowance = " test";
+                Session["allowance"] = allowance;
+                //string response1 = webportals.GetBoardMeetingsAttendedDetails(username);
+                //if (response1 != null)
+                //{
+                //    string[] responseArr = response1.Split(strLimiters, StringSplitOptions.None);
+                //    Session["Name"] = responseArr[1];
+                //    Session["Email"] = responseArr[2];
+                //    Session["Category"] = responseArr[3];
+                //    Session["Designation"] = responseArr[4];
+                //    Session["Contact"] = responseArr[5];
+                //    Session["phoneNo"] = responseArr[6];
+                //    //Session["bankName"] = responseArr[7];
+                //    //Session["BranchName"] = responseArr[8];
+
+                //}
             }
             catch (Exception ex)
             {
@@ -62,7 +78,19 @@ namespace TrusteePortal.Controllers
 
 
         }
-        public ActionResult AssignedBoardList(string username)
+        public ActionResult BoardRegisterDetails(string username, string code)
+        {
+            if (Session["trusteeNo"] == null)
+
+                return RedirectToAction("index", "login");
+
+            username = Session["trusteeNo"].ToString();
+            string allowance = " test";
+            Session["allowance"] = allowance;
+            return View();
+
+        }
+        public ActionResult AssignedCommittees(string username)
 
         {
             if (Session["trusteeNo"] == null)

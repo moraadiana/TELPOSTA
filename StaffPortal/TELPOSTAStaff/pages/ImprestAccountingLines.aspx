@@ -38,14 +38,9 @@
                                         <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>
                                     </div>
                                 </div>
-                               <%-- <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Responsibility Center: </label>
-                                        <asp:Label ID="lblResCenter" runat="server" Text="" ForeColor="Blue" Font-Bold="true"></asp:Label>
-                                    </div>
-                                </div>--%>
+                             
                             </div>
-                            <div class="row">
+                            <%--<div class="row">
                                 <div class="col-md-12">
                                     <h3>Upload supporting documents</h3>
                                 </div>
@@ -57,7 +52,7 @@
                                         <asp:LinkButton ID="lbtnUpload" runat="server" CssClass="btn btn-primary" OnClick="lbtnUpload_Click"><i class="fa fa-upload"></i>&nbsp;Upload</asp:LinkButton>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3>Imprest Surrender Details</h3>
@@ -72,18 +67,17 @@
                                                     <%# string.Format("{0}",Container.DataItemIndex + 1 +".") %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="Advance Type" HeaderText="Advance Type" />
-                                            <asp:BoundField DataField="Account No:" HeaderText="Account No" />
+                                           <%-- <asp:BoundField DataField="Advance Type" HeaderText="Advance Type" />--%>
+                                            <asp:BoundField DataField="Account No" HeaderText="Account No" />
                                             <asp:BoundField DataField="Account Name" HeaderText="Account Name" />
-                                            <asp:BoundField DataField="Imprest Holder" HeaderText="Imprest Holder" />
-                                            <asp:BoundField DataField="varAmount" HeaderText="Amount" />
+                                            <asp:BoundField DataField="Amount" HeaderText="Amount" />
                                             <asp:TemplateField HeaderText="Receipt No">
                                                 <ItemTemplate>
                                                     <asp:DropDownList ID="ddlReceipts" CssClass="form-control select2" OnSelectedIndexChanged="ddlReceipts_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                                     </asp:DropDownList>
                                                 </ItemTemplate>
                                             </asp:TemplateField> 
-                                             <asp:TemplateField HeaderText="Actual Amount Spent" SortExpression="">
+                                             <%--<asp:TemplateField HeaderText="Actual Amount Spent" SortExpression="">
                                              <ItemTemplate>
                                                  <asp:TextBox ID="txtActualAmount" runat="server" Text="" BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
                                              </ItemTemplate>
@@ -91,12 +85,33 @@
                                          </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Cash Amount Returned">
                                              <ItemTemplate>
-                                                 <%--<asp:Label ID="lblCashAmountReturned" runat="server" Text="120" ForeColor="Blue" Font-Bold="true"></asp:Label>--%>
                                                  <asp:TextBox ID="txtAmountReturned" runat="server" Text="" BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
                                              </ItemTemplate>
                                              <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
-                                         </asp:TemplateField>
-                                        </Columns>
+                                         </asp:TemplateField>--%>
+
+                                           <asp:TemplateField HeaderText="Actual Amount Spent">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtActualAmount" runat="server" 
+                                                        CssClass="actualAmount form-control"
+                                                        onkeyup="calculateCashReturned(this)"
+                                                        BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
+                                                </ItemTemplate>
+                                                <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Cash Amount Returned">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtAmountReturned" runat="server"
+                                                        CssClass="cashReturned form-control"
+                                                        ReadOnly="false"
+                                                        BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
+                                                </ItemTemplate>
+                                                <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
+                                            </asp:TemplateField>
+
+
+                                         </Columns>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <EmptyDataTemplate>
                                             <span style="color: red">No Recods</span>
@@ -104,7 +119,8 @@
                                     </asp:GridView>
                                 </div>
                             </div>
-                            <div class="row">
+
+                           <%-- <div class="row">
                                 <div class="col-md-12">
                                     <h3>Document Attachments</h3>
                                 </div>
@@ -134,7 +150,7 @@
                                         </EmptyDataTemplate>
                                     </asp:GridView>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="row">
                                 <div class="col-md-12">
                                     <a href="ImprestAccountingListing.aspx" class="btn btn-warning pull-left"><i class="fa fa-backward"></i>&nbsp;Back</a>
@@ -147,4 +163,32 @@
             </div>
         </section>
     </div>
+
+
+   <script>
+       function calculateCashReturned(actualInput) {
+           var row = actualInput.closest('tr');
+
+           // Get the 'Amount' value and ensure it’s parsed correctly
+           var amountCell = row.querySelectorAll('td')[3]; // Adjust index if necessary
+           var amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")) || 0;
+           var actual = parseFloat(actualInput.value) || 0;
+
+           // Calculate returned amount, which can be negative
+           var returned = amount - actual;
+
+           // Set the 'Cash Amount Returned' field
+           var returnedBox = row.querySelector('.cashReturned');
+           returnedBox.value = returned.toFixed(2); // This will display negative values correctly
+           __doPostBack('<%= gvLines.ClientID %>', '');
+       }
+
+
+   </script>
+
+
+
+
 </asp:Content>
+
+

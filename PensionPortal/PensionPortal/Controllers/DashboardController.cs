@@ -1,8 +1,10 @@
-﻿using PensionPortal.Models;
+﻿using Microsoft.Ajax.Utilities;
+using PensionPortal.Models;
 using PensionPortal.NAVWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -187,18 +189,7 @@ namespace PensionPortal.Controllers
                 if (!string.IsNullOrEmpty(pensionList))
                 {
                     string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
-                    //foreach (string pension in pensionListArr)
-                    //{
-                    //    string[] response = pension.Split(strLimiters, StringSplitOptions.None);
-                    //    MonthlyPension MonthlyPension = new MonthlyPension()
-                    //    {
-                    //        payPeriod = response[0].Trim(),
-                    //        Amount = response[1].Trim(),
-
-
-                    //    };
-                    //    schedule.Add(MonthlyPension);
-                    //}
+                    
 
                     foreach (string pension in pensionListArr)
                     {
@@ -215,7 +206,8 @@ namespace PensionPortal.Controllers
                                 schedule.Add(new MonthlyPension()
                                 {
                                     payPeriod = $"{parsedDate:MMMM yyyy}",
-                                    Amount = response[1].Trim(),
+                                    Amount = response[0].Trim(),
+                                    Description= response[1].Trim(),
                                     SortKey = parsedDate // Sorting key
                                 });
                             }
@@ -234,6 +226,81 @@ namespace PensionPortal.Controllers
             var sortedSchedule = schedule.OrderByDescending(x => x.SortKey).ToList();
             return View(sortedSchedule);
 
+        }
+        public ActionResult MonthlyDeductions()
+        {
+            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+
+            var schedule = new List<MonthlyPension>();
+            try
+            {
+                string username = Session["pensionerNo"].ToString();
+                string pensionList = webportals.GetMonthlyPensionDeduction(username);
+                if (!string.IsNullOrEmpty(pensionList))
+                {
+                    string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                   
+
+                    foreach (string pension in pensionListArr)
+                    {
+                        string[] response = pension.Split(new string[] { "::" }, StringSplitOptions.None);
+                        if (response.Length == 3)
+                        {
+                            DateTime parsedDate;
+                            string formattedDate = response[0].Trim();
+
+                            // Parse the date
+                            if (DateTime.TryParseExact(formattedDate, "MM/dd/yy",
+                                CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
+                            {
+                                schedule.Add(new MonthlyPension()
+                                {
+                                    payPeriod = $"{parsedDate:MMMM yyyy}",
+                                    Amount = response[1].Trim(),
+                                    Description = response[2].Trim(),
+                                    SortKey = parsedDate // Sorting key
+                                });
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("index", "dashboard");
+            }
+            // return View(schedule);
+            // return View(schedule.OrderByDescending(x => x.payPeriod).ToList());
+            var sortedSchedule = schedule.OrderByDescending(x => x.SortKey).ToList();
+            return View(sortedSchedule);
+
+        }
+        public ActionResult ChangeProfilePic(Pensioner pensioner)
+        {
+            if (Session["pensionerNo"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (pensioner.profilePic != null && pensioner.profilePic.ContentLength > 0)
+            {
+                string path = Server.MapPath("~/Profiles/");
+                string pensionerNo = Session["pensionerNo"].ToString();
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string filename = Session["pensionerNo"].ToString() + ".png";
+                string filepath = path + filename;
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+                pensioner.profilePic.SaveAs(filepath);
+               webportals.UploadProfilePicture(pensionerNo, filepath, "Profile pic");
+            }
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

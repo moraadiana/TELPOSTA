@@ -126,6 +126,8 @@ namespace PensionPortal.Controllers
                 model.LifeCertPeriods = Helper.GetLifeCertPeriods();
 
                 ViewBag.PdfUrl = TempData["PdfUrl"];
+                ViewBag.Error = TempData["Error"];
+                ViewBag.Success = TempData["Success"];
 
 
 
@@ -137,11 +139,17 @@ namespace PensionPortal.Controllers
 
             return View(model);
         }
-        public ActionResult GenerateLifeCertificate(DateTime period)
+        public ActionResult GenerateLifeCertificate(DateTime? period)
         {
             string pensionerNo = Session["pensionerNo"]?.ToString();
             if (pensionerNo == null)
                 return RedirectToAction("index", "login");
+
+            if (period == null || period == DateTime.MinValue)
+            {
+                TempData["Error"] = "Please select a valid Period to generate the Life Certificate.";
+                return RedirectToAction("LifeCertificate");
+            }
 
             try
             {
@@ -160,22 +168,26 @@ namespace PensionPortal.Controllers
                 if (System.IO.File.Exists(pdfFilePath))
                     System.IO.File.Delete(pdfFilePath);
 
-                //static date
-                //  DateTime periodDate = Convert.ToDateTime("01/01/25");
 
 
-                string response = webportals.LifeCertificate1(path, pdfFileName, pensionerNo, period);
+                string response = webportals.LifeCertificate1(path, pdfFileName, pensionerNo, period.Value);
                 if (!string.IsNullOrEmpty(response))
                 {
                     if (response == "SUCCESS")
                     {
                         TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                     }
+                    else
+                    {
+                        TempData["Error"] = "Failed to generate Life Certificate. Please try again later.";
+                    }
 
 
                 }
-
-                TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
+                else
+                {
+                    TempData["Error"] = $"You are not eligible for life certificate for selected period due to non-return of previous period life certificate.";
+                }
 
             }
             catch (Exception ex)
@@ -253,16 +265,13 @@ namespace PensionPortal.Controllers
                 string subject = "Beneficiary Nomination Form Submission";
                 string body = $"Dear Admin,<br/><br/>A new beneficiary nomination form has been submitted by {pensionerName} PF NO. {pensionerNo}.<br/><br/> This is sytem generated. Do not Reply.";
 
-                // Send email with attachment
                 Components.SendEmailAlertswithAttachment(subject, body, filePath);
 
-              //  ViewBag.Success = "File uploaded and email sent successfully!";
                 TempData["Success"] = "File uploaded and email sent successfully!";
 
             }
             catch (Exception ex)
             {
-               // ViewBag.Error = "Error sending email: " + ex.Message;
                 TempData["Error"] = "Error sending email." + ex.Message;
             }
 
@@ -285,10 +294,9 @@ namespace PensionPortal.Controllers
                 {
                     ViewBag.Error = "Please select a file to upload.";
                     TempData["Error"] = "Please select a file to upload.";
-                    //return View("BeneficiaryNomination");
                     return RedirectToAction("BeneficiaryNomination");
                 }
-                //string pensionerEmail = Session["pensionerEmail"].ToString();
+               
                 string pensionerNo = Session["pensionerNo"].ToString();
                 string pensionerName = Session["pensionerName"].ToString();
                 string fileName = Path.GetFileName(AttachmentFile.FileName);
@@ -298,16 +306,13 @@ namespace PensionPortal.Controllers
                 string subject = "Life Certificate Submission";
                 string body = $"Dear Admin,<br/><br/>A new Life Certificate has been submitted by {pensionerName} PF NO. {pensionerNo}.<br/><br/> This is sytem generated. Do not Reply.";
 
-                // Send email with attachment
                 Components.SendEmailAlertswithAttachment(subject, body, filePath);
 
-                //  ViewBag.Success = "File uploaded and email sent successfully!";
                 TempData["Success"] = "File uploaded and email sent successfully!";
 
             }
             catch (Exception ex)
             {
-                // ViewBag.Error = "Error sending email: " + ex.Message;
                 TempData["Error"] = "Error sending email." + ex.Message;
             }
 
