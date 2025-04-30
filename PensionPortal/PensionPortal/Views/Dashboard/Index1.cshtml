@@ -1,0 +1,178 @@
+﻿<div class="page-content">
+    <div class="page-bar">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("index", "dashboard")">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ul>
+    </div>
+
+    <h1 class="page-title text-primary"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+
+    <div class="row">
+        <!-- Profile Sidebar -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-body text-center">
+                    <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?" + DateTime.Now.Ticks.ToString())"
+                         class="img-responsive"
+                         alt="Profile Picture"
+                         onerror="this.onerror=null;this.src='@Url.Content("~/Profiles/profile_m.png")';" />
+
+                    <h4 class="text-primary">@Session["pensionerName"]</h4>
+                    <p class="text-muted"><i class="fas fa-user-tag"></i> @Session["PensionerType"] </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-8">
+            <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title tabbable-line">
+                    <div class="caption">
+                        <i class="fa fa-user"></i>Welcome @Session["memberName"]
+                    </div>
+
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse"> </a>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1_1" data-toggle="tab">Member Information</a>
+                        </li>
+                        <li>
+                            <a href="#tab_1_2" data-toggle="tab">Change Profile</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="portlet-body">
+                    <div class="tab-content">
+                        <!-- PERSONAL INFO TAB -->
+                        <div class="tab-pane active" id="tab_1_1">
+                            <div class="table-scrollable">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th> Member Information </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fas fa-envelope"></i> Email:</td>
+                                            <td>@Session["Email"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-phone"></i> Phone No:</td>
+                                            <td>@Session["PhoneNo"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-id-card"></i> ID Number:</td>
+                                            <td>@Session["ID"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-calendar-alt"></i> Date of Joining:</td>
+                                            <td>@Session["JoiningDate"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-check-circle"></i> Status:</td>
+                                            <td>
+                                                <span class="badge bg-@((Session["Status"]?.ToString() == "Suspended") ? "warning" : (Session["Status"]?.ToString() == "Ceased") ? "danger" : "success")">
+                                                    @Session["Status"]
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        @if (Session["Status"]?.ToString() == "Suspended")
+                                        {
+                                            <tr>
+                                                <td><i class="fas fa-exclamation-triangle"></i> Suspension reason:</td>
+                                                <td>@Session["SuspensionReason"]</td>
+                                            </tr>
+                                            <tr>
+                                                <td><i class="fas fa-calendar-times"></i> Suspension Date:</td>
+                                                <td>@Session["SuspensionDate"]</td>
+                                            </tr>
+                                        }
+
+                                        @if (@Session["PensionerType"]?.ToString() == "Beneficiary")
+                                        {
+                                            <tr>
+                                                <td><i class="fas fa-calendar-times"></i> Cease Date:</td>
+                                                <td>@Session["CeaseDate"]</td>
+                                            </tr>
+                                        }
+
+                                        <tr>
+                                            <td><i class="fas fa-building"></i> Employer/Former Employer:</td>
+                                            <td>@Session["Employer"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-calendar-check"></i> Retirement Date:</td>
+                                            <td>@Session["RetirementDate"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-credit-card"></i> Account Number:</td>
+                                            <td>@Session["AccountNo"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-university"></i> Bank Name:</td>
+                                            <td>@Session["BankName"]</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-map-marker-alt"></i> Branch Name:</td>
+                                            <td>@Session["BranchName"]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="tab_1_2">
+                            <form action="@Url.Action("ChangeProfilePic","Dashboard")" method="POST" , enctype="multipart/form-data" role="form">
+                                <div class="form-group">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="@Url.Content("~/Profiles/" + Session["pensionerNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" alt="" />
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" name="profilePic" required>
+                                            </span>
+                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="margin-top-10">
+                                    <button type="submit" class="btn green"> Submit </button>
+                                    <a href="@Url.Action("index", "dashboard")" class="btn default"> Cancel </a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE TABLE PORTLET-->
+        </div>
+    
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".toggle-portlet").addEventListener("click", function () {
+            let icon = this.querySelector("i");
+            icon.classList.toggle("fa-chevron-down");
+            icon.classList.toggle("fa-chevron-up"); // Toggle icon
+        });
+    });
+
+
+</script>

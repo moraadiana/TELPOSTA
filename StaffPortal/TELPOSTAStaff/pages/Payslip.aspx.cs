@@ -69,14 +69,15 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlYear.Items.Clear();
+                ddlYear.Items.Add(" -- Select Year --") ;
+
 
                 string payslipYears = webportals.GetPayslipYears();
                 if (!string.IsNullOrEmpty(payslipYears))
                 {
                     string[] yearsArr = payslipYears.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Directly add all unique years to the dropdown
-                    foreach (string year in yearsArr.Distinct()) // Remove duplicates if any
+                    foreach (string year in yearsArr.Distinct()) 
                     {
                         ddlYear.Items.Add(new ListItem(year.Trim()));
                     }
@@ -84,7 +85,6 @@ namespace TELPOSTAStaff.pages
             }
             catch (Exception ex)
             {
-                // Log error instead of clearing it
                 Console.WriteLine($"Error in LoadYears: {ex.Message}");
             }
         }
@@ -94,7 +94,8 @@ namespace TELPOSTAStaff.pages
             try
             {
                 ddlMonth.Items.Clear();
-                 string Year = ddlYear.SelectedValue;
+                ddlMonth.Items.Add((" -- Select Month --"));
+                string Year = ddlYear.SelectedValue;
                 int currentYear = Convert.ToInt32(Year);
 
                 string payslipMonths = webportals.GetPayslipMonths(currentYear);
@@ -103,19 +104,39 @@ namespace TELPOSTAStaff.pages
                     string[] monthsArr = payslipMonths.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string months in monthsArr)
                     {
-
                         string[] responseArr = months.Split(strLimiters, StringSplitOptions.None);
                         if (responseArr.Length == 2)
                         {
                             string monthNumber = responseArr[0];
                             string monthName = responseArr[1];
 
-
-                            ListItem li = new ListItem(monthName, monthNumber);
+                            ListItem li = new ListItem(monthName.Trim(), monthNumber.Trim());
                             ddlMonth.Items.Add(li);
                         }
                     }
                 }
+                /* string Year = ddlYear.SelectedValue;
+                 int currentYear = Convert.ToInt32(Year);
+
+                 string payslipMonths = webportals.GetPayslipMonths(currentYear);
+                 if (!string.IsNullOrEmpty(payslipMonths))
+                 {
+                     string[] monthsArr = payslipMonths.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                     foreach (string months in monthsArr)
+                     {
+
+                         string[] responseArr = months.Split(strLimiters, StringSplitOptions.None);
+                         if (responseArr.Length == 2)
+                         {
+                             string monthNumber = responseArr[0];
+                             string monthName = responseArr[1];
+
+
+                             ListItem li = new ListItem(monthName, monthNumber);
+                             ddlMonth.Items.Add(li);
+                         }
+                     }
+                 }*/
             }
             catch (Exception ex)
             {

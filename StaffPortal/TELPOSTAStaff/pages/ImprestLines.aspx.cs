@@ -566,11 +566,11 @@ namespace TELPOSTAStaff.pages
                     Message("Please add lines before sending for approval!");
                     return;
                 }
-                if (gvAttachments.Rows.Count < 1)
-                {
-                    Message("Please attach documents before sending for approval!");
-                    return;
-                }
+                //if (gvAttachments.Rows.Count < 1)
+                //{
+                //    Message("Please attach documents before sending for approval!");
+                //    return;
+                //}
                 string msg = webportals.OnSendImprestRequisitionForApproval(imprestNo);
                 if (msg == "SUCCESS")
                 {

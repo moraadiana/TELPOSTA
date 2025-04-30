@@ -2571,10 +2571,10 @@
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Statements\BeneficiaryNomination.cshtml" />
     <None Include="Web References\NAVWS\Portal.wsdl" />
-    <None Include="Web References\NAVWS\Reference.map">
+    <Content Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Downloads\" />
@@ -2614,10 +2614,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://192.168.10.19:7047/TelPosta/WS/Teleposta%2520Provident%2520Fund/Codeunit/Portal">
+    <WebReferenceUrl Include="https://192.168.10.19:7047/TelPosta/WS/Telposta%2520Test/Codeunit/Portal">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\NAVWS\</RelPath>
-      <UpdateFromURL>https://192.168.10.19:7047/TelPosta/WS/Teleposta%2520Provident%2520Fund/Codeunit/Portal</UpdateFromURL>
+      <UpdateFromURL>https://192.168.10.19:7047/TelPosta/WS/Telposta%2520Test/Codeunit/Portal</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

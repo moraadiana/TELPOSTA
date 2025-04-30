@@ -43,12 +43,15 @@ namespace TrusteePortal
         {
             try
             {
-                string email = "dynamicsselfservice@gmail.com";
-                string password = "ydujienvejtdojgv";
+                //string email = "dynamicsselfservice@gmail.com";
+                //string password = "ydujienvejtdojgv";
+                string email = "erp@telpostapension.org";
+                string password = "rtbbfthfnthfhhyx";
+
 
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.gmail.com", 25);
+                var smtpClient = new SmtpClient("smtp.office365.com", 587);
 
                 msg.From = new MailAddress(email);
                 msg.To.Add(new MailAddress(address));

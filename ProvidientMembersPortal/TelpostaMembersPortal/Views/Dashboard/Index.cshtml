@@ -28,33 +28,18 @@
     <!-- BEGIN PAGE TITLE-->
     <h1 class="page-title">Dashboard</h1>
     <div class="row">
-        <!--<div class="col-md-4">
-        <div class="profile-sidebar">-->
-        <!-- PORTLET MAIN -->
-        <!--<div class="portlet light profile-sidebar-portlet ">-->
-        <!-- SIDEBAR USERPIC -->
-        <!--<div class="profile-userpic">
-                    <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" class="img-responsive" alt="">
-
-                </div>
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> @Session["memberName"] </div>
-                </div>
-
-            </div>
-        </div>
-    </div>-->
+       
         <div class="col-md-3">
             <div class="card shadow-lg border-0 rounded">
                 <div class="card-body text-center">
-                    @*<img src="@Url.Content("~/Profiles/" + Session["trusteeNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" class="img-responsive" alt="">*@
+                   
                     <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?" + DateTime.Now.Ticks.ToString())"
                          class="img-responsive"
                          alt="Profile Picture"
                          onerror="this.onerror=null;this.src='@Url.Content("~/Profiles/profile_m.png")';" />
 
                     <h4 class="text-primary">@Session["memberName"]</h4>
-                    @*<p class="text-muted"><i class="fas fa-user-tag"></i> @Session["Category"] </p>*@
+                   
                 </div>
             </div>
         </div>
@@ -78,14 +63,7 @@
                         </li>
                     </ul>
                 </div>
-                @*<div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-user"></i>Welcome @ViewBag.Name
-                    </div>
-                    <div class="tools">
-                        <a href="javascript:;" class="collapse"> </a>
-                    </div>
-                </div>*@
+               
                 <div class="portlet-body">
                     <div class="tab-content">
                         <!-- PERSONAL INFO TAB -->
@@ -135,7 +113,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td> Status: </td>
+                                            <td> Balance: </td>
                                             <td></td>
                                             <td> @Session["Balance"] </td>
                                             <td></td>
@@ -150,7 +128,7 @@
                                 <div class="form-group">
                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                            <img src="@Url.Content("~/Profiles/" + Session["VenorNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" alt="" />
+                                            <img src="@Url.Content("~/Profiles/" + Session["memberNo"] + ".png?"+ DateTime.Now.Ticks.ToString())" alt="" />
                                         </div>
                                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                         <div>

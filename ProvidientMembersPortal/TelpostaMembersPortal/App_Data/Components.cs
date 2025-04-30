@@ -44,12 +44,14 @@ namespace TelpostaMembersPortal
         {
             try
             {
-                string email = "dynamicsselfservice@gmail.com";
-                string password = "ydujienvejtdojgv";
+                //string email = "dynamicsselfservice@gmail.com";
+                //string password = "ydujienvejtdojgv";
+                string email = "erp@telpostapension.org";
+                string password = "rtbbfthfnthfhhyx";
 
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.gmail.com", 25);
+                var smtpClient = new SmtpClient("smtp.office365.com", 587);
 
                 msg.From = new MailAddress(email);
                 msg.To.Add(new MailAddress(address));
@@ -71,15 +73,15 @@ namespace TelpostaMembersPortal
         {
             try
             {
-               
-                string email = "dynamicsselfservice@gmail.com";
-                string password = "ydujienvejtdojgv";
-               string toaddress = "info@telpostapension.org";
+
+                string email = "erp@telpostapension.org";
+                string password = "rtbbfthfnthfhhyx";
+                string toaddress = "info@telpostapension.org";
                
 
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.gmail.com", 587); // Use port 587 for Gmail
+                var smtpClient = new SmtpClient("smtp.office365.com", 587); // Use port 587 for Gmail
 
                 msg.From = new MailAddress(email);
                 msg.To.Add(new MailAddress(toaddress));

@@ -31,11 +31,9 @@ namespace TELPOSTAStaff.pages
                 }
                 LoadStaffDepartmentDetails();
                 LoadResponsibilityCenter();
-                // newLines.Visible = false;
-                // LoadPassengers();
-                string query = Request.QueryString["query"];
+                LoadVendorAccountNo();
 
-           //     string requestNo = Request.QueryString["RequestNo"];
+                string query = Request.QueryString["query"];
                 string approvalStatus = Request.QueryString["status"].Replace("%", " ");
                 if (query == "new")
                 {
@@ -43,40 +41,92 @@ namespace TELPOSTAStaff.pages
                 }
                 else if (query == "old")
                 {
-                    //if (requestNo != null)
-
-                    // MultiView1.ActiveViewIndex = 1;
                     string requestNo = Request.QueryString["RequestNo"];
-                    MultiView1.SetActiveView(View2);
-                    BindGridviewData(requestNo);
-                    // loadtraveldestinations();
-                    //LoadPassengers();
+                    string accomodationProvided = Request.QueryString["accomodation"];
+
+                    if (accomodationProvided == "Yes")
+                    {
+                        MultiView1.SetActiveView(View2);
+                        BindGridviewData2(requestNo);
+                    }
+                    else
+                    {
+                        MultiView1.SetActiveView(View3);
+                        BindGridviewData(requestNo);
+                    }
                 }
-                //else
-                //{
-                //    //MultiView1.ActiveViewIndex = 0; View1
-                //    MultiView1.SetActiveView(View1);
-                //}
 
                 if (approvalStatus == "Open" || approvalStatus == "Pending")
                 {
                     lbtnSubmit.Visible = true;
                     lbtnAddLine.Visible = true;
-                    
+                    lbnAddAccomodation.Visible = true;
+
+
                 }
                 else if (approvalStatus == "Pending Approval")
                 {
-                    lbtnSubmit.Visible = true;
+                    lbtnSubmit.Visible = false;
                     lbtnAddLine.Visible = false;
-                    
+                    lbnAddAccomodation.Visible = false;
+
                 }
                 else
                 {
                     lbtnSubmit.Visible = false;
                     lbtnAddLine.Visible = false;
-                    
+                    lbnAddAccomodation.Visible = false;
+
                 }
             }
+        }
+        private void LoadVendorAccountNo()
+        {
+            try
+            {
+                ddlAccountNo.Items.Clear();
+                string accountNoList = webportals.GetVendors();
+                if (!string.IsNullOrEmpty(accountNoList))
+                {
+
+                    string[] AccountList = accountNoList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+
+                    ddlAccountNo.Items.Clear();
+
+                    foreach (string account in AccountList)
+                    {
+
+                        string[] details = account.Split(new string[] { "::" }, StringSplitOptions.None);
+
+                        string No = details[0];
+                        string Name = details[1];
+                        System.Web.UI.WebControls.ListItem listItem = new System.Web.UI.WebControls.ListItem($"{No} - {Name}", No);
+                        
+                        ddlAccountNo.Items.Add(listItem);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Message("An error occurred . Please try again.");
+
+            }
+        }
+        protected void lbtnToLines_Click(object sender, EventArgs e)
+        {
+            string requestNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
+            if (gvLines1.Rows.Count < 1)
+            {
+                Message("Please add atleast one accomodation lines ");
+            }
+            MultiView1.SetActiveView(View3);
+            BindGridviewData(requestNo);
+            
+
+
+
         }
         private void LoadResponsibilityCenter()
         {
@@ -84,7 +134,6 @@ namespace TELPOSTAStaff.pages
             {
                 ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "LEAVE";
                 string resCenters = webportals.GetAllResponsibilityCentres();
                 if (!string.IsNullOrEmpty(resCenters))
                 {
@@ -119,7 +168,6 @@ namespace TELPOSTAStaff.pages
                     string returnMsg = responseArr[0];
                     if (returnMsg == "SUCCESS")
                     {
-                        //lblUnitCode.Text = responseArr[2];
                         lblDepartment.Text = responseArr[1];
                     }
                     else
@@ -137,10 +185,10 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
+      
+        
         protected void lbtnNext_Click(object sender, EventArgs e)
         {
-            if (!ValidateFields()) return; // Validate fields before proceeding
 
             try
             {
@@ -148,16 +196,39 @@ namespace TELPOSTAStaff.pages
                 string username = Session["StaffName"].ToString().ToUpper().Replace(" ", ".");
                 string travelType = ddlTravelType.SelectedValue;
                 int type = Convert.ToInt32(travelType);
+                if (string.IsNullOrEmpty(travelType))
+                {
+                    Message("Travel Type must have a value");
+                    return;
+
+                }
                 string purpose = txtPurpose.Text;
                 string reqNo = Session["RequestNo"]?.ToString() ?? string.Empty;
                 string resCenter = ddlResponsibilityCenter.SelectedValue;
+                string accomodation = ddlCompanyAccommodation.SelectedValue;
+                if (string.IsNullOrEmpty(resCenter) || resCenter == "--Select--")
+                {
+                    Message("Responsiblity Center Type must have a value");
+                    return;
+
+                }
+
+                if (string.IsNullOrEmpty(accomodation) || accomodation == "--Select--")
+                {
+                    throw new Exception("Please select an accommodation preference.");
+                }
+                if (string.IsNullOrEmpty(purpose))
+                {
+                    Message("Purpose must have a value");
+                    return;
+
+                }
                
-               // string description = txtDescription.Text.Trim();
-                
+                int acc = Convert.ToInt32(accomodation);
+                bool accomodationProvided = Convert.ToBoolean(acc);
 
-
-                // string details = Components.ObjNav.CreateTransportRequest(reqNo, description, dateOfTravel, noOfDays, expectedReturnDate, from, destination, unitCode, department, createdBy);
-                string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter);
+               
+                string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter, accomodationProvided);
                 
                 if(!string.IsNullOrEmpty(details))
                 {
@@ -168,68 +239,119 @@ namespace TELPOSTAStaff.pages
                         string requestNo = responseArr[1];
                         Message($"Transport Request number {requestNo} has been created successfully!");
                         Session["requestNo"] = requestNo;
-                        MultiView1.ActiveViewIndex = 1;
+                        Session["accomodation"]  = accomodation;
+                        
+                        if (Convert.ToInt32(accomodation) == 1)
+                        {
+                            MultiView1.SetActiveView(View2);
+                        }
+                        else
+                        {
+                            MultiView1.SetActiveView(View3);
+                        }
                     }
                 
                     else
                     {
                         Message($"error creating request");
                     }
-                    // Switch to the second view
-                    //MultiView1.ActiveViewIndex = 1;
                 }
 
             }
             catch (Exception ex)
             {
-                // Handle exception if needed
                 ex.Data.Clear();
             }
 
         }
-
-        private bool ValidateFields()
+        protected void btnAddAccommodation_Click(object sender, EventArgs e)
         {
-            // Validate each field here
-            if (string.IsNullOrWhiteSpace(ddlTravelType.SelectedValue))
+            try
             {
-                Message("Travel Type is required.");
-                return false;
-            }
 
-            if (string.IsNullOrWhiteSpace(lblPayee.Text))
+                string accountType = ddlAccountType.SelectedValue;
+                if (string.IsNullOrEmpty(accountType) || accountType == "-- Select -- ")
+                {
+                    Message("Account Type must have a value");
+                    return;
+
+                }
+                int type = Convert.ToInt32(accountType);
+                string AccountNo = ddlAccountNo.SelectedValue;
+                string description = txtDescription.Text;
+               
+                string ReqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
+               
+                if (string.IsNullOrEmpty(AccountNo) )
+                {
+                    Message("Account No must have a value");
+                    return;
+
+                }
+                if (string.IsNullOrEmpty(description))
+                {
+                    Message("Description must have a value");
+                    return;
+
+                }
+                string amount = txtAmount.Text;
+
+                if (string.IsNullOrEmpty(amount))
+                {
+                    Message("Ammount must have a value");
+                    return;
+
+                }
+
+                decimal parsedAmount;
+                if (!decimal.TryParse(amount, out parsedAmount))
+                {
+                    Message("Please enter a valid numeric value for the amount.");
+                    return; 
+                }
+
+                if (parsedAmount <= 0)
+                {
+                    Message("Amount must be greater than zero.");
+                    return; 
+                }
+                string result = Components.ObjNav.InsertAccomodationLines(ReqNo, type, AccountNo, description, Convert.ToDecimal(amount)); //, 
+
+                if (!String.IsNullOrEmpty(result))
+                {
+                    string returnMsg = "";
+                    string[] strdelimiters = new string[] { "::" };
+                    string[] result_arr = result.Split(strdelimiters, StringSplitOptions.None);
+
+                    returnMsg = result_arr[0];
+                    if (returnMsg == "SUCCESS")
+                    {
+                        Message("Line added successfully.");
+
+                        BindGridviewData2(ReqNo);
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                Message("Payee is required.");
-                return false;
+                Message("An error occurred while adding the line. Please try again.");
+
             }
-
-           if (string.IsNullOrWhiteSpace(txtPurpose.Text))
-            {
-                Message("Purpose is required");
-            }
-
-            if (string.IsNullOrWhiteSpace(lblDepartment.Text))
-            {
-                Message("Department is required.");
-                return false;
-            }
-
-
-
-            return true;
         }
+
 
         protected void lbtnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("TransportRequisitionListing.aspx"); // Go back to the first view
+            Response.Redirect("TransportRequisitionListing.aspx");
         }
 
         protected void lbnClose_Click(object sender, EventArgs e)
         {
             newLines.Visible = false;
-           // lbnAddLine.Visible = true;
+            accomodationLines.Visible = false;
+           
         }
-
+        
         protected void btnLine_Click(object sender, EventArgs e)
         {
             try
@@ -242,7 +364,7 @@ namespace TELPOSTAStaff.pages
                 string[] details = staffDetails.Split(new string[] { " - " }, StringSplitOptions.None);
                 string payee = details.Length > 1 ? details[1] : string.Empty;
                 string destination = ddlDestination.SelectedValue;
-                string accomodation = ddlAccomodation.SelectedValue;
+                string accomodation = ddlAccommodation.SelectedValue;
                 int acc = Convert.ToInt32(accomodation);
                 bool acco = Convert.ToBoolean(acc);
                 string destinationType = ddlDestinationType.SelectedValue;
@@ -253,8 +375,7 @@ namespace TELPOSTAStaff.pages
                 int noOfDays = Convert.ToInt32(days);
                 string department = lblDepartment.Text;
                 string claimNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
-                //decimal noOfDays = Convert.ToInt32(Days);
-
+                
                 if (string.IsNullOrEmpty(EmpTrustee))
                 {
                     Message("Employee/Trustee must have a value");
@@ -307,8 +428,7 @@ namespace TELPOSTAStaff.pages
                 }
 
                 string result = Components.ObjNav.InsertTravelRequestLines(claimNo, trustee, staffNo, destination, acco, dateOfTravel, expectedReturnDate, noOfDays, destType); //, 
-                //(claimNo: Text; EmpTrustee: option; staffNo: Text; destination: Text; accomodation: Boolean; startDate: Date; endDate: Date; days: Integer)
-                //  procedure InsertTravelRequestLines(claimNo: Text; EmpTrustee: option; staffNo: Text; payee: Text; destination: Text; accomodation: Boolean; startDate: Date; endDate: Date; days: Integer; taxCode: Text) Message: Text
+                
 
                 if (!String.IsNullOrEmpty(result))
                 {
@@ -321,9 +441,7 @@ namespace TELPOSTAStaff.pages
                     {
                         Message("Line added successfully.");
                         ddlStaffNo.SelectedIndex = 0;
-                       //txtPayee.Text = null;
-                        //txtPhoneNo.Text = null;
-
+                       
                         BindGridviewData(claimNo);
                     }
                 }
@@ -335,31 +453,11 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        private void HandlePassengerInsertionResult(string result, string reqNo)
-        {
-            if (!string.IsNullOrEmpty(result))
-            {
-                string[] resultParts = result.Split(new[] { "::" }, StringSplitOptions.None);
-                string returnMsg = resultParts[0];
-
-                if (returnMsg == "SUCCESS")
-                {
-                    Message("Passenger added successfully.");
-                    //ddlPassengerNo.SelectedIndex = 0;
-                    ddlStaffNo.Items.Clear();
-                  //  txtPayee.Text = null;
-                   // txtPhoneNo.Text = null;
-                    BindGridviewData(reqNo);
-                }
-            }
-        }
-
         private void BindGridviewData(string requestNo)
         {
             string lineData = Components.ObjNav.GetTravelRequestLines(requestNo);
             if (!string.IsNullOrEmpty(lineData) )
             {
-               // var lineRows = lineData.Split("[ ]");
                 string[] lineItems = lineData.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
                 var lineList = new DataTable();
                 lineList.Columns.Add("Trustee/Employee");
@@ -374,8 +472,6 @@ namespace TELPOSTAStaff.pages
                 lineList.Columns.Add("Description");
                 lineList.Columns.Add("TaxCode");
                 lineList.Columns.Add("Line No_");
-
-
 
                 foreach (var row in lineItems)
                 {
@@ -396,6 +492,82 @@ namespace TELPOSTAStaff.pages
                 gvLines.DataBind();
             }
         }
+        private void BindGridviewData2(string requestNo)
+        {
+            string lineData = Components.ObjNav.GetAccomodationLines(requestNo);
+            if (!string.IsNullOrEmpty(lineData))
+            {
+                string[] lineItems = lineData.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                DataTable lineList = new DataTable();
+                lineList.Columns.Add("Account Type");
+                lineList.Columns.Add("Account No");
+                lineList.Columns.Add("Account Name");
+                lineList.Columns.Add("Description");
+                lineList.Columns.Add("Amount");
+                lineList.Columns.Add("Line No_");
+                foreach (string item in lineItems)
+                {
+                    string[] fields = item.Split(strLimiters, StringSplitOptions.None);
+
+                    if (fields.Length >= 5)
+                    {
+                        DataRow row = lineList.NewRow();
+                        row["Account Type"] = fields[0];
+                        row["Account No"] = fields[1];
+                        row["Account Name"] = fields[2];
+                        row["Description"] = fields[3];
+                        row["Amount"] = fields[4];
+                        row["Line No_"] = fields[5];
+                        lineList.Rows.Add(row);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Skipping invalid record: " + item);
+                    }
+                }
+
+                gvLines1.DataSource = lineList;
+                gvLines1.DataBind();
+            }
+            else
+            {
+                gvLines1.DataSource = null;
+                gvLines1.DataBind();
+            }
+        }
+        protected void lbtnRemove_Click(object sender, EventArgs e)
+        {
+            string approvalStatus = Request.QueryString["status"].Replace("%", " ");
+            if (approvalStatus != "Open" || approvalStatus != "Pending")
+            {
+                Message("You can only delete line when status is open or pending");
+
+            }
+            string message = "Are you sure you want to delete?";
+            ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
+            
+            string[] arg = new string[2];
+            arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
+            string lineNo = arg[0];
+            string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
+            try
+            {
+                Components.ObjNav.RemoveAccomodationLines(Convert.ToInt32(lineNo));
+                Message("Deleted successfully");
+                BindGridviewData2(reqNo);
+
+            }
+            catch (Exception ex)
+            {
+                Message("ERROR: " + ex.Message.ToString());
+                ex.Data.Clear();
+            }
+        }
+        protected void lbtnAddAccomodation_Click(object sender, EventArgs e)
+        {
+            accomodationLines.Visible = true;
+            lbnAddAccomodation.Visible = true;
+        }
 
         private void Message(string message)
         {
@@ -403,13 +575,7 @@ namespace TELPOSTAStaff.pages
             Page.RegisterStartupScript("ClientScript", strScript);
         }
 
-        protected void lbnAddLine_Click(Object sender, EventArgs e)
-        {
-            newLines.Visible = true;
-          //  lbnAddLine.Visible = false;
-            //LoadPassengers();
-           
-        }
+       
         protected void lbtnAddLine_Click(object sender, EventArgs e)
         {
             string requestNo = string.Empty;
@@ -421,25 +587,23 @@ namespace TELPOSTAStaff.pages
             {
                 requestNo = Request.QueryString["requestNo"].ToString();
             }
-           // lblLNo.Text = claimNo;
-           // LoadAdvanceTypes();
             newLines.Visible = true;
             lbtnAddLine.Visible = false;
         }
 
-        protected void lbtnBack1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("TransportRequisitionListing.aspx");
-        }
-
-
         protected void cancel(object sender, EventArgs e)
         {
+            string approvalStatus = Request.QueryString["status"].Replace("%", " ");
+            if (approvalStatus != "Open" || approvalStatus != "Pending")
+            {
+                Message("You can only delete line when status is open or pending");
+
+            }
             string message = "Are you sure you want to delete?";
             ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
             string[] arg = new string[2];
             arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
-           // string passengerNo = arg[0];
+           
             string lineNo = arg[0];
             string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
             try
@@ -460,10 +624,9 @@ namespace TELPOSTAStaff.pages
 
             string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
 
-
-            if (!CheckPassengersAdded(reqNo))
+            if(gvLines.Rows.Count < 1)
             {
-                Message("Please add at least one passenger before submitting for approval.");
+                Message("Please add at least one travel line before submitting for approval.");
                 return;
             }
 
@@ -492,11 +655,7 @@ namespace TELPOSTAStaff.pages
             string script = $"alert('{message}'); window.location='{redirectUrl}';";
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
         }
-        private bool CheckPassengersAdded(string requestNo)
-        {
-            // Check if the GridView has any rows
-            return gvLines.Rows.Count > 0;
-        }
+        
         protected void ddlDestination_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadtraveldestinations();
@@ -518,12 +677,10 @@ namespace TELPOSTAStaff.pages
         {
             
                 string staff = ddlStaffNo.SelectedValue;
-                //  string requestNo= Session["requestNo"].ToString();
                 string response = webportals.GetTravelDestination(staff);
                 if (!string.IsNullOrEmpty(response))
                 {
 
-                    //   string[] passengersList = passengerList.Split('');
                     string[] responseList = response.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
 
@@ -533,22 +690,15 @@ namespace TELPOSTAStaff.pages
                     {
 
                         string[] details = destination.Split(new string[] { "::" }, StringSplitOptions.None);
-                        //if (details.Length == 3)
-                        //{
+                        
                         string code = details[0];
                         string name = details[1];
-                        //string passengerPhoneNo = details[2];
-
-                        // Add new item to the dropdown list
                         System.Web.UI.WebControls.ListItem listItem = new System.Web.UI.WebControls.ListItem($"{code} - {name}", code);
                         ddlDestination.Items.Add(listItem);
-                        ////txtName.Text = passengerName;
-                        //txtPhoneNo.Text = passengerPhoneNo;
-                        // }
+                        
                     }
                 }
 
-            
         }
 
         private void LoadPassengers()
@@ -559,8 +709,6 @@ namespace TELPOSTAStaff.pages
 
             if (!string.IsNullOrEmpty(staffList))
             {
-
-             //   string[] passengersList = passengerList.Split('');
                 string[] StaffsList = staffList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
 
@@ -570,19 +718,11 @@ namespace TELPOSTAStaff.pages
                 {
 
                     string[] details = Stafflist.Split(new string[] { "::" }, StringSplitOptions.None);
-                    //if (details.Length == 3)
-                    //{
+                 
                     string staffNo = details[0];
                     string staffName = details[1];
-                    //string passengerPhoneNo = details[2];
-
-                    // Add new item to the dropdown list
                     System.Web.UI.WebControls.ListItem listItem = new System.Web.UI.WebControls.ListItem($"{staffNo} - {staffName}", staffNo);
                     ddlStaffNo.Items.Add(listItem);
-                    ////txtName.Text = passengerName;
-                    //txtPhoneNo.Text = passengerPhoneNo;
-                    // }
-                    //loadtraveldestinations();
                 }
             }
         }

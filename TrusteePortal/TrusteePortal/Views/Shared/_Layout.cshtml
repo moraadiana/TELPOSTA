@@ -14,7 +14,7 @@
 
 
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+    <link href="https//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
     <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -102,7 +102,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 @*<img alt="" class="img-circle" src="@Url.Content("~/Profiles/" + Session["username"].ToString() + ".png?"+ DateTime.Now.Ticks.ToString())" />*@
                                 <img src="~/Profiles/defaultavatar.png" class="img-circle" alt="" />
-                                <span style="color: #ffffff !important" class="username username-hide-on-mobile"> @Session["pensionerName"] </span>
+                                <span style="color: #ffffff !important" class="username username-hide-on-mobile"> @Session["Name"] </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -160,14 +160,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("AssignedBoardList", "board")" class="nav-link nav-toggle">
+                            <a href="@Url.Action("AssignedCommittees", "board")" class="nav-link nav-toggle">
                                 <i class="fa fa-group"></i>
                                 <span style="color: #ffffff !important" class="title">Assigned Commitees</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="@Url.Action("BoardMeetingList", "board")" class="nav-link nav-toggle">
+                            <a href="@Url.Action("BoardAttendance", "board")" class="nav-link nav-toggle">
                                 <i class="fa fa-file-archive"></i>
                                 <span style="color: #ffffff !important" class="title">Board Attendance</span>
                             </a>
