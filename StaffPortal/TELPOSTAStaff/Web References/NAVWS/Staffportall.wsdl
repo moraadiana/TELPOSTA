@@ -2,6 +2,28 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Staffportall" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="HRMLeaveApplication1">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="leaveNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reliever" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HRMLeaveApplication1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="HRMLeaveApplication">
         <complexType>
           <sequence>
@@ -1003,6 +1025,7 @@
             <element minOccurs="1" maxOccurs="1" name="department" type="string" />
             <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
             <element minOccurs="1" maxOccurs="1" name="pettyCashType" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
           </sequence>
         </complexType>
       </element>
@@ -1079,6 +1102,8 @@
             <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
             <element minOccurs="1" maxOccurs="1" name="resCenter" type="string" />
             <element minOccurs="1" maxOccurs="1" name="accomodationProvided" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="onBehalfOf" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="staffName" type="string" />
           </sequence>
         </complexType>
       </element>
@@ -1303,6 +1328,18 @@
         </complexType>
       </element>
       <element name="GetAllResponsibilityCentres_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAllStaff">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetAllStaff_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1935,30 +1972,14 @@
           </sequence>
         </complexType>
       </element>
-      <element name="HRMLeaveApplication1">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="leaveNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="reliever" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="leaveType" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="appliedDays" type="decimal" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="returnDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="purpose" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="HRMLeaveApplication1_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="HRMLeaveApplication1">
+    <part name="parameters" element="tns:HRMLeaveApplication1" />
+  </message>
+  <message name="HRMLeaveApplication1_Result">
+    <part name="parameters" element="tns:HRMLeaveApplication1_Result" />
+  </message>
   <message name="HRMLeaveApplication">
     <part name="parameters" element="tns:HRMLeaveApplication" />
   </message>
@@ -2469,6 +2490,12 @@
   <message name="GetAllResponsibilityCentres_Result">
     <part name="parameters" element="tns:GetAllResponsibilityCentres_Result" />
   </message>
+  <message name="GetAllStaff">
+    <part name="parameters" element="tns:GetAllStaff" />
+  </message>
+  <message name="GetAllStaff_Result">
+    <part name="parameters" element="tns:GetAllStaff_Result" />
+  </message>
   <message name="GetApprovedMemos">
     <part name="parameters" element="tns:GetApprovedMemos" />
   </message>
@@ -2745,13 +2772,11 @@
   <message name="GetVendors_Result">
     <part name="parameters" element="tns:GetVendors_Result" />
   </message>
-  <message name="HRMLeaveApplication1">
-    <part name="parameters" element="tns:HRMLeaveApplication1" />
-  </message>
-  <message name="HRMLeaveApplication1_Result">
-    <part name="parameters" element="tns:HRMLeaveApplication1_Result" />
-  </message>
   <portType name="Staffportall_Port">
+    <operation name="HRMLeaveApplication1">
+      <input name="HRMLeaveApplication1" message="tns:HRMLeaveApplication1" />
+      <output name="HRMLeaveApplication1_Result" message="tns:HRMLeaveApplication1_Result" />
+    </operation>
     <operation name="HRMLeaveApplication">
       <input name="HRMLeaveApplication" message="tns:HRMLeaveApplication" />
       <output name="HRMLeaveApplication_Result" message="tns:HRMLeaveApplication_Result" />
@@ -3092,6 +3117,10 @@
       <input name="GetAllResponsibilityCentres" message="tns:GetAllResponsibilityCentres" />
       <output name="GetAllResponsibilityCentres_Result" message="tns:GetAllResponsibilityCentres_Result" />
     </operation>
+    <operation name="GetAllStaff">
+      <input name="GetAllStaff" message="tns:GetAllStaff" />
+      <output name="GetAllStaff_Result" message="tns:GetAllStaff_Result" />
+    </operation>
     <operation name="GetApprovedMemos">
       <input name="GetApprovedMemos" message="tns:GetApprovedMemos" />
       <output name="GetApprovedMemos_Result" message="tns:GetApprovedMemos_Result" />
@@ -3276,13 +3305,18 @@
       <input name="GetVendors" message="tns:GetVendors" />
       <output name="GetVendors_Result" message="tns:GetVendors_Result" />
     </operation>
-    <operation name="HRMLeaveApplication1">
-      <input name="HRMLeaveApplication1" message="tns:HRMLeaveApplication1" />
-      <output name="HRMLeaveApplication1_Result" message="tns:HRMLeaveApplication1_Result" />
-    </operation>
   </portType>
   <binding name="Staffportall_Binding" type="tns:Staffportall_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="HRMLeaveApplication1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HRMLeaveApplication1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HRMLeaveApplication1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="HRMLeaveApplication">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="HRMLeaveApplication">
@@ -4048,6 +4082,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetAllStaff">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetAllStaff" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetAllStaff">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetAllStaff_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetApprovedMemos">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetApprovedMemos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetApprovedMemos">
@@ -4459,15 +4502,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetVendors_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="HRMLeaveApplication1">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="HRMLeaveApplication1">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="HRMLeaveApplication1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

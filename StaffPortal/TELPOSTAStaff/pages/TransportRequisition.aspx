@@ -52,14 +52,14 @@
                                     </div>
                                     <div class="form-row">
 
-                                        <div class="col-md-4">
-                                            <div class="for4m-group">
-                                                <label>Responsibility Canter</label>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Responsibility Center</label>
                                                 <asp:DropDownList ID="ddlResponsibilityCenter" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Travel Type</label>
                                                 <asp:DropDownList ID="ddlTravelType" runat="server" CssClass="form-control">
@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Company Pays Accommodation</label>
                                               
@@ -85,8 +85,26 @@
           
 
                                         </div>
-                                     
-    
+                                      <div class="col-md-3"> 
+                                        <div class="form-group">
+                                            <label>Apply on Behalf</label>
+                                            <asp:DropDownList ID="ddlOnBehalf" runat="server" CssClass="form-control" AutoPostBack="false" onchange="toggleStaffNo(this)">
+                                                <asp:ListItem Value="">-- Select --</asp:ListItem>
+                                                <asp:ListItem Value="1">Yes</asp:ListItem>
+                                                <asp:ListItem Value="2">No</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                        </div>
+                                   <div class="form-row" id="StaffName">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Staff Name</label>
+                                                <asp:DropDownList ID="ddlStaffName" runat="server" CssClass="form-control select2" />
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                         <div class="form-row">
                                             <div class="col-md-12">
@@ -113,11 +131,14 @@
                                         </div>
                                     </div>
                                 </div>
+
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                            <div class="panel panel-warning">
                                <div class="panel-heading">
-                                   <h3 class="panel-title">Accomodation Lines</h3>
+                                   <%--<h3 class="panel-title">Accomodation Lines</h3>--%>
+                                    <h3 class="panel-title">Accomodation Lines &mdash;
+                                        <asp:Label ID="lblReqNo" runat="server" Text=""></asp:Label></h3>
                                </div>
                                <div class="panel-body">
                                    <div id="accomodationLines" runat="server" visible="false">
@@ -214,7 +235,9 @@
                         <asp:View ID="View3" runat="server">
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Travel Request Lines</h3>
+                                    <%--<h3 class="panel-title">Travel Request Lines</h3>--%>
+                                    <h3 class="panel-title">Travel Request Lines &mdash;
+                                    <asp:Label ID="lblReqNo1" runat="server" Text=""></asp:Label></h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="newLines" runat="server" visible="false">
@@ -358,6 +381,23 @@
     </div>
 
     <script>
+        function toggleStaffNo(dropdown) {
+            var staffDropDown = document.getElementById("StaffName");
+        if (dropdown.value === "1") {
+            staffDropDown.style.display = "block"; // Show dropdown
+        } else {
+            staffDropDown.style.display = "none"; // Hide dropdown only
+        }
+    }
+
+    window.onload = function () {
+        var ddlOnBehalf = document.getElementById("<%= ddlOnBehalf.ClientID %>");
+        toggleStaffNo(ddlOnBehalf);
+        ddlOnBehalf.onchange = function () {
+            toggleStaffNo(this);
+        };
+    };
+
         function calculateReturnDate() {
             var dateOfTravel = document.getElementById('<%= txtDateOfTravel.ClientID %>').value;
             var noOfDays = document.getElementById('<%= txtNoOfDays.ClientID %>').value;

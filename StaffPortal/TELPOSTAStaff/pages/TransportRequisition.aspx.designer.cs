@@ -96,6 +96,24 @@ namespace TELPOSTAStaff.pages
         protected global::System.Web.UI.WebControls.DropDownList ddlCompanyAccommodation;
 
         /// <summary>
+        /// ddlOnBehalf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOnBehalf;
+
+        /// <summary>
+        /// ddlStaffName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStaffName;
+
+        /// <summary>
         /// txtPurpose control.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View2;
+
+        /// <summary>
+        /// lblReqNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReqNo;
 
         /// <summary>
         /// accomodationLines control.
@@ -238,6 +265,15 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View3;
+
+        /// <summary>
+        /// lblReqNo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReqNo1;
 
         /// <summary>
         /// newLines control.

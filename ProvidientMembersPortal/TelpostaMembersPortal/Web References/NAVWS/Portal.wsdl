@@ -2,6 +2,19 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RejectClaimReq">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RejectClaimReq_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="RejectImprest">
         <complexType>
           <sequence>
@@ -907,6 +920,22 @@
           <sequence />
         </complexType>
       </element>
+      <element name="GeneratePdf">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="memberNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="filename" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePdf_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
       <element name="GetBeneficiaryPFNo">
         <complexType>
           <sequence>
@@ -1401,21 +1430,14 @@
           </sequence>
         </complexType>
       </element>
-      <element name="RejectClaimReq">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userID" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="RejectClaimReq_Result">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="RejectClaimReq">
+    <part name="parameters" element="tns:RejectClaimReq" />
+  </message>
+  <message name="RejectClaimReq_Result">
+    <part name="parameters" element="tns:RejectClaimReq_Result" />
+  </message>
   <message name="RejectImprest">
     <part name="parameters" element="tns:RejectImprest" />
   </message>
@@ -1794,6 +1816,12 @@
   <message name="GenerateMemberStatement_Result">
     <part name="parameters" element="tns:GenerateMemberStatement_Result" />
   </message>
+  <message name="GeneratePdf">
+    <part name="parameters" element="tns:GeneratePdf" />
+  </message>
+  <message name="GeneratePdf_Result">
+    <part name="parameters" element="tns:GeneratePdf_Result" />
+  </message>
   <message name="GetBeneficiaryPFNo">
     <part name="parameters" element="tns:GetBeneficiaryPFNo" />
   </message>
@@ -1998,13 +2026,11 @@
   <message name="PortalOTP_Result">
     <part name="parameters" element="tns:PortalOTP_Result" />
   </message>
-  <message name="RejectClaimReq">
-    <part name="parameters" element="tns:RejectClaimReq" />
-  </message>
-  <message name="RejectClaimReq_Result">
-    <part name="parameters" element="tns:RejectClaimReq_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="RejectClaimReq">
+      <input name="RejectClaimReq" message="tns:RejectClaimReq" />
+      <output name="RejectClaimReq_Result" message="tns:RejectClaimReq_Result" />
+    </operation>
     <operation name="RejectImprest">
       <input name="RejectImprest" message="tns:RejectImprest" />
       <output name="RejectImprest_Result" message="tns:RejectImprest_Result" />
@@ -2257,6 +2283,10 @@
       <input name="GenerateMemberStatement" message="tns:GenerateMemberStatement" />
       <output name="GenerateMemberStatement_Result" message="tns:GenerateMemberStatement_Result" />
     </operation>
+    <operation name="GeneratePdf">
+      <input name="GeneratePdf" message="tns:GeneratePdf" />
+      <output name="GeneratePdf_Result" message="tns:GeneratePdf_Result" />
+    </operation>
     <operation name="GetBeneficiaryPFNo">
       <input name="GetBeneficiaryPFNo" message="tns:GetBeneficiaryPFNo" />
       <output name="GetBeneficiaryPFNo_Result" message="tns:GetBeneficiaryPFNo_Result" />
@@ -2393,13 +2423,18 @@
       <input name="PortalOTP" message="tns:PortalOTP" />
       <output name="PortalOTP_Result" message="tns:PortalOTP_Result" />
     </operation>
-    <operation name="RejectClaimReq">
-      <input name="RejectClaimReq" message="tns:RejectClaimReq" />
-      <output name="RejectClaimReq_Result" message="tns:RejectClaimReq_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RejectClaimReq">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RejectClaimReq">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RejectClaimReq_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RejectImprest">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RejectImprest">
@@ -2967,6 +3002,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GeneratePdf">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePdf" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GeneratePdf">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GeneratePdf_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetBeneficiaryPFNo">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetBeneficiaryPFNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetBeneficiaryPFNo">
@@ -3270,15 +3314,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="PortalOTP_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="RejectClaimReq">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="RejectClaimReq">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="RejectClaimReq_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

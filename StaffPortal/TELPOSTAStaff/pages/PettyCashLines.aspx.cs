@@ -31,7 +31,6 @@ namespace TELPOSTAStaff.pages
                 }
 
                 LoadStaffDetails();
-                LoadResponsibilityCenter();
                 LoadAccountNos();
                 LoadAdvanceTypes();
 
@@ -108,34 +107,7 @@ namespace TELPOSTAStaff.pages
         }
 
 
-        private void LoadResponsibilityCenter()
-        {
-            try
-            {
-                //ddlResponsibilityCenter.Items.Clear();
-
-                //string grouping = "P-CASH";
-                //string resCenters = webportals.GetResponsibilityCentres(grouping);
-                //if (!string.IsNullOrEmpty(resCenters))
-                //{
-                //    string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
-
-                //    foreach (string rescenter in resCenterArr)
-                //    {
-                //        ddlResponsibilityCenter.Items.Add(new ListItem(rescenter));
-                //    }
-                //}
-                //else
-                //{
-                //    ddlResponsibilityCenter.Items.Add(new ListItem("No responsibility centers available"));
-                //}
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-               // ddlResponsibilityCenter.Items.Add(new ListItem("Error loading responsibility centers"));
-            }
-        }
+       
         private void LoadAccountNos()
         {
 
@@ -151,12 +123,10 @@ namespace TELPOSTAStaff.pages
                         string[] responseArr = account.Split(strLimiters, StringSplitOptions.None);
                         if (responseArr.Length >= 2)
                         {
-                            //ListItem li = new ListItem(responseArr[1], responseArr[0]);
-                            //ddlAccountNo.Items.Add(li);
-                            string displayText = $"{responseArr[0]} - {responseArr[1]}"; // Display as "No - Name"
-                            string value = responseArr[0]; // Only the account number is stored
+                            string displayText = $"{responseArr[0]} - {responseArr[1]}"; 
+                            string value = responseArr[0]; 
                             ListItem li = new ListItem(displayText, value);
-                            //ddlAccountNo.Items.Add(li);
+                            
                         }
 
                     }
@@ -200,35 +170,6 @@ namespace TELPOSTAStaff.pages
         }
 
 
-        private void LoadAdvanceTypes1()
-        {
-            try
-            {
-                ddlAdvancType.Items.Clear();
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spLoadPettyCashAdvancedTypes",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        ListItem li = new ListItem(reader["Description"].ToString().ToUpper(), reader["Code"].ToString());
-                        ddlAdvancType.Items.Add(li);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Clear();
-            }
-        }
-
         protected void lbtnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -236,7 +177,7 @@ namespace TELPOSTAStaff.pages
                 string username = Session["username"].ToString();
                 string department = lblDepartment.Text;
                 string pettyCashType = ddlPettyCashType.SelectedValue;
-                //string ApplicantType = DdApplicantType.SelectedItem.Text;
+                
                 int MyPettyType = 0;
                 if (pettyCashType == "Claim")
                 {
@@ -246,8 +187,6 @@ namespace TELPOSTAStaff.pages
                 {
                     MyPettyType = 2;
                 }
-                //string directorate = lblDirectorate.Text;
-                //string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
 
 
@@ -256,16 +195,7 @@ namespace TELPOSTAStaff.pages
                     Message("Department cannot be null!");
                     return;
                 }
-                //if (string.IsNullOrEmpty(directorate))
-                //{
-                //    Message("Unit cannot be null!");
-                //    return;
-                //}
-                //if (string.IsNullOrEmpty(responsibilityCenter))
-                //{
-                //    Message("Responsibility center cannot be null!");
-                //    return;
-                //}
+                
                 if (purpose == "")
                 {
                     Message("Purpose cannot be null!");
@@ -277,8 +207,9 @@ namespace TELPOSTAStaff.pages
                     Message("Purpose should be 200 characters and below!");
                     return;
                 }
+                string userID = webportals.getEmployeeUserId(username);
 
-                string response = webportals.CreatePettyCashRequisitionHeader(username, department, purpose, MyPettyType);
+                string response = webportals.CreatePettyCashRequisitionHeader(username, department, purpose, MyPettyType,userID);
                 if (!string.IsNullOrEmpty(response))
                 {
                     string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
@@ -319,6 +250,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
+      
         private void BindAttachedDocuments(string documentNo)
         {
             try
@@ -326,28 +258,20 @@ namespace TELPOSTAStaff.pages
                 // Call the AL web service method
                 string docLines = webportals.GetDocumentlines(documentNo);
 
-                // Check if the response is not empty or null
                 if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
                 {
-                    // Split the response by '[]' to separate each line
                     string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Create a DataTable to hold the parsed data for binding
                     DataTable dt = new DataTable();
                     dt.Columns.Add("Document No");
                     dt.Columns.Add("Description");
                     dt.Columns.Add("$systemCreatedAt");
                     dt.Columns.Add("SystemId");
 
-
-
-                    // Loop through each line item
                     foreach (string item in lineItems)
                     {
-                        // Split each line by '::' to get individual fields
                         string[] fields = item.Split(strLimiters, StringSplitOptions.None);
 
-                        // Check if we have the correct number of fields to avoid errors
                         if (fields.Length == 4)
                         {
                             DataRow row = dt.NewRow();
@@ -358,56 +282,19 @@ namespace TELPOSTAStaff.pages
                             dt.Rows.Add(row);
                         }
                     }
-
-                    // Bind the DataTable to the GridView
                     gvAttachments.DataSource = dt;
                     gvAttachments.DataBind();
                 }
                 else
                 {
-                    // Handle the case where there are no imprest lines
-                    gvLines.DataSource = null;
-                    gvLines.DataBind();
+                    gvAttachments.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                // Handle exception (log or show an error message as needed)
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
-        private void BindAttachedDocuments1(string documentNo)
-        {
-            try
-            {
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spDocumentLines",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                command.Parameters.AddWithValue("@DocNo", "'" + documentNo + "'");
-                adapter = new SqlDataAdapter();
-                adapter.SelectCommand = command;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                gvAttachments.DataSource = dt;
-                gvAttachments.DataBind();
-                connection.Close();
-
-                foreach (GridViewRow row in gvAttachments.Rows)
-                {
-                    row.Cells[3].Text = row.Cells[3].Text.Split(' ')[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Clear();
-            }
-        }
-
 
         private void BindGridViewData(string pettyCashNo)
         {
@@ -450,13 +337,19 @@ namespace TELPOSTAStaff.pages
 
 
             }
+            else
+            {
+                gvLines.DataSource = null;
+                gvLines.DataBind();
+            }
+
 
         }
         protected void gvLines_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvLines.PageIndex = e.NewPageIndex;
             string pettyCashNo = Request.QueryString["PettyCashNo"];
-            BindGridViewData(pettyCashNo); // Rebind data with the current pettyCashNo
+            BindGridViewData(pettyCashNo); 
         }
 
 
@@ -482,25 +375,21 @@ namespace TELPOSTAStaff.pages
                 string username = Session["username"].ToString();
                 string advanceType = ddlAdvancType.SelectedValue;
                 string amount = txtAmnt.Text;
-                //string accountNo = ddlAccountNo.SelectedValue;
+                
                 if (advanceType == "0")
                 {
                     Message("Advance type cannot be null!");
                     return;
                 }
-                //if (accountNo == "0")
-                //{
-                //    Message("Account Number cannot be null!");
-                //    return;
-                //}
+                
                 if (amount == "")
                 {
                     Message("Amount cannot be empty!");
                     txtAmnt.Focus();
                     return;
                 }
+                
 
-                // string response = webportals.InsertPettyCashRequisitionLine(username, pettyCashNo, accountNo, advanceType, Convert.ToDecimal(amount));
                 string response = webportals.InsertPettyCashRequisitionLine(pettyCashNo, advanceType, Convert.ToDecimal(amount));
                 if (!string.IsNullOrEmpty(response))
                 {
@@ -588,11 +477,11 @@ namespace TELPOSTAStaff.pages
                     Message("Please add lines before sending for approval!");
                     return;
                 }
-                if (gvAttachments.Rows.Count < 1)
-                {
-                    Message("Please attach documents before sending for approval!");
-                    return;
-                }
+                //if (gvAttachments.Rows.Count < 1)
+                //{
+                //    Message("Please attach documents before sending for approval!");
+                //    return;
+                //}
                 string msg = webportals.OnSendPettyCashRequisitionForApproval(pettyCashNo);
                 if (msg == "SUCCESS")
                 {
@@ -684,8 +573,49 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-
         protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
+        {
+            string status = Request.QueryString["status"].ToString().Replace("%", " ");
+            if (status == "Open" || status == "Pending")
+            {
+                string[] args = new string[2];
+                args = (sender as LinkButton).CommandArgument.ToString().Split(';');
+                string systemId = args[0];
+                string documentNo = lblLNo.Text;
+                string fileName = string.Empty;
+                string documentDetails = webportals.GetAttachmentDetails(systemId);
+                if (documentDetails != null)
+                {
+                    string[] documentsDetailsArr = documentDetails.Split(strLimiters, StringSplitOptions.None);
+                    fileName = documentsDetailsArr[1];
+                    documentNo = documentsDetailsArr[0];
+                }
+
+                string response = webportals.DeleteDocumentAttachment(systemId, fileName, documentNo);
+                if (response != null)
+                {
+                    string[] responseArr = response.Split(strLimiters, StringSplitOptions.None);
+                    string returnMsg1 = responseArr[0];
+                    string returnMsg2 = responseArr[1];
+                    if (returnMsg2 == "SUCCESS")//&& returnMsg2 == "SUCCESS"
+                    {
+                        Message("Document deleted successfully.");
+                        BindAttachedDocuments(documentNo);
+                    }
+                    else
+                    {
+                        Message("An error has occured. Please try again later.");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                Message("You can only edit an open document!");
+                return;
+            }
+        }
+        protected void lbtnRemoveAttach_Click1(object sender, EventArgs e)
         {
             try
             {

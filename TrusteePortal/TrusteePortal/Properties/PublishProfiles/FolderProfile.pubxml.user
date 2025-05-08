@@ -5,7 +5,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Portals\TrusteePortal</_PublishTargetUrl>
-    <History>True|2025-03-27T14:07:04.5556760Z||;</History>
+    <History>True|2025-05-08T14:27:08.1995673Z||;True|2025-05-08T17:10:45.0639086+03:00||;True|2025-03-27T17:07:04.5556760+03:00||;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/apps/css/inbox.min.css">
@@ -7224,13 +7225,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/27/2025 17:03:01</publishTime>
     </File>
     <File Include="bin/TrusteePortal.dll">
-      <publishTime>03/27/2025 17:06:55</publishTime>
+      <publishTime>05/08/2025 17:27:04</publishTime>
     </File>
     <File Include="bin/TrusteePortal.pdb">
-      <publishTime>03/27/2025 17:06:55</publishTime>
+      <publishTime>05/08/2025 17:27:04</publishTime>
     </File>
     <File Include="bin/TrusteePortal.XmlSerializers.dll">
-      <publishTime>03/27/2025 17:06:56</publishTime>
+      <publishTime>05/08/2025 17:27:04</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/26/2025 09:40:36</publishTime>
@@ -7424,14 +7425,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Board/AssignedBoardList.cshtml">
       <publishTime>03/27/2025 17:02:57</publishTime>
     </File>
+    <File Include="Views/Board/AssignedCommittees.cshtml">
+      <publishTime>04/28/2025 15:23:12</publishTime>
+    </File>
+    <File Include="Views/Board/BoardAttendance.cshtml">
+      <publishTime>05/08/2025 17:06:57</publishTime>
+    </File>
     <File Include="Views/Board/BoardMeetingList.cshtml">
       <publishTime>03/27/2025 17:02:57</publishTime>
     </File>
+    <File Include="Views/Board/BoardRegisterDetails.cshtml">
+      <publishTime>04/28/2025 15:00:52</publishTime>
+    </File>
     <File Include="Views/Board/Index.cshtml">
-      <publishTime>03/27/2025 17:02:57</publishTime>
+      <publishTime>04/15/2025 15:09:08</publishTime>
     </File>
     <File Include="Views/Dashboard/Index.cshtml">
-      <publishTime>03/27/2025 17:02:57</publishTime>
+      <publishTime>05/08/2025 17:26:49</publishTime>
+    </File>
+    <File Include="Views/Dashboard/StatusSummary.cshtml">
+      <publishTime>04/28/2025 12:53:46</publishTime>
     </File>
     <File Include="Views/Login/ForgotPassword.cshtml">
       <publishTime>03/26/2025 09:40:34</publishTime>
@@ -7446,13 +7459,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/26/2025 09:40:34</publishTime>
     </File>
     <File Include="Views/Reports/Pnine.cshtml">
-      <publishTime>03/27/2025 17:02:57</publishTime>
+      <publishTime>04/15/2025 16:14:46</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>03/26/2025 09:40:34</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/27/2025 17:02:57</publishTime>
+      <publishTime>05/08/2025 17:04:08</publishTime>
     </File>
     <File Include="Views/Shared/_Login.cshtml">
       <publishTime>03/26/2025 09:40:34</publishTime>

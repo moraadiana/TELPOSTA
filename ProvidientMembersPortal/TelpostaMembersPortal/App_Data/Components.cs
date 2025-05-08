@@ -40,6 +40,17 @@ namespace TelpostaMembersPortal
                 return webservice;
             }
         }
+        public static void SendSMSAlerts(string phoneNo, string subject, string message)
+        {
+            try
+            {
+               
+            }
+            catch (Exception Ex)
+            {
+                Ex.Data.Clear();
+            }
+        }
         public static void SendEmailAlerts(string address, string subject, string message)
         {
             try

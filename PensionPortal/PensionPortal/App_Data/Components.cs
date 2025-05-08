@@ -73,27 +73,23 @@ namespace PensionPortal
         {
             try
             {
-                //string email = "dynamicsselfservice@gmail.com";
-                //string email = "dynamicsselfservice@gmail.com";
-                //string password = "ydujienvejtdojgv";
+               
                 string email = "erp@telpostapension.org";
                 string password = "rtbbfthfnthfhhyx";
 
-                string toaddress = "info@telpostapension.org";
+               string toaddress = "info@telpostapension.org";
 
                 //string toaddress = "dmoraa@appkings.co.ke";
 
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.office365.com", 587); // Use port 587 for Gmail
+                var smtpClient = new SmtpClient("smtp.office365.com", 587); 
 
                 msg.From = new MailAddress(email);
                 msg.To.Add(new MailAddress(toaddress));
                 msg.Subject = subject;
                 msg.Body = message;
                 msg.IsBodyHtml = true;
-
-                // Attach the uploaded file
                 if (!string.IsNullOrEmpty(attachmentPath) && System.IO.File.Exists(attachmentPath))
                 {
                     msg.Attachments.Add(new Attachment(attachmentPath));
@@ -106,7 +102,6 @@ namespace PensionPortal
             }
             catch (Exception Ex)
             {
-                // Log error instead of clearing data
                 Console.WriteLine("Error sending email: " + Ex.Message);
             }
         }

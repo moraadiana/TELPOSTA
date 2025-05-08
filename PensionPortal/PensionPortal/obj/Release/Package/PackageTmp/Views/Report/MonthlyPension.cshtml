@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PensionPortal.Models.MonthlyPension>
 @{
-    ViewBag.Title = "Monthly Pension Deductions";
+    ViewBag.Title = "Monthly Pension";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="page-content">
@@ -13,7 +13,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="#">Dashboard</a>
+                <a href="#">Monthly Pension</a>
                 <i class="fa fa-circle"></i>
             </li>
         </ul>
@@ -61,7 +61,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-settings font-red"></i>
-                        <span class="caption-subject font-red sbold uppercase">Monthly Pension Deductions</span>
+                        <span class="caption-subject font-red sbold uppercase">Monthly Pension</span>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -72,7 +72,6 @@
                             <tr>
                                 <th id="payperiod"> Period </th>
                                 <th> Amount </th>
-                                <th> Description </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +82,6 @@
                                     <tr>
                                         <td>@item.payPeriod</td>
                                         <td>@item.Amount</td>
-                                        <td>@item.Description</td>
 
                                     </tr>
                                 }
@@ -108,11 +106,11 @@
                 //retrieve: true,
                 "paging": true,
                 // "order": [[0, "desc"]]
-                 "order": [[0, "desc"]],
+                 "order": [[0, "desc"]], 
                 "columnDefs": [
                     { "type": "date", "targets": 0 }]
 
             });
         });
-
-</script>
+   
+    </script>

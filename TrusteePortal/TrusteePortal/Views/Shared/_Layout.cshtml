@@ -139,7 +139,7 @@
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <div class="page-sidebar navbar-collapse collapse" style="background-color: #244767 !important">
-                    <ul class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                    <ul class="page-sidebar-menu page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                         <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
                         <li class="sidebar-toggler-wrapper hide">
                             <div class="sidebar-toggler">
@@ -147,51 +147,52 @@
                             </div>
                         </li>
                         <!-- END SIDEBAR TOGGLER BUTTON -->
+
                         <li class="nav-item">
                             <a href="@Url.Action("statussummary", "dashboard")" class="nav-link nav-toggle">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-chart-bar"></i>
                                 <span style="color: #ffffff !important" class="title">Dashboard Reports</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="@Url.Action("index", "dashboard")" class="nav-link nav-toggle">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-id-badge"></i> <!-- Changed from user to id-badge for better profile representation -->
                                 <span style="color: #ffffff !important" class="title">My Profile</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="@Url.Action("AssignedCommittees", "board")" class="nav-link nav-toggle">
-                                <i class="fa fa-group"></i>
-                                <span style="color: #ffffff !important" class="title">Assigned Commitees</span>
+                                <i class="fa fa-users-cog"></i> <!-- Better for group/committee management -->
+                                <span style="color: #ffffff !important" class="title">Assigned Committees</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="@Url.Action("BoardAttendance", "board")" class="nav-link nav-toggle">
-                                <i class="fa fa-file-archive"></i>
+                                <i class="fa fa-calendar-check"></i> <!-- Represents attendance -->
                                 <span style="color: #ffffff !important" class="title">Board Attendance</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="fa fa-file-alt "></i>
+                                <i class="fa fa-file-alt"></i>
                                 <span style="color: #ffffff !important" class="title">Reports</span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Pnine", "Reports")" class="nav-link nav-toggle">
-                                        <i class="fa fa-file-invoice"></i>
+                                        <i class="fa fa-file-invoice-dollar"></i> <!-- Represents a financial or tax document -->
                                         <span style="color: #ffffff !important" class="title">P9 Report</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
-
                     </ul>
-                    <!-- END SIDEBAR MENU -->
-                    <!-- END SIDEBAR MENU -->
                 </div>
+
                 <!-- END SIDEBAR -->
             </div>
             <div class="page-content-wrapper" style="background-color: #244767 !important">

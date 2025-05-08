@@ -14,26 +14,32 @@ namespace TelpostaMembersPortal
         private static string[] strLimiters = new string[] { "::" };
         private static string[] strLimiters2 = new string[] { "[]" };
 
-        public static List<Config> GetPayrollPeriods()
+
+        public static List<MemberStatement> GetPayrollPeriods()
         {
-            var list = new List<Config>();
+            var list = new List<MemberStatement>();
             try
             {
                 string result = webportals.GetPayrollPeriods1();
                 if (!string.IsNullOrEmpty(result))
                 {
-                    string[] resultsArr = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string str in resultsArr)
+                    string[] resultsArr = result.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var period in resultsArr)
                     {
-                        string[] responseArr = str.Split(strLimiters, StringSplitOptions.None);
-                        list.Add(new Config()
+                        // Split further by '::' to separate StartDate and EndDate
+                        var periodDetails = period.Split(new string[] { "::" }, StringSplitOptions.None);
+
+                        if (periodDetails.Length == 2)
                         {
-                            StartDate = responseArr[0],
-                            EndDate = responseArr[1]
-                        });
+                            var memberStatement = new MemberStatement
+                            {
+                                StartDate = periodDetails[0], // First part is StartDate
+                                EndDate = periodDetails[1] // Second part is EndDate
+                            };
+
+                            list.Add(memberStatement); // Add the new MemberStatement to the list
+                        }
                     }
-                    //list.Add("-- Select Period--");
-                    //list.AddRange(resultsArr); // Add all periods correctly
                 }
             }
             catch (Exception ex)
@@ -43,28 +49,17 @@ namespace TelpostaMembersPortal
             return list;
         }
 
-        public static List<MemberStatement> GetPayrollPeriods2()
+        public static List<string> GetPayrollPeriods1()
         {
-
-            var list = new List<MemberStatement>();
-            // var periods = webportals.GetPayrollPeriods();
+            var list = new List<string>();
             try
             {
                 string result = webportals.GetPayrollPeriods();
                 if (!string.IsNullOrEmpty(result))
                 {
-                    string[] resultsArr = result.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string str in resultsArr)
-                    {
-                        string[] responseArr = str.Split(strLimiters, StringSplitOptions.None);
-                        list.Add(new MemberStatement()
-                        {
-                            StartDate = responseArr[0],
-                            EndDate = responseArr[1]
-                        }
-                       );
-
-                    }
+                    string[] resultsArr = result.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
+                    list.Add("-- Select Period--");
+                    list.AddRange(resultsArr); // Add all periods correctly
                 }
             }
             catch (Exception ex)
@@ -72,40 +67,9 @@ namespace TelpostaMembersPortal
                 ex.Data.Clear();
             }
             return list;
-
-
         }
 
-        
-
-        public string GeneratePensionerStatement(string pensionerNo, string startDate, string endDate)
-        {
-            try
-            {
-                // Generate a unique file name
-                string fileName = pensionerNo.Replace("/", "");
-                string pdffileName = $"PensionerStatement-{fileName}.pdf";
-                string path = "D:\\Portals\\TELPOSTA\\PensionPortal\\PensionPortal\\Downloads\\";
-                string filePath = Path.Combine(path, fileName);
-                //PensionerStatement PensionerStatement = new PensionerStatement();
-
-                //startDate = PensionerStatement.StartDate;
-                //endDate = PensionerStatement.EndDate;
-                // Ensure directory exists
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                // Call the AL procedure via NAV web service
-                // webportals.PensionerStatement(path, fileName, pensionerNo, startDate,endDate);
-
-                // Return the file path (ensure it's accessible via web)
-                return "/GeneratedStatements/" + fileName;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+     
 
     }
 }

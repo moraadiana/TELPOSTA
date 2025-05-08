@@ -29,6 +29,8 @@ namespace TelpostaMembersPortal.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Portal_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Portal")]
     public partial class Portal : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback RejectClaimReqOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RejectImprestOperationCompleted;
         
         private System.Threading.SendOrPostCallback RejectLeaveOperationCompleted;
@@ -155,6 +157,8 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GenerateMemberStatementOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GeneratePdfOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetBeneficiaryPFNoOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetBeneficiaryProfileDetailsOperationCompleted;
@@ -223,8 +227,6 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback PortalOTPOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RejectClaimReqOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -262,6 +264,9 @@ namespace TelpostaMembersPortal.NAVWS {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event RejectClaimReqCompletedEventHandler RejectClaimReqCompleted;
         
         /// <remarks/>
         public event RejectImprestCompletedEventHandler RejectImprestCompleted;
@@ -453,6 +458,9 @@ namespace TelpostaMembersPortal.NAVWS {
         public event GenerateMemberStatementCompletedEventHandler GenerateMemberStatementCompleted;
         
         /// <remarks/>
+        public event GeneratePdfCompletedEventHandler GeneratePdfCompleted;
+        
+        /// <remarks/>
         public event GetBeneficiaryPFNoCompletedEventHandler GetBeneficiaryPFNoCompleted;
         
         /// <remarks/>
@@ -555,7 +563,34 @@ namespace TelpostaMembersPortal.NAVWS {
         public event PortalOTPCompletedEventHandler PortalOTPCompleted;
         
         /// <remarks/>
-        public event RejectClaimReqCompletedEventHandler RejectClaimReqCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectClaimReq_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RejectClaimReq(string documentNo, string userID) {
+            this.Invoke("RejectClaimReq", new object[] {
+                        documentNo,
+                        userID});
+        }
+        
+        /// <remarks/>
+        public void RejectClaimReqAsync(string documentNo, string userID) {
+            this.RejectClaimReqAsync(documentNo, userID, null);
+        }
+        
+        /// <remarks/>
+        public void RejectClaimReqAsync(string documentNo, string userID, object userState) {
+            if ((this.RejectClaimReqOperationCompleted == null)) {
+                this.RejectClaimReqOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectClaimReqOperationCompleted);
+            }
+            this.InvokeAsync("RejectClaimReq", new object[] {
+                        documentNo,
+                        userID}, this.RejectClaimReqOperationCompleted, userState);
+        }
+        
+        private void OnRejectClaimReqOperationCompleted(object arg) {
+            if ((this.RejectClaimReqCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RejectClaimReqCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectImprest", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectImprest_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2536,6 +2571,42 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePdf", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GeneratePdf_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void GeneratePdf(string path, string memberNo, string filename, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
+            this.Invoke("GeneratePdf", new object[] {
+                        path,
+                        memberNo,
+                        filename,
+                        startDate,
+                        endDate});
+        }
+        
+        /// <remarks/>
+        public void GeneratePdfAsync(string path, string memberNo, string filename, System.DateTime startDate, System.DateTime endDate) {
+            this.GeneratePdfAsync(path, memberNo, filename, startDate, endDate, null);
+        }
+        
+        /// <remarks/>
+        public void GeneratePdfAsync(string path, string memberNo, string filename, System.DateTime startDate, System.DateTime endDate, object userState) {
+            if ((this.GeneratePdfOperationCompleted == null)) {
+                this.GeneratePdfOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePdfOperationCompleted);
+            }
+            this.InvokeAsync("GeneratePdf", new object[] {
+                        path,
+                        memberNo,
+                        filename,
+                        startDate,
+                        endDate}, this.GeneratePdfOperationCompleted, userState);
+        }
+        
+        private void OnGeneratePdfOperationCompleted(object arg) {
+            if ((this.GeneratePdfCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GeneratePdfCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetBeneficiaryPFNo", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetBeneficiaryPFNo_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string GetBeneficiaryPFNo(string bfno) {
@@ -3603,36 +3674,6 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectClaimReq_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RejectClaimReq(string documentNo, string userID) {
-            this.Invoke("RejectClaimReq", new object[] {
-                        documentNo,
-                        userID});
-        }
-        
-        /// <remarks/>
-        public void RejectClaimReqAsync(string documentNo, string userID) {
-            this.RejectClaimReqAsync(documentNo, userID, null);
-        }
-        
-        /// <remarks/>
-        public void RejectClaimReqAsync(string documentNo, string userID, object userState) {
-            if ((this.RejectClaimReqOperationCompleted == null)) {
-                this.RejectClaimReqOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRejectClaimReqOperationCompleted);
-            }
-            this.InvokeAsync("RejectClaimReq", new object[] {
-                        documentNo,
-                        userID}, this.RejectClaimReqOperationCompleted, userState);
-        }
-        
-        private void OnRejectClaimReqOperationCompleted(object arg) {
-            if ((this.RejectClaimReqCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RejectClaimReqCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3650,6 +3691,10 @@ namespace TelpostaMembersPortal.NAVWS {
             return false;
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RejectClaimReqCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -4853,6 +4898,10 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GeneratePdfCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetBeneficiaryPFNoCompletedEventHandler(object sender, GetBeneficiaryPFNoCompletedEventArgs e);
     
     /// <remarks/>
@@ -5676,10 +5725,6 @@ namespace TelpostaMembersPortal.NAVWS {
             }
         }
     }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void RejectClaimReqCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<TrusteePortal.Models.Board>
+﻿@model IEnumerable<PensionPortal.Models.MonthlyPension>
 @{
-    ViewBag.Title = "My Assigned Boards";
+    ViewBag.Title = "Monthly Pension";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="page-content">
@@ -13,7 +13,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="#">Dashboard</a>
+                <a href="#">Monthly Pension</a>
                 <i class="fa fa-circle"></i>
             </li>
         </ul>
@@ -61,43 +61,30 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-settings font-red"></i>
-                        <span class="caption-subject font-red sbold uppercase">Assigned Boards</span>
+                        <span class="caption-subject font-red sbold uppercase">Monthly Pension</span>
                     </div>
                 </div>
                 <div class="portlet-body">
                     <div class="table-toolbar">
                     </div>
-                    <table class="table table-striped table-hover table-bordered" id="Meetings">
+                    <table class="table table-striped table-hover table-bordered" id="pension">
                         <thead>
                             <tr>
-                                <th> No </th>
-                                <th> Name </th>
-                                @*<th> Description</th>*@
-
-
+                                <th id="payperiod"> Period </th>
+                                <th> Amount </th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (!Model.Equals(null))
                             {
-                                foreach (var item in Model)
+                                foreach (var item in Model.OrderByDescending(x => x.SortKey))
                                 {
                                     <tr>
-                                        <td>@item.Code</td>
-                                        <td>@item.Name</td>
-                                        @*<td>@item.Description</td>*@
+                                        <td>@item.payPeriod</td>
+                                        <td>@item.Amount</td>
 
                                     </tr>
                                 }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td>
-                                        No records
-                                    </td>
-                                   
-                                </tr>
                             }
                         </tbody>
                     </table>
@@ -109,15 +96,21 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#beneficiary').DataTable({
-            "pageLength": 10, // Ensure this is applied
-            "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]], // Dropdown options
-            "ordering": true,
-            "searching": true,
-            "stateSave": true, // Remember user preferences
-            retrieve: true
-        });
-    });
+        $(document).ready(function () {
+            $('#pension').DataTable({
+                "pageLength": 15,
+                "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
+                //"ordering": true,
+                "searching": true,
+              //"stateSave": true,
+                //retrieve: true,
+                "paging": true,
+                // "order": [[0, "desc"]]
+                 "order": [[0, "desc"]], 
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }]
 
-</script>
+            });
+        });
+   
+    </script>

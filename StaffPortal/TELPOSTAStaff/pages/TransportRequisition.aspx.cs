@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using TELPOSTAStaff.NAVWS;
 using System.Net.Mail;
 using System.Runtime.Remoting.Messaging;
+using System.Xml.Linq;
 
 
 
@@ -32,6 +33,7 @@ namespace TELPOSTAStaff.pages
                 LoadStaffDepartmentDetails();
                 LoadResponsibilityCenter();
                 LoadVendorAccountNo();
+                LoadStaff();
 
                 string query = Request.QueryString["query"];
                 string approvalStatus = Request.QueryString["status"].Replace("%", " ");
@@ -42,6 +44,8 @@ namespace TELPOSTAStaff.pages
                 else if (query == "old")
                 {
                     string requestNo = Request.QueryString["RequestNo"];
+                    lblReqNo.Text = requestNo;
+                    lblReqNo1.Text = requestNo;
                     string accomodationProvided = Request.QueryString["accomodation"];
 
                     if (accomodationProvided == "Yes")
@@ -78,6 +82,34 @@ namespace TELPOSTAStaff.pages
                     lbnAddAccomodation.Visible = false;
 
                 }
+            }
+        }
+        private void LoadStaff()
+        {
+            try
+            {
+                ddlStaffName.Items.Clear();
+                //update to use GetAllStaff
+                string employees = webportals.GetAllStaff();
+                
+                if (!string.IsNullOrEmpty(employees))
+                {
+                    string[] employeesArr = employees.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string employee in employeesArr)
+                    {
+                        string[] responseArr = employee.Split(strLimiters, StringSplitOptions.None);
+                        string No = responseArr[0];
+                        string Name = responseArr[1];
+                        ListItem li = new ListItem($"{No}  - {Name}", No);
+                       
+
+                        ddlStaffName.Items.Add(li);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Clear();
             }
         }
         private void LoadVendorAccountNo()
@@ -195,6 +227,8 @@ namespace TELPOSTAStaff.pages
                 string empNo = Session["username"].ToString();
                 string username = Session["StaffName"].ToString().ToUpper().Replace(" ", ".");
                 string travelType = ddlTravelType.SelectedValue;
+                string applyOnBehalf = ddlOnBehalf.SelectedValue;
+                string staffName = ddlStaffName.SelectedValue;
                 int type = Convert.ToInt32(travelType);
                 if (string.IsNullOrEmpty(travelType))
                 {
@@ -212,7 +246,22 @@ namespace TELPOSTAStaff.pages
                     return;
 
                 }
+                if (Convert.ToInt32( applyOnBehalf) == 1)
+                {
+                    
+                    if (string.IsNullOrEmpty(staffName))
+                    {
+                        Message("Staff Name must have a value");
+                        return;
 
+                    }
+
+                }
+
+                if (string.IsNullOrEmpty(applyOnBehalf) || applyOnBehalf == "--Select--")
+                {
+                    throw new Exception("Apply on behalf of must have a value");
+                }
                 if (string.IsNullOrEmpty(accomodation) || accomodation == "--Select--")
                 {
                     throw new Exception("Please select an accommodation preference.");
@@ -227,8 +276,10 @@ namespace TELPOSTAStaff.pages
                 int acc = Convert.ToInt32(accomodation);
                 bool accomodationProvided = Convert.ToBoolean(acc);
 
-               
-                string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter, accomodationProvided);
+                int onBehalfOf = Convert.ToInt32(applyOnBehalf);
+                bool onBehalf = Convert.ToBoolean(onBehalfOf);
+                //string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter, accomodationProvided);
+                string details = webportals.CreateTravelRequisitionHeader(empNo, type, purpose, resCenter, accomodationProvided, onBehalf, staffName);
                 
                 if(!string.IsNullOrEmpty(details))
                 {
@@ -240,7 +291,9 @@ namespace TELPOSTAStaff.pages
                         Message($"Transport Request number {requestNo} has been created successfully!");
                         Session["requestNo"] = requestNo;
                         Session["accomodation"]  = accomodation;
-                        
+                        lblReqNo.Text = requestNo;
+                        lblReqNo1.Text = requestNo;
+
                         if (Convert.ToInt32(accomodation) == 1)
                         {
                             MultiView1.SetActiveView(View2);
@@ -249,6 +302,8 @@ namespace TELPOSTAStaff.pages
                         {
                             MultiView1.SetActiveView(View3);
                         }
+                        //NewView();
+                       
                     }
                 
                     else
@@ -279,9 +334,10 @@ namespace TELPOSTAStaff.pages
                 int type = Convert.ToInt32(accountType);
                 string AccountNo = ddlAccountNo.SelectedValue;
                 string description = txtDescription.Text;
-               
-                string ReqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
-               
+
+                string ReqNo = lblReqNo1.Text;
+
+
                 if (string.IsNullOrEmpty(AccountNo) )
                 {
                     Message("Account No must have a value");
@@ -374,8 +430,9 @@ namespace TELPOSTAStaff.pages
                 string days = txtNoOfDays.Text;
                 int noOfDays = Convert.ToInt32(days);
                 string department = lblDepartment.Text;
-                string claimNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
-                
+                string ReqNo = lblReqNo.Text;
+
+
                 if (string.IsNullOrEmpty(EmpTrustee))
                 {
                     Message("Employee/Trustee must have a value");
@@ -416,7 +473,7 @@ namespace TELPOSTAStaff.pages
 
                 
 
-                if (string.IsNullOrEmpty(claimNo))
+                if (string.IsNullOrEmpty(ReqNo))
                 {
                     Message("Error: No requisition selected.");
                     return;
@@ -427,7 +484,7 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                string result = Components.ObjNav.InsertTravelRequestLines(claimNo, trustee, staffNo, destination, acco, dateOfTravel, expectedReturnDate, noOfDays, destType); //, 
+                string result = Components.ObjNav.InsertTravelRequestLines(ReqNo, trustee, staffNo, destination, acco, dateOfTravel, expectedReturnDate, noOfDays, destType); //, 
                 
 
                 if (!String.IsNullOrEmpty(result))
@@ -442,7 +499,7 @@ namespace TELPOSTAStaff.pages
                         Message("Line added successfully.");
                         ddlStaffNo.SelectedIndex = 0;
                        
-                        BindGridviewData(claimNo);
+                        BindGridviewData(ReqNo);
                     }
                 }
             }
@@ -535,36 +592,22 @@ namespace TELPOSTAStaff.pages
                 gvLines1.DataBind();
             }
         }
-        protected void lbtnRemove_Click(object sender, EventArgs e)
-        {
-            string approvalStatus = Request.QueryString["status"].Replace("%", " ");
-            if (approvalStatus != "Open" || approvalStatus != "Pending")
-            {
-                Message("You can only delete line when status is open or pending");
-
-            }
-            string message = "Are you sure you want to delete?";
-            ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
-            
-            string[] arg = new string[2];
-            arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
-            string lineNo = arg[0];
-            string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
-            try
-            {
-                Components.ObjNav.RemoveAccomodationLines(Convert.ToInt32(lineNo));
-                Message("Deleted successfully");
-                BindGridviewData2(reqNo);
-
-            }
-            catch (Exception ex)
-            {
-                Message("ERROR: " + ex.Message.ToString());
-                ex.Data.Clear();
-            }
-        }
+      
         protected void lbtnAddAccomodation_Click(object sender, EventArgs e)
         {
+            string reqNo = string.Empty;
+            if (Request.QueryString["requestNo"] == null)
+            {
+                reqNo = Session["requestNo"].ToString();
+            }
+            else
+            {
+                reqNo = Request.QueryString["requestNo"].ToString();
+            }
+            lblReqNo.Text = reqNo;
+           // LoadAdvanceTypes();
+            newLines.Visible = true;
+            lbtnAddLine.Visible = false;
             accomodationLines.Visible = true;
             lbnAddAccomodation.Visible = true;
         }
@@ -590,34 +633,81 @@ namespace TELPOSTAStaff.pages
             newLines.Visible = true;
             lbtnAddLine.Visible = false;
         }
+        protected void lbtnRemove_Click(object sender, EventArgs e)
+        {
+            string approvalStatus = Request.QueryString["status"].Replace("%", " ");
+            if (approvalStatus == "Open" || approvalStatus == "Pending")
+            {
 
+                string message = "Are you sure you want to delete?";
+                ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
+
+                string[] arg = new string[2];
+                arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
+                string lineNo = arg[0];
+
+                //string requestNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
+                string requestNo = lblReqNo1.Text;
+
+                try
+                {
+
+
+                    Components.ObjNav.RemoveAccomodationLines(Convert.ToInt32(lineNo));
+                    Message("Deleted successfully");
+
+
+                    BindGridviewData2(requestNo);
+
+                }
+
+                catch (Exception ex)
+                {
+                    Message("ERROR: " + ex.Message.ToString());
+                    ex.Data.Clear();
+                }
+
+            }
+            else
+            {
+                Message("You can only edit an open document!");
+                return;
+            }
+        }
         protected void cancel(object sender, EventArgs e)
         {
             string approvalStatus = Request.QueryString["status"].Replace("%", " ");
-            if (approvalStatus != "Open" || approvalStatus != "Pending")
+            if (approvalStatus == "Open" || approvalStatus == "Pending")
             {
-                Message("You can only delete line when status is open or pending");
+                string message = "Are you sure you want to delete?";
+                ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
+                string[] arg = new string[2];
+                arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
 
-            }
-            string message = "Are you sure you want to delete?";
-            ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
-            string[] arg = new string[2];
-            arg = (sender as LinkButton).CommandArgument.ToString().Split(';');
-           
-            string lineNo = arg[0];
-            string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
-            try
-            {
-               Components.ObjNav.RemoveClaimRequisitionLines(Convert.ToInt32(lineNo));
-                Message("Deleted successfully");
-                BindGridviewData(reqNo);
+                string lineNo = arg[0];
 
-            }
-            catch (Exception ex)
-            {
-                Message("ERROR: " + ex.Message.ToString());
-                ex.Data.Clear();
-            }
+                //string requestNo = Session["requestNo"]?.ToString();
+                string requestNo = lblReqNo.Text;
+                ///string reqNo = Session["requestNo"]?.ToString() ?? Request.QueryString["RequestNo"];
+                try
+                {
+                   
+                    Components.ObjNav.RemoveClaimRequisitionLines(Convert.ToInt32(lineNo));
+                    Message("Deleted successfully");
+                    BindGridviewData(requestNo);
+
+                }
+                catch (Exception ex)
+                {
+                    Message("ERROR: " + ex.Message.ToString());
+                    ex.Data.Clear();
+                }
+                 }
+        
+                else
+                {
+                    Message("You can only delete line when status is open or pending");
+                }
         }
         protected void lbtnSubmit_Click(object sender, EventArgs e)
         {

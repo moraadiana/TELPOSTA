@@ -29,28 +29,8 @@ namespace TelpostaMembersPortal.Controllers
 
             return View();
         }
+        
         public ActionResult MemberStatement()
-        {
-            if (Session["memberNo"] == null)
-                return RedirectToAction("index", "login");
-            MemberStatement memberStatement = new MemberStatement();
-            try
-            {
-               // var payrollperiods = Helper.GetPayrollPeriods();
-                var payrollPeriods = Helper.GetPayrollPeriods();
-                memberStatement.PayrollPeriods = payrollPeriods;
-                memberStatement.StartDate = payrollPeriods.FirstOrDefault()?.StartDate;
-                memberStatement.EndDate = payrollPeriods.FirstOrDefault()?.EndDate;
-
-                // finance.ImprestTypes = advanceTypes;
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = ex.Message;
-            }
-            return View(memberStatement);
-        }
-        public ActionResult MemberStatement1()
         {
             if (Session["memberNo"] == null)
                 return RedirectToAction("index", "login");
@@ -59,9 +39,7 @@ namespace TelpostaMembersPortal.Controllers
             try
             {
                 model.PayrollPeriods = Helper.GetPayrollPeriods();
-
                 ViewBag.PdfUrl = TempData["PdfUrl"];
-
             }
             catch (Exception ex)
             {
@@ -71,39 +49,40 @@ namespace TelpostaMembersPortal.Controllers
             return View(model);
         }
 
-        public ActionResult GenerateMemberStatement(MemberStatement memberStatement)
+        public ActionResult GenerateMemberStatement( DateTime? startDate, DateTime? endDate, DateTime? period)
         {
-            string memberNo = Session["memberNo"]?.ToString();
-            if (memberNo == null)
-                return RedirectToAction("index", "login");
-           
+            if (Session["memberNo"] == null) return RedirectToAction("index", "login");
+            string memberNo = Session["memberNo"].ToString();
+
+            if (startDate == null || endDate == null)
+            {
+                TempData["Error"] = "Both Start Date and End Date must be provided.";
+                return RedirectToAction("PensionerStatement");
+            }
 
             try
             { 
-                string startDate = memberStatement.StartDate;
-                string endDate = memberStatement.EndDate;
+                memberNo = Session["memberNo"].ToString();
+
 
                 string fileName = memberNo.Replace(@"/", @"");
                 string pdfFileName = $"Statement-{fileName}.pdf";
 
                 string path = Server.MapPath("~/Downloads/");
-                if (string.IsNullOrEmpty(path))
-                    throw new Exception("Resolved path is null or empty.");
-
-                string pdfFilePath = Path.Combine(path, pdfFileName);
-
+            
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
-
+                string pdfFilePath = Path.Combine(path, pdfFileName);
                 if (System.IO.File.Exists(pdfFilePath))
                     System.IO.File.Delete(pdfFilePath);
 
-                
 
-               webportals.GenerateMemberStatement(path, memberNo, pdfFileName,Convert.ToDateTime(startDate));
+                webportals.GenerateMemberStatement1(path, memberNo, pdfFileName,Convert.ToDateTime(startDate), Convert.ToDateTime(endDate));
+               
 
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
-               
+                ViewBag.PdfUrl = TempData["PdfUrl"];
+
 
             }
             catch (Exception ex)
