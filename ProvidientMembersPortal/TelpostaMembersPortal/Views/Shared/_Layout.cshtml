@@ -32,7 +32,7 @@
     <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="~/images/logo.jpg" />
+    <link rel="shortcut icon" href="~/images/logo.png" />
 </head>
 <!-- END HEAD -->
 
@@ -56,7 +56,7 @@
             </div>
         </div>*@
                 <div class="page-logo" style="display: flex; align-items: center; justify-content: space-between; background-color: #244767; padding: 10px 15px;">
-                    <a href="@Url.Action("index", "dashboard")" style="text-decoration: none; flex-grow: 1;">
+                    <a href="@Url.Action("Index", "Dashboard")" style="text-decoration: none; flex-grow: 1;">
                         <div class="logo-default" style="font-size: 14px;  color: #ffffff; text-align: center;">
                             TELPOSTA PROVIDENT FUND PORTAL
                         </div>
@@ -84,13 +84,13 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="@Url.Action("index", "dashboard")">
+                                    <a href="@Url.Action("Index", "Dashboard")">
                                         <i class="icon-home"></i> Member Profile
                                     </a>
                                 </li>
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="@Url.Action("logout", "dashboard")">
+                                    <a href="@Url.Action("LogOut", "Dashboard")">
                                         <i class="icon-logout"></i> Log Out
                                     </a>
                                 </li>
@@ -123,7 +123,7 @@
                         </li>
                         <!-- END SIDEBAR TOGGLER BUTTON -->
                         <li class="nav-item">
-                            <a href="@Url.Action("index", "dashboard")" class="nav-link nav-toggle">
+                            <a href="@Url.Action("Index", "Dashboard")" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span style="color: #ffffff !important" class="title">Member Profile</span>
                             </a>
@@ -135,13 +135,13 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("beneficiarylist", "dashboard")" class="nav-link nav-toggle">
+                                    <a href="@Url.Action("BeneficiaryList", "Dashboard")" class="nav-link nav-toggle">
                                         <i class="icon-users"></i>
                                         <span style="color: #ffffff !important" class="title">View Beneficiaries</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("BeneficiaryNomination", "statements")" class="nav-link nav-toggle">
+                                    <a href="@Url.Action("BeneficiaryNomination", "Statements")" class="nav-link nav-toggle">
                                         <i class="fa fa-users"></i>
                                         <span style="color: #ffffff !important" class="title">
                                             Beneficiary Nomination
@@ -158,7 +158,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("memberstatement", "statements")" class="nav-link nav-toggle">
+                                    <a href="@Url.Action("MemberStatement", "Statements")" class="nav-link nav-toggle">
                                         <i class="icon-envelope-open"></i>
                                         <span style="color: #ffffff !important" class="title">Member Statement</span>
                                     </a>
@@ -169,7 +169,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("news", "dashboard")" class="nav-link nav-toggle">
+                            <a href="@Url.Action("News", "Dashboard")" class="nav-link nav-toggle">
                                 <i class="icon-envelope-open"></i>
                                 <span style="color: #ffffff !important" class="title">Updates</span>
                             </a>

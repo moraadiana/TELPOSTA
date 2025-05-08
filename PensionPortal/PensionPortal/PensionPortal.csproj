@@ -124,7 +124,7 @@
     <Compile Include="App_Data\Components.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\StatementsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2448,6 +2448,9 @@
     <Content Include="images\logo.png" />
     <Content Include="images\profile_f.png" />
     <Content Include="images\profile_m.png" />
+    <Content Include="Profiles\06601.png" />
+    <Content Include="Profiles\18613.png" />
+    <Content Include="Profiles\profile_m.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -2575,13 +2578,13 @@
     <Content Include="Views\Dashboard\PaySchedule.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerifyOTP.cshtml" />
-    <Content Include="Views\Statements\PensionerStatement.cshtml" />
-    <Content Include="Views\Statements\LifeCertificate.cshtml" />
+    <Content Include="Views\Report\PensionerStatement.cshtml" />
+    <Content Include="Views\Report\LifeCertificate.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
-    <Content Include="Views\Dashboard\MonthlyPension.cshtml" />
-    <Content Include="Views\Statements\BeneficiaryNomination.cshtml" />
-    <Content Include="Views\Dashboard\MonthlyDeductions.cshtml" />
+    <Content Include="Views\Report\MonthlyPension.cshtml" />
+    <Content Include="Views\Report\BeneficiaryNomination.cshtml" />
+    <Content Include="Views\Report\MonthlyDeductions.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <None Include="Web References\NAVWS\Pension.wsdl" />
     <None Include="Web References\NAVWS\Reference.map">

@@ -31,7 +31,6 @@ namespace TELPOSTAStaff.pages
                 }
 
                 LoadStaffDetails();
-                LoadResponsibilityCenter();
                 GetMemoNo();
 
                 string query = Request.QueryString["query"];
@@ -135,36 +134,7 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        private void LoadResponsibilityCenter()
-        {
-            try
-            {
-                //ddlResponsibilityCenter.Items.Clear();
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spGetResponsilityCenter",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        ListItem li = new ListItem(reader["Name"].ToString().ToUpper(), reader["Code"].ToString());
-                        //ddlResponsibilityCenter.Items.Add(li);
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Clear();
-            }
-
-        }
+      
         private void LoadAdvanceTypes()
         {
             try
@@ -191,60 +161,15 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        private void LoadAdvanceTypes1()
-        {
-            try
-            {
-                ddlAdvancType.Items.Clear();
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spLoadImprestAdvancedTypes",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        ListItem li = new ListItem(reader["Description"].ToString().ToUpper(), reader["Code"].ToString());
-                        ddlAdvancType.Items.Add(li);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Clear();
-            }
-        }
-
+        
         protected void lbtnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
                 string username = Session["username"].ToString();
                 string department = lblDepartment.Text;
-                //string directorate = lblDirectorate.Text;
-                //string responsibilityCenter = ddlResponsibilityCenter.SelectedValue;
                 string purpose = txtPurpose.Text;
 
-                //if (string.IsNullOrEmpty(department))
-                //{
-                //    Message("Department cannot be null!");
-                //    return;
-                //}
-                //if (string.IsNullOrEmpty(directorate))
-                //{
-                //    Message("Division cannot be null!");
-                //    return;
-                //}
-                //if (string.IsNullOrEmpty(responsibilityCenter))
-                //{
-                //    Message("Responsibility center cannot be null!");
-                //    return;
-                //}
                 if (purpose == "")
                 {
                     Message("Purpose cannot be null!");
@@ -299,37 +224,7 @@ namespace TELPOSTAStaff.pages
             }
         }
 
-        private void BindAttachedDocuments1(string claimNo)
-        {
-            try
-            {
-                connection = Components.GetconnToNAV();
-                command = new SqlCommand()
-                {
-                    CommandText = "spDocumentLines",
-                    CommandType = CommandType.StoredProcedure,
-                    Connection = connection
-                };
-                command.Parameters.AddWithValue("@Company_Name", Components.Company_Name);
-                command.Parameters.AddWithValue("@ReqNo", "'" + claimNo + "'");
-                adapter = new SqlDataAdapter();
-                adapter.SelectCommand = command;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                gvAttachments.DataSource = dt;
-                gvAttachments.DataBind();
-                connection.Close();
-
-                foreach (GridViewRow row in gvAttachments.Rows)
-                {
-                    row.Cells[3].Text = row.Cells[3].Text.Split(' ')[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Clear();
-            }
-        }
+      
         private void BindAttachedDocuments(string imprestNo)
         {
             try
@@ -337,28 +232,20 @@ namespace TELPOSTAStaff.pages
                 // Call the AL web service method
                 string docLines = webportals.GetDocumentlines(imprestNo);
 
-                // Check if the response is not empty or null
                 if (!string.IsNullOrEmpty(docLines) && docLines != "No document lines")
                 {
-                    // Split the response by '[]' to separate each line
                     string[] lineItems = docLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Create a DataTable to hold the parsed data for binding
                     DataTable dt = new DataTable();
                     dt.Columns.Add("Document No");
                     dt.Columns.Add("Description");
                     dt.Columns.Add("$systemCreatedAt");
                     dt.Columns.Add("SystemId");
                     
-
-
-                    // Loop through each line item
                     foreach (string item in lineItems)
                     {
-                        // Split each line by '::' to get individual fields
                         string[] fields = item.Split(strLimiters, StringSplitOptions.None);
 
-                        // Check if we have the correct number of fields to avoid errors
                         if (fields.Length == 4)
                         {
                             DataRow row = dt.NewRow();
@@ -369,21 +256,16 @@ namespace TELPOSTAStaff.pages
                             dt.Rows.Add(row);
                         }
                     }
-
-                    // Bind the DataTable to the GridView
                     gvAttachments.DataSource = dt;
                     gvAttachments.DataBind();
                 }
                 else
                 {
-                    // Handle the case where there are no imprest lines
-                    gvAttachments.DataSource = null;
                     gvAttachments.DataBind();
                 }
             }
             catch (Exception ex)
             {
-                // Handle exception (log or show an error message as needed)
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
@@ -393,16 +275,12 @@ namespace TELPOSTAStaff.pages
         {
             try
             {
-                // Call the AL web service method
                 string imprestLines = webportals.GetImprestLines(imprestNo);
 
-                // Check if the response is not empty or null
                 if (!string.IsNullOrEmpty(imprestLines) && imprestLines != "No Imprests lines")
                 {
-                    // Split the response by '[]' to separate each line
                     string[] lineItems = imprestLines.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Create a DataTable to hold the parsed data for binding
                     DataTable dt = new DataTable();
                     dt.Columns.Add("No");
                     dt.Columns.Add("Advance Type");
@@ -410,13 +288,10 @@ namespace TELPOSTAStaff.pages
                     dt.Columns.Add("Account Name");
                     dt.Columns.Add("Amount");
 
-                    // Loop through each line item
                     foreach (string item in lineItems)
                     {
-                        // Split each line by '::' to get individual fields
                         string[] fields = item.Split(strLimiters, StringSplitOptions.None);
 
-                        // Check if we have the correct number of fields to avoid errors
                         if (fields.Length == 5)
                         {
                             DataRow row = dt.NewRow();
@@ -428,8 +303,6 @@ namespace TELPOSTAStaff.pages
                             dt.Rows.Add(row);
                         }
                     }
-
-                    // Bind the DataTable to the GridView
                     gvLines.DataSource = dt;
                     gvLines.DataBind();
                 }
@@ -441,7 +314,7 @@ namespace TELPOSTAStaff.pages
             }
             catch (Exception ex)
             {
-                // Handle exception (log or show an error message as needed)
+                
                 Console.WriteLine("Error: " + ex.Message);
             }
         }

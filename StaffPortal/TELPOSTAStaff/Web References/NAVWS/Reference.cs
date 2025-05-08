@@ -29,6 +29,8 @@ namespace TELPOSTAStaff.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Staffportall_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall")]
     public partial class Staffportall : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback HRMLeaveApplication1OperationCompleted;
+        
         private System.Threading.SendOrPostCallback HRMLeaveApplicationOperationCompleted;
         
         private System.Threading.SendOrPostCallback HasPendingLeaveApplicationOperationCompleted;
@@ -199,6 +201,8 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback GetAllResponsibilityCentresOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAllStaffOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetApprovedMemosOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAttachmentDetailsOperationCompleted;
@@ -291,8 +295,6 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback GetVendorsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback HRMLeaveApplication1OperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -330,6 +332,9 @@ namespace TELPOSTAStaff.NAVWS {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event HRMLeaveApplication1CompletedEventHandler HRMLeaveApplication1Completed;
         
         /// <remarks/>
         public event HRMLeaveApplicationCompletedEventHandler HRMLeaveApplicationCompleted;
@@ -587,6 +592,9 @@ namespace TELPOSTAStaff.NAVWS {
         public event GetAllResponsibilityCentresCompletedEventHandler GetAllResponsibilityCentresCompleted;
         
         /// <remarks/>
+        public event GetAllStaffCompletedEventHandler GetAllStaffCompleted;
+        
+        /// <remarks/>
         public event GetApprovedMemosCompletedEventHandler GetApprovedMemosCompleted;
         
         /// <remarks/>
@@ -725,7 +733,50 @@ namespace TELPOSTAStaff.NAVWS {
         public event GetVendorsCompletedEventHandler GetVendorsCompleted;
         
         /// <remarks/>
-        public event HRMLeaveApplication1CompletedEventHandler HRMLeaveApplication1Completed;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="HRMLeaveApplication1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string HRMLeaveApplication1(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime returnDate, string purpose) {
+            object[] results = this.Invoke("HRMLeaveApplication1", new object[] {
+                        leaveNo,
+                        username,
+                        reliever,
+                        leaveType,
+                        appliedDays,
+                        startDate,
+                        endDate,
+                        returnDate,
+                        purpose});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose) {
+            this.HRMLeaveApplication1Async(leaveNo, username, reliever, leaveType, appliedDays, startDate, endDate, returnDate, purpose, null);
+        }
+        
+        /// <remarks/>
+        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose, object userState) {
+            if ((this.HRMLeaveApplication1OperationCompleted == null)) {
+                this.HRMLeaveApplication1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnHRMLeaveApplication1OperationCompleted);
+            }
+            this.InvokeAsync("HRMLeaveApplication1", new object[] {
+                        leaveNo,
+                        username,
+                        reliever,
+                        leaveType,
+                        appliedDays,
+                        startDate,
+                        endDate,
+                        returnDate,
+                        purpose}, this.HRMLeaveApplication1OperationCompleted, userState);
+        }
+        
+        private void OnHRMLeaveApplication1OperationCompleted(object arg) {
+            if ((this.HRMLeaveApplication1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.HRMLeaveApplication1Completed(this, new HRMLeaveApplication1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="HRMLeaveApplication_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2889,22 +2940,23 @@ namespace TELPOSTAStaff.NAVWS {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreatePettyCashRequisitionHe" +
             "ader", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="CreatePettyCashRequisitionHeader_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CreatePettyCashRequisitionHeader(string username, string department, string purpose, int pettyCashType) {
+        public string CreatePettyCashRequisitionHeader(string username, string department, string purpose, int pettyCashType, string userID) {
             object[] results = this.Invoke("CreatePettyCashRequisitionHeader", new object[] {
                         username,
                         department,
                         purpose,
-                        pettyCashType});
+                        pettyCashType,
+                        userID});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void CreatePettyCashRequisitionHeaderAsync(string username, string department, string purpose, int pettyCashType) {
-            this.CreatePettyCashRequisitionHeaderAsync(username, department, purpose, pettyCashType, null);
+        public void CreatePettyCashRequisitionHeaderAsync(string username, string department, string purpose, int pettyCashType, string userID) {
+            this.CreatePettyCashRequisitionHeaderAsync(username, department, purpose, pettyCashType, userID, null);
         }
         
         /// <remarks/>
-        public void CreatePettyCashRequisitionHeaderAsync(string username, string department, string purpose, int pettyCashType, object userState) {
+        public void CreatePettyCashRequisitionHeaderAsync(string username, string department, string purpose, int pettyCashType, string userID, object userState) {
             if ((this.CreatePettyCashRequisitionHeaderOperationCompleted == null)) {
                 this.CreatePettyCashRequisitionHeaderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreatePettyCashRequisitionHeaderOperationCompleted);
             }
@@ -2912,7 +2964,8 @@ namespace TELPOSTAStaff.NAVWS {
                         username,
                         department,
                         purpose,
-                        pettyCashType}, this.CreatePettyCashRequisitionHeaderOperationCompleted, userState);
+                        pettyCashType,
+                        userID}, this.CreatePettyCashRequisitionHeaderOperationCompleted, userState);
         }
         
         private void OnCreatePettyCashRequisitionHeaderOperationCompleted(object arg) {
@@ -3051,23 +3104,25 @@ namespace TELPOSTAStaff.NAVWS {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:CreateTravelRequisitionHeade" +
             "r", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="CreateTravelRequisitionHeader_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CreateTravelRequisitionHeader(string username, int travelType, string purpose, string resCenter, bool accomodationProvided) {
+        public string CreateTravelRequisitionHeader(string username, int travelType, string purpose, string resCenter, bool accomodationProvided, bool onBehalfOf, string staffName) {
             object[] results = this.Invoke("CreateTravelRequisitionHeader", new object[] {
                         username,
                         travelType,
                         purpose,
                         resCenter,
-                        accomodationProvided});
+                        accomodationProvided,
+                        onBehalfOf,
+                        staffName});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter, bool accomodationProvided) {
-            this.CreateTravelRequisitionHeaderAsync(username, travelType, purpose, resCenter, accomodationProvided, null);
+        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter, bool accomodationProvided, bool onBehalfOf, string staffName) {
+            this.CreateTravelRequisitionHeaderAsync(username, travelType, purpose, resCenter, accomodationProvided, onBehalfOf, staffName, null);
         }
         
         /// <remarks/>
-        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter, bool accomodationProvided, object userState) {
+        public void CreateTravelRequisitionHeaderAsync(string username, int travelType, string purpose, string resCenter, bool accomodationProvided, bool onBehalfOf, string staffName, object userState) {
             if ((this.CreateTravelRequisitionHeaderOperationCompleted == null)) {
                 this.CreateTravelRequisitionHeaderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateTravelRequisitionHeaderOperationCompleted);
             }
@@ -3076,7 +3131,9 @@ namespace TELPOSTAStaff.NAVWS {
                         travelType,
                         purpose,
                         resCenter,
-                        accomodationProvided}, this.CreateTravelRequisitionHeaderOperationCompleted, userState);
+                        accomodationProvided,
+                        onBehalfOf,
+                        staffName}, this.CreateTravelRequisitionHeaderOperationCompleted, userState);
         }
         
         private void OnCreateTravelRequisitionHeaderOperationCompleted(object arg) {
@@ -3559,6 +3616,34 @@ namespace TELPOSTAStaff.NAVWS {
             if ((this.GetAllResponsibilityCentresCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetAllResponsibilityCentresCompleted(this, new GetAllResponsibilityCentresCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetAllStaff", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="GetAllStaff_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetAllStaff() {
+            object[] results = this.Invoke("GetAllStaff", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllStaffAsync() {
+            this.GetAllStaffAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllStaffAsync(object userState) {
+            if ((this.GetAllStaffOperationCompleted == null)) {
+                this.GetAllStaffOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllStaffOperationCompleted);
+            }
+            this.InvokeAsync("GetAllStaff", new object[0], this.GetAllStaffOperationCompleted, userState);
+        }
+        
+        private void OnGetAllStaffOperationCompleted(object arg) {
+            if ((this.GetAllStaffCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllStaffCompleted(this, new GetAllStaffCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4925,52 +5010,6 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="HRMLeaveApplication1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string HRMLeaveApplication1(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime returnDate, string purpose) {
-            object[] results = this.Invoke("HRMLeaveApplication1", new object[] {
-                        leaveNo,
-                        username,
-                        reliever,
-                        leaveType,
-                        appliedDays,
-                        startDate,
-                        endDate,
-                        returnDate,
-                        purpose});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose) {
-            this.HRMLeaveApplication1Async(leaveNo, username, reliever, leaveType, appliedDays, startDate, endDate, returnDate, purpose, null);
-        }
-        
-        /// <remarks/>
-        public void HRMLeaveApplication1Async(string leaveNo, string username, string reliever, string leaveType, decimal appliedDays, System.DateTime startDate, System.DateTime endDate, System.DateTime returnDate, string purpose, object userState) {
-            if ((this.HRMLeaveApplication1OperationCompleted == null)) {
-                this.HRMLeaveApplication1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnHRMLeaveApplication1OperationCompleted);
-            }
-            this.InvokeAsync("HRMLeaveApplication1", new object[] {
-                        leaveNo,
-                        username,
-                        reliever,
-                        leaveType,
-                        appliedDays,
-                        startDate,
-                        endDate,
-                        returnDate,
-                        purpose}, this.HRMLeaveApplication1OperationCompleted, userState);
-        }
-        
-        private void OnHRMLeaveApplication1OperationCompleted(object arg) {
-            if ((this.HRMLeaveApplication1Completed != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.HRMLeaveApplication1Completed(this, new HRMLeaveApplication1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -4986,6 +5025,32 @@ namespace TELPOSTAStaff.NAVWS {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void HRMLeaveApplication1CompletedEventHandler(object sender, HRMLeaveApplication1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HRMLeaveApplication1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal HRMLeaveApplication1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
         }
     }
     
@@ -7021,6 +7086,32 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetAllStaffCompletedEventHandler(object sender, GetAllStaffCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllStaffCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllStaffCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetApprovedMemosCompletedEventHandler(object sender, GetApprovedMemosCompletedEventArgs e);
     
     /// <remarks/>
@@ -8202,32 +8293,6 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal GetVendorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void HRMLeaveApplication1CompletedEventHandler(object sender, HRMLeaveApplication1CompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class HRMLeaveApplication1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal HRMLeaveApplication1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

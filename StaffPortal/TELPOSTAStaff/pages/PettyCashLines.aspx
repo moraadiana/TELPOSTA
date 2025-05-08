@@ -33,30 +33,14 @@
                                                 <asp:Label ID="lblPayee" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Requester ID: </label>
-                                            <asp:Label ID="lblRequester" runat="server" Text="" ForeColor="Blue"></asp:Label>
-                                        </div>
-                                    </div>-->
+                                        
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Department: </label>
                                                 <asp:Label ID="lblDepartment" runat="server" Text="" ForeColor="Blue"></asp:Label>
                                             </div>
                                         </div>
-                                        <%--<div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Unit: </label>
-                                            <asp:Label ID="lblDirectorate" runat="server" Text="" ForeColor="Blue"></asp:Label>
-                                        </div>
-                                    </div>--%>
-                                        <%--<div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Responsibility Center</label>
-                                            <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>
-                                        </div>
-                                    </div>--%>
+                                       
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Petty Cash Type</label>
@@ -66,18 +50,10 @@
                                                     <asp:ListItem>Advance</asp:ListItem>
 
                                                 </asp:DropDownList>
-                                                <%-- <asp:DropDownList ID="ddlResponsibilityCenter" CssClass="form-control select2" runat="server"></asp:DropDownList>--%>
+                                               
                                             </div>
                                         </div>
 
-
-
-                                        <%--  <div class="col-md-4">
-                                         <div class="form-group">
-                                             <label>Responsibility Center: </label>
-                                             <asp:Label ID="lblResCenter" runat="server" Text="" ForeColor="Blue" Font-Bold="true"></asp:Label>
-                                         </div>
-                                    </div>--%>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -89,7 +65,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Submit</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnSubmit" runat="server" CssClass="btn btn-primary pull-right" OnClick="lbtnSubmit_Click"><i class="fa fa-paper-plane"></i>&nbsp;Next</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +88,6 @@
                                                         <tr>
                                                             <th>No:</th>
                                                             <th>Advance Type</th>
-                                                            <%--<th>Account No:</th>--%>
                                                             <th>Amount:</th>
                                                         </tr>
                                                     </thead>
@@ -122,10 +97,7 @@
                                                                 <asp:Label ID="lblLNo" runat="server" Text="Label"></asp:Label></th>
                                                             <td>
                                                                 <asp:DropDownList ID="ddlAdvancType" runat="server" CssClass="form-control select2"></asp:DropDownList></td>
-                                                            <%--<td>
-                                                            <asp:DropDownList ID="ddlAccountNo" runat="server" CssClass="form-control select2"></asp:DropDownList>
-
-                                                         </td>--%>
+                                                            
                                                             <td>
                                                                 <asp:TextBox ID="txtAmnt" CssClass="form-control" runat="server"></asp:TextBox>
                                                             </td>
@@ -157,12 +129,13 @@
                                             <br />
 
                                             <h4>Petty Cash Lines</h4>
-                                            <%-- <asp:GridView ID="gvLines" AutoGenerateColumns="false" DataKeyNames="Document No_" class="table table-responsive no-padding table-bordered table-hover" runat="server"
-                                            AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">--%>
-                                            <asp:GridView ID="gvLines" AutoGenerateColumns="false" DataKeyNames="Document No_"
+                                            
+                                           <%-- <asp:GridView ID="gvLines" AutoGenerateColumns="false" DataKeyNames="Document No_"
                                                 class="table table-responsive no-padding table-bordered table-hover" runat="server"
                                                 AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5"
-                                                OnPageIndexChanging="gvLines_PageIndexChanging">
+                                                OnPageIndexChanging="gvLines_PageIndexChanging">--%>
+                                            <asp:GridView ID="gvLines" AutoGenerateColumns="false" DataKeyNames="Document No_" class="table table-responsive no-padding table-bordered table-hover" runat="server"
+    AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">
 
                                                 <Columns>
                                                     <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="#No" SortExpression="">
@@ -189,63 +162,32 @@
                                                 </EmptyDataTemplate>
                                             </asp:GridView>
                                             <br />
+                                             <h4>Document Attachments</h4>
+                                             <asp:GridView ID="gvAttachments" AutoGenerateColumns="false" DataKeyNames="Document No" class="table table-responsive no-padding table-bordered table-hover" runat="server"
+                                                 AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">
+                                                 <Columns>
+                                                     <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="#No" SortExpression="">
+                                                         <HeaderStyle Width="30px" />
+                                                         <ItemTemplate>
+                                                             <%# string.Format("{0}",Container.DataItemIndex + 1 +".") %>
+                                                         </ItemTemplate>
+                                                     </asp:TemplateField>
+                                                     <asp:BoundField DataField="Document No" HeaderText="Document No" />
+                                                     <asp:BoundField DataField="Description" HeaderText="Description" />
+                                                     <asp:BoundField DataField="$systemCreatedAt" HeaderText="Date Uploaded" />
+                                                     <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
+                                                         <ItemStyle Width="110px" HorizontalAlign="Left" />
+                                                         <ItemTemplate>
+                                                             <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("SystemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
+                                                         </ItemTemplate>
+                                                     </asp:TemplateField>
+                                                 </Columns>
+                                                 <FooterStyle HorizontalAlign="Center" />
+                                                 <EmptyDataTemplate>
+                                                     <span style="color: red">No Recods</span>
+                                                 </EmptyDataTemplate>
+                                               </asp:GridView>
 
-                                            <%--  <div class="row">
-    <div class="col-md-12">
-        <h3>Document Attachments</h3>
-    </div>
-    <div class="col-md-12">
-        <asp:GridView ID="gvAttachments" AutoGenerateColumns="false" DataKeyNames="No_" class="table table-responsive no-padding table-bordered table-hover" runat="server"
-            AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">
-            <Columns>
-                <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="#No" SortExpression="">
-                    <HeaderStyle Width="30px" />
-                    <ItemTemplate>
-                        <%# string.Format("{0}",Container.DataItemIndex + 1 +".") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="No_" HeaderText="Document No" />
-                <asp:BoundField DataField="File Name" HeaderText="File Name" />
-                <asp:BoundField DataField="$systemCreatedAt" HeaderText="Date Uploaded" />
-                <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
-                    <ItemStyle Width="110px" HorizontalAlign="Left" />
-                    <ItemTemplate>
-                        <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("$systemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <FooterStyle HorizontalAlign="Center" />
-            <EmptyDataTemplate>
-                <span style="color: red">No Recods</span>
-            </EmptyDataTemplate>
-        </asp:GridView>
-    </div>
-</div>--%>
-                                            <h4>Document Attachments</h4>
-                                            <asp:GridView ID="gvAttachments" AutoGenerateColumns="false" DataKeyNames="Document No" class="table table-responsive no-padding table-bordered table-hover" runat="server"
-                                                AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">
-                                                <Columns>
-                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="#No" SortExpression="">
-                                                        <HeaderStyle Width="30px" />
-                                                        <ItemTemplate>
-                                                            <%# string.Format("{0}",Container.DataItemIndex + 1 +".") %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="Document No" HeaderText="Document No" />
-                                                    <asp:BoundField DataField="Description" HeaderText="Description" />
-                                                    <asp:BoundField DataField="$systemCreatedAt" HeaderText="Date Uploaded" />
-                                                    <asp:TemplateField HeaderText="Action" SortExpression="" HeaderStyle-HorizontalAlign="Left">
-                                                        <ItemStyle Width="110px" HorizontalAlign="Left" />
-                                                        <ItemTemplate>
-                                                            <asp:LinkButton ID="lbtnRemoveAttach" CssClass="label label-danger" runat="server" ToolTip="Click to Remove line" OnClick="lbtnRemoveAttach_Click" OnClientClick="return confirm('Are you sure you want to delete this line?')" CommandArgument='<%# Eval("SystemId") %>'><i class="fa fa-remove"></i> Remove</asp:LinkButton>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                                <FooterStyle HorizontalAlign="Center" />
-                                                <EmptyDataTemplate>
-                                                    <span style="color: red">No Recods</span>
-                                                </EmptyDataTemplate>
-                                            </asp:GridView>
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>

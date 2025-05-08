@@ -29,7 +29,6 @@ namespace TrusteePortal.Controllers
             var BoardMeetings = new List<BoardMeeting>();
             try
             {
-                // string username = Session["pensionerNo"].ToString();
                 string boardMeetingList = webportals.GetBoardMeetingsAttended1(username);
                 if (!string.IsNullOrEmpty(boardMeetingList))
                 {
@@ -37,7 +36,7 @@ namespace TrusteePortal.Controllers
                     foreach (string boardMeeting in boardMeetingListArr)
                     {
                         string[] response = boardMeeting.Split(strLimiters, StringSplitOptions.None);
-                        //Message += 'SUCCESS' + '::' + BoardRegister."Board Meeting"  + '::' + format(BoardRegister."Posting Date") + '::' + format(BoardRegister."Meeting Type" )+ '::'+ BoardRegister.Description ;
+                       
                         BoardMeeting attendedBoardMeetings = new BoardMeeting()
                         {
                             //Code = response[1].Trim(),
@@ -54,20 +53,7 @@ namespace TrusteePortal.Controllers
                 }
                 string allowance = " test";
                 Session["allowance"] = allowance;
-                //string response1 = webportals.GetBoardMeetingsAttendedDetails(username);
-                //if (response1 != null)
-                //{
-                //    string[] responseArr = response1.Split(strLimiters, StringSplitOptions.None);
-                //    Session["Name"] = responseArr[1];
-                //    Session["Email"] = responseArr[2];
-                //    Session["Category"] = responseArr[3];
-                //    Session["Designation"] = responseArr[4];
-                //    Session["Contact"] = responseArr[5];
-                //    Session["phoneNo"] = responseArr[6];
-                //    //Session["bankName"] = responseArr[7];
-                //    //Session["BranchName"] = responseArr[8];
-
-                //}
+               
             }
             catch (Exception ex)
             {

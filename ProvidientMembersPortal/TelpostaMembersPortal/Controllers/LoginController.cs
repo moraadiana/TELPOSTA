@@ -61,14 +61,14 @@ namespace TelpostaMembersPortal.Controllers
                                 Session["memberEmail"] = memberEmail;
                                 // Session["VendorVat"] = vendorVat;
 
-                                //string otp = GenerateOtp(6);
-                                //Session["otp"] = otp;
+                                string otp = GenerateOtp(6);
+                                Session["otp"] = otp;
 
-                                //string subject = "Telposta Provident Fund Portal OTP";
-                                //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
-                                //Components.SendEmailAlerts(memberEmail, subject, body);
-                                //return RedirectToAction("verifyotp");
-                                return RedirectToAction("index", "dashboard");
+                                string subject = "Telposta Provident Fund Portal OTP";
+                                string body = $"{otp} is your OTP Code for Telposta Pension portal.";
+                                Components.SendEmailAlerts(memberEmail, subject, body);
+                                return RedirectToAction("verifyotp");
+                                //return RedirectToAction("index", "dashboard");
                             }
                             else
                             {
