@@ -29,6 +29,8 @@ namespace TELPOSTAStaff.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Staffportall_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall")]
     public partial class Staffportall : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback GetVendorsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HRMLeaveApplication1OperationCompleted;
         
         private System.Threading.SendOrPostCallback HRMLeaveApplicationOperationCompleted;
@@ -123,6 +125,8 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback SubmitbacktoOfficeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UpdateEmployeeDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateStaffAutoGenPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateStaffPasswordOperationCompleted;
@@ -130,6 +134,8 @@ namespace TELPOSTAStaff.NAVWS {
         private System.Threading.SendOrPostCallback UploadProfilePictureOperationCompleted;
         
         private System.Threading.SendOrPostCallback ValidateStartDateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback VerifyCurrentPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback getEmployeeNameOperationCompleted;
         
@@ -213,6 +219,8 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback GetDocumentlinesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetEmployeeDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetEmployeeLeavesOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetImprestDetailsOperationCompleted;
@@ -293,8 +301,6 @@ namespace TELPOSTAStaff.NAVWS {
         
         private System.Threading.SendOrPostCallback GetTravelStaffOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetVendorsOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -332,6 +338,9 @@ namespace TELPOSTAStaff.NAVWS {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event GetVendorsCompletedEventHandler GetVendorsCompleted;
         
         /// <remarks/>
         public event HRMLeaveApplication1CompletedEventHandler HRMLeaveApplication1Completed;
@@ -475,6 +484,9 @@ namespace TELPOSTAStaff.NAVWS {
         public event SubmitbacktoOfficeCompletedEventHandler SubmitbacktoOfficeCompleted;
         
         /// <remarks/>
+        public event UpdateEmployeeDetailsCompletedEventHandler UpdateEmployeeDetailsCompleted;
+        
+        /// <remarks/>
         public event UpdateStaffAutoGenPasswordCompletedEventHandler UpdateStaffAutoGenPasswordCompleted;
         
         /// <remarks/>
@@ -485,6 +497,9 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         public event ValidateStartDateCompletedEventHandler ValidateStartDateCompleted;
+        
+        /// <remarks/>
+        public event VerifyCurrentPasswordCompletedEventHandler VerifyCurrentPasswordCompleted;
         
         /// <remarks/>
         public event getEmployeeNameCompletedEventHandler getEmployeeNameCompleted;
@@ -610,6 +625,9 @@ namespace TELPOSTAStaff.NAVWS {
         public event GetDocumentlinesCompletedEventHandler GetDocumentlinesCompleted;
         
         /// <remarks/>
+        public event GetEmployeeDetailsCompletedEventHandler GetEmployeeDetailsCompleted;
+        
+        /// <remarks/>
         public event GetEmployeeLeavesCompletedEventHandler GetEmployeeLeavesCompleted;
         
         /// <remarks/>
@@ -730,7 +748,32 @@ namespace TELPOSTAStaff.NAVWS {
         public event GetTravelStaffCompletedEventHandler GetTravelStaffCompleted;
         
         /// <remarks/>
-        public event GetVendorsCompletedEventHandler GetVendorsCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetVendors", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="GetVendors_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetVendors() {
+            object[] results = this.Invoke("GetVendors", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetVendorsAsync() {
+            this.GetVendorsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetVendorsAsync(object userState) {
+            if ((this.GetVendorsOperationCompleted == null)) {
+                this.GetVendorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVendorsOperationCompleted);
+            }
+            this.InvokeAsync("GetVendors", new object[0], this.GetVendorsOperationCompleted, userState);
+        }
+        
+        private void OnGetVendorsOperationCompleted(object arg) {
+            if ((this.GetVendorsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetVendorsCompleted(this, new GetVendorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="HRMLeaveApplication1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2333,6 +2376,80 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:UpdateEmployeeDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="UpdateEmployeeDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UpdateEmployeeDetails(string empNo, string firstName, string middleName, string lastName, int gender, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
+            object[] results = this.Invoke("UpdateEmployeeDetails", new object[] {
+                        empNo,
+                        firstName,
+                        middleName,
+                        lastName,
+                        gender,
+                        dateOfBirth,
+                        maritalStatus,
+                        religion,
+                        tribe,
+                        email,
+                        phoneNumber,
+                        county,
+                        idNumber,
+                        postalAddress,
+                        title});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateEmployeeDetailsAsync(string empNo, string firstName, string middleName, string lastName, int gender, System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
+            this.UpdateEmployeeDetailsAsync(empNo, firstName, middleName, lastName, gender, dateOfBirth, maritalStatus, religion, tribe, email, phoneNumber, county, idNumber, postalAddress, title, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateEmployeeDetailsAsync(
+                    string empNo, 
+                    string firstName, 
+                    string middleName, 
+                    string lastName, 
+                    int gender, 
+                    System.DateTime dateOfBirth, 
+                    int maritalStatus, 
+                    string religion, 
+                    string tribe, 
+                    string email, 
+                    string phoneNumber, 
+                    string county, 
+                    string idNumber, 
+                    string postalAddress, 
+                    int title, 
+                    object userState) {
+            if ((this.UpdateEmployeeDetailsOperationCompleted == null)) {
+                this.UpdateEmployeeDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateEmployeeDetailsOperationCompleted);
+            }
+            this.InvokeAsync("UpdateEmployeeDetails", new object[] {
+                        empNo,
+                        firstName,
+                        middleName,
+                        lastName,
+                        gender,
+                        dateOfBirth,
+                        maritalStatus,
+                        religion,
+                        tribe,
+                        email,
+                        phoneNumber,
+                        county,
+                        idNumber,
+                        postalAddress,
+                        title}, this.UpdateEmployeeDetailsOperationCompleted, userState);
+        }
+        
+        private void OnUpdateEmployeeDetailsOperationCompleted(object arg) {
+            if ((this.UpdateEmployeeDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateEmployeeDetailsCompleted(this, new UpdateEmployeeDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:UpdateStaffAutoGenPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="UpdateStaffAutoGenPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string UpdateStaffAutoGenPassword(string username, string genpass) {
@@ -2455,6 +2572,38 @@ namespace TELPOSTAStaff.NAVWS {
             if ((this.ValidateStartDateCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ValidateStartDateCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:VerifyCurrentPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="VerifyCurrentPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string VerifyCurrentPassword(string username, string oldpass) {
+            object[] results = this.Invoke("VerifyCurrentPassword", new object[] {
+                        username,
+                        oldpass});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void VerifyCurrentPasswordAsync(string username, string oldpass) {
+            this.VerifyCurrentPasswordAsync(username, oldpass, null);
+        }
+        
+        /// <remarks/>
+        public void VerifyCurrentPasswordAsync(string username, string oldpass, object userState) {
+            if ((this.VerifyCurrentPasswordOperationCompleted == null)) {
+                this.VerifyCurrentPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnVerifyCurrentPasswordOperationCompleted);
+            }
+            this.InvokeAsync("VerifyCurrentPassword", new object[] {
+                        username,
+                        oldpass}, this.VerifyCurrentPasswordOperationCompleted, userState);
+        }
+        
+        private void OnVerifyCurrentPasswordOperationCompleted(object arg) {
+            if ((this.VerifyCurrentPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.VerifyCurrentPasswordCompleted(this, new VerifyCurrentPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3309,31 +3458,36 @@ namespace TELPOSTAStaff.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:GenerateLeaveStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="GenerateLeaveStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GenerateLeaveStatement(string staffNo, string filenameFromApp) {
-            this.Invoke("GenerateLeaveStatement", new object[] {
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GenerateLeaveStatement(string staffNo, string filenameFromApp, ref string bigtext) {
+            object[] results = this.Invoke("GenerateLeaveStatement", new object[] {
                         staffNo,
-                        filenameFromApp});
+                        filenameFromApp,
+                        bigtext});
+            bigtext = ((string)(results[1]));
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GenerateLeaveStatementAsync(string staffNo, string filenameFromApp) {
-            this.GenerateLeaveStatementAsync(staffNo, filenameFromApp, null);
+        public void GenerateLeaveStatementAsync(string staffNo, string filenameFromApp, string bigtext) {
+            this.GenerateLeaveStatementAsync(staffNo, filenameFromApp, bigtext, null);
         }
         
         /// <remarks/>
-        public void GenerateLeaveStatementAsync(string staffNo, string filenameFromApp, object userState) {
+        public void GenerateLeaveStatementAsync(string staffNo, string filenameFromApp, string bigtext, object userState) {
             if ((this.GenerateLeaveStatementOperationCompleted == null)) {
                 this.GenerateLeaveStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateLeaveStatementOperationCompleted);
             }
             this.InvokeAsync("GenerateLeaveStatement", new object[] {
                         staffNo,
-                        filenameFromApp}, this.GenerateLeaveStatementOperationCompleted, userState);
+                        filenameFromApp,
+                        bigtext}, this.GenerateLeaveStatementOperationCompleted, userState);
         }
         
         private void OnGenerateLeaveStatementOperationCompleted(object arg) {
             if ((this.GenerateLeaveStatementCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GenerateLeaveStatementCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GenerateLeaveStatementCompleted(this, new GenerateLeaveStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3792,6 +3946,36 @@ namespace TELPOSTAStaff.NAVWS {
             if ((this.GetDocumentlinesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetDocumentlinesCompleted(this, new GetDocumentlinesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetEmployeeDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="GetEmployeeDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetEmployeeDetails(string empNo) {
+            object[] results = this.Invoke("GetEmployeeDetails", new object[] {
+                        empNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetEmployeeDetailsAsync(string empNo) {
+            this.GetEmployeeDetailsAsync(empNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetEmployeeDetailsAsync(string empNo, object userState) {
+            if ((this.GetEmployeeDetailsOperationCompleted == null)) {
+                this.GetEmployeeDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmployeeDetailsOperationCompleted);
+            }
+            this.InvokeAsync("GetEmployeeDetails", new object[] {
+                        empNo}, this.GetEmployeeDetailsOperationCompleted, userState);
+        }
+        
+        private void OnGetEmployeeDetailsOperationCompleted(object arg) {
+            if ((this.GetEmployeeDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetEmployeeDetailsCompleted(this, new GetEmployeeDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4982,34 +5166,6 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetVendors", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="GetVendors_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string GetVendors() {
-            object[] results = this.Invoke("GetVendors", new object[0]);
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetVendorsAsync() {
-            this.GetVendorsAsync(null);
-        }
-        
-        /// <remarks/>
-        public void GetVendorsAsync(object userState) {
-            if ((this.GetVendorsOperationCompleted == null)) {
-                this.GetVendorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVendorsOperationCompleted);
-            }
-            this.InvokeAsync("GetVendors", new object[0], this.GetVendorsOperationCompleted, userState);
-        }
-        
-        private void OnGetVendorsOperationCompleted(object arg) {
-            if ((this.GetVendorsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetVendorsCompleted(this, new GetVendorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -5025,6 +5181,32 @@ namespace TELPOSTAStaff.NAVWS {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetVendorsCompletedEventHandler(object sender, GetVendorsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetVendorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetVendorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
         }
     }
     
@@ -6120,6 +6302,32 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UpdateEmployeeDetailsCompletedEventHandler(object sender, UpdateEmployeeDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateEmployeeDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateEmployeeDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void UpdateStaffAutoGenPasswordCompletedEventHandler(object sender, UpdateStaffAutoGenPasswordCompletedEventArgs e);
     
     /// <remarks/>
@@ -6199,6 +6407,32 @@ namespace TELPOSTAStaff.NAVWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ValidateStartDateCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void VerifyCurrentPasswordCompletedEventHandler(object sender, VerifyCurrentPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class VerifyCurrentPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal VerifyCurrentPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -6854,7 +7088,37 @@ namespace TELPOSTAStaff.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GenerateLeaveStatementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void GenerateLeaveStatementCompletedEventHandler(object sender, GenerateLeaveStatementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GenerateLeaveStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GenerateLeaveStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string bigtext {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -7227,6 +7491,32 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal GetDocumentlinesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetEmployeeDetailsCompletedEventHandler(object sender, GetEmployeeDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetEmployeeDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetEmployeeDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -8267,32 +8557,6 @@ namespace TELPOSTAStaff.NAVWS {
         private object[] results;
         
         internal GetTravelStaffCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetVendorsCompletedEventHandler(object sender, GetVendorsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetVendorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetVendorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

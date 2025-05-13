@@ -6366,6 +6366,7 @@
     <Content Include="pages\ApprovalTracking.aspx" />
     <Content Include="pages\BackToOffice.aspx" />
     <Content Include="pages\BackToOfficeListing.aspx" />
+    <Content Include="pages\ChangePassword.aspx" />
     <Content Include="pages\ClaimLines.aspx" />
     <Content Include="pages\ClaimListing.aspx" />
     <Content Include="pages\Dashboard.aspx" />
@@ -6375,6 +6376,7 @@
     <Content Include="pages\ImprestListing.aspx" />
     <Content Include="pages\LeaveApplication.aspx" />
     <Content Include="pages\LeaveListing.aspx" />
+    <Content Include="pages\MyProfile.aspx" />
     <Content Include="pages\Payslip.aspx" />
     <Content Include="pages\PettyCashAccounting.aspx" />
     <Content Include="pages\PettyCashAccountingLines.aspx" />
@@ -6526,6 +6528,8 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Profiles\Default.png" />
+    <Content Include="Profiles\SN026.png" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -7180,6 +7184,13 @@
     <Compile Include="pages\BackToOfficeListing.aspx.designer.cs">
       <DependentUpon>BackToOfficeListing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\ClaimLines.aspx.cs">
       <DependentUpon>ClaimLines.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7242,6 +7253,13 @@
     </Compile>
     <Compile Include="pages\LeaveListing.aspx.designer.cs">
       <DependentUpon>LeaveListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Payslip.aspx.cs">
       <DependentUpon>Payslip.aspx</DependentUpon>

@@ -26,7 +26,8 @@ namespace TelpostaMembersPortal.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Port" +
+            "al")]
         public string TelpostaMembersPortal_NAVWS_Portal {
             get {
                 return ((string)(this["TelpostaMembersPortal_NAVWS_Portal"]));

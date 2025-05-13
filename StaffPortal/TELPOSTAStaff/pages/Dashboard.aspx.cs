@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
+using System.Web.ModelBinding;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TELPOSTAStaff.NAVWS;
@@ -31,19 +35,69 @@ namespace TELPOSTAStaff.pages
            try
            {
                string username = Session["username"].ToString();
-               string gender = webportals.GetStaffGender(username);
-               string imgPath = string.Empty;
-               if (gender == "Male") imgPath = "profile_m";
-               if (gender == "Female") imgPath = "profile_f";
-               ImgProfilePic.ImageUrl = $"~/images/{imgPath}.png";
-           }
+                //string gender = webportals.GetStaffGender(username);
+                //string imgPath = string.Empty;
+                //if (gender == "Male") imgPath = "profile_m";
+                //if (gender == "Female") imgPath = "profile_f";
+                
+                string virtualPath = $"~/profiles/{username}.png";
+                string defaultVirtualPath = $"~/profiles/Default.png";
+
+                string physicalPath = Server.MapPath(virtualPath);
+
+                if (File.Exists(physicalPath))
+                {
+                    ImgProfilePic.ImageUrl = virtualPath;
+                }
+                else
+                {
+                    ImgProfilePic.ImageUrl = defaultVirtualPath;
+                }
+            }
+
+                    
            catch (Exception ex)
            {
                ex.Data.Clear();
            }
        }
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (!fuProfilePic.HasFile)
+            {
+                Message("Please select a file");
+                return;
+            }
 
-       private void LoadEmployeeDetails()
+            // validate file type/size if you like
+            string ext = Path.GetExtension(fuProfilePic.FileName).ToLower();
+            if (ext != ".jpg" && ext != ".png" && ext != ".jpeg")
+            {
+                Message(" must be .jpg , .png or .jpeg file");
+                return;
+            }
+
+            string path = Server.MapPath("~/Profiles/");
+            string employeeNo = lblEmployeeNo.Text;
+                //Session["trusteeNo"].ToString();
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string filename = employeeNo + ".png";
+            string filepath = path + filename;
+            if (System.IO.File.Exists(filepath))
+            {
+                System.IO.File.Delete(filepath);
+            }
+            fuProfilePic.SaveAs(filepath);
+            LoadEmployeeProfile();
+            
+            webportals.UploadProfilePicture(employeeNo, filepath, "Profile pic");
+            SuccessMessage("Profile updated sucessfully");
+        }
+
+        private void LoadEmployeeDetails()
        {
            try
            {
@@ -86,5 +140,17 @@ namespace TELPOSTAStaff.pages
                ex.Data.Clear();
            }
        }
+        private void Message(string message)
+        {
+            string strScript = "<script>alert('" + message + "');</script>";
+            ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
+        }
+
+        private void SuccessMessage(string message)
+        {
+            string page = "dashboard.aspx";
+            string strScript = "<script>alert('" + message + "');window.location='" + page + "';</script>";
+            ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
+        }
     }
 }

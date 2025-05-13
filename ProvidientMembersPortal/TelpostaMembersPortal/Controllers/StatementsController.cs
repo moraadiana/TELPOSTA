@@ -77,8 +77,17 @@ namespace TelpostaMembersPortal.Controllers
                     System.IO.File.Delete(pdfFilePath);
 
 
-                webportals.GenerateMemberStatement1(path, memberNo, pdfFileName,Convert.ToDateTime(startDate), Convert.ToDateTime(endDate));
-               
+                //webportals.GeneratePortalMembersStatement(memberNo,Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
+                string base64Pdf = webportals.GeneratePortalMembersStatement(memberNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
+
+                if (string.IsNullOrWhiteSpace(base64Pdf))
+                {
+                    TempData["Error"] = "No data was returned for the pension statement.";
+                    return RedirectToAction("PensionerStatement");
+                }
+
+                byte[] pdfBytes = Convert.FromBase64String(base64Pdf);
+                System.IO.File.WriteAllBytes(pdfFilePath, pdfBytes);
 
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                 ViewBag.PdfUrl = TempData["PdfUrl"];
@@ -118,8 +127,16 @@ namespace TelpostaMembersPortal.Controllers
 
                 if (System.IO.File.Exists(pdfFilePath))
                     System.IO.File.Delete(pdfFilePath);
-
                 webportals.GenerateBeneficiaryReport(path, pdfFileName);
+                //string response =  webportals.GenerateBeneficiaryReport(path, pdfFileName);
+                //if (string.IsNullOrWhiteSpace(response))
+                //{
+                //    TempData["Error"] = "No data was returned for the  statement.";
+                //    return RedirectToAction("PensionerStatement");
+                //}
+
+                //byte[] pdfBytes = Convert.FromBase64String(response);
+                //System.IO.File.WriteAllBytes(pdfFilePath, pdfBytes);
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                 ViewBag.PdfUrl = TempData["PdfUrl"];
 

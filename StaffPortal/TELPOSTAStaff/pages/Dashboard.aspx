@@ -124,19 +124,19 @@
                                 <!-- /.col -->
                                 <div class="col-md-4">
                                     <p class="text-center">
-                                        <strong>User Avatar </strong>
+                                        <strong>Profile Photo </strong>
                                     </p>
                                     <div class="box-body box-profile">
                                         <asp:Image ID="ImgProfileDefault" class="profile-user-img img-responsive img-circle" runat="server" Height="250px" Width="200px" Visible="false" alt="User profile picture" />
                                         <asp:Image ID="ImgProfilePic" class="profile-user-img img-responsive img-circle" runat="server" Height="250px" Width="200px" alt="User profile picture" />
-                                        <%--<img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">--%>
+
                                         <h3 class="profile-username text-center">
                                             <asp:Label ID="lblTitle" runat="server" Text="" Visible="false"></asp:Label>
                                             <asp:Label ID="lblStaffName" runat="server" Text=""></asp:Label></h3>
                                         <p class="text-muted text-center">
                                             <asp:Label ID="lblDesignation" runat="server" Text=""></asp:Label>
                                         </p>
-                                        <%--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>--%>
+                                        
                                     </div>
                                     <div class="progress-group">
                                         <span class="progress-text"></span>
@@ -145,8 +145,52 @@
                                         <div class="progress sm">
                                             <div class="progress-bar progress-bar-success" style="width: 100%"></div>
                                         </div>
+                                       <div style="text-align: center; margin-top: 15px;">
+                                          <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            data-toggle="modal"
+                                            data-target="#uploadModal">
+                                            Change Profile Photo
+                                          </button>
+                                        </div>
+
                                     </div>
                                 </div>
+                                
+                                <!-- Modal -->
+                                <div
+                                  class="modal fade"
+                                  id="uploadModal"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="uploadModalLabel"
+                                  aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <asp:Panel runat="server" CssClass="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="uploadModalLabel">Change Profile Photo</h5>
+                                        <button type="button" class="close"data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                  
+                                        <div class="modal-body">
+                                            <asp:FileUpload ID="fuProfilePic" runat="server" CssClass="form-control" onchange="previewImage(event)" />
+                                            <br />
+                                            <img id="imgPreview" src="#" alt="Image Preview" style="display:none; width: 200px; height: 200px;" class="img-circle img-responsive center-block" />
+                                        </div>
+                                      <div class="modal-footer">
+                                        <asp:Button ID="btnUpload" runat="server" CssClass="btn btn-primary"  Text="Upload"  OnClick="btnUpload_Click" />
+                                        <button type="button"class="btn btn-secondary" data-dismiss="modal">
+                                          Close
+                                        </button>
+                                      </div>
+                                    </asp:Panel>
+                                  </div>
+                                </div>
+
+
                                 <!-- /.col -->
                                 <div class="col-md-8">
                                     <p class="text-center">
@@ -208,5 +252,21 @@
         </section>
         <!-- /.content -->
     </div>
+    <script type="text/javascript">
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('imgPreview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 </asp:Content>
 

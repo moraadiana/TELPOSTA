@@ -33,6 +33,24 @@ namespace TELPOSTAStaff.pages
         protected global::System.Web.UI.WebControls.DropDownList ddlResponsibilityCenter;
 
         /// <summary>
+        /// fuImprestDocs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuImprestDocs;
+
+        /// <summary>
+        /// lbtnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnUpload;
+
+        /// <summary>
         /// gvLines control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace TELPOSTAStaff.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLines;
+
+        /// <summary>
+        /// gvAttachments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAttachments;
 
         /// <summary>
         /// lbtnSubmit control.

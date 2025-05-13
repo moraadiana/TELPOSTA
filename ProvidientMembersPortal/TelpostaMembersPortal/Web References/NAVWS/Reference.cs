@@ -29,6 +29,24 @@ namespace TelpostaMembersPortal.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Portal_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Portal")]
     public partial class Portal : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback CheckMemberPasswordChangedOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckMemberLoginOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetMemberProfileDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GenerateBeneficiaryReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPayrollPeriods1OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertImprestRequisitionLinesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoginForUnchangedPasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PensionerStatementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PortalOTPOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RejectClaimReqOperationCompleted;
         
         private System.Threading.SendOrPostCallback RejectImprestOperationCompleted;
@@ -109,10 +127,6 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback CheckMemberLoginForUnchangedPassOperationCompleted;
         
-        private System.Threading.SendOrPostCallback CheckMemberLoginOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CheckMemberPasswordChangedOperationCompleted;
-        
         private System.Threading.SendOrPostCallback CheckStaffLoginForUnchangedPassOperationCompleted;
         
         private System.Threading.SendOrPostCallback CheckStaffLoginOperationCompleted;
@@ -143,7 +157,9 @@ namespace TelpostaMembersPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback FnAttachmentsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GenerateBeneficiaryReportOperationCompleted;
+        private System.Threading.SendOrPostCallback FormatISODateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GenerateBeneficiaryReport1OperationCompleted;
         
         private System.Threading.SendOrPostCallback GenerateBeneficiaryStatementOperationCompleted;
         
@@ -158,6 +174,10 @@ namespace TelpostaMembersPortal.NAVWS {
         private System.Threading.SendOrPostCallback GenerateMemberStatementOperationCompleted;
         
         private System.Threading.SendOrPostCallback GeneratePdfOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GeneratePortalMembersStatementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GeneratePortalPensionStatementOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetBeneficiaryPFNoOperationCompleted;
         
@@ -184,10 +204,6 @@ namespace TelpostaMembersPortal.NAVWS {
         private System.Threading.SendOrPostCallback GetMemberMailOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetMemberNameOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetMemberProfileDetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetPayrollPeriods1OperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPayrollPeriodsOperationCompleted;
         
@@ -218,14 +234,6 @@ namespace TelpostaMembersPortal.NAVWS {
         private System.Threading.SendOrPostCallback ImprestRequisitionCreateOperationCompleted;
         
         private System.Threading.SendOrPostCallback InsertApproverCommentsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback InsertImprestRequisitionLinesOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback LoginForUnchangedPasswordOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback PensionerStatementOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback PortalOTPOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -264,6 +272,33 @@ namespace TelpostaMembersPortal.NAVWS {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event CheckMemberPasswordChangedCompletedEventHandler CheckMemberPasswordChangedCompleted;
+        
+        /// <remarks/>
+        public event CheckMemberLoginCompletedEventHandler CheckMemberLoginCompleted;
+        
+        /// <remarks/>
+        public event GetMemberProfileDetailsCompletedEventHandler GetMemberProfileDetailsCompleted;
+        
+        /// <remarks/>
+        public event GenerateBeneficiaryReportCompletedEventHandler GenerateBeneficiaryReportCompleted;
+        
+        /// <remarks/>
+        public event GetPayrollPeriods1CompletedEventHandler GetPayrollPeriods1Completed;
+        
+        /// <remarks/>
+        public event InsertImprestRequisitionLinesCompletedEventHandler InsertImprestRequisitionLinesCompleted;
+        
+        /// <remarks/>
+        public event LoginForUnchangedPasswordCompletedEventHandler LoginForUnchangedPasswordCompleted;
+        
+        /// <remarks/>
+        public event PensionerStatementCompletedEventHandler PensionerStatementCompleted;
+        
+        /// <remarks/>
+        public event PortalOTPCompletedEventHandler PortalOTPCompleted;
         
         /// <remarks/>
         public event RejectClaimReqCompletedEventHandler RejectClaimReqCompleted;
@@ -386,12 +421,6 @@ namespace TelpostaMembersPortal.NAVWS {
         public event CheckMemberLoginForUnchangedPassCompletedEventHandler CheckMemberLoginForUnchangedPassCompleted;
         
         /// <remarks/>
-        public event CheckMemberLoginCompletedEventHandler CheckMemberLoginCompleted;
-        
-        /// <remarks/>
-        public event CheckMemberPasswordChangedCompletedEventHandler CheckMemberPasswordChangedCompleted;
-        
-        /// <remarks/>
         public event CheckStaffLoginForUnchangedPassCompletedEventHandler CheckStaffLoginForUnchangedPassCompleted;
         
         /// <remarks/>
@@ -437,7 +466,10 @@ namespace TelpostaMembersPortal.NAVWS {
         public event FnAttachmentsCompletedEventHandler FnAttachmentsCompleted;
         
         /// <remarks/>
-        public event GenerateBeneficiaryReportCompletedEventHandler GenerateBeneficiaryReportCompleted;
+        public event FormatISODateCompletedEventHandler FormatISODateCompleted;
+        
+        /// <remarks/>
+        public event GenerateBeneficiaryReport1CompletedEventHandler GenerateBeneficiaryReport1Completed;
         
         /// <remarks/>
         public event GenerateBeneficiaryStatementCompletedEventHandler GenerateBeneficiaryStatementCompleted;
@@ -459,6 +491,12 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         public event GeneratePdfCompletedEventHandler GeneratePdfCompleted;
+        
+        /// <remarks/>
+        public event GeneratePortalMembersStatementCompletedEventHandler GeneratePortalMembersStatementCompleted;
+        
+        /// <remarks/>
+        public event GeneratePortalPensionStatementCompletedEventHandler GeneratePortalPensionStatementCompleted;
         
         /// <remarks/>
         public event GetBeneficiaryPFNoCompletedEventHandler GetBeneficiaryPFNoCompleted;
@@ -498,12 +536,6 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         public event GetMemberNameCompletedEventHandler GetMemberNameCompleted;
-        
-        /// <remarks/>
-        public event GetMemberProfileDetailsCompletedEventHandler GetMemberProfileDetailsCompleted;
-        
-        /// <remarks/>
-        public event GetPayrollPeriods1CompletedEventHandler GetPayrollPeriods1Completed;
         
         /// <remarks/>
         public event GetPayrollPeriodsCompletedEventHandler GetPayrollPeriodsCompleted;
@@ -551,16 +583,297 @@ namespace TelpostaMembersPortal.NAVWS {
         public event InsertApproverCommentsCompletedEventHandler InsertApproverCommentsCompleted;
         
         /// <remarks/>
-        public event InsertImprestRequisitionLinesCompletedEventHandler InsertImprestRequisitionLinesCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberPasswordChanged", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="CheckMemberPasswordChanged_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string CheckMemberPasswordChanged(string username) {
+            object[] results = this.Invoke("CheckMemberPasswordChanged", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
         
         /// <remarks/>
-        public event LoginForUnchangedPasswordCompletedEventHandler LoginForUnchangedPasswordCompleted;
+        public void CheckMemberPasswordChangedAsync(string username) {
+            this.CheckMemberPasswordChangedAsync(username, null);
+        }
         
         /// <remarks/>
-        public event PensionerStatementCompletedEventHandler PensionerStatementCompleted;
+        public void CheckMemberPasswordChangedAsync(string username, object userState) {
+            if ((this.CheckMemberPasswordChangedOperationCompleted == null)) {
+                this.CheckMemberPasswordChangedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckMemberPasswordChangedOperationCompleted);
+            }
+            this.InvokeAsync("CheckMemberPasswordChanged", new object[] {
+                        username}, this.CheckMemberPasswordChangedOperationCompleted, userState);
+        }
+        
+        private void OnCheckMemberPasswordChangedOperationCompleted(object arg) {
+            if ((this.CheckMemberPasswordChangedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckMemberPasswordChangedCompleted(this, new CheckMemberPasswordChangedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
-        public event PortalOTPCompletedEventHandler PortalOTPCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="CheckMemberLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string CheckMemberLogin(string username, string userpassword) {
+            object[] results = this.Invoke("CheckMemberLogin", new object[] {
+                        username,
+                        userpassword});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckMemberLoginAsync(string username, string userpassword) {
+            this.CheckMemberLoginAsync(username, userpassword, null);
+        }
+        
+        /// <remarks/>
+        public void CheckMemberLoginAsync(string username, string userpassword, object userState) {
+            if ((this.CheckMemberLoginOperationCompleted == null)) {
+                this.CheckMemberLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckMemberLoginOperationCompleted);
+            }
+            this.InvokeAsync("CheckMemberLogin", new object[] {
+                        username,
+                        userpassword}, this.CheckMemberLoginOperationCompleted, userState);
+        }
+        
+        private void OnCheckMemberLoginOperationCompleted(object arg) {
+            if ((this.CheckMemberLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckMemberLoginCompleted(this, new CheckMemberLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetMemberProfileDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetMemberProfileDetails(string username) {
+            object[] results = this.Invoke("GetMemberProfileDetails", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetMemberProfileDetailsAsync(string username) {
+            this.GetMemberProfileDetailsAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetMemberProfileDetailsAsync(string username, object userState) {
+            if ((this.GetMemberProfileDetailsOperationCompleted == null)) {
+                this.GetMemberProfileDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetMemberProfileDetailsOperationCompleted);
+            }
+            this.InvokeAsync("GetMemberProfileDetails", new object[] {
+                        username}, this.GetMemberProfileDetailsOperationCompleted, userState);
+        }
+        
+        private void OnGetMemberProfileDetailsOperationCompleted(object arg) {
+            if ((this.GetMemberProfileDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetMemberProfileDetailsCompleted(this, new GetMemberProfileDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateBeneficiaryReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void GenerateBeneficiaryReport(string path, string fileName) {
+            this.Invoke("GenerateBeneficiaryReport", new object[] {
+                        path,
+                        fileName});
+        }
+        
+        /// <remarks/>
+        public void GenerateBeneficiaryReportAsync(string path, string fileName) {
+            this.GenerateBeneficiaryReportAsync(path, fileName, null);
+        }
+        
+        /// <remarks/>
+        public void GenerateBeneficiaryReportAsync(string path, string fileName, object userState) {
+            if ((this.GenerateBeneficiaryReportOperationCompleted == null)) {
+                this.GenerateBeneficiaryReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateBeneficiaryReportOperationCompleted);
+            }
+            this.InvokeAsync("GenerateBeneficiaryReport", new object[] {
+                        path,
+                        fileName}, this.GenerateBeneficiaryReportOperationCompleted, userState);
+        }
+        
+        private void OnGenerateBeneficiaryReportOperationCompleted(object arg) {
+            if ((this.GenerateBeneficiaryReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GenerateBeneficiaryReportCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetPayrollPeriods1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPayrollPeriods1() {
+            object[] results = this.Invoke("GetPayrollPeriods1", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPayrollPeriods1Async() {
+            this.GetPayrollPeriods1Async(null);
+        }
+        
+        /// <remarks/>
+        public void GetPayrollPeriods1Async(object userState) {
+            if ((this.GetPayrollPeriods1OperationCompleted == null)) {
+                this.GetPayrollPeriods1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPayrollPeriods1OperationCompleted);
+            }
+            this.InvokeAsync("GetPayrollPeriods1", new object[0], this.GetPayrollPeriods1OperationCompleted, userState);
+        }
+        
+        private void OnGetPayrollPeriods1OperationCompleted(object arg) {
+            if ((this.GetPayrollPeriods1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPayrollPeriods1Completed(this, new GetPayrollPeriods1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:InsertImprestRequisitionLines", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="InsertImprestRequisitionLines_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string InsertImprestRequisitionLines(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId) {
+            object[] results = this.Invoke("InsertImprestRequisitionLines", new object[] {
+                        reqNo,
+                        atypes,
+                        accNo,
+                        accName,
+                        amount,
+                        userId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertImprestRequisitionLinesAsync(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId) {
+            this.InsertImprestRequisitionLinesAsync(reqNo, atypes, accNo, accName, amount, userId, null);
+        }
+        
+        /// <remarks/>
+        public void InsertImprestRequisitionLinesAsync(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId, object userState) {
+            if ((this.InsertImprestRequisitionLinesOperationCompleted == null)) {
+                this.InsertImprestRequisitionLinesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertImprestRequisitionLinesOperationCompleted);
+            }
+            this.InvokeAsync("InsertImprestRequisitionLines", new object[] {
+                        reqNo,
+                        atypes,
+                        accNo,
+                        accName,
+                        amount,
+                        userId}, this.InsertImprestRequisitionLinesOperationCompleted, userState);
+        }
+        
+        private void OnInsertImprestRequisitionLinesOperationCompleted(object arg) {
+            if ((this.InsertImprestRequisitionLinesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertImprestRequisitionLinesCompleted(this, new InsertImprestRequisitionLinesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:LoginForUnchangedPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="LoginForUnchangedPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string LoginForUnchangedPassword(string username, string password) {
+            object[] results = this.Invoke("LoginForUnchangedPassword", new object[] {
+                        username,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginForUnchangedPasswordAsync(string username, string password) {
+            this.LoginForUnchangedPasswordAsync(username, password, null);
+        }
+        
+        /// <remarks/>
+        public void LoginForUnchangedPasswordAsync(string username, string password, object userState) {
+            if ((this.LoginForUnchangedPasswordOperationCompleted == null)) {
+                this.LoginForUnchangedPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginForUnchangedPasswordOperationCompleted);
+            }
+            this.InvokeAsync("LoginForUnchangedPassword", new object[] {
+                        username,
+                        password}, this.LoginForUnchangedPasswordOperationCompleted, userState);
+        }
+        
+        private void OnLoginForUnchangedPasswordOperationCompleted(object arg) {
+            if ((this.LoginForUnchangedPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginForUnchangedPasswordCompleted(this, new LoginForUnchangedPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="PensionerStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string PensionerStatement(string fileNamefromApp, string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, ref string bigtext) {
+            object[] results = this.Invoke("PensionerStatement", new object[] {
+                        fileNamefromApp,
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        bigtext});
+            bigtext = ((string)(results[1]));
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PensionerStatementAsync(string fileNamefromApp, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string bigtext) {
+            this.PensionerStatementAsync(fileNamefromApp, pensionerNo, startDate, endDate, bigtext, null);
+        }
+        
+        /// <remarks/>
+        public void PensionerStatementAsync(string fileNamefromApp, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string bigtext, object userState) {
+            if ((this.PensionerStatementOperationCompleted == null)) {
+                this.PensionerStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPensionerStatementOperationCompleted);
+            }
+            this.InvokeAsync("PensionerStatement", new object[] {
+                        fileNamefromApp,
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        bigtext}, this.PensionerStatementOperationCompleted, userState);
+        }
+        
+        private void OnPensionerStatementOperationCompleted(object arg) {
+            if ((this.PensionerStatementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PensionerStatementCompleted(this, new PensionerStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:PortalOTP", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="PortalOTP_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public bool PortalOTP(string username, string otpCode) {
+            object[] results = this.Invoke("PortalOTP", new object[] {
+                        username,
+                        otpCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PortalOTPAsync(string username, string otpCode) {
+            this.PortalOTPAsync(username, otpCode, null);
+        }
+        
+        /// <remarks/>
+        public void PortalOTPAsync(string username, string otpCode, object userState) {
+            if ((this.PortalOTPOperationCompleted == null)) {
+                this.PortalOTPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPortalOTPOperationCompleted);
+            }
+            this.InvokeAsync("PortalOTP", new object[] {
+                        username,
+                        otpCode}, this.PortalOTPOperationCompleted, userState);
+        }
+        
+        private void OnPortalOTPOperationCompleted(object arg) {
+            if ((this.PortalOTPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PortalOTPCompleted(this, new PortalOTPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="RejectClaimReq_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1802,68 +2115,6 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="CheckMemberLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CheckMemberLogin(string username, string userpassword) {
-            object[] results = this.Invoke("CheckMemberLogin", new object[] {
-                        username,
-                        userpassword});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CheckMemberLoginAsync(string username, string userpassword) {
-            this.CheckMemberLoginAsync(username, userpassword, null);
-        }
-        
-        /// <remarks/>
-        public void CheckMemberLoginAsync(string username, string userpassword, object userState) {
-            if ((this.CheckMemberLoginOperationCompleted == null)) {
-                this.CheckMemberLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckMemberLoginOperationCompleted);
-            }
-            this.InvokeAsync("CheckMemberLogin", new object[] {
-                        username,
-                        userpassword}, this.CheckMemberLoginOperationCompleted, userState);
-        }
-        
-        private void OnCheckMemberLoginOperationCompleted(object arg) {
-            if ((this.CheckMemberLoginCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CheckMemberLoginCompleted(this, new CheckMemberLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberPasswordChanged", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="CheckMemberPasswordChanged_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CheckMemberPasswordChanged(string username) {
-            object[] results = this.Invoke("CheckMemberPasswordChanged", new object[] {
-                        username});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CheckMemberPasswordChangedAsync(string username) {
-            this.CheckMemberPasswordChangedAsync(username, null);
-        }
-        
-        /// <remarks/>
-        public void CheckMemberPasswordChangedAsync(string username, object userState) {
-            if ((this.CheckMemberPasswordChangedOperationCompleted == null)) {
-                this.CheckMemberPasswordChangedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckMemberPasswordChangedOperationCompleted);
-            }
-            this.InvokeAsync("CheckMemberPasswordChanged", new object[] {
-                        username}, this.CheckMemberPasswordChangedOperationCompleted, userState);
-        }
-        
-        private void OnCheckMemberPasswordChangedOperationCompleted(object arg) {
-            if ((this.CheckMemberPasswordChangedCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CheckMemberPasswordChangedCompleted(this, new CheckMemberPasswordChangedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffLoginForUnchangedPass", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="CheckStaffLoginForUnchangedPass_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
         public string CheckStaffLoginForUnchangedPass(string username, string password) {
@@ -2343,32 +2594,64 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateBeneficiaryReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GenerateBeneficiaryReport(string path, string fileName) {
-            this.Invoke("GenerateBeneficiaryReport", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:FormatISODate", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="FormatISODate_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string FormatISODate([System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime realDate) {
+            object[] results = this.Invoke("FormatISODate", new object[] {
+                        realDate});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FormatISODateAsync(System.DateTime realDate) {
+            this.FormatISODateAsync(realDate, null);
+        }
+        
+        /// <remarks/>
+        public void FormatISODateAsync(System.DateTime realDate, object userState) {
+            if ((this.FormatISODateOperationCompleted == null)) {
+                this.FormatISODateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFormatISODateOperationCompleted);
+            }
+            this.InvokeAsync("FormatISODate", new object[] {
+                        realDate}, this.FormatISODateOperationCompleted, userState);
+        }
+        
+        private void OnFormatISODateOperationCompleted(object arg) {
+            if ((this.FormatISODateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FormatISODateCompleted(this, new FormatISODateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateBeneficiaryReport1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GenerateBeneficiaryReport1(string path, string fileName) {
+            object[] results = this.Invoke("GenerateBeneficiaryReport1", new object[] {
                         path,
                         fileName});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GenerateBeneficiaryReportAsync(string path, string fileName) {
-            this.GenerateBeneficiaryReportAsync(path, fileName, null);
+        public void GenerateBeneficiaryReport1Async(string path, string fileName) {
+            this.GenerateBeneficiaryReport1Async(path, fileName, null);
         }
         
         /// <remarks/>
-        public void GenerateBeneficiaryReportAsync(string path, string fileName, object userState) {
-            if ((this.GenerateBeneficiaryReportOperationCompleted == null)) {
-                this.GenerateBeneficiaryReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateBeneficiaryReportOperationCompleted);
+        public void GenerateBeneficiaryReport1Async(string path, string fileName, object userState) {
+            if ((this.GenerateBeneficiaryReport1OperationCompleted == null)) {
+                this.GenerateBeneficiaryReport1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGenerateBeneficiaryReport1OperationCompleted);
             }
-            this.InvokeAsync("GenerateBeneficiaryReport", new object[] {
+            this.InvokeAsync("GenerateBeneficiaryReport1", new object[] {
                         path,
-                        fileName}, this.GenerateBeneficiaryReportOperationCompleted, userState);
+                        fileName}, this.GenerateBeneficiaryReport1OperationCompleted, userState);
         }
         
-        private void OnGenerateBeneficiaryReportOperationCompleted(object arg) {
-            if ((this.GenerateBeneficiaryReportCompleted != null)) {
+        private void OnGenerateBeneficiaryReport1OperationCompleted(object arg) {
+            if ((this.GenerateBeneficiaryReport1Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GenerateBeneficiaryReportCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GenerateBeneficiaryReport1Completed(this, new GenerateBeneficiaryReport1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2468,13 +2751,15 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateMemberStatement1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GenerateMemberStatement1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GenerateMemberStatement1(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
-            this.Invoke("GenerateMemberStatement1", new object[] {
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GenerateMemberStatement1(string path, string memberNo, string filenameFromApp, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
+            object[] results = this.Invoke("GenerateMemberStatement1", new object[] {
                         path,
                         memberNo,
                         filenameFromApp,
                         startDate,
                         endDate});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
@@ -2498,7 +2783,7 @@ namespace TelpostaMembersPortal.NAVWS {
         private void OnGenerateMemberStatement1OperationCompleted(object arg) {
             if ((this.GenerateMemberStatement1Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GenerateMemberStatement1Completed(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GenerateMemberStatement1Completed(this, new GenerateMemberStatement1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2572,13 +2857,15 @@ namespace TelpostaMembersPortal.NAVWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePdf", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GeneratePdf_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void GeneratePdf(string path, string memberNo, string filename, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
-            this.Invoke("GeneratePdf", new object[] {
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GeneratePdf(string path, string memberNo, string filename, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate) {
+            object[] results = this.Invoke("GeneratePdf", new object[] {
                         path,
                         memberNo,
                         filename,
                         startDate,
                         endDate});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
@@ -2602,7 +2889,79 @@ namespace TelpostaMembersPortal.NAVWS {
         private void OnGeneratePdfOperationCompleted(object arg) {
             if ((this.GeneratePdfCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GeneratePdfCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GeneratePdfCompleted(this, new GeneratePdfCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePortalMembersStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GeneratePortalMembersStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GeneratePortalMembersStatement(string memberNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string filenameFromApp) {
+            object[] results = this.Invoke("GeneratePortalMembersStatement", new object[] {
+                        memberNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalMembersStatementAsync(string memberNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp) {
+            this.GeneratePortalMembersStatementAsync(memberNo, startDate, endDate, filenameFromApp, null);
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalMembersStatementAsync(string memberNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp, object userState) {
+            if ((this.GeneratePortalMembersStatementOperationCompleted == null)) {
+                this.GeneratePortalMembersStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePortalMembersStatementOperationCompleted);
+            }
+            this.InvokeAsync("GeneratePortalMembersStatement", new object[] {
+                        memberNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp}, this.GeneratePortalMembersStatementOperationCompleted, userState);
+        }
+        
+        private void OnGeneratePortalMembersStatementOperationCompleted(object arg) {
+            if ((this.GeneratePortalMembersStatementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GeneratePortalMembersStatementCompleted(this, new GeneratePortalMembersStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePortalPensionStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GeneratePortalPensionStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GeneratePortalPensionStatement(string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string filenameFromApp) {
+            object[] results = this.Invoke("GeneratePortalPensionStatement", new object[] {
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalPensionStatementAsync(string pensionerNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp) {
+            this.GeneratePortalPensionStatementAsync(pensionerNo, startDate, endDate, filenameFromApp, null);
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalPensionStatementAsync(string pensionerNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp, object userState) {
+            if ((this.GeneratePortalPensionStatementOperationCompleted == null)) {
+                this.GeneratePortalPensionStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePortalPensionStatementOperationCompleted);
+            }
+            this.InvokeAsync("GeneratePortalPensionStatement", new object[] {
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp}, this.GeneratePortalPensionStatementOperationCompleted, userState);
+        }
+        
+        private void OnGeneratePortalPensionStatementOperationCompleted(object arg) {
+            if ((this.GeneratePortalPensionStatementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GeneratePortalPensionStatementCompleted(this, new GeneratePortalPensionStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2993,64 +3352,6 @@ namespace TelpostaMembersPortal.NAVWS {
             if ((this.GetMemberNameCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetMemberNameCompleted(this, new GetMemberNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetMemberProfileDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string GetMemberProfileDetails(string username) {
-            object[] results = this.Invoke("GetMemberProfileDetails", new object[] {
-                        username});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetMemberProfileDetailsAsync(string username) {
-            this.GetMemberProfileDetailsAsync(username, null);
-        }
-        
-        /// <remarks/>
-        public void GetMemberProfileDetailsAsync(string username, object userState) {
-            if ((this.GetMemberProfileDetailsOperationCompleted == null)) {
-                this.GetMemberProfileDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetMemberProfileDetailsOperationCompleted);
-            }
-            this.InvokeAsync("GetMemberProfileDetails", new object[] {
-                        username}, this.GetMemberProfileDetailsOperationCompleted, userState);
-        }
-        
-        private void OnGetMemberProfileDetailsOperationCompleted(object arg) {
-            if ((this.GetMemberProfileDetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetMemberProfileDetailsCompleted(this, new GetMemberProfileDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="GetPayrollPeriods1_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string GetPayrollPeriods1() {
-            object[] results = this.Invoke("GetPayrollPeriods1", new object[0]);
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetPayrollPeriods1Async() {
-            this.GetPayrollPeriods1Async(null);
-        }
-        
-        /// <remarks/>
-        public void GetPayrollPeriods1Async(object userState) {
-            if ((this.GetPayrollPeriods1OperationCompleted == null)) {
-                this.GetPayrollPeriods1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPayrollPeriods1OperationCompleted);
-            }
-            this.InvokeAsync("GetPayrollPeriods1", new object[0], this.GetPayrollPeriods1OperationCompleted, userState);
-        }
-        
-        private void OnGetPayrollPeriods1OperationCompleted(object arg) {
-            if ((this.GetPayrollPeriods1Completed != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetPayrollPeriods1Completed(this, new GetPayrollPeriods1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3531,149 +3832,6 @@ namespace TelpostaMembersPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:InsertImprestRequisitionLines", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="InsertImprestRequisitionLines_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string InsertImprestRequisitionLines(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId) {
-            object[] results = this.Invoke("InsertImprestRequisitionLines", new object[] {
-                        reqNo,
-                        atypes,
-                        accNo,
-                        accName,
-                        amount,
-                        userId});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void InsertImprestRequisitionLinesAsync(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId) {
-            this.InsertImprestRequisitionLinesAsync(reqNo, atypes, accNo, accName, amount, userId, null);
-        }
-        
-        /// <remarks/>
-        public void InsertImprestRequisitionLinesAsync(string reqNo, string atypes, string accNo, string accName, decimal amount, string userId, object userState) {
-            if ((this.InsertImprestRequisitionLinesOperationCompleted == null)) {
-                this.InsertImprestRequisitionLinesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertImprestRequisitionLinesOperationCompleted);
-            }
-            this.InvokeAsync("InsertImprestRequisitionLines", new object[] {
-                        reqNo,
-                        atypes,
-                        accNo,
-                        accName,
-                        amount,
-                        userId}, this.InsertImprestRequisitionLinesOperationCompleted, userState);
-        }
-        
-        private void OnInsertImprestRequisitionLinesOperationCompleted(object arg) {
-            if ((this.InsertImprestRequisitionLinesCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.InsertImprestRequisitionLinesCompleted(this, new InsertImprestRequisitionLinesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:LoginForUnchangedPassword", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="LoginForUnchangedPassword_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string LoginForUnchangedPassword(string username, string password) {
-            object[] results = this.Invoke("LoginForUnchangedPassword", new object[] {
-                        username,
-                        password});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void LoginForUnchangedPasswordAsync(string username, string password) {
-            this.LoginForUnchangedPasswordAsync(username, password, null);
-        }
-        
-        /// <remarks/>
-        public void LoginForUnchangedPasswordAsync(string username, string password, object userState) {
-            if ((this.LoginForUnchangedPasswordOperationCompleted == null)) {
-                this.LoginForUnchangedPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginForUnchangedPasswordOperationCompleted);
-            }
-            this.InvokeAsync("LoginForUnchangedPassword", new object[] {
-                        username,
-                        password}, this.LoginForUnchangedPasswordOperationCompleted, userState);
-        }
-        
-        private void OnLoginForUnchangedPasswordOperationCompleted(object arg) {
-            if ((this.LoginForUnchangedPasswordCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LoginForUnchangedPasswordCompleted(this, new LoginForUnchangedPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="PensionerStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string PensionerStatement(string fileNamefromApp, string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, ref string bigtext) {
-            object[] results = this.Invoke("PensionerStatement", new object[] {
-                        fileNamefromApp,
-                        pensionerNo,
-                        startDate,
-                        endDate,
-                        bigtext});
-            bigtext = ((string)(results[1]));
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void PensionerStatementAsync(string fileNamefromApp, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string bigtext) {
-            this.PensionerStatementAsync(fileNamefromApp, pensionerNo, startDate, endDate, bigtext, null);
-        }
-        
-        /// <remarks/>
-        public void PensionerStatementAsync(string fileNamefromApp, string pensionerNo, System.DateTime startDate, System.DateTime endDate, string bigtext, object userState) {
-            if ((this.PensionerStatementOperationCompleted == null)) {
-                this.PensionerStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPensionerStatementOperationCompleted);
-            }
-            this.InvokeAsync("PensionerStatement", new object[] {
-                        fileNamefromApp,
-                        pensionerNo,
-                        startDate,
-                        endDate,
-                        bigtext}, this.PensionerStatementOperationCompleted, userState);
-        }
-        
-        private void OnPensionerStatementOperationCompleted(object arg) {
-            if ((this.PensionerStatementCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.PensionerStatementCompleted(this, new PensionerStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Portal:PortalOTP", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", ResponseElementName="PortalOTP_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool PortalOTP(string username, string otpCode) {
-            object[] results = this.Invoke("PortalOTP", new object[] {
-                        username,
-                        otpCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void PortalOTPAsync(string username, string otpCode) {
-            this.PortalOTPAsync(username, otpCode, null);
-        }
-        
-        /// <remarks/>
-        public void PortalOTPAsync(string username, string otpCode, object userState) {
-            if ((this.PortalOTPOperationCompleted == null)) {
-                this.PortalOTPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPortalOTPOperationCompleted);
-            }
-            this.InvokeAsync("PortalOTP", new object[] {
-                        username,
-                        otpCode}, this.PortalOTPOperationCompleted, userState);
-        }
-        
-        private void OnPortalOTPOperationCompleted(object arg) {
-            if ((this.PortalOTPCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.PortalOTPCompleted(this, new PortalOTPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -3689,6 +3847,226 @@ namespace TelpostaMembersPortal.NAVWS {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void CheckMemberPasswordChangedCompletedEventHandler(object sender, CheckMemberPasswordChangedCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckMemberPasswordChangedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckMemberPasswordChangedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void CheckMemberLoginCompletedEventHandler(object sender, CheckMemberLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckMemberLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckMemberLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetMemberProfileDetailsCompletedEventHandler(object sender, GetMemberProfileDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetMemberProfileDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetMemberProfileDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GenerateBeneficiaryReportCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPayrollPeriods1CompletedEventHandler(object sender, GetPayrollPeriods1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPayrollPeriods1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPayrollPeriods1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void InsertImprestRequisitionLinesCompletedEventHandler(object sender, InsertImprestRequisitionLinesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertImprestRequisitionLinesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertImprestRequisitionLinesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void LoginForUnchangedPasswordCompletedEventHandler(object sender, LoginForUnchangedPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginForUnchangedPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginForUnchangedPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void PensionerStatementCompletedEventHandler(object sender, PensionerStatementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PensionerStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PensionerStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string bigtext {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void PortalOTPCompletedEventHandler(object sender, PortalOTPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PortalOTPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PortalOTPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
         }
     }
     
@@ -4426,58 +4804,6 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void CheckMemberLoginCompletedEventHandler(object sender, CheckMemberLoginCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CheckMemberLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CheckMemberLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void CheckMemberPasswordChangedCompletedEventHandler(object sender, CheckMemberPasswordChangedCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CheckMemberPasswordChangedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CheckMemberPasswordChangedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CheckStaffLoginForUnchangedPassCompletedEventHandler(object sender, CheckStaffLoginForUnchangedPassCompletedEventArgs e);
     
     /// <remarks/>
@@ -4870,7 +5196,55 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GenerateBeneficiaryReportCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void FormatISODateCompletedEventHandler(object sender, FormatISODateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FormatISODateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FormatISODateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GenerateBeneficiaryReport1CompletedEventHandler(object sender, GenerateBeneficiaryReport1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GenerateBeneficiaryReport1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GenerateBeneficiaryReport1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -4886,7 +5260,29 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GenerateMemberStatement1CompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void GenerateMemberStatement1CompletedEventHandler(object sender, GenerateMemberStatement1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GenerateMemberStatement1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GenerateMemberStatement1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -4898,7 +5294,81 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GeneratePdfCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void GeneratePdfCompletedEventHandler(object sender, GeneratePdfCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GeneratePdfCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GeneratePdfCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GeneratePortalMembersStatementCompletedEventHandler(object sender, GeneratePortalMembersStatementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GeneratePortalMembersStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GeneratePortalMembersStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GeneratePortalPensionStatementCompletedEventHandler(object sender, GeneratePortalPensionStatementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GeneratePortalPensionStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GeneratePortalPensionStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
@@ -5240,58 +5710,6 @@ namespace TelpostaMembersPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetMemberProfileDetailsCompletedEventHandler(object sender, GetMemberProfileDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetMemberProfileDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetMemberProfileDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetPayrollPeriods1CompletedEventHandler(object sender, GetPayrollPeriods1CompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetPayrollPeriods1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetPayrollPeriods1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetPayrollPeriodsCompletedEventHandler(object sender, GetPayrollPeriodsCompletedEventArgs e);
     
     /// <remarks/>
@@ -5613,118 +6031,6 @@ namespace TelpostaMembersPortal.NAVWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void InsertApproverCommentsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void InsertImprestRequisitionLinesCompletedEventHandler(object sender, InsertImprestRequisitionLinesCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class InsertImprestRequisitionLinesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal InsertImprestRequisitionLinesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void LoginForUnchangedPasswordCompletedEventHandler(object sender, LoginForUnchangedPasswordCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LoginForUnchangedPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal LoginForUnchangedPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void PensionerStatementCompletedEventHandler(object sender, PensionerStatementCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PensionerStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal PensionerStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-        
-        /// <remarks/>
-        public string bigtext {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[1]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void PortalOTPCompletedEventHandler(object sender, PortalOTPCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PortalOTPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal PortalOTPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public bool Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
-            }
-        }
-    }
 }
 
 #pragma warning restore 1591

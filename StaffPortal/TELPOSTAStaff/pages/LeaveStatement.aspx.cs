@@ -24,49 +24,32 @@ namespace TELPOSTAStaff.pages
                 GenerateLeaveStatement();
             }
         }
-        private void GenerateLeaveStatement()
+      
+        protected void GenerateLeaveStatement()
         {
             string username = Session["username"].ToString();
-            string fileName = username.ToString().Replace(@"/", @"");
-            string pdfFilename = String.Format(@"Leave-Statement-{0}.pdf", fileName);
-            var filePath = Server.MapPath("~/Downloads/") + String.Format("Leave-Statement-{0}.pdf", fileName);
-            if (!Directory.Exists(Server.MapPath("~/Downloads/")))
-            {
-                Directory.CreateDirectory(Server.MapPath("~/Downloads/"));
-            }
-
-            Components.ObjNav.GenerateStaffLeaveStatement(username, String.Format(@"Leave-Statement-{0}.pdf", fileName));
-            if (File.Exists(filePath))
-            {
-                System.Diagnostics.Debug.WriteLine("Statement generated successfully.");
-                myPDF.Attributes.Add("src", ResolveUrl("~/Downloads/" + String.Format("Leave-Statement-{0}.pdf", fileName)));
-            }
-            else
-            {
-                //throw new FileNotFoundException("Statement PDF was not found after generation.");
-                System.Diagnostics.Debug.WriteLine("Statement PDF was not found after generation");
-            }
-
-        }
-        protected void GenerateLeaveStatement1()
-        {
+            string filename = username.ToString().Replace(@"/", @"");
             try
             {
-                var filename = Session["username"].ToString().Replace(@"/", @"");
                 try
                 {
-                    Components.ObjNav.GenerateLeaveStatement(Session["username"].ToString(), String.Format("LvSttmnts{0}.pdf", filename));
-                    //myPDF.Attributes.Add("src", ResolveUrl("~/Downloads/" + String.Format("LvSttmnts{0}.pdf", filename)));
-                    myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("LvSttmnts{{0}.pdf", filename)));
-                    string path = HostingEnvironment.MapPath("~/Download/" + $"LvSttmnts{filename}.pdf");
+                    
+                    string returnstring = "";
+                    Components.ObjNav.GenerateLeaveStatement(Session["username"].ToString(), String.Format("LvSttmnts{0}.pdf", filename), ref returnstring);
+                    
+                    myPDF.Attributes.Add("src", ResolveUrl("~/Downloads/" + String.Format("LvSttmnts{0}.pdf", filename)));
+
+                    byte[] bytes = Convert.FromBase64String(returnstring);
+                    string path = HostingEnvironment.MapPath("~/Downloads/" + $"LvSttmnts{filename}.pdf");
                     if (System.IO.File.Exists(path))
                     {
                         System.IO.File.Delete(path);
                     }
                     FileStream stream = new FileStream(path, FileMode.CreateNew);
                     BinaryWriter writer = new BinaryWriter(stream);
-
-                    myPDF.Attributes.Add("src", ResolveUrl("~/Download/" + String.Format("PAYSLIP{0}.pdf", filename)));
+                    writer.Write(bytes, 0, bytes.Length);
+                    writer.Close();
+                    myPDF.Attributes.Add("src", ResolveUrl("~/Downloads/" + String.Format("LvSttmnts{0}.pdf", filename)));
                 }
                 catch (Exception exception)
                 {

@@ -45,6 +45,20 @@
           </sequence>
         </complexType>
       </element>
+      <element name="FormatISODate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="realDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FormatISODate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GenerateBeneficiaryReport">
         <complexType>
           <sequence>
@@ -88,6 +102,23 @@
       <element name="GeneratePensionStatement_Result">
         <complexType>
           <sequence />
+        </complexType>
+      </element>
+      <element name="GeneratePortalPensionStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePortalPensionStatement_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="GetLifeCertDates">
@@ -381,6 +412,12 @@
   <message name="CheckValidPensionerNo_Result">
     <part name="parameters" element="tns:CheckValidPensionerNo_Result" />
   </message>
+  <message name="FormatISODate">
+    <part name="parameters" element="tns:FormatISODate" />
+  </message>
+  <message name="FormatISODate_Result">
+    <part name="parameters" element="tns:FormatISODate_Result" />
+  </message>
   <message name="GenerateBeneficiaryReport">
     <part name="parameters" element="tns:GenerateBeneficiaryReport" />
   </message>
@@ -398,6 +435,12 @@
   </message>
   <message name="GeneratePensionStatement_Result">
     <part name="parameters" element="tns:GeneratePensionStatement_Result" />
+  </message>
+  <message name="GeneratePortalPensionStatement">
+    <part name="parameters" element="tns:GeneratePortalPensionStatement" />
+  </message>
+  <message name="GeneratePortalPensionStatement_Result">
+    <part name="parameters" element="tns:GeneratePortalPensionStatement_Result" />
   </message>
   <message name="GetLifeCertDates">
     <part name="parameters" element="tns:GetLifeCertDates" />
@@ -526,6 +569,10 @@
       <input name="CheckValidPensionerNo" message="tns:CheckValidPensionerNo" />
       <output name="CheckValidPensionerNo_Result" message="tns:CheckValidPensionerNo_Result" />
     </operation>
+    <operation name="FormatISODate">
+      <input name="FormatISODate" message="tns:FormatISODate" />
+      <output name="FormatISODate_Result" message="tns:FormatISODate_Result" />
+    </operation>
     <operation name="GenerateBeneficiaryReport">
       <input name="GenerateBeneficiaryReport" message="tns:GenerateBeneficiaryReport" />
       <output name="GenerateBeneficiaryReport_Result" message="tns:GenerateBeneficiaryReport_Result" />
@@ -537,6 +584,10 @@
     <operation name="GeneratePensionStatement">
       <input name="GeneratePensionStatement" message="tns:GeneratePensionStatement" />
       <output name="GeneratePensionStatement_Result" message="tns:GeneratePensionStatement_Result" />
+    </operation>
+    <operation name="GeneratePortalPensionStatement">
+      <input name="GeneratePortalPensionStatement" message="tns:GeneratePortalPensionStatement" />
+      <output name="GeneratePortalPensionStatement_Result" message="tns:GeneratePortalPensionStatement_Result" />
     </operation>
     <operation name="GetLifeCertDates">
       <input name="GetLifeCertDates" message="tns:GetLifeCertDates" />
@@ -644,6 +695,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="FormatISODate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:FormatISODate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FormatISODate">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FormatISODate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GenerateBeneficiaryReport">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GenerateBeneficiaryReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GenerateBeneficiaryReport">
@@ -668,6 +728,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GeneratePensionStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GeneratePortalPensionStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Pension:GeneratePortalPensionStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GeneratePortalPensionStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GeneratePortalPensionStatement_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

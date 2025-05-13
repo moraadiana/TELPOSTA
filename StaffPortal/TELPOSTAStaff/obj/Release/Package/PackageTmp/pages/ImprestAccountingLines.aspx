@@ -40,7 +40,7 @@
                                 </div>
                              
                             </div>
-                            <%--<div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <h3>Upload supporting documents</h3>
                                 </div>
@@ -52,7 +52,7 @@
                                         <asp:LinkButton ID="lbtnUpload" runat="server" CssClass="btn btn-primary" OnClick="lbtnUpload_Click"><i class="fa fa-upload"></i>&nbsp;Upload</asp:LinkButton>
                                     </div>
                                 </div>
-                            </div>--%>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3>Imprest Surrender Details</h3>
@@ -94,7 +94,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtActualAmount" runat="server" 
                                                         CssClass="actualAmount form-control"
-                                                        onkeyup="calculateCashReturned(this)"
+                                                        onkeyup="debouncedCalculateCashReturned(this)"
                                                         BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
                                                 </ItemTemplate>
                                                 <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
@@ -120,7 +120,7 @@
                                 </div>
                             </div>
 
-                           <%-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <h3>Document Attachments</h3>
                                 </div>
@@ -150,7 +150,7 @@
                                         </EmptyDataTemplate>
                                     </asp:GridView>
                                 </div>
-                            </div>--%>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <a href="ImprestAccountingListing.aspx" class="btn btn-warning pull-left"><i class="fa fa-backward"></i>&nbsp;Back</a>
@@ -169,19 +169,40 @@
        function calculateCashReturned(actualInput) {
            var row = actualInput.closest('tr');
 
-           // Get the 'Amount' value and ensure it’s parsed correctly
-           var amountCell = row.querySelectorAll('td')[3]; // Adjust index if necessary
+           
+           var amountCell = row.querySelectorAll('td')[3];
            var amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")) || 0;
            var actual = parseFloat(actualInput.value) || 0;
 
-           // Calculate returned amount, which can be negative
            var returned = amount - actual;
 
-           // Set the 'Cash Amount Returned' field
+        
            var returnedBox = row.querySelector('.cashReturned');
-           returnedBox.value = returned.toFixed(2); // This will display negative values correctly
+           returnedBox.value = returned.toFixed(2); 
            __doPostBack('<%= gvLines.ClientID %>', '');
        }
+       function debounce(func, delay) {
+           let timeout;
+           return function (...args) {
+               clearTimeout(timeout);
+               timeout = setTimeout(() => func.apply(this, args), delay);
+           };
+       }
+
+       const debouncedCalculateCashReturned = debounce(function (actualInput) {
+           var row = actualInput.closest('tr');
+
+           var amountCell = row.querySelectorAll('td')[4]; 
+           var amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")) || 0;
+           var actual = parseFloat(actualInput.value) || 0;
+
+           
+           var returned = amount - actual;
+
+           var returnedBox = row.querySelector('.cashReturned');
+           returnedBox.value = returned.toFixed(2); 
+           __doPostBack('<%= gvLines.ClientID %>', '');
+        }, 500); 
 
 
    </script>
