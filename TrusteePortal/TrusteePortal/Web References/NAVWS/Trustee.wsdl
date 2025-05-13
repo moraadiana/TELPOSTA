@@ -114,6 +114,21 @@
           </sequence>
         </complexType>
       </element>
+      <element name="GetBoardMeetingsAttendedDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="boardNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBoardMeetingsAttendedDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="GetBoardMeetingsAttended">
         <complexType>
           <sequence>
@@ -225,6 +240,22 @@
           </sequence>
         </complexType>
       </element>
+      <element name="UploadProfilePicture">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UploadProfilePicture_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="CheckTrusteeLogin">
@@ -275,6 +306,12 @@
   <message name="GetBoardMeetingsAttended1_Result">
     <part name="parameters" element="tns:GetBoardMeetingsAttended1_Result" />
   </message>
+  <message name="GetBoardMeetingsAttendedDetails">
+    <part name="parameters" element="tns:GetBoardMeetingsAttendedDetails" />
+  </message>
+  <message name="GetBoardMeetingsAttendedDetails_Result">
+    <part name="parameters" element="tns:GetBoardMeetingsAttendedDetails_Result" />
+  </message>
   <message name="GetBoardMeetingsAttended">
     <part name="parameters" element="tns:GetBoardMeetingsAttended" />
   </message>
@@ -323,6 +360,12 @@
   <message name="UpdateTrusteePassword_Result">
     <part name="parameters" element="tns:UpdateTrusteePassword_Result" />
   </message>
+  <message name="UploadProfilePicture">
+    <part name="parameters" element="tns:UploadProfilePicture" />
+  </message>
+  <message name="UploadProfilePicture_Result">
+    <part name="parameters" element="tns:UploadProfilePicture_Result" />
+  </message>
   <portType name="Trustee_Port">
     <operation name="CheckTrusteeLogin">
       <input name="CheckTrusteeLogin" message="tns:CheckTrusteeLogin" />
@@ -356,6 +399,10 @@
       <input name="GetBoardMeetingsAttended1" message="tns:GetBoardMeetingsAttended1" />
       <output name="GetBoardMeetingsAttended1_Result" message="tns:GetBoardMeetingsAttended1_Result" />
     </operation>
+    <operation name="GetBoardMeetingsAttendedDetails">
+      <input name="GetBoardMeetingsAttendedDetails" message="tns:GetBoardMeetingsAttendedDetails" />
+      <output name="GetBoardMeetingsAttendedDetails_Result" message="tns:GetBoardMeetingsAttendedDetails_Result" />
+    </operation>
     <operation name="GetBoardMeetingsAttended">
       <input name="GetBoardMeetingsAttended" message="tns:GetBoardMeetingsAttended" />
       <output name="GetBoardMeetingsAttended_Result" message="tns:GetBoardMeetingsAttended_Result" />
@@ -387,6 +434,10 @@
     <operation name="UpdateTrusteePassword">
       <input name="UpdateTrusteePassword" message="tns:UpdateTrusteePassword" />
       <output name="UpdateTrusteePassword_Result" message="tns:UpdateTrusteePassword_Result" />
+    </operation>
+    <operation name="UploadProfilePicture">
+      <input name="UploadProfilePicture" message="tns:UploadProfilePicture" />
+      <output name="UploadProfilePicture_Result" message="tns:UploadProfilePicture_Result" />
     </operation>
   </portType>
   <binding name="Trustee_Binding" type="tns:Trustee_Port">
@@ -463,6 +514,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetBoardMeetingsAttendedDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttendedDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBoardMeetingsAttendedDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBoardMeetingsAttendedDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetBoardMeetingsAttended">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:GetBoardMeetingsAttended" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetBoardMeetingsAttended">
@@ -532,6 +592,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="UpdateTrusteePassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UploadProfilePicture">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Trustee:UploadProfilePicture" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UploadProfilePicture">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UploadProfilePicture_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

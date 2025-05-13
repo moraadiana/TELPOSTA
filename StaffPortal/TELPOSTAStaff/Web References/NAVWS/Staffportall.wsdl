@@ -2,6 +2,18 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Staffportall" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="GetVendors">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetVendors_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="HRMLeaveApplication1">
         <complexType>
           <sequence>
@@ -738,6 +750,34 @@
           </sequence>
         </complexType>
       </element>
+      <element name="UpdateEmployeeDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="firstName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="middleName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lastName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="gender" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="maritalStatus" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="religion" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tribe" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="phoneNumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="county" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="idNumber" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="postalAddress" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="title" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateEmployeeDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="UpdateStaffAutoGenPassword">
         <complexType>
           <sequence>
@@ -794,6 +834,21 @@
       <element name="ValidateStartDate_Result">
         <complexType>
           <sequence />
+        </complexType>
+      </element>
+      <element name="VerifyCurrentPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="oldpass" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyCurrentPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="getEmployeeName">
@@ -1197,12 +1252,16 @@
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="staffNo" type="string" />
             <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
           </sequence>
         </complexType>
       </element>
       <element name="GenerateLeaveStatement_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="GeneratePaySlipReport1">
@@ -1408,6 +1467,20 @@
         </complexType>
       </element>
       <element name="GetDocumentlines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEmployeeDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEmployeeDetails_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1960,20 +2033,14 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GetVendors">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="GetVendors_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="GetVendors">
+    <part name="parameters" element="tns:GetVendors" />
+  </message>
+  <message name="GetVendors_Result">
+    <part name="parameters" element="tns:GetVendors_Result" />
+  </message>
   <message name="HRMLeaveApplication1">
     <part name="parameters" element="tns:HRMLeaveApplication1" />
   </message>
@@ -2256,6 +2323,12 @@
   <message name="SubmitbacktoOffice_Result">
     <part name="parameters" element="tns:SubmitbacktoOffice_Result" />
   </message>
+  <message name="UpdateEmployeeDetails">
+    <part name="parameters" element="tns:UpdateEmployeeDetails" />
+  </message>
+  <message name="UpdateEmployeeDetails_Result">
+    <part name="parameters" element="tns:UpdateEmployeeDetails_Result" />
+  </message>
   <message name="UpdateStaffAutoGenPassword">
     <part name="parameters" element="tns:UpdateStaffAutoGenPassword" />
   </message>
@@ -2279,6 +2352,12 @@
   </message>
   <message name="ValidateStartDate_Result">
     <part name="parameters" element="tns:ValidateStartDate_Result" />
+  </message>
+  <message name="VerifyCurrentPassword">
+    <part name="parameters" element="tns:VerifyCurrentPassword" />
+  </message>
+  <message name="VerifyCurrentPassword_Result">
+    <part name="parameters" element="tns:VerifyCurrentPassword_Result" />
   </message>
   <message name="getEmployeeName">
     <part name="parameters" element="tns:getEmployeeName" />
@@ -2526,6 +2605,12 @@
   <message name="GetDocumentlines_Result">
     <part name="parameters" element="tns:GetDocumentlines_Result" />
   </message>
+  <message name="GetEmployeeDetails">
+    <part name="parameters" element="tns:GetEmployeeDetails" />
+  </message>
+  <message name="GetEmployeeDetails_Result">
+    <part name="parameters" element="tns:GetEmployeeDetails_Result" />
+  </message>
   <message name="GetEmployeeLeaves">
     <part name="parameters" element="tns:GetEmployeeLeaves" />
   </message>
@@ -2766,13 +2851,11 @@
   <message name="GetTravelStaff_Result">
     <part name="parameters" element="tns:GetTravelStaff_Result" />
   </message>
-  <message name="GetVendors">
-    <part name="parameters" element="tns:GetVendors" />
-  </message>
-  <message name="GetVendors_Result">
-    <part name="parameters" element="tns:GetVendors_Result" />
-  </message>
   <portType name="Staffportall_Port">
+    <operation name="GetVendors">
+      <input name="GetVendors" message="tns:GetVendors" />
+      <output name="GetVendors_Result" message="tns:GetVendors_Result" />
+    </operation>
     <operation name="HRMLeaveApplication1">
       <input name="HRMLeaveApplication1" message="tns:HRMLeaveApplication1" />
       <output name="HRMLeaveApplication1_Result" message="tns:HRMLeaveApplication1_Result" />
@@ -2961,6 +3044,10 @@
       <input name="SubmitbacktoOffice" message="tns:SubmitbacktoOffice" />
       <output name="SubmitbacktoOffice_Result" message="tns:SubmitbacktoOffice_Result" />
     </operation>
+    <operation name="UpdateEmployeeDetails">
+      <input name="UpdateEmployeeDetails" message="tns:UpdateEmployeeDetails" />
+      <output name="UpdateEmployeeDetails_Result" message="tns:UpdateEmployeeDetails_Result" />
+    </operation>
     <operation name="UpdateStaffAutoGenPassword">
       <input name="UpdateStaffAutoGenPassword" message="tns:UpdateStaffAutoGenPassword" />
       <output name="UpdateStaffAutoGenPassword_Result" message="tns:UpdateStaffAutoGenPassword_Result" />
@@ -2976,6 +3063,10 @@
     <operation name="ValidateStartDate">
       <input name="ValidateStartDate" message="tns:ValidateStartDate" />
       <output name="ValidateStartDate_Result" message="tns:ValidateStartDate_Result" />
+    </operation>
+    <operation name="VerifyCurrentPassword">
+      <input name="VerifyCurrentPassword" message="tns:VerifyCurrentPassword" />
+      <output name="VerifyCurrentPassword_Result" message="tns:VerifyCurrentPassword_Result" />
     </operation>
     <operation name="getEmployeeName">
       <input name="getEmployeeName" message="tns:getEmployeeName" />
@@ -3141,6 +3232,10 @@
       <input name="GetDocumentlines" message="tns:GetDocumentlines" />
       <output name="GetDocumentlines_Result" message="tns:GetDocumentlines_Result" />
     </operation>
+    <operation name="GetEmployeeDetails">
+      <input name="GetEmployeeDetails" message="tns:GetEmployeeDetails" />
+      <output name="GetEmployeeDetails_Result" message="tns:GetEmployeeDetails_Result" />
+    </operation>
     <operation name="GetEmployeeLeaves">
       <input name="GetEmployeeLeaves" message="tns:GetEmployeeLeaves" />
       <output name="GetEmployeeLeaves_Result" message="tns:GetEmployeeLeaves_Result" />
@@ -3301,13 +3396,18 @@
       <input name="GetTravelStaff" message="tns:GetTravelStaff" />
       <output name="GetTravelStaff_Result" message="tns:GetTravelStaff_Result" />
     </operation>
-    <operation name="GetVendors">
-      <input name="GetVendors" message="tns:GetVendors" />
-      <output name="GetVendors_Result" message="tns:GetVendors_Result" />
-    </operation>
   </portType>
   <binding name="Staffportall_Binding" type="tns:Staffportall_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GetVendors">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetVendors" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetVendors">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetVendors_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="HRMLeaveApplication1">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:HRMLeaveApplication1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="HRMLeaveApplication1">
@@ -3731,6 +3831,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="UpdateEmployeeDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:UpdateEmployeeDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateEmployeeDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateEmployeeDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="UpdateStaffAutoGenPassword">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:UpdateStaffAutoGenPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="UpdateStaffAutoGenPassword">
@@ -3764,6 +3873,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="ValidateStartDate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="VerifyCurrentPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:VerifyCurrentPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="VerifyCurrentPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="VerifyCurrentPassword_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -4136,6 +4254,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="GetEmployeeDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetEmployeeDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetEmployeeDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetEmployeeDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="GetEmployeeLeaves">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetEmployeeLeaves" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="GetEmployeeLeaves">
@@ -4493,15 +4620,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetTravelStaff_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="GetVendors">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Staffportall:GetVendors" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetVendors">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetVendors_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

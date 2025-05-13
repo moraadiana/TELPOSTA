@@ -17,6 +17,7 @@ using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using System.Globalization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PensionPortal.Controllers
 {
@@ -85,8 +86,17 @@ namespace PensionPortal.Controllers
                 {
                     System.IO.File.Delete(pdfFilePath);
                 }
+                string base64Pdf = webportals.GeneratePortalPensionStatement(pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
 
-                webportals.GeneratePensionStatement1(path,pensionerNo, Convert.ToDateTime(startDate), Convert.ToDateTime(endDate), pdfFileName);
+                if (string.IsNullOrWhiteSpace(base64Pdf))
+                {
+                    TempData["Error"] = "No data was returned for the pension statement.";
+                    return RedirectToAction("PensionerStatement");
+                }
+
+                byte[] pdfBytes = Convert.FromBase64String(base64Pdf);
+                System.IO.File.WriteAllBytes(pdfFilePath, pdfBytes);
+
 
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
             }

@@ -40,7 +40,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%--<%=Jobs()%>--%>
+                                                <%=Jobs()%>
                                             </tbody>
                                         </table>
                                     </div>

@@ -78,7 +78,7 @@ namespace TrusteePortal.Controllers
                     System.IO.File.Delete(filepath);
                 }
                 account.profilePic.SaveAs(filepath);
-                // webportals.UploadProfilePicture(memberNo, filepath, "Profile pic");
+                webportals.UploadProfilePicture(trusteeNo, filepath, "Profile pic");
             }
             return RedirectToAction("Index", "Dashboard");
         }

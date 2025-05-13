@@ -57,6 +57,7 @@
                                 <div class="col-md-12">
                                     <asp:GridView ID="gvLines" AutoGenerateColumns="false" DataKeyNames="Advance Type" class="table table-responsive no-padding table-bordered table-hover" runat="server"
                                         AllowSorting="True" AllowPaging="true" ShowFooter="true" PageSize="5">
+                                       
                                         <Columns>
                                             <asp:TemplateField HeaderStyle-HorizontalAlign="Left" HeaderText="#No" SortExpression="">
                                                 <HeaderStyle Width="30px" />
@@ -69,13 +70,15 @@
                                             <asp:BoundField DataField="Account Name" HeaderText="Account Name" />
                                             <%--<asp:BoundField DataField="Imprest Holder" HeaderText="Imprest Holder" />--%>
                                             <asp:BoundField DataField="Amount" HeaderText="Amount" />
-                                            <asp:TemplateField HeaderText="Receipt No">
+                                          <%--  <asp:TemplateField HeaderText="Receipt No">
                                                 <ItemTemplate>
                                                     <asp:DropDownList ID="ddlReceipts" CssClass="form-control" OnSelectedIndexChanged="ddlReceipts_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                                     </asp:DropDownList>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Actual Amount Spent" SortExpression="">
+                                            </asp:TemplateField>--%>
+
+
+                                           <%-- <asp:TemplateField HeaderText="Actual Amount Spent" SortExpression="">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtActualAmount" runat="server" Text="" BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
                                                 </ItemTemplate>
@@ -83,11 +86,32 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Cash Amount Returned">
                                                 <ItemTemplate>
-                                                    <%--<asp:Label ID="lblCashAmountReturned" runat="server" Text="120" ForeColor="Blue" Font-Bold="true"></asp:Label>--%>
                                                     <asp:TextBox ID="txtAmountReturned" runat="server" Text="" BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
                                                 </ItemTemplate>
                                                 <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
+
+
+                                           <asp:TemplateField HeaderText="Actual Amount Spent">
+                                              <ItemTemplate>
+                                                  <asp:TextBox ID="txtActualAmount" runat="server" 
+                                                      CssClass="actualAmount form-control"
+                                                      onkeyup="debouncedCalculateCashReturned(this)"
+                                                      BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
+                                              </ItemTemplate>
+                                              <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
+                                          </asp:TemplateField>
+
+                                          <asp:TemplateField HeaderText="Cash Amount Returned">
+                                              <ItemTemplate>
+                                                  <asp:TextBox ID="txtAmountReturned" runat="server"
+                                                      CssClass="cashReturned form-control"
+                                                      ReadOnly="false"
+                                                      BorderColor="Blue" BorderStyle="Ridge" BorderWidth="2px" ForeColor="Blue" Width="100px" />
+                                              </ItemTemplate>
+                                              <ItemStyle Font-Bold="True" ForeColor="Green"></ItemStyle>
+                                          </asp:TemplateField>
+
                                         </Columns>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <EmptyDataTemplate>
@@ -139,4 +163,44 @@
             </div>
         </section>
     </div>
+    <script>
+    function calculateCashReturned(actualInput) {
+        var row = actualInput.closest('tr');
+
+        var amountCell = row.querySelectorAll('td')[4]; 
+        var amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")) || 0;
+        var actual = parseFloat(actualInput.value) || 0;
+
+        var returned = amount - actual;
+
+        var returnedBox = row.querySelector('.cashReturned');
+        returnedBox.value = returned.toFixed(2); 
+        __doPostBack('<%= gvLines.ClientID %>', '');
+        }
+
+
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        const debouncedCalculateCashReturned = debounce(function (actualInput) {
+            var row = actualInput.closest('tr');
+
+            var amountCell = row.querySelectorAll('td')[4]; 
+            var amount = parseFloat(amountCell.textContent.replace(/[^0-9.-]+/g, "")) || 0;
+            var actual = parseFloat(actualInput.value) || 0;
+
+            var returned = amount - actual;
+
+            var returnedBox = row.querySelector('.cashReturned');
+            returnedBox.value = returned.toFixed(2); 
+            __doPostBack('<%= gvLines.ClientID %>', '');
+}, 500); 
+
+
+    </script>
 </asp:Content>

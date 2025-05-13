@@ -233,7 +233,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-      /*  private void BindAttachedDocuments(string documentNo)
+        private void BindAttachedDocuments(string documentNo)
         {
             try
             {
@@ -279,7 +279,7 @@ namespace TELPOSTAStaff.pages
                 // Handle exception (log or show an error message as needed)
                 Console.WriteLine("Error: " + ex.Message);
             }
-        }*/
+        }
        
 
 
@@ -396,8 +396,8 @@ namespace TELPOSTAStaff.pages
 
         //uncomment on adding upload doc
 
-/*        protected void lbtnUpload_Click(object sender, EventArgs e)
-        {
+      protected void lbtnUpload_Click(object sender, EventArgs e)
+      {
             try
             {
                 if (fuImprestDocs.PostedFile != null)
@@ -445,7 +445,7 @@ namespace TELPOSTAStaff.pages
                 ex.Data.Clear();
             }
         }
-        */
+        
         protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
         {
             try

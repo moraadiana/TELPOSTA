@@ -7,11 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Services.Description;
 using PensionPortal.NAVWS;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+using System.IO;
+using System.Web.Helpers;
+
 
 namespace PensionPortal
 {
     public class Components
     {
+        private static readonly string apiUrl = "https://account.uwaziimobile.com/sms/sendsms";
+        private static readonly string apiKey = "jFCeuViLtH-uwIB7eSr7BQuT1mvuhP";
         public static Pension ObjNav
         {
             get
@@ -38,6 +46,19 @@ namespace PensionPortal
                     Console.WriteLine("Error initializing web service: " + ex.Message);
                 }
                 return webservice;
+            }
+        }
+        public static void SendSMSAlerts(string phone, string subject, string message)
+        {
+
+            try
+            {
+                
+             
+            }
+            catch (Exception Ex)
+            {
+                Ex.Data.Clear();
             }
         }
         public static void SendEmailAlerts(string address, string subject, string message)

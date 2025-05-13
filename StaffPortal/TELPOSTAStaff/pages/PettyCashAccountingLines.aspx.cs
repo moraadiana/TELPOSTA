@@ -108,8 +108,8 @@ namespace TELPOSTAStaff.pages
             {
                 ddlResponsibilityCenter.Items.Clear();
 
-                string grouping = "SURP-CASH";
-                string resCenters = webportals.GetResponsibilityCentres(grouping);
+               // string grouping = "SURP-CASH";
+                string resCenters = webportals.GetAllResponsibilityCentres();
                 if (!string.IsNullOrEmpty(resCenters))
                 {
                     string[] resCenterArr = resCenters.Split(new string[] { "[]" }, StringSplitOptions.RemoveEmptyEntries);
@@ -262,11 +262,11 @@ namespace TELPOSTAStaff.pages
                     return;
                 }
 
-                if (gvAttachments.Rows.Count < 1)
-                {
-                    Message("Please upload supporting documents.");
-                    return;
-                }
+                //if (gvAttachments.Rows.Count < 1)
+                //{
+                //    Message("Please upload supporting documents.");
+                //    return;
+                //}
 
                 string pettyCashSurrenderNo = Session["DocumentNo"].ToString();
 
@@ -360,7 +360,7 @@ namespace TELPOSTAStaff.pages
             ClientScript.RegisterStartupScript(GetType(), "Client Script", strScript.ToString());
         }
 
-       /* protected void lbtnUpload_Click(object sender, EventArgs e)
+       protected void lbtnUpload_Click(object sender, EventArgs e)
         {
             try
             {
@@ -408,7 +408,7 @@ namespace TELPOSTAStaff.pages
             {
                 ex.Data.Clear();
             }
-        }*/
+        }
         protected void lbtnRemoveAttach_Click(object sender, EventArgs e)
         {
             try

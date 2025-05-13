@@ -2,6 +2,142 @@
 <definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Portal" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Portal" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="CheckMemberPasswordChanged">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberPasswordChanged_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckMemberLogin_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberProfileDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetMemberProfileDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryReport">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="path" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fileName" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryReport_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods1">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPayrollPeriods1_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertImprestRequisitionLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="atypes" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="accName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="userId" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertImprestRequisitionLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LoginForUnchangedPassword">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LoginForUnchangedPassword_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="fileNamefromApp" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PensionerStatement_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PortalOTP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PortalOTP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
       <element name="RejectClaimReq">
         <complexType>
           <sequence>
@@ -566,35 +702,6 @@
           </sequence>
         </complexType>
       </element>
-      <element name="CheckMemberLogin">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="userpassword" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckMemberLogin_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckMemberPasswordChanged">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="CheckMemberPasswordChanged_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="CheckStaffLoginForUnchangedPass">
         <complexType>
           <sequence>
@@ -820,7 +927,21 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GenerateBeneficiaryReport">
+      <element name="FormatISODate">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="realDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FormatISODate_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GenerateBeneficiaryReport1">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="path" type="string" />
@@ -828,9 +949,11 @@
           </sequence>
         </complexType>
       </element>
-      <element name="GenerateBeneficiaryReport_Result">
+      <element name="GenerateBeneficiaryReport1_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="GenerateBeneficiaryStatement">
@@ -887,7 +1010,9 @@
       </element>
       <element name="GenerateMemberStatement1_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="GenerateMemberStatementNSSF">
@@ -933,7 +1058,43 @@
       </element>
       <element name="GeneratePdf_Result">
         <complexType>
-          <sequence />
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePortalMembersStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="memberNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePortalMembersStatement_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePortalPensionStatement">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="filenameFromApp" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GeneratePortalPensionStatement_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
         </complexType>
       </element>
       <element name="GetBeneficiaryPFNo">
@@ -1112,32 +1273,6 @@
         </complexType>
       </element>
       <element name="GetMemberName_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetMemberProfileDetails">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetMemberProfileDetails_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetPayrollPeriods1">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="GetPayrollPeriods1_Result">
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
@@ -1362,76 +1497,62 @@
           <sequence />
         </complexType>
       </element>
-      <element name="InsertImprestRequisitionLines">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="reqNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="atypes" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="accNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="accName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="amount" type="decimal" />
-            <element minOccurs="1" maxOccurs="1" name="userId" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="InsertImprestRequisitionLines_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="LoginForUnchangedPassword">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="LoginForUnchangedPassword_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="PensionerStatement">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="fileNamefromApp" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="pensionerNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="startDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="endDate" type="date" />
-            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="PensionerStatement_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="bigtext" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="PortalOTP">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="otpCode" type="string" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="PortalOTP_Result">
-        <complexType>
-          <sequence>
-            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
-          </sequence>
-        </complexType>
-      </element>
     </schema>
   </types>
+  <message name="CheckMemberPasswordChanged">
+    <part name="parameters" element="tns:CheckMemberPasswordChanged" />
+  </message>
+  <message name="CheckMemberPasswordChanged_Result">
+    <part name="parameters" element="tns:CheckMemberPasswordChanged_Result" />
+  </message>
+  <message name="CheckMemberLogin">
+    <part name="parameters" element="tns:CheckMemberLogin" />
+  </message>
+  <message name="CheckMemberLogin_Result">
+    <part name="parameters" element="tns:CheckMemberLogin_Result" />
+  </message>
+  <message name="GetMemberProfileDetails">
+    <part name="parameters" element="tns:GetMemberProfileDetails" />
+  </message>
+  <message name="GetMemberProfileDetails_Result">
+    <part name="parameters" element="tns:GetMemberProfileDetails_Result" />
+  </message>
+  <message name="GenerateBeneficiaryReport">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport" />
+  </message>
+  <message name="GenerateBeneficiaryReport_Result">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport_Result" />
+  </message>
+  <message name="GetPayrollPeriods1">
+    <part name="parameters" element="tns:GetPayrollPeriods1" />
+  </message>
+  <message name="GetPayrollPeriods1_Result">
+    <part name="parameters" element="tns:GetPayrollPeriods1_Result" />
+  </message>
+  <message name="InsertImprestRequisitionLines">
+    <part name="parameters" element="tns:InsertImprestRequisitionLines" />
+  </message>
+  <message name="InsertImprestRequisitionLines_Result">
+    <part name="parameters" element="tns:InsertImprestRequisitionLines_Result" />
+  </message>
+  <message name="LoginForUnchangedPassword">
+    <part name="parameters" element="tns:LoginForUnchangedPassword" />
+  </message>
+  <message name="LoginForUnchangedPassword_Result">
+    <part name="parameters" element="tns:LoginForUnchangedPassword_Result" />
+  </message>
+  <message name="PensionerStatement">
+    <part name="parameters" element="tns:PensionerStatement" />
+  </message>
+  <message name="PensionerStatement_Result">
+    <part name="parameters" element="tns:PensionerStatement_Result" />
+  </message>
+  <message name="PortalOTP">
+    <part name="parameters" element="tns:PortalOTP" />
+  </message>
+  <message name="PortalOTP_Result">
+    <part name="parameters" element="tns:PortalOTP_Result" />
+  </message>
   <message name="RejectClaimReq">
     <part name="parameters" element="tns:RejectClaimReq" />
   </message>
@@ -1672,18 +1793,6 @@
   <message name="CheckMemberLoginForUnchangedPass_Result">
     <part name="parameters" element="tns:CheckMemberLoginForUnchangedPass_Result" />
   </message>
-  <message name="CheckMemberLogin">
-    <part name="parameters" element="tns:CheckMemberLogin" />
-  </message>
-  <message name="CheckMemberLogin_Result">
-    <part name="parameters" element="tns:CheckMemberLogin_Result" />
-  </message>
-  <message name="CheckMemberPasswordChanged">
-    <part name="parameters" element="tns:CheckMemberPasswordChanged" />
-  </message>
-  <message name="CheckMemberPasswordChanged_Result">
-    <part name="parameters" element="tns:CheckMemberPasswordChanged_Result" />
-  </message>
   <message name="CheckStaffLoginForUnchangedPass">
     <part name="parameters" element="tns:CheckStaffLoginForUnchangedPass" />
   </message>
@@ -1774,11 +1883,17 @@
   <message name="FnAttachments_Result">
     <part name="parameters" element="tns:FnAttachments_Result" />
   </message>
-  <message name="GenerateBeneficiaryReport">
-    <part name="parameters" element="tns:GenerateBeneficiaryReport" />
+  <message name="FormatISODate">
+    <part name="parameters" element="tns:FormatISODate" />
   </message>
-  <message name="GenerateBeneficiaryReport_Result">
-    <part name="parameters" element="tns:GenerateBeneficiaryReport_Result" />
+  <message name="FormatISODate_Result">
+    <part name="parameters" element="tns:FormatISODate_Result" />
+  </message>
+  <message name="GenerateBeneficiaryReport1">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport1" />
+  </message>
+  <message name="GenerateBeneficiaryReport1_Result">
+    <part name="parameters" element="tns:GenerateBeneficiaryReport1_Result" />
   </message>
   <message name="GenerateBeneficiaryStatement">
     <part name="parameters" element="tns:GenerateBeneficiaryStatement" />
@@ -1821,6 +1936,18 @@
   </message>
   <message name="GeneratePdf_Result">
     <part name="parameters" element="tns:GeneratePdf_Result" />
+  </message>
+  <message name="GeneratePortalMembersStatement">
+    <part name="parameters" element="tns:GeneratePortalMembersStatement" />
+  </message>
+  <message name="GeneratePortalMembersStatement_Result">
+    <part name="parameters" element="tns:GeneratePortalMembersStatement_Result" />
+  </message>
+  <message name="GeneratePortalPensionStatement">
+    <part name="parameters" element="tns:GeneratePortalPensionStatement" />
+  </message>
+  <message name="GeneratePortalPensionStatement_Result">
+    <part name="parameters" element="tns:GeneratePortalPensionStatement_Result" />
   </message>
   <message name="GetBeneficiaryPFNo">
     <part name="parameters" element="tns:GetBeneficiaryPFNo" />
@@ -1899,18 +2026,6 @@
   </message>
   <message name="GetMemberName_Result">
     <part name="parameters" element="tns:GetMemberName_Result" />
-  </message>
-  <message name="GetMemberProfileDetails">
-    <part name="parameters" element="tns:GetMemberProfileDetails" />
-  </message>
-  <message name="GetMemberProfileDetails_Result">
-    <part name="parameters" element="tns:GetMemberProfileDetails_Result" />
-  </message>
-  <message name="GetPayrollPeriods1">
-    <part name="parameters" element="tns:GetPayrollPeriods1" />
-  </message>
-  <message name="GetPayrollPeriods1_Result">
-    <part name="parameters" element="tns:GetPayrollPeriods1_Result" />
   </message>
   <message name="GetPayrollPeriods">
     <part name="parameters" element="tns:GetPayrollPeriods" />
@@ -2002,31 +2117,43 @@
   <message name="InsertApproverComments_Result">
     <part name="parameters" element="tns:InsertApproverComments_Result" />
   </message>
-  <message name="InsertImprestRequisitionLines">
-    <part name="parameters" element="tns:InsertImprestRequisitionLines" />
-  </message>
-  <message name="InsertImprestRequisitionLines_Result">
-    <part name="parameters" element="tns:InsertImprestRequisitionLines_Result" />
-  </message>
-  <message name="LoginForUnchangedPassword">
-    <part name="parameters" element="tns:LoginForUnchangedPassword" />
-  </message>
-  <message name="LoginForUnchangedPassword_Result">
-    <part name="parameters" element="tns:LoginForUnchangedPassword_Result" />
-  </message>
-  <message name="PensionerStatement">
-    <part name="parameters" element="tns:PensionerStatement" />
-  </message>
-  <message name="PensionerStatement_Result">
-    <part name="parameters" element="tns:PensionerStatement_Result" />
-  </message>
-  <message name="PortalOTP">
-    <part name="parameters" element="tns:PortalOTP" />
-  </message>
-  <message name="PortalOTP_Result">
-    <part name="parameters" element="tns:PortalOTP_Result" />
-  </message>
   <portType name="Portal_Port">
+    <operation name="CheckMemberPasswordChanged">
+      <input name="CheckMemberPasswordChanged" message="tns:CheckMemberPasswordChanged" />
+      <output name="CheckMemberPasswordChanged_Result" message="tns:CheckMemberPasswordChanged_Result" />
+    </operation>
+    <operation name="CheckMemberLogin">
+      <input name="CheckMemberLogin" message="tns:CheckMemberLogin" />
+      <output name="CheckMemberLogin_Result" message="tns:CheckMemberLogin_Result" />
+    </operation>
+    <operation name="GetMemberProfileDetails">
+      <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
+      <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
+    </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <input name="GenerateBeneficiaryReport" message="tns:GenerateBeneficiaryReport" />
+      <output name="GenerateBeneficiaryReport_Result" message="tns:GenerateBeneficiaryReport_Result" />
+    </operation>
+    <operation name="GetPayrollPeriods1">
+      <input name="GetPayrollPeriods1" message="tns:GetPayrollPeriods1" />
+      <output name="GetPayrollPeriods1_Result" message="tns:GetPayrollPeriods1_Result" />
+    </operation>
+    <operation name="InsertImprestRequisitionLines">
+      <input name="InsertImprestRequisitionLines" message="tns:InsertImprestRequisitionLines" />
+      <output name="InsertImprestRequisitionLines_Result" message="tns:InsertImprestRequisitionLines_Result" />
+    </operation>
+    <operation name="LoginForUnchangedPassword">
+      <input name="LoginForUnchangedPassword" message="tns:LoginForUnchangedPassword" />
+      <output name="LoginForUnchangedPassword_Result" message="tns:LoginForUnchangedPassword_Result" />
+    </operation>
+    <operation name="PensionerStatement">
+      <input name="PensionerStatement" message="tns:PensionerStatement" />
+      <output name="PensionerStatement_Result" message="tns:PensionerStatement_Result" />
+    </operation>
+    <operation name="PortalOTP">
+      <input name="PortalOTP" message="tns:PortalOTP" />
+      <output name="PortalOTP_Result" message="tns:PortalOTP_Result" />
+    </operation>
     <operation name="RejectClaimReq">
       <input name="RejectClaimReq" message="tns:RejectClaimReq" />
       <output name="RejectClaimReq_Result" message="tns:RejectClaimReq_Result" />
@@ -2187,14 +2314,6 @@
       <input name="CheckMemberLoginForUnchangedPass" message="tns:CheckMemberLoginForUnchangedPass" />
       <output name="CheckMemberLoginForUnchangedPass_Result" message="tns:CheckMemberLoginForUnchangedPass_Result" />
     </operation>
-    <operation name="CheckMemberLogin">
-      <input name="CheckMemberLogin" message="tns:CheckMemberLogin" />
-      <output name="CheckMemberLogin_Result" message="tns:CheckMemberLogin_Result" />
-    </operation>
-    <operation name="CheckMemberPasswordChanged">
-      <input name="CheckMemberPasswordChanged" message="tns:CheckMemberPasswordChanged" />
-      <output name="CheckMemberPasswordChanged_Result" message="tns:CheckMemberPasswordChanged_Result" />
-    </operation>
     <operation name="CheckStaffLoginForUnchangedPass">
       <input name="CheckStaffLoginForUnchangedPass" message="tns:CheckStaffLoginForUnchangedPass" />
       <output name="CheckStaffLoginForUnchangedPass_Result" message="tns:CheckStaffLoginForUnchangedPass_Result" />
@@ -2255,9 +2374,13 @@
       <input name="FnAttachments" message="tns:FnAttachments" />
       <output name="FnAttachments_Result" message="tns:FnAttachments_Result" />
     </operation>
-    <operation name="GenerateBeneficiaryReport">
-      <input name="GenerateBeneficiaryReport" message="tns:GenerateBeneficiaryReport" />
-      <output name="GenerateBeneficiaryReport_Result" message="tns:GenerateBeneficiaryReport_Result" />
+    <operation name="FormatISODate">
+      <input name="FormatISODate" message="tns:FormatISODate" />
+      <output name="FormatISODate_Result" message="tns:FormatISODate_Result" />
+    </operation>
+    <operation name="GenerateBeneficiaryReport1">
+      <input name="GenerateBeneficiaryReport1" message="tns:GenerateBeneficiaryReport1" />
+      <output name="GenerateBeneficiaryReport1_Result" message="tns:GenerateBeneficiaryReport1_Result" />
     </operation>
     <operation name="GenerateBeneficiaryStatement">
       <input name="GenerateBeneficiaryStatement" message="tns:GenerateBeneficiaryStatement" />
@@ -2286,6 +2409,14 @@
     <operation name="GeneratePdf">
       <input name="GeneratePdf" message="tns:GeneratePdf" />
       <output name="GeneratePdf_Result" message="tns:GeneratePdf_Result" />
+    </operation>
+    <operation name="GeneratePortalMembersStatement">
+      <input name="GeneratePortalMembersStatement" message="tns:GeneratePortalMembersStatement" />
+      <output name="GeneratePortalMembersStatement_Result" message="tns:GeneratePortalMembersStatement_Result" />
+    </operation>
+    <operation name="GeneratePortalPensionStatement">
+      <input name="GeneratePortalPensionStatement" message="tns:GeneratePortalPensionStatement" />
+      <output name="GeneratePortalPensionStatement_Result" message="tns:GeneratePortalPensionStatement_Result" />
     </operation>
     <operation name="GetBeneficiaryPFNo">
       <input name="GetBeneficiaryPFNo" message="tns:GetBeneficiaryPFNo" />
@@ -2338,14 +2469,6 @@
     <operation name="GetMemberName">
       <input name="GetMemberName" message="tns:GetMemberName" />
       <output name="GetMemberName_Result" message="tns:GetMemberName_Result" />
-    </operation>
-    <operation name="GetMemberProfileDetails">
-      <input name="GetMemberProfileDetails" message="tns:GetMemberProfileDetails" />
-      <output name="GetMemberProfileDetails_Result" message="tns:GetMemberProfileDetails_Result" />
-    </operation>
-    <operation name="GetPayrollPeriods1">
-      <input name="GetPayrollPeriods1" message="tns:GetPayrollPeriods1" />
-      <output name="GetPayrollPeriods1_Result" message="tns:GetPayrollPeriods1_Result" />
     </operation>
     <operation name="GetPayrollPeriods">
       <input name="GetPayrollPeriods" message="tns:GetPayrollPeriods" />
@@ -2407,25 +2530,90 @@
       <input name="InsertApproverComments" message="tns:InsertApproverComments" />
       <output name="InsertApproverComments_Result" message="tns:InsertApproverComments_Result" />
     </operation>
-    <operation name="InsertImprestRequisitionLines">
-      <input name="InsertImprestRequisitionLines" message="tns:InsertImprestRequisitionLines" />
-      <output name="InsertImprestRequisitionLines_Result" message="tns:InsertImprestRequisitionLines_Result" />
-    </operation>
-    <operation name="LoginForUnchangedPassword">
-      <input name="LoginForUnchangedPassword" message="tns:LoginForUnchangedPassword" />
-      <output name="LoginForUnchangedPassword_Result" message="tns:LoginForUnchangedPassword_Result" />
-    </operation>
-    <operation name="PensionerStatement">
-      <input name="PensionerStatement" message="tns:PensionerStatement" />
-      <output name="PensionerStatement_Result" message="tns:PensionerStatement_Result" />
-    </operation>
-    <operation name="PortalOTP">
-      <input name="PortalOTP" message="tns:PortalOTP" />
-      <output name="PortalOTP_Result" message="tns:PortalOTP_Result" />
-    </operation>
   </portType>
   <binding name="Portal_Binding" type="tns:Portal_Port">
     <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="CheckMemberPasswordChanged">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberPasswordChanged">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberPasswordChanged_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckMemberLogin">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckMemberLogin">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckMemberLogin_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetMemberProfileDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetMemberProfileDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetMemberProfileDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateBeneficiaryReport">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateBeneficiaryReport">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateBeneficiaryReport_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPayrollPeriods1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPayrollPeriods1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPayrollPeriods1_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertImprestRequisitionLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:InsertImprestRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertImprestRequisitionLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertImprestRequisitionLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="LoginForUnchangedPassword">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:LoginForUnchangedPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LoginForUnchangedPassword">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LoginForUnchangedPassword_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PensionerStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PensionerStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PensionerStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PortalOTP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PortalOTP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PortalOTP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
     <operation name="RejectClaimReq">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:RejectClaimReq" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="RejectClaimReq">
@@ -2786,24 +2974,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="CheckMemberLogin">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberLogin" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="CheckMemberLogin">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="CheckMemberLogin_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="CheckMemberPasswordChanged">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckMemberPasswordChanged" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="CheckMemberPasswordChanged">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="CheckMemberPasswordChanged_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
     <operation name="CheckStaffLoginForUnchangedPass">
       <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:CheckStaffLoginForUnchangedPass" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       <input name="CheckStaffLoginForUnchangedPass">
@@ -2939,12 +3109,21 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="GenerateBeneficiaryReport">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GenerateBeneficiaryReport">
+    <operation name="FormatISODate">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:FormatISODate" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FormatISODate">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
-      <output name="GenerateBeneficiaryReport_Result">
+      <output name="FormatISODate_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GenerateBeneficiaryReport1">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GenerateBeneficiaryReport1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GenerateBeneficiaryReport1">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GenerateBeneficiaryReport1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3008,6 +3187,24 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GeneratePdf_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GeneratePortalMembersStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePortalMembersStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GeneratePortalMembersStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GeneratePortalMembersStatement_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GeneratePortalPensionStatement">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GeneratePortalPensionStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GeneratePortalPensionStatement">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GeneratePortalPensionStatement_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3125,24 +3322,6 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetMemberName_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="GetMemberProfileDetails">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetMemberProfileDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetMemberProfileDetails">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetMemberProfileDetails_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="GetPayrollPeriods1">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:GetPayrollPeriods1" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="GetPayrollPeriods1">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="GetPayrollPeriods1_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
@@ -3281,46 +3460,10 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
-    <operation name="InsertImprestRequisitionLines">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:InsertImprestRequisitionLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="InsertImprestRequisitionLines">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="InsertImprestRequisitionLines_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="LoginForUnchangedPassword">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:LoginForUnchangedPassword" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="LoginForUnchangedPassword">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="LoginForUnchangedPassword_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="PensionerStatement">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PensionerStatement" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="PensionerStatement">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="PensionerStatement_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
-    <operation name="PortalOTP">
-      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Portal:PortalOTP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      <input name="PortalOTP">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </input>
-      <output name="PortalOTP_Result">
-        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
-      </output>
-    </operation>
   </binding>
   <service name="Portal">
     <port name="Portal_Port" binding="tns:Portal_Binding">
-      <address location="https://192.168.10.19:7047/TelPosta/WS/Telposta%20Test/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="https://192.168.10.19:7047/TelPosta/WS/Teleposta%20Provident%20Fund/Codeunit/Portal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

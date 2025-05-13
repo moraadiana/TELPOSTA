@@ -68,16 +68,12 @@ namespace TELPOSTAStaff.pages
                     Console.WriteLine("Please select a valid Year.");
                     return;
                 }
-                //int period = Convert.ToInt32(ddlYear.SelectedValue)
-                
-
-                //var s =Convert.ToDateTime(period.ToString("M/dd/yyyy", CultureInfo.InvariantCulture));
                 try
                   {
                       string returnstring = "";
                       Components.ObjNav.Generatep9Report(period, employee, String.Format("p9Form{0}.pdf", filename), ref returnstring);
                       myPDF.Attributes.Add("src", ResolveUrl("~/Downloads/" + String.Format("p9Form{0}.pdf", filename)));
-                      //WSConfig.ObjNavWS.FnFosaStatement(accno, ref returnstring, filter);
+                      
                       byte[] bytes = Convert.FromBase64String(returnstring);
                       string path = HostingEnvironment.MapPath("~/Downloads/" + $"p9Form{filename}.pdf");
                       if (System.IO.File.Exists(path))
@@ -93,13 +89,12 @@ namespace TELPOSTAStaff.pages
                   catch (Exception exception)
                   {
                       exception.Data.Clear();
-                      //     HttpContext.Current.Response.Write(exception);
+                      
                   }
               }
               catch (Exception ex)
               {
                   ex.Data.Clear();
-                  //HttpContext.Current.Response.Write(ex);
               }
           }
           protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)

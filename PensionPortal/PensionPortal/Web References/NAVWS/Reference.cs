@@ -35,11 +35,15 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback CheckValidPensionerNoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FormatISODateOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GenerateBeneficiaryReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback GeneratePensionStatement1OperationCompleted;
         
         private System.Threading.SendOrPostCallback GeneratePensionStatementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GeneratePortalPensionStatementOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLifeCertDatesOperationCompleted;
         
@@ -127,6 +131,9 @@ namespace PensionPortal.NAVWS {
         public event CheckValidPensionerNoCompletedEventHandler CheckValidPensionerNoCompleted;
         
         /// <remarks/>
+        public event FormatISODateCompletedEventHandler FormatISODateCompleted;
+        
+        /// <remarks/>
         public event GenerateBeneficiaryReportCompletedEventHandler GenerateBeneficiaryReportCompleted;
         
         /// <remarks/>
@@ -134,6 +141,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event GeneratePensionStatementCompletedEventHandler GeneratePensionStatementCompleted;
+        
+        /// <remarks/>
+        public event GeneratePortalPensionStatementCompletedEventHandler GeneratePortalPensionStatementCompleted;
         
         /// <remarks/>
         public event GetLifeCertDatesCompletedEventHandler GetLifeCertDatesCompleted;
@@ -285,6 +295,36 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:FormatISODate", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="FormatISODate_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string FormatISODate([System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime realDate) {
+            object[] results = this.Invoke("FormatISODate", new object[] {
+                        realDate});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FormatISODateAsync(System.DateTime realDate) {
+            this.FormatISODateAsync(realDate, null);
+        }
+        
+        /// <remarks/>
+        public void FormatISODateAsync(System.DateTime realDate, object userState) {
+            if ((this.FormatISODateOperationCompleted == null)) {
+                this.FormatISODateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFormatISODateOperationCompleted);
+            }
+            this.InvokeAsync("FormatISODate", new object[] {
+                        realDate}, this.FormatISODateOperationCompleted, userState);
+        }
+        
+        private void OnFormatISODateOperationCompleted(object arg) {
+            if ((this.FormatISODateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FormatISODateCompleted(this, new FormatISODateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GenerateBeneficiaryReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GenerateBeneficiaryReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void GenerateBeneficiaryReport(string path, string fileName) {
             this.Invoke("GenerateBeneficiaryReport", new object[] {
@@ -383,6 +423,42 @@ namespace PensionPortal.NAVWS {
             if ((this.GeneratePensionStatementCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GeneratePensionStatementCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GeneratePortalPensionStatement", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GeneratePortalPensionStatement_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GeneratePortalPensionStatement(string pensionerNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime endDate, string filenameFromApp) {
+            object[] results = this.Invoke("GeneratePortalPensionStatement", new object[] {
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalPensionStatementAsync(string pensionerNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp) {
+            this.GeneratePortalPensionStatementAsync(pensionerNo, startDate, endDate, filenameFromApp, null);
+        }
+        
+        /// <remarks/>
+        public void GeneratePortalPensionStatementAsync(string pensionerNo, System.DateTime startDate, System.DateTime endDate, string filenameFromApp, object userState) {
+            if ((this.GeneratePortalPensionStatementOperationCompleted == null)) {
+                this.GeneratePortalPensionStatementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGeneratePortalPensionStatementOperationCompleted);
+            }
+            this.InvokeAsync("GeneratePortalPensionStatement", new object[] {
+                        pensionerNo,
+                        startDate,
+                        endDate,
+                        filenameFromApp}, this.GeneratePortalPensionStatementOperationCompleted, userState);
+        }
+        
+        private void OnGeneratePortalPensionStatementOperationCompleted(object arg) {
+            if ((this.GeneratePortalPensionStatementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GeneratePortalPensionStatementCompleted(this, new GeneratePortalPensionStatementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1075,6 +1151,32 @@ namespace PensionPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void FormatISODateCompletedEventHandler(object sender, FormatISODateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FormatISODateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FormatISODateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GenerateBeneficiaryReportCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -1084,6 +1186,32 @@ namespace PensionPortal.NAVWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GeneratePensionStatementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GeneratePortalPensionStatementCompletedEventHandler(object sender, GeneratePortalPensionStatementCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GeneratePortalPensionStatementCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GeneratePortalPensionStatementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
