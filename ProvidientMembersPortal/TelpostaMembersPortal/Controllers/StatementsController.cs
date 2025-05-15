@@ -128,15 +128,7 @@ namespace TelpostaMembersPortal.Controllers
                 if (System.IO.File.Exists(pdfFilePath))
                     System.IO.File.Delete(pdfFilePath);
                 webportals.GenerateBeneficiaryReport(path, pdfFileName);
-                //string response =  webportals.GenerateBeneficiaryReport(path, pdfFileName);
-                //if (string.IsNullOrWhiteSpace(response))
-                //{
-                //    TempData["Error"] = "No data was returned for the  statement.";
-                //    return RedirectToAction("PensionerStatement");
-                //}
-
-                //byte[] pdfBytes = Convert.FromBase64String(response);
-                //System.IO.File.WriteAllBytes(pdfFilePath, pdfBytes);
+              
                 TempData["PdfUrl"] = Url.Content($"~/Downloads/{pdfFileName}");
                 ViewBag.PdfUrl = TempData["PdfUrl"];
 
