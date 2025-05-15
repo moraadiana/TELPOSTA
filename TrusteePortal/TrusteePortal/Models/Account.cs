@@ -10,6 +10,7 @@ namespace TrusteePortal.Models
         public string PFno { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string PhoneNo { get; set; }
 
         public HttpPostedFileBase profilePic { get; set; }
 

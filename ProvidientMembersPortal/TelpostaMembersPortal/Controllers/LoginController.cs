@@ -27,6 +27,7 @@ namespace TelpostaMembersPortal.Controllers
             {
                 string PFno = account.PFno;
                 string emailAddress = account.Email;
+                string phoneNo = account.PhoneNo;
                 string password = account.Password.Trim();
                 bool isValid = webportals.CheckValidMemberNo(PFno);
                 Console.WriteLine($"CheckValidMemberNo returned: {isValid}");
@@ -54,21 +55,22 @@ namespace TelpostaMembersPortal.Controllers
                                 string memberNo = responseArr[2];
                                 string memberName = responseArr[3];
                                 string memberEmail = responseArr[4];
-                                // string vendorVat = responseArr[4];
+                                string PhoneNo = responseArr[5];
 
                                 Session["memberNo"] = memberNo;
                                 Session["memberName"] = memberName;
                                 Session["memberEmail"] = memberEmail;
-                                // Session["VendorVat"] = vendorVat;
+                                Session["PhoneNo"] = PhoneNo;
 
-                                //string otp = GenerateOtp(6);
-                                //Session["otp"] = otp;
+                                string otp = GenerateOtp(6);
+                                Session["otp"] = otp;
 
-                                //string subject = "Telposta Provident Fund Portal OTP";
-                                //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
-                                //Components.SendEmailAlerts(memberEmail, subject, body);
-                                //return RedirectToAction("verifyotp");
-                                return RedirectToAction("index", "dashboard");
+                                string subject = "Telposta Provident Fund Portal OTP";
+                                string body = $"{otp}";
+                                Components.SendEmailAlerts(memberEmail, subject, body);
+                                Components.SendSMSAlerts(PhoneNo, subject, body);
+                                return RedirectToAction("verifyotp");
+                                //return RedirectToAction("index", "dashboard");
                             }
                             else
                             {

@@ -6,11 +6,13 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using TrusteePortal.NAVWS;
+using System.Net.Http;
 
 namespace TrusteePortal
 {
     public class Components
     {
+        private static readonly HttpClient client = new HttpClient();
         public static Trustee ObjNav
         {
             get
@@ -37,6 +39,29 @@ namespace TrusteePortal
                     Console.WriteLine("Error initializing web service: " + ex.Message);
                 }
                 return webservice;
+            }
+        }
+        public static void SendSMSAlerts(string phoneNo, string subject, string message)
+        {
+            try
+            {
+                string token = "jyiu4RdISCceoUTackl2BLBULCfEO2";
+                string senderID = "TelPosta";
+
+                string fullMessage = $"{subject}: {message}";
+                string encodedMessage = System.Web.HttpUtility.UrlEncode(fullMessage);
+
+                string url = $"https://api2.uwaziimobile.com/send?token={token}&phone={phoneNo}&text={encodedMessage}&senderID={senderID}";
+
+                var response = client.GetAsync(url).GetAwaiter().GetResult();
+                string responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                Console.WriteLine("SMS sent. Response: " + responseString);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Error sending SMS: " + Ex.Message);
+                Ex.Data.Clear();
             }
         }
         public static void SendEmailAlerts(string address, string subject, string message)

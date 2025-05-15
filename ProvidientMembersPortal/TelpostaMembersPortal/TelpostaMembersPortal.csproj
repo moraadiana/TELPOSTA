@@ -2571,10 +2571,10 @@
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Statements\BeneficiaryNomination.cshtml" />
     <None Include="Web References\NAVWS\Portal.wsdl" />
-    <None Include="Web References\NAVWS\Reference.map">
+    <Content Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Downloads\" />

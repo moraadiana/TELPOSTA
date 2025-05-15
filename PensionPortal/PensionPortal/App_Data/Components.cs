@@ -12,14 +12,16 @@ using System.Net.Http;
 using System.Text;
 using System.IO;
 using System.Web.Helpers;
+using System.Threading.Tasks;
 
 
 namespace PensionPortal
 {
     public class Components
+
     {
-        private static readonly string apiUrl = "https://account.uwaziimobile.com/sms/sendsms";
-        private static readonly string apiKey = "jFCeuViLtH-uwIB7eSr7BQuT1mvuhP";
+        private static readonly HttpClient client = new HttpClient();
+        
         public static Pension ObjNav
         {
             get
@@ -48,19 +50,31 @@ namespace PensionPortal
                 return webservice;
             }
         }
-        public static void SendSMSAlerts(string phone, string subject, string message)
+        public static void SendSMSAlerts(string phoneNo, string subject, string message)
         {
-
             try
             {
-                
-             
+                string token = "jyiu4RdISCceoUTackl2BLBULCfEO2";
+                string senderID = "TelPosta";
+
+                string fullMessage = $"{subject}: {message}";
+                string encodedMessage = System.Web.HttpUtility.UrlEncode(fullMessage);
+
+                string url = $"https://api2.uwaziimobile.com/send?token={token}&phone={phoneNo}&text={encodedMessage}&senderID={senderID}";
+
+                var response = client.GetAsync(url).GetAwaiter().GetResult();
+                string responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                Console.WriteLine("SMS sent. Response: " + responseString);
             }
             catch (Exception Ex)
             {
+                Console.WriteLine("Error sending SMS: " + Ex.Message);
                 Ex.Data.Clear();
             }
         }
+
+       
         public static void SendEmailAlerts(string address, string subject, string message)
         {
             try

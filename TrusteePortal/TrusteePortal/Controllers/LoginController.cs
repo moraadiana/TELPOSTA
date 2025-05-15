@@ -29,6 +29,7 @@ namespace TrusteePortal.Controllers
             {
                 string PFno = account.PFno;
                 string emailAddress = account.Email;
+                string phoneNo = account.PhoneNo;
                 string password = account.Password.Trim();
                 bool isValid = webportals.CheckValidTrusteeNo(PFno);
                // Console.WriteLine($"CheckValidPensionerNo returned: {isValid}");
@@ -56,21 +57,24 @@ namespace TrusteePortal.Controllers
                                 string trusteeNo = responseArr[2];
                                 string trusteeName = responseArr[3];
                                 string trusteeEmail = responseArr[4];
+                                string PhoneNo = responseArr[5];
                                
 
                                 Session["trusteeNo"] = trusteeNo;
                                 Session["trusteeName"] = trusteeName;
                                 Session["trusteeEmail"] = trusteeEmail;
-                               
+                                Session["PhoneNo"] = PhoneNo;
 
-                                //string otp = GenerateOtp(6);
-                                //Session["otp"] = otp;
 
-                                //string subject = "Telposta Trustee Portal OTP";
-                                //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
-                                //Components.SendEmailAlerts(pensionerEmail, subject, body);
-                                //return RedirectToAction("verifyotp");
-                                return RedirectToAction("statussummary", "dashboard");
+                                string otp = GenerateOtp(6);
+                                Session["otp"] = otp;
+
+                                string subject = "Telposta Trustee Portal OTP";
+                                string body = $"{otp} ";
+                                Components.SendEmailAlerts(trusteeEmail, subject, body);
+                                Components.SendSMSAlerts(PhoneNo, subject, body);
+                                return RedirectToAction("verifyotp");
+                               // return RedirectToAction("statussummary", "dashboard");
                             }
                             else
                             {

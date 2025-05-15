@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Portals\TrusteePortal</_PublishTargetUrl>
-    <History>True|2025-05-08T14:27:08.1995673Z||;True|2025-05-08T17:10:45.0639086+03:00||;True|2025-03-27T17:07:04.5556760+03:00||;</History>
+    <History>True|2025-05-15T09:43:31.9194731Z||;True|2025-05-08T17:27:08.1995673+03:00||;True|2025-05-08T17:10:45.0639086+03:00||;True|2025-03-27T17:07:04.5556760+03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -7225,13 +7225,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/27/2025 17:03:01</publishTime>
     </File>
     <File Include="bin/TrusteePortal.dll">
-      <publishTime>05/08/2025 17:27:04</publishTime>
+      <publishTime>05/15/2025 12:43:26</publishTime>
     </File>
     <File Include="bin/TrusteePortal.pdb">
-      <publishTime>05/08/2025 17:27:04</publishTime>
+      <publishTime>05/15/2025 12:43:26</publishTime>
     </File>
     <File Include="bin/TrusteePortal.XmlSerializers.dll">
-      <publishTime>05/08/2025 17:27:04</publishTime>
+      <publishTime>05/15/2025 12:43:28</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/26/2025 09:40:36</publishTime>
@@ -7353,6 +7353,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/profile_m.png">
       <publishTime>03/27/2025 17:03:01</publishTime>
     </File>
+    <File Include="Profiles/profile_m.png">
+      <publishTime>03/27/2025 17:03:01</publishTime>
+    </File>
+    <File Include="Profiles/TPSVEN074.png">
+      <publishTime>05/08/2025 17:23:17</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>03/27/2025 17:02:57</publishTime>
     </File>
@@ -7456,7 +7462,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/26/2025 09:40:34</publishTime>
     </File>
     <File Include="Views/Login/VerifyOTP.cshtml">
-      <publishTime>03/26/2025 09:40:34</publishTime>
+      <publishTime>05/15/2025 12:42:06</publishTime>
     </File>
     <File Include="Views/Reports/Pnine.cshtml">
       <publishTime>04/15/2025 16:14:46</publishTime>

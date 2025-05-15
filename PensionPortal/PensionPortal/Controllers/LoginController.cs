@@ -30,6 +30,7 @@ namespace PensionPortal.Controllers
                 string PFno = account.PFno;
                 string emailAddress = account.Email;
                 string password = account.Password.Trim();
+                string phoneNo = account.PhoneNo;
                 bool isValid = webportals.CheckValidPensionerNo(PFno);
                 Console.WriteLine($"CheckValidPensionerNo returned: {isValid}");
                 bool changedpwd = false;
@@ -56,21 +57,26 @@ namespace PensionPortal.Controllers
                                 string pensionerNo = responseArr[2];
                                 string pensionerName = responseArr[3];
                                 string pensionerEmail = responseArr[4];
-                                // string vendorVat = responseArr[4];
+                                string pensionerPhoneNo = responseArr[4];
 
                                 Session["pensionerNo"] = pensionerNo;
                                 Session["pensionerName"] = pensionerName;
                                 Session["pensionerEmail"] = pensionerEmail;
+                                Session["pensionerPhoneNo"] = pensionerPhoneNo;
                                 // Session["VendorVat"] = vendorVat;
 
-                                //string otp = GenerateOtp(6);
-                                //Session["otp"] = otp;
+                                string otp = GenerateOtp(6);
+                                Session["otp"] = otp;
 
-                                //string subject = "Telposta Pension Portal OTP";
-                                //string body = $"{otp} is your OTP Code for Telposta Pension portal.";
-                                //Components.SendEmailAlerts(pensionerEmail, subject, body);
-                                //return RedirectToAction("verifyotp");
-                                return RedirectToAction("index", "dashboard");
+                                string subject = "Telposta Pension Portal OTP";
+                                string body = $"{otp}";
+                                Components.SendEmailAlerts(pensionerEmail, subject, body);
+                                Components.SendSMSAlerts(pensionerPhoneNo, subject, body) ;
+                                return RedirectToAction("verifyotp");
+
+
+
+                                //return RedirectToAction("index", "dashboard");
                             }
                             else
                             {
