@@ -132,6 +132,7 @@
     <Compile Include="Models\Beneficiary.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\LifeCertificate.cs" />
+    <Compile Include="Models\LifeCertReport.cs" />
     <Compile Include="Models\MonthlyPension.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OTP.cs" />
@@ -2586,11 +2587,12 @@
     <Content Include="Views\Report\BeneficiaryNomination.cshtml" />
     <Content Include="Views\Report\MonthlyDeductions.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Report\LifeCertificateHistory.cshtml" />
     <None Include="Web References\NAVWS\Pension.wsdl" />
-    <None Include="Web References\NAVWS\Reference.map">
+    <Content Include="Web References\NAVWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

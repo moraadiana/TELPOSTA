@@ -68,11 +68,18 @@ namespace TrusteePortal.Controllers
 
                                 string otp = GenerateOtp(6);
                                 Session["otp"] = otp;
+                                Session["OtpCode"] = otp;
+                                Session["OtpGeneratedAt"] = DateTime.UtcNow;
+                                string maskedPhone = PhoneNo.Length >= 12
+  ? PhoneNo.Substring(0, 4) + "xxxxx" + PhoneNo.Substring(PhoneNo.Length - 2)
+  : PhoneNo;
 
                                 string subject = "Telposta Trustee Portal OTP";
-                                string body = $"{otp} ";
+                               // string body = $"{otp} ";
+                                string body = $"Dear {trusteeName}, your OTP for the Trustee Portal is {otp} . It is valid for 5 minutes. ";
                                 Components.SendEmailAlerts(trusteeEmail, subject, body);
-                                Components.SendSMSAlerts(PhoneNo, subject, body);
+                                Components.SendSMSAlerts(PhoneNo, body);
+                                TempData["success"] = $"An OTP has been sent to your email: {trusteeEmail} and phone: {maskedPhone}";
                                 return RedirectToAction("verifyotp");
                                // return RedirectToAction("statussummary", "dashboard");
                             }
@@ -95,7 +102,7 @@ namespace TrusteePortal.Controllers
                                 string trusteeNo = responseArr[1];
                                 string trusteeName = responseArr[2];
                                 string trusteeEmail = responseArr[3];
-                                // string vendorVat = responseArr[4];
+                                
 
                                 Session["trusteeNo"] = trusteeNo;
                                 Session["trusteeName"] = trusteeName;
@@ -137,6 +144,56 @@ namespace TrusteePortal.Controllers
         {
             try
             {
+                string generatedOtp = Session["OtpCode"] as string;
+                DateTime? generatedAt = Session["OtpGeneratedAt"] as DateTime?;
+                string otpFromUser = otp.OTPCode?.Trim();
+
+                if (generatedOtp == null || generatedAt == null)
+                {
+                    TempData["error"] = "OTP session expired. Please login again.";
+                    return RedirectToAction("Login");
+                }
+
+                if (generatedOtp.Equals(otpFromUser, StringComparison.OrdinalIgnoreCase) &&
+                    DateTime.UtcNow <= generatedAt.Value.AddMinutes(5))
+                {
+                    // OTP valid
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else if (DateTime.UtcNow > generatedAt.Value.AddMinutes(5))
+                {
+                    TempData["error"] = "OTP has expired. Please request a new OTP.";
+                    return RedirectToAction("VerifyOTP");
+                }
+                else
+                {
+                    TempData["error"] = "Invalid OTP. Please try again.";
+                    return View("VerifyOTP");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return View("VerifyOTP");
+            }
+        }
+        public bool ValidateOtp(string inputOtp)
+        {
+            var storedOtp = Session["OtpCode"] as string;
+            var generatedAt = Session["OtpGeneratedAt"] as DateTime?;
+
+            if (storedOtp == null || generatedAt == null)
+                return false;
+
+            if (storedOtp == inputOtp && DateTime.UtcNow <= generatedAt.Value.AddMinutes(5))
+                return true;
+
+            return false;
+        }
+        public ActionResult VerifyOTP1(OTP otp)
+        {
+            try
+            {
                 string generatedOtp = Session["otp"].ToString();
                 string otpFromUser = otp.OTPCode.Trim();
 
@@ -168,6 +225,34 @@ namespace TrusteePortal.Controllers
 
             return result;
         }
+        public ActionResult ResendOtp()
+        {
+            if (Session["trusteeNo"] == null)
+            {
+                TempData["error"] = "Please login first.";
+                return RedirectToAction("Login");
+            }
+
+            string trusteeEmail = Session["trusteeEmail"]?.ToString();
+            string PhoneNo = Session["PhoneNo"]?.ToString();
+            string maskedPhone = PhoneNo.Length >= 12
+  ? PhoneNo.Substring(0, 4) + "xxxxx" + PhoneNo.Substring(PhoneNo.Length - 2)
+  : PhoneNo;
+            string trusteeName = Session["trusteeName"]?.ToString();
+
+            string otp = GenerateOtp(6);
+            Session["otp"] = otp;
+            Session["OtpCode"] = otp;
+            Session["OtpGeneratedAt"] = DateTime.UtcNow;
+
+            string subject = "Telposta Trustee Portal OTP - Resend";
+            string body = $"Dear {trusteeName}, your OTP for the Trustee Portal is {otp} . It is valid for 5 minutes. ";
+            Components.SendEmailAlerts(trusteeEmail, subject, body);
+            Components.SendSMSAlerts(PhoneNo, body);
+
+            TempData["success"] = $"A new OTP has been sent to your email: {trusteeEmail} and phone: {maskedPhone}";
+            return RedirectToAction("VerifyOTP");
+        }
         public ActionResult ResetPassword(string email, string pensionerNo)
         {
             // If email is provided in query string, store it in session
@@ -187,6 +272,7 @@ namespace TrusteePortal.Controllers
 
             return View();
         }
+       
 
         [HttpPost]
         public ActionResult ResetPassword(ResetPassword reset)
@@ -236,9 +322,22 @@ namespace TrusteePortal.Controllers
 
                 string newPassword = GenerateRandomPassword(10);
                 string trusteeNo = reset.PfNo;
-                string trusteeEmail = reset.Email;
-                //string email = Components.ObjNav.GetPensionerEmail(pensionerNo);
-                string response = Components.ObjNav.UpdateTrusteeAutoGenPassword(trusteeNo, newPassword);
+                // string trusteeEmail = reset.Email;
+                string response1 = webportals.GetTrusteeDetails(trusteeNo);
+                if (response1 != null)
+                {
+                    string[] responseArr = response1.Split(strLimiters, StringSplitOptions.None);
+                    Session["Name"] = responseArr[1];
+                    Session["Email"] = responseArr[2];
+                    Session["PhoneNo"] = responseArr[6];
+                }
+                string trusteeEmail = Session["Email"].ToString();
+                string PhoneNo = Session["PhoneNo"].ToString();
+                string maskedPhone = PhoneNo.Length >= 12
+    ? PhoneNo.Substring(0, 4) + "xxxxx" + PhoneNo.Substring(PhoneNo.Length - 2)
+    : PhoneNo;
+                string trusteeName = Session["Name"].ToString();
+                    string response = Components.ObjNav.UpdateTrusteeAutoGenPassword(trusteeNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
                 {
                     if (response != "SUCCESS")
@@ -249,11 +348,12 @@ namespace TrusteePortal.Controllers
 
                 }
                 string subject = "Telposta Trustee Portal Password Reset";
-                string body = $"Use this password to log into Telposta Trustee Pension Portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                string body = $"Dear {trusteeName}, Use this password to log in: {newPassword} . Do not reply.";
                 Components.SendEmailAlerts(trusteeEmail, subject, body);
+                Components.SendSMSAlerts(PhoneNo, body);
                 //return RedirectToAction("verifyotp");
                 //SendPasswordResetLink(username);
-                TempData["Success"] = $"Auto generated password has been sent to your email address {trusteeEmail}";
+                TempData["Success"] = $"Auto generated password has been sent to your email address: {trusteeEmail} and phone number: {maskedPhone}";
                 //  return RedirectToAction("index");
             }
             catch (Exception ex)

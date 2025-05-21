@@ -109,8 +109,7 @@ namespace TELPOSTAStaff.pages
             int titleInt = Convert.ToInt32(title);
             DateTime DoB = Convert.ToDateTime(DOB);
 
-            string response = webportals.UpdateEmployeeDetails(username, firstName, middleName,
-                lastName, genderInt, DoB, maritalStatusInt, religion, tribe, email, phoneNo, county, idNo, address, titleInt);
+            string response = webportals.UpdateEmployeeDetails(username, DoB, maritalStatusInt, religion, tribe, email, phoneNo, county, idNo, address, titleInt);
             if (response == "Success")
             {
                 SuccessMessage("Details updated successfully.");

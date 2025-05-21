@@ -754,10 +754,6 @@
         <complexType>
           <sequence>
             <element minOccurs="1" maxOccurs="1" name="empNo" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="firstName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="middleName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="lastName" type="string" />
-            <element minOccurs="1" maxOccurs="1" name="gender" type="int" />
             <element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="date" />
             <element minOccurs="1" maxOccurs="1" name="maritalStatus" type="int" />
             <element minOccurs="1" maxOccurs="1" name="religion" type="string" />

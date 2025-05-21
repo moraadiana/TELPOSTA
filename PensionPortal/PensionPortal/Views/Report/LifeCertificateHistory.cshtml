@@ -1,0 +1,116 @@
+﻿@model IEnumerable<PensionPortal.Models.LifeCertReport>
+@{
+    ViewBag.Title = "Periodic Life Certificate Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="@Url.Action("index", "dashboard")">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="#">Life Certificate History</a>
+                <i class="fa fa-circle"></i>
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            <span> @ViewBag.Error </span>
+        </div>
+    }
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success">
+            <button class="close" data-close="alert"></button>
+            <span> @ViewBag.Success </span>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-close="alert"></button>
+            <span>@TempData["Error"]</span>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            <button class="close" data-close="alert"></button>
+            <span>@TempData["Success"]</span>
+        </div>
+    }
+    <!-- BEGIN PAGE TITLE
+    <h1 class="page-title">
+        NMK Tenders Portal
+    </h1>
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet light portlet-fit bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-red"></i>
+                        <span class="caption-subject font-red sbold uppercase">Life Certificate History</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                    </div>
+                    <table class="table table-striped table-hover table-bordered" id="pension">
+                        <thead>
+                            <tr>
+                                <th id="payperiod" class="text-left"> Period </th>
+                                <th class="text-left"> Status </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Equals(null))
+                            {
+                                foreach (var item in Model.OrderByDescending(x => x.SortKey))
+                                {
+                                    <tr>
+                                        <td class="text-left">@item.Period</td>
+                                        <td class="text-left">@item.Status</td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        $(document).ready(function () {
+            $('#pension').DataTable({
+                "pageLength": 15,
+                "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
+                //"ordering": true,
+                "searching": true,
+              //"stateSave": true,
+                //retrieve: true,
+                "paging": true,
+                // "order": [[0, "desc"]]
+                 "order": [[0, "desc"]],
+                "columnDefs": [
+                    { "type": "date", "targets": 0 }]
+
+            });
+        });
+
+</script>

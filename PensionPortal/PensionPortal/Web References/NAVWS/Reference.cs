@@ -47,6 +47,8 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GetLifeCertDatesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetLifeCertsStatuReportOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetMemberBeneficiariesOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetMonthlyPensionDeductionOperationCompleted;
@@ -147,6 +149,9 @@ namespace PensionPortal.NAVWS {
         
         /// <remarks/>
         public event GetLifeCertDatesCompletedEventHandler GetLifeCertDatesCompleted;
+        
+        /// <remarks/>
+        public event GetLifeCertsStatuReportCompletedEventHandler GetLifeCertsStatuReportCompleted;
         
         /// <remarks/>
         public event GetMemberBeneficiariesCompletedEventHandler GetMemberBeneficiariesCompleted;
@@ -487,6 +492,36 @@ namespace PensionPortal.NAVWS {
             if ((this.GetLifeCertDatesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetLifeCertDatesCompleted(this, new GetLifeCertDatesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetLifeCertsStatuReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetLifeCertsStatuReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetLifeCertsStatuReport(string pensionerNo) {
+            object[] results = this.Invoke("GetLifeCertsStatuReport", new object[] {
+                        pensionerNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLifeCertsStatuReportAsync(string pensionerNo) {
+            this.GetLifeCertsStatuReportAsync(pensionerNo, null);
+        }
+        
+        /// <remarks/>
+        public void GetLifeCertsStatuReportAsync(string pensionerNo, object userState) {
+            if ((this.GetLifeCertsStatuReportOperationCompleted == null)) {
+                this.GetLifeCertsStatuReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLifeCertsStatuReportOperationCompleted);
+            }
+            this.InvokeAsync("GetLifeCertsStatuReport", new object[] {
+                        pensionerNo}, this.GetLifeCertsStatuReportOperationCompleted, userState);
+        }
+        
+        private void OnGetLifeCertsStatuReportOperationCompleted(object arg) {
+            if ((this.GetLifeCertsStatuReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLifeCertsStatuReportCompleted(this, new GetLifeCertsStatuReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1226,6 +1261,32 @@ namespace PensionPortal.NAVWS {
         private object[] results;
         
         internal GetLifeCertDatesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetLifeCertsStatuReportCompletedEventHandler(object sender, GetLifeCertsStatuReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLifeCertsStatuReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLifeCertsStatuReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

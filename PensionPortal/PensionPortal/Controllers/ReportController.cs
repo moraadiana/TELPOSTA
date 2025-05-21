@@ -313,6 +313,54 @@ namespace PensionPortal.Controllers
             return RedirectToAction("LifeCertificate");
 
         }
+        public ActionResult LifeCertificateHistory()
+        {
+            if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");
+
+            var reports = new List<LifeCertReport>();
+            try
+            {
+                string username = Session["pensionerNo"].ToString();
+                //GetLifeCertStatusReport
+                string pensionList = webportals.GetLifeCertsStatuReport(username);
+                if (!string.IsNullOrEmpty(pensionList))
+                {
+                    string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
+
+
+                    foreach (string pension in pensionListArr)
+                    {
+                        string[] response = pension.Split(new string[] { "::" }, StringSplitOptions.None);
+                        if (response.Length == 2)
+                        {
+                            DateTime parsedDate;
+                            string formattedDate = response[0].Trim();
+                            string statusRaw = response[1].Trim().ToLower();
+
+                            if (DateTime.TryParseExact(formattedDate, "MM/dd/yy",
+                                CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
+                            {
+                                reports.Add(new LifeCertReport()
+                                {
+                                    Period = $"{parsedDate:yyyy}",
+                                    // Status = response[1].Trim(),
+                                    Status = statusRaw == "yes" ? "Returned" : "Not Returned",
+                                    SortKey = parsedDate
+                                });
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("index", "dashboard");
+            }
+            var sortedreports = reports.OrderByDescending(x => x.SortKey).ToList();
+            return View(sortedreports);
+        }
         public ActionResult MonthlyPension()
         {
             if (Session["pensionerNo"] == null) return RedirectToAction("index", "login");

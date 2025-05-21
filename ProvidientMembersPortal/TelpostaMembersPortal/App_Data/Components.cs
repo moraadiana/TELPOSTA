@@ -44,15 +44,15 @@ namespace TelpostaMembersPortal
             }
         }
 
-        public static void SendSMSAlerts(string phoneNo, string subject, string message)
+        public static void SendSMSAlerts(string phoneNo, string message)
         {
             try
             {
                 string token = "jyiu4RdISCceoUTackl2BLBULCfEO2";
                 string senderID = "TelPosta";
 
-                string fullMessage = $"{subject}: {message}";
-                string encodedMessage = System.Web.HttpUtility.UrlEncode(fullMessage);
+               // string fullMessage = $"{subject}: {message}";
+                string encodedMessage = System.Web.HttpUtility.UrlEncode(message);
 
                 string url = $"https://api2.uwaziimobile.com/send?token={token}&phone={phoneNo}&text={encodedMessage}&senderID={senderID}";
                 Console.WriteLine("Request URL: " + url);

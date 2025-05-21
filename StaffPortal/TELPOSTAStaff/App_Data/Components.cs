@@ -9,6 +9,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+
 using TELPOSTAStaff.NAVWS;
 
 namespace TELPOSTAStaff
@@ -17,8 +19,9 @@ namespace TELPOSTAStaff
     {
          public static SqlConnection connection;
          public static string Company_Name = "TELPOSTA TEST";
+        private static readonly HttpClient client = new HttpClient();
 
-         public static string ReportsPath()
+        public static string ReportsPath()
          {
              string currDir = "";
              Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
@@ -50,8 +53,31 @@ namespace TELPOSTAStaff
                  return ws;
              }
          }
+        public static void SendSMSAlerts(string phoneNo, string message)
+        {
+            try
+            {
+                string token = "jyiu4RdISCceoUTackl2BLBULCfEO2";
+                string senderID = "TelPosta";
+                // string fullMessage = $" {message}";
+                //string fullMessage = $"{subject}: {message}";
+                string encodedMessage = System.Web.HttpUtility.UrlEncode(message);
 
-         public static void SentEmailAlerts(string address, string subject, string message)
+                string url = $"https://api2.uwaziimobile.com/send?token={token}&phone={phoneNo}&text={encodedMessage}&senderID={senderID}";
+
+                var response = client.GetAsync(url).GetAwaiter().GetResult();
+                string responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                Console.WriteLine("SMS sent. Response: " + responseString);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Error sending SMS: " + Ex.Message);
+                Ex.Data.Clear();
+            }
+        }
+
+        public static void SentEmailAlerts(string address, string subject, string message)
          {
              try
              {

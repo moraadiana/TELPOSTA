@@ -2378,13 +2378,9 @@ namespace TELPOSTAStaff.NAVWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Staffportall:UpdateEmployeeDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", ResponseElementName="UpdateEmployeeDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Staffportall", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string UpdateEmployeeDetails(string empNo, string firstName, string middleName, string lastName, int gender, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
+        public string UpdateEmployeeDetails(string empNo, [System.Xml.Serialization.XmlElementAttribute(DataType="date")] System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
             object[] results = this.Invoke("UpdateEmployeeDetails", new object[] {
                         empNo,
-                        firstName,
-                        middleName,
-                        lastName,
-                        gender,
                         dateOfBirth,
                         maritalStatus,
                         religion,
@@ -2399,37 +2395,17 @@ namespace TELPOSTAStaff.NAVWS {
         }
         
         /// <remarks/>
-        public void UpdateEmployeeDetailsAsync(string empNo, string firstName, string middleName, string lastName, int gender, System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
-            this.UpdateEmployeeDetailsAsync(empNo, firstName, middleName, lastName, gender, dateOfBirth, maritalStatus, religion, tribe, email, phoneNumber, county, idNumber, postalAddress, title, null);
+        public void UpdateEmployeeDetailsAsync(string empNo, System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title) {
+            this.UpdateEmployeeDetailsAsync(empNo, dateOfBirth, maritalStatus, religion, tribe, email, phoneNumber, county, idNumber, postalAddress, title, null);
         }
         
         /// <remarks/>
-        public void UpdateEmployeeDetailsAsync(
-                    string empNo, 
-                    string firstName, 
-                    string middleName, 
-                    string lastName, 
-                    int gender, 
-                    System.DateTime dateOfBirth, 
-                    int maritalStatus, 
-                    string religion, 
-                    string tribe, 
-                    string email, 
-                    string phoneNumber, 
-                    string county, 
-                    string idNumber, 
-                    string postalAddress, 
-                    int title, 
-                    object userState) {
+        public void UpdateEmployeeDetailsAsync(string empNo, System.DateTime dateOfBirth, int maritalStatus, string religion, string tribe, string email, string phoneNumber, string county, string idNumber, string postalAddress, int title, object userState) {
             if ((this.UpdateEmployeeDetailsOperationCompleted == null)) {
                 this.UpdateEmployeeDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateEmployeeDetailsOperationCompleted);
             }
             this.InvokeAsync("UpdateEmployeeDetails", new object[] {
                         empNo,
-                        firstName,
-                        middleName,
-                        lastName,
-                        gender,
                         dateOfBirth,
                         maritalStatus,
                         religion,

@@ -1,12 +1,21 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "OTP Verification";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
 
-<form class="login-form" autocomplete="off" action="@Url.Action("verifyotp","login")" method="post">
-    @*<p>Please enter the OTP Code senT to your Email to confirm login</p>*@
-    <div class="alert alert-primary  text-center p-4 mt-4 ">
+<div class="login-form" autocomplete="off">
+    @* Show success or error messages *@
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger text-center p-3 mt-3">@TempData["error"]</div>
+    }
+    else if (TempData["success"] != null)
+    {
+        <div class="alert alert-success text-center p-3 mt-3">@TempData["success"]</div>
+    }
+
+<form action="@Url.Action("verifyotp","login")" method="post">
+    @*<div class="alert alert-primary text-center p-4 mt-4 ">
         <p class="mb-2 fs-5 fw-semibold">
             Please enter the OTP code sent to:
         </p>
@@ -14,15 +23,41 @@
             <strong>Email:</strong> @Session["pensionerEmail"]<br />
             <strong>Phone Number:</strong> @Session["pensionerPhoneNo"]
         </p>
-    </div>
+    </div>*@
+
     <div class="form-group">
         <div class="input-icon">
-            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Enter OTP Code" name="OTPCode" required style="text-transform:uppercase" />
+            <input class="form-control placeholder-no-fix"
+                   type="password"
+                   autocomplete="off"
+                   placeholder="Enter OTP Code"
+                   name="OTPCode"
+                   required
+                   style="text-transform:uppercase" />
         </div>
     </div>
     <div class="form-actions">
-        <button type="submit" class="btn green pull-right"> <i class="icon-login"> Login</i></button>
-        <a href="@Url.Action("index", "login")" class="btn green pull-left"><i class="icon-arrow-left"> Back</i></a>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="@Url.Action("index", "Login")" class="btn green pull-left"> <i class="icon-arrow-left"> Back</i></a>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn green pull-right"> <i class="icon-login"> Login</i></button>
+            </div>
+        </div>
     </div>
-    <br />
+    @*<div class="form-actions d-flex justify-content-between align-items-center mt-3">
+        <button type="submit" class="btn green">
+            <i class="icon-login"></i> Login
+        </button>
+
+        <a href="@Url.Action("index", "login")" class="btn green">
+            <i class="icon-arrow-left"></i> Back
+        </a>
+    </div>*@
+
+    <div class="mt-3 text-center">
+        <p>Didn't receive the OTP? <a href="@Url.Action("ResendOtp", "login")">Resend OTP</a></p>
+    </div>
 </form>
+</div>

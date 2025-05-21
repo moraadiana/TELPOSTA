@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TELPOSTAStaff.NAVWS;
@@ -76,12 +77,31 @@ namespace TELPOSTAStaff
                       {
                           string staffNo = responseArr[1];
                           string staffName = responseArr[2];
-                          Session["username"] = staffNo;
+                        string email = responseArr[3];
+                        string phoneNo = responseArr[4];
+                        Session["username"] = staffNo;
                           Session["staffName"] = staffName;
-                        //Response.Redirect("Dashboard.aspx");
-                        Response.Redirect($"pages/Dashboard.aspx?");
-                      }
-                      else
+                          Session["email"] = email;
+                        Session["phone"] = phoneNo;
+                        string otp = GenerateOtp(6);
+                        Session["otp"] = otp;
+                        Session["OtpCode"] = otp;
+                        Session["OtpGeneratedAt"] = DateTime.UtcNow;
+                        string maskedPhone = phoneNo.Length >= 12
+? phoneNo.Substring(0, 4) + "xxxxx" + phoneNo.Substring(phoneNo.Length - 2)
+: phoneNo;
+                        string subject = "Telposta Staff Portal OTP";
+
+                        string body = $"Dear {staffName}, your OTP for the Staff Portal is {otp} . It is valid for 5 minutes. ";
+                        Components.SentEmailAlerts(email, subject, body);
+                        Components.SendSMSAlerts(phoneNo, body);
+                        Message( $"An OTP has been sent to your email: {email} and phone: {maskedPhone}");
+                        
+                        Response.Redirect("~/pages/verifyotp.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
+
+                    }
+                    else
                       {
                           lblError.Text = returnMsg;
                           return;
@@ -90,8 +110,9 @@ namespace TELPOSTAStaff
               }
               catch (Exception ex)
               {
-                  ex.Data.Clear();
-              }
+                   //ex.Data.Clear();
+                Message("An error occurred . Please try again.");
+            }
           }
 
           private void LoginForUnchangedPassword(string username, string password)
@@ -121,8 +142,18 @@ namespace TELPOSTAStaff
                   ex.Data.Clear();
               }
           }
+        public static string GenerateOtp(int length)
+        {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, length)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
 
-          private string GetStaffEmail(string username)
+            return result;
+        }
+        private string GetStaffEmail(string username)
           {
               string staffEmail = string.Empty;
               try
@@ -223,11 +254,33 @@ namespace TELPOSTAStaff
 
                 }
                 string email = GetStaffEmail(username);
+                string Name = webportals.getEmployeeName(username);
+                string response1 = webportals.GetEmployeeDetails(username);
+                if (!string.IsNullOrEmpty(response1))
+                {
+                    string[] responseArr = response1.Split(strLimiters, StringSplitOptions.None);
+                    string returnMsg = responseArr[0];
+                    if (returnMsg == "SUCCESS")
+                    {
+                        string phoneNo = responseArr[10].ToString();
+                        
+                        Session["PhoneNo"] = phoneNo;
+                        
+                    }
+                }
+                string PhoneNo = Session["PhoneNo"].ToString();
+                string maskedPhone = PhoneNo.Length >= 12
+? PhoneNo.Substring(0, 4) + "xxxxx" + PhoneNo.Substring(PhoneNo.Length - 2)
+: PhoneNo;
+
                 //string staffPassword = GetStaffPassword(username);
                 string subject = "Telposta Staff Portal Password Reset";
-                string body = $"Use this password to log into Telposta Staff portal .<br/> <br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                //string body = $"Use this password to log into Telposta Staff portal .<br/> <br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                string body = $"Dear {Name}, Use this password to log in: {newPassword} . Do not reply.";
                 Components.SentEmailAlerts(email, subject, body);
-                lblError.Text = $"Auto generated password has been sent to your email address {email}";
+
+                Components.SendSMSAlerts(PhoneNo, body);
+                Message($"Auto generated password has been sent to your email address: {email} and phone number : {maskedPhone}");
                 return;
 
 
@@ -255,6 +308,11 @@ namespace TELPOSTAStaff
             }
 
             return password.ToString();
+        }
+        private void Message(string message)
+        {
+            string strScript = $"<script>alert('{message}');</script>";
+            Page.RegisterStartupScript("ClientScript", strScript);
         }
     }
 }

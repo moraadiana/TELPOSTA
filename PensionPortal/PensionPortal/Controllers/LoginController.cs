@@ -57,26 +57,34 @@ namespace PensionPortal.Controllers
                                 string pensionerNo = responseArr[2];
                                 string pensionerName = responseArr[3];
                                 string pensionerEmail = responseArr[4];
-                                string pensionerPhoneNo = responseArr[4];
+                                string pensionerPhoneNo = responseArr[5];
 
                                 Session["pensionerNo"] = pensionerNo;
                                 Session["pensionerName"] = pensionerName;
                                 Session["pensionerEmail"] = pensionerEmail;
                                 Session["pensionerPhoneNo"] = pensionerPhoneNo;
-                                // Session["VendorVat"] = vendorVat;
+                               
 
                                 string otp = GenerateOtp(6);
                                 Session["otp"] = otp;
+                                Session["OtpCode"] = otp;
+                                Session["OtpGeneratedAt"] = DateTime.UtcNow;
+                                string maskedPhone = pensionerPhoneNo.Length >= 12
+ ? pensionerPhoneNo.Substring(0, 4) + "xxxxx" + pensionerPhoneNo.Substring(pensionerPhoneNo.Length - 2)
+ : pensionerPhoneNo;
+
 
                                 string subject = "Telposta Pension Portal OTP";
-                                string body = $"{otp}";
+                                
+                                string body = $"Dear {pensionerName}, your OTP for the Pension Portal is {otp} . It is valid for 5 minutes. ";
                                 Components.SendEmailAlerts(pensionerEmail, subject, body);
-                                Components.SendSMSAlerts(pensionerPhoneNo, subject, body) ;
+                                Components.SendSMSAlerts(pensionerPhoneNo, body);
+                                TempData["success"] = $"An OTP has been sent to your email: {pensionerEmail} and phone: {maskedPhone}";
                                 return RedirectToAction("verifyotp");
 
 
 
-                                //return RedirectToAction("index", "dashboard");
+                               // return RedirectToAction("index", "dashboard");
                             }
                             else
                             {
@@ -97,7 +105,6 @@ namespace PensionPortal.Controllers
                                 string pensionerNo = responseArr[1];
                                 string pensionerName = responseArr[2];
                                 string pensionerEmail = responseArr[3];
-                                // string vendorVat = responseArr[4];
 
                                 Session["pensionerNo"] = pensionerNo;
                                 Session["pensionerName"] = pensionerName;
@@ -127,6 +134,7 @@ namespace PensionPortal.Controllers
             }
             return View();
         }
+       
 
         public ActionResult VerifyOTP()
         {
@@ -136,6 +144,58 @@ namespace PensionPortal.Controllers
 
         [HttpPost]
         public ActionResult VerifyOTP(OTP otp)
+        {
+            try
+            {
+                string generatedOtp = Session["OtpCode"] as string;
+                DateTime? generatedAt = Session["OtpGeneratedAt"] as DateTime?;
+                string otpFromUser = otp.OTPCode?.Trim();
+
+                if (generatedOtp == null || generatedAt == null)
+                {
+                    TempData["error"] = "OTP session expired. Please login again.";
+                    return RedirectToAction("Login");
+                }
+
+                if (generatedOtp.Equals(otpFromUser, StringComparison.OrdinalIgnoreCase) &&
+                    DateTime.UtcNow <= generatedAt.Value.AddMinutes(5))
+                {
+                    // OTP valid
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else if (DateTime.UtcNow > generatedAt.Value.AddMinutes(5))
+                {
+                    TempData["error"] = "OTP has expired. Please request a new OTP.";
+                    return RedirectToAction("VerifyOTP");
+                }
+                else
+                {
+                    TempData["error"] = "Invalid OTP. Please try again.";
+                    return View("VerifyOTP");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return View("VerifyOTP");
+            }
+        }
+        public bool ValidateOtp(string inputOtp)
+        {
+            var storedOtp = Session["OtpCode"] as string;
+            var generatedAt = Session["OtpGeneratedAt"] as DateTime?;
+
+            if (storedOtp == null || generatedAt == null)
+                return false;
+
+            if (storedOtp == inputOtp && DateTime.UtcNow <= generatedAt.Value.AddMinutes(5))
+                return true;
+
+            return false;
+        }
+
+
+        public ActionResult VerifyOTP1(OTP otp)
         {
             try
             {
@@ -170,9 +230,38 @@ namespace PensionPortal.Controllers
 
             return result;
         }
+        public ActionResult ResendOtp()
+        {
+            if (Session["pensionerNo"] == null)
+            {
+                TempData["error"] = "Please login first.";
+                return RedirectToAction("Login");
+            }
+
+            string pensionerEmail = Session["pensionerEmail"]?.ToString();
+            string pensionerPhoneNo = Session["pensionerPhoneNo"]?.ToString();
+            string pensionerName = Session["pensionerName"]?.ToString();
+            string maskedPhone = pensionerPhoneNo.Length >= 12
+? pensionerPhoneNo.Substring(0, 4) + "xxxxx" + pensionerPhoneNo.Substring(pensionerPhoneNo.Length - 2)
+: pensionerPhoneNo;
+
+
+            string otp = GenerateOtp(6);
+            Session["otp"] = otp;
+            Session["OtpCode"] = otp;
+            Session["OtpGeneratedAt"] = DateTime.UtcNow;
+
+            string subject = "Telposta Pension Portal OTP - Resend";
+            string body = $"Dear {pensionerName}, your OTP for the Pension Portal is {otp} . It is valid for 5 minutes. ";
+            Components.SendEmailAlerts(pensionerEmail, subject, body);
+            Components.SendSMSAlerts(pensionerPhoneNo, body);
+
+            TempData["success"] = $"A new OTP has been sent to your email: {pensionerEmail} and phone: {maskedPhone}";
+            return RedirectToAction("VerifyOTP");
+        }
+
         public ActionResult ResetPassword(string email, string pensionerNo)
         {
-            // If email is provided in query string, store it in session
             if (!string.IsNullOrEmpty(email))
             {
                 Session["EmailAddress"] = email;
@@ -182,8 +271,6 @@ namespace PensionPortal.Controllers
             {
                 Session["pensionerNo"] = pensionerNo;
             }
-
-            // Retrieve stored session values if they exist
             ViewBag.EmailAddress = Session["EmailAddress"] as string;
             ViewBag.PensionerNo = Session["pensionerNo"] as string;
 
@@ -203,6 +290,7 @@ namespace PensionPortal.Controllers
                 string newPassword = reset.Password;
                 string confirmPassword = reset.PasswordConfirmation;
                 string pensionerNo = Session["pensionerNo"].ToString();
+
 
                 string response = webportals.UpdatePensionerPassword(pensionerNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
@@ -238,9 +326,23 @@ namespace PensionPortal.Controllers
                
                 string newPassword = GenerateRandomPassword(10);
                 string pensionerNo = reset.PfNo;
-                string pensionerEmail= reset.Email;
-                //string email = Components.ObjNav.GetPensionerEmail(pensionerNo);
-                string response = Components.ObjNav.UpdatePensionerAutoGenPassword(pensionerNo, newPassword);
+               // string pensionerEmail= reset.Email;
+                string response1 = webportals.GetPensionerProfileDetails(pensionerNo);
+                if (response1 != null)
+                {
+                    string[] responseArr = response1.Split(strLimiters, StringSplitOptions.None);
+                    Session["Email"] = responseArr[0];
+                    Session["PhoneNo"] = responseArr[1];
+                    Session["Name"] = responseArr[11];
+                }
+                string pensionerEmail = Session["Email"].ToString();
+                string PhoneNo = Session["PhoneNo"].ToString();
+                string maskedPhone = PhoneNo.Length >= 12
+   ? PhoneNo.Substring(0, 4) + "xxxxx" + PhoneNo.Substring(PhoneNo.Length - 2)
+   : PhoneNo;
+                string pensionerName = Session["Name"].ToString();
+
+                    string response = Components.ObjNav.UpdatePensionerAutoGenPassword(pensionerNo, newPassword);
                 if (!string.IsNullOrEmpty(response))
                 {
                     if (response != "SUCCESS")
@@ -251,11 +353,12 @@ namespace PensionPortal.Controllers
 
                 }
                 string subject = "Telposta Pension Portal Password Reset";
-                string body = $"Use this password to log into Telposta Pension Portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                // string body = $"Use this password to log into Telposta Pension Portal.<br/><br/>Auto generated Portal password: <strong>{newPassword}</strong> <br/> <br/>Do not reply to this email.";
+                string body = $"Dear {pensionerName}, Use this password to log in: {newPassword} . Do not reply.";
                 Components.SendEmailAlerts(pensionerEmail, subject, body);
                 //return RedirectToAction("verifyotp");
                 //SendPasswordResetLink(username);
-                TempData["Success"] = $"Auto generated password has been sent to your email address {pensionerEmail}";
+                TempData["Success"] = $"Auto generated password has been sent to your email address {pensionerEmail}  and phone number: {maskedPhone}";
               //  return RedirectToAction("index");
             }
             catch (Exception ex)

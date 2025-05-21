@@ -18,6 +18,7 @@
                 <!-- Login Panel -->
                 <asp:Panel DefaultButton="LbtnLogin" ID="LoginPanel" runat="server">
                     <asp:Label ID="lblError" runat="server" CssClass="error-label"></asp:Label>
+                    <asp:Label ID="lblSuccess" runat="server" CssClass="success-label"></asp:Label>
 
                     <!-- Username Input -->
                     <div class="wrap-input100 validate-input" data-validate="Enter Staff Number">
@@ -60,6 +61,25 @@
     </div>
 
     <style>
+        .alert {
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    display: block;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.success-label {
+    text-align: center;
+    font-weight: 500;
+}
+
         .container-login100 {
     display: flex;
     justify-content: center;
