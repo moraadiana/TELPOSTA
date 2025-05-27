@@ -71,13 +71,13 @@ namespace TelpostaMembersPortal.Controllers
                              : PhoneNo;
 
                                 string subject = "Telposta Provident Fund Portal OTP";
-                                //string body = $"{otp}";
+
                                 string body = $"Dear {memberName}, your OTP for the Provident Fund Portal is {otp} . It is valid for 5 minutes. ";
-                                Components.SendEmailAlerts(memberEmail, subject, body);
-                                Components.SendSMSAlerts(PhoneNo, body);
-                                TempData["success"] = $"An OTP has been sent to your email: {memberEmail} and phone: {maskedPhone}";
-                                return RedirectToAction("verifyotp");
-                                //return RedirectToAction("index", "dashboard");
+                                //Components.SendEmailAlerts(memberEmail, subject, body);
+                                //Components.SendSMSAlerts(PhoneNo, body);
+                                //TempData["success"] = $"An OTP has been sent to your email: {memberEmail} and phone: {maskedPhone}";
+                                //return RedirectToAction("verifyotp");
+                                return RedirectToAction("index", "dashboard");
                             }
                             else
                             {

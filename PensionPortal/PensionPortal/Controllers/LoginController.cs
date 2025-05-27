@@ -74,17 +74,17 @@ namespace PensionPortal.Controllers
  : pensionerPhoneNo;
 
 
-                                string subject = "Telposta Pension Portal OTP";
+                                //string subject = "Telposta Pension Portal OTP";
                                 
-                                string body = $"Dear {pensionerName}, your OTP for the Pension Portal is {otp} . It is valid for 5 minutes. ";
-                                Components.SendEmailAlerts(pensionerEmail, subject, body);
-                                Components.SendSMSAlerts(pensionerPhoneNo, body);
-                                TempData["success"] = $"An OTP has been sent to your email: {pensionerEmail} and phone: {maskedPhone}";
-                                return RedirectToAction("verifyotp");
+                                //string body = $"Dear {pensionerName}, your OTP for the Pension Portal is {otp} . It is valid for 5 minutes. ";
+                                //Components.SendEmailAlerts(pensionerEmail, subject, body);
+                                //Components.SendSMSAlerts(pensionerPhoneNo, body);
+                                //TempData["success"] = $"An OTP has been sent to your email: {pensionerEmail} and phone: {maskedPhone}";
+                                //return RedirectToAction("verifyotp");
 
 
 
-                               // return RedirectToAction("index", "dashboard");
+                               return RedirectToAction("index", "dashboard");
                             }
                             else
                             {

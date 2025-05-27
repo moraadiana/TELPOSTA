@@ -322,8 +322,8 @@ namespace PensionPortal.Controllers
             {
                 string username = Session["pensionerNo"].ToString();
                 //GetLifeCertStatusReport
-                string pensionList = webportals.GetLifeCertsStatuReport(username);
-                if (!string.IsNullOrEmpty(pensionList))
+                string pensionList = webportals.GetLifeCertStatusReport (username);
+                if (!string.IsNullOrEmpty(pensionList)) 
                 {
                     string[] pensionListArr = pensionList.Split(strLimiters2, StringSplitOptions.RemoveEmptyEntries);
 

@@ -29,11 +29,13 @@ namespace PensionPortal.NAVWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="Pension_Binding", Namespace="urn:microsoft-dynamics-schemas/codeunit/Pension")]
     public partial class Pension : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback CheckPensionerLoginOperationCompleted;
+        private System.Threading.SendOrPostCallback CheckValidPensionerNoOperationCompleted;
         
         private System.Threading.SendOrPostCallback CheckPensionerPasswordChangedOperationCompleted;
         
-        private System.Threading.SendOrPostCallback CheckValidPensionerNoOperationCompleted;
+        private System.Threading.SendOrPostCallback CheckPensionerLoginOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPensionerProfileDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback FormatISODateOperationCompleted;
         
@@ -47,7 +49,7 @@ namespace PensionPortal.NAVWS {
         
         private System.Threading.SendOrPostCallback GetLifeCertDatesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetLifeCertsStatuReportOperationCompleted;
+        private System.Threading.SendOrPostCallback GetLifeCertStatusReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetMemberBeneficiariesOperationCompleted;
         
@@ -66,8 +68,6 @@ namespace PensionPortal.NAVWS {
         private System.Threading.SendOrPostCallback GetPensionerNameOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPensionerProfileDetails1OperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetPensionerProfileDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetUpdatesOperationCompleted;
         
@@ -124,13 +124,16 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
-        public event CheckPensionerLoginCompletedEventHandler CheckPensionerLoginCompleted;
+        public event CheckValidPensionerNoCompletedEventHandler CheckValidPensionerNoCompleted;
         
         /// <remarks/>
         public event CheckPensionerPasswordChangedCompletedEventHandler CheckPensionerPasswordChangedCompleted;
         
         /// <remarks/>
-        public event CheckValidPensionerNoCompletedEventHandler CheckValidPensionerNoCompleted;
+        public event CheckPensionerLoginCompletedEventHandler CheckPensionerLoginCompleted;
+        
+        /// <remarks/>
+        public event GetPensionerProfileDetailsCompletedEventHandler GetPensionerProfileDetailsCompleted;
         
         /// <remarks/>
         public event FormatISODateCompletedEventHandler FormatISODateCompleted;
@@ -151,7 +154,7 @@ namespace PensionPortal.NAVWS {
         public event GetLifeCertDatesCompletedEventHandler GetLifeCertDatesCompleted;
         
         /// <remarks/>
-        public event GetLifeCertsStatuReportCompletedEventHandler GetLifeCertsStatuReportCompleted;
+        public event GetLifeCertStatusReportCompletedEventHandler GetLifeCertStatusReportCompleted;
         
         /// <remarks/>
         public event GetMemberBeneficiariesCompletedEventHandler GetMemberBeneficiariesCompleted;
@@ -181,9 +184,6 @@ namespace PensionPortal.NAVWS {
         public event GetPensionerProfileDetails1CompletedEventHandler GetPensionerProfileDetails1Completed;
         
         /// <remarks/>
-        public event GetPensionerProfileDetailsCompletedEventHandler GetPensionerProfileDetailsCompleted;
-        
-        /// <remarks/>
         public event GetUpdatesCompletedEventHandler GetUpdatesCompleted;
         
         /// <remarks/>
@@ -208,34 +208,32 @@ namespace PensionPortal.NAVWS {
         public event UploadProfilePictureCompletedEventHandler UploadProfilePictureCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckPensionerLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckValidPensionerNo", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckValidPensionerNo_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string CheckPensionerLogin(string username, string userpassword) {
-            object[] results = this.Invoke("CheckPensionerLogin", new object[] {
-                        username,
-                        userpassword});
-            return ((string)(results[0]));
+        public bool CheckValidPensionerNo(string username) {
+            object[] results = this.Invoke("CheckValidPensionerNo", new object[] {
+                        username});
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void CheckPensionerLoginAsync(string username, string userpassword) {
-            this.CheckPensionerLoginAsync(username, userpassword, null);
+        public void CheckValidPensionerNoAsync(string username) {
+            this.CheckValidPensionerNoAsync(username, null);
         }
         
         /// <remarks/>
-        public void CheckPensionerLoginAsync(string username, string userpassword, object userState) {
-            if ((this.CheckPensionerLoginOperationCompleted == null)) {
-                this.CheckPensionerLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckPensionerLoginOperationCompleted);
+        public void CheckValidPensionerNoAsync(string username, object userState) {
+            if ((this.CheckValidPensionerNoOperationCompleted == null)) {
+                this.CheckValidPensionerNoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckValidPensionerNoOperationCompleted);
             }
-            this.InvokeAsync("CheckPensionerLogin", new object[] {
-                        username,
-                        userpassword}, this.CheckPensionerLoginOperationCompleted, userState);
+            this.InvokeAsync("CheckValidPensionerNo", new object[] {
+                        username}, this.CheckValidPensionerNoOperationCompleted, userState);
         }
         
-        private void OnCheckPensionerLoginOperationCompleted(object arg) {
-            if ((this.CheckPensionerLoginCompleted != null)) {
+        private void OnCheckValidPensionerNoOperationCompleted(object arg) {
+            if ((this.CheckValidPensionerNoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CheckPensionerLoginCompleted(this, new CheckPensionerLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CheckValidPensionerNoCompleted(this, new CheckValidPensionerNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -270,32 +268,64 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckValidPensionerNo", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckValidPensionerNo_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:CheckPensionerLogin", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="CheckPensionerLogin_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public bool CheckValidPensionerNo(string username) {
-            object[] results = this.Invoke("CheckValidPensionerNo", new object[] {
-                        username});
-            return ((bool)(results[0]));
+        public string CheckPensionerLogin(string username, string userpassword) {
+            object[] results = this.Invoke("CheckPensionerLogin", new object[] {
+                        username,
+                        userpassword});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void CheckValidPensionerNoAsync(string username) {
-            this.CheckValidPensionerNoAsync(username, null);
+        public void CheckPensionerLoginAsync(string username, string userpassword) {
+            this.CheckPensionerLoginAsync(username, userpassword, null);
         }
         
         /// <remarks/>
-        public void CheckValidPensionerNoAsync(string username, object userState) {
-            if ((this.CheckValidPensionerNoOperationCompleted == null)) {
-                this.CheckValidPensionerNoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckValidPensionerNoOperationCompleted);
+        public void CheckPensionerLoginAsync(string username, string userpassword, object userState) {
+            if ((this.CheckPensionerLoginOperationCompleted == null)) {
+                this.CheckPensionerLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckPensionerLoginOperationCompleted);
             }
-            this.InvokeAsync("CheckValidPensionerNo", new object[] {
-                        username}, this.CheckValidPensionerNoOperationCompleted, userState);
+            this.InvokeAsync("CheckPensionerLogin", new object[] {
+                        username,
+                        userpassword}, this.CheckPensionerLoginOperationCompleted, userState);
         }
         
-        private void OnCheckValidPensionerNoOperationCompleted(object arg) {
-            if ((this.CheckValidPensionerNoCompleted != null)) {
+        private void OnCheckPensionerLoginOperationCompleted(object arg) {
+            if ((this.CheckPensionerLoginCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CheckValidPensionerNoCompleted(this, new CheckValidPensionerNoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CheckPensionerLoginCompleted(this, new CheckPensionerLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerProfileDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetPensionerProfileDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string GetPensionerProfileDetails(string username) {
+            object[] results = this.Invoke("GetPensionerProfileDetails", new object[] {
+                        username});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPensionerProfileDetailsAsync(string username) {
+            this.GetPensionerProfileDetailsAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void GetPensionerProfileDetailsAsync(string username, object userState) {
+            if ((this.GetPensionerProfileDetailsOperationCompleted == null)) {
+                this.GetPensionerProfileDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPensionerProfileDetailsOperationCompleted);
+            }
+            this.InvokeAsync("GetPensionerProfileDetails", new object[] {
+                        username}, this.GetPensionerProfileDetailsOperationCompleted, userState);
+        }
+        
+        private void OnGetPensionerProfileDetailsOperationCompleted(object arg) {
+            if ((this.GetPensionerProfileDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPensionerProfileDetailsCompleted(this, new GetPensionerProfileDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -496,32 +526,32 @@ namespace PensionPortal.NAVWS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetLifeCertsStatuReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetLifeCertsStatuReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetLifeCertStatusReport", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetLifeCertStatusReport_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string GetLifeCertsStatuReport(string pensionerNo) {
-            object[] results = this.Invoke("GetLifeCertsStatuReport", new object[] {
+        public string GetLifeCertStatusReport(string pensionerNo) {
+            object[] results = this.Invoke("GetLifeCertStatusReport", new object[] {
                         pensionerNo});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetLifeCertsStatuReportAsync(string pensionerNo) {
-            this.GetLifeCertsStatuReportAsync(pensionerNo, null);
+        public void GetLifeCertStatusReportAsync(string pensionerNo) {
+            this.GetLifeCertStatusReportAsync(pensionerNo, null);
         }
         
         /// <remarks/>
-        public void GetLifeCertsStatuReportAsync(string pensionerNo, object userState) {
-            if ((this.GetLifeCertsStatuReportOperationCompleted == null)) {
-                this.GetLifeCertsStatuReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLifeCertsStatuReportOperationCompleted);
+        public void GetLifeCertStatusReportAsync(string pensionerNo, object userState) {
+            if ((this.GetLifeCertStatusReportOperationCompleted == null)) {
+                this.GetLifeCertStatusReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLifeCertStatusReportOperationCompleted);
             }
-            this.InvokeAsync("GetLifeCertsStatuReport", new object[] {
-                        pensionerNo}, this.GetLifeCertsStatuReportOperationCompleted, userState);
+            this.InvokeAsync("GetLifeCertStatusReport", new object[] {
+                        pensionerNo}, this.GetLifeCertStatusReportOperationCompleted, userState);
         }
         
-        private void OnGetLifeCertsStatuReportOperationCompleted(object arg) {
-            if ((this.GetLifeCertsStatuReportCompleted != null)) {
+        private void OnGetLifeCertStatusReportOperationCompleted(object arg) {
+            if ((this.GetLifeCertStatusReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetLifeCertsStatuReportCompleted(this, new GetLifeCertsStatuReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetLifeCertStatusReportCompleted(this, new GetLifeCertStatusReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -788,36 +818,6 @@ namespace PensionPortal.NAVWS {
             if ((this.GetPensionerProfileDetails1Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetPensionerProfileDetails1Completed(this, new GetPensionerProfileDetails1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Pension:GetPensionerProfileDetails", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", ResponseElementName="GetPensionerProfileDetails_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Pension", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
-        public string GetPensionerProfileDetails(string username) {
-            object[] results = this.Invoke("GetPensionerProfileDetails", new object[] {
-                        username});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetPensionerProfileDetailsAsync(string username) {
-            this.GetPensionerProfileDetailsAsync(username, null);
-        }
-        
-        /// <remarks/>
-        public void GetPensionerProfileDetailsAsync(string username, object userState) {
-            if ((this.GetPensionerProfileDetailsOperationCompleted == null)) {
-                this.GetPensionerProfileDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPensionerProfileDetailsOperationCompleted);
-            }
-            this.InvokeAsync("GetPensionerProfileDetails", new object[] {
-                        username}, this.GetPensionerProfileDetailsOperationCompleted, userState);
-        }
-        
-        private void OnGetPensionerProfileDetailsOperationCompleted(object arg) {
-            if ((this.GetPensionerProfileDetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetPensionerProfileDetailsCompleted(this, new GetPensionerProfileDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1108,26 +1108,26 @@ namespace PensionPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void CheckPensionerLoginCompletedEventHandler(object sender, CheckPensionerLoginCompletedEventArgs e);
+    public delegate void CheckValidPensionerNoCompletedEventHandler(object sender, CheckValidPensionerNoCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CheckPensionerLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class CheckValidPensionerNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal CheckPensionerLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal CheckValidPensionerNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public string Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }
@@ -1160,26 +1160,52 @@ namespace PensionPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void CheckValidPensionerNoCompletedEventHandler(object sender, CheckValidPensionerNoCompletedEventArgs e);
+    public delegate void CheckPensionerLoginCompletedEventHandler(object sender, CheckPensionerLoginCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CheckValidPensionerNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class CheckPensionerLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal CheckValidPensionerNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal CheckPensionerLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public bool Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPensionerProfileDetailsCompletedEventHandler(object sender, GetPensionerProfileDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPensionerProfileDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPensionerProfileDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -1276,17 +1302,17 @@ namespace PensionPortal.NAVWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetLifeCertsStatuReportCompletedEventHandler(object sender, GetLifeCertsStatuReportCompletedEventArgs e);
+    public delegate void GetLifeCertStatusReportCompletedEventHandler(object sender, GetLifeCertStatusReportCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetLifeCertsStatuReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetLifeCertStatusReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal GetLifeCertsStatuReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetLifeCertStatusReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1521,32 +1547,6 @@ namespace PensionPortal.NAVWS {
         private object[] results;
         
         internal GetPensionerProfileDetails1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    public delegate void GetPensionerProfileDetailsCompletedEventHandler(object sender, GetPensionerProfileDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetPensionerProfileDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetPensionerProfileDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

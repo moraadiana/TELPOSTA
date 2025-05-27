@@ -2439,6 +2439,9 @@
     <Content Include="images\logo.png" />
     <Content Include="images\profile_f.png" />
     <Content Include="images\profile_m.png" />
+    <Content Include="Profiles\31976.png" />
+    <Content Include="Profiles\34051.png" />
+    <Content Include="Profiles\profile_m.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

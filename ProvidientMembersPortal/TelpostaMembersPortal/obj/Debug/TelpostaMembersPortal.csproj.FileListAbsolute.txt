@@ -235,26 +235,19 @@ D:\Project Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\Ne
 D:\Project Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\Antlr3.Runtime.pdb
 D:\Project Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Project Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\obj\Debug\Telposta.A7ECAA13.Up2Date
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csc.exe
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Collections.Immutable.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.FileSystem.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Reflection.Metadata.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Security.Cryptography.Primitives.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Text.Encoding.CodePages.dll
-D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.ValueTuple.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\TelpostaMembersPortal.dll.config
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\TelpostaMembersPortal.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\TelpostaMembersPortal.pdb
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csc.exe
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csc.exe.config
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csc.rsp
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csi.exe
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csi.exe.config
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\csi.rsp
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.CSharp.Core.targets
@@ -264,6 +257,7 @@ D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Mic
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.VisualBasic.Core.targets
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Microsoft.Win32.Primitives.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.AppContext.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Collections.Immutable.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Console.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
@@ -271,13 +265,19 @@ D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\Sys
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Globalization.Calendars.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.Compression.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.FileSystem.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Net.Http.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Net.Sockets.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Reflection.Metadata.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Security.Cryptography.Primitives.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Text.Encoding.CodePages.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.ValueTuple.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Xml.ReaderWriter.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Xml.XmlDocument.dll
 D:\Portals\TELPOSTA\ProvidientMembersPortal\TelpostaMembersPortal\bin\roslyn\System.Xml.XPath.dll
